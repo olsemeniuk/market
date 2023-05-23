@@ -16,100 +16,102 @@
   <header class="header">
     <div class="container">
       <div class="header__inner">
-        <nav class="menu">
-          <button class="menu__open-btn">
-            <img src="images/icons/menu-icon.svg" alt="">
-          </button>
-          <div class="menu__list-wrapper">
-            <button class="menu__close-btn">
-              <img src="images/icons/close-btn.svg" alt="">
+        <div class="header__info header__info--left">
+          <nav class="menu">
+            <button class="menu__open-btn">
+              <img src="images/icons/menu-icon.svg" alt="">
             </button>
-            <div class="menu__logo">
-              <a class="menu__logo-link" href="#">
-                <img src="images/logo.png" alt="">
-              </a>
-            </div>
-            <div class="menu__dropdowns">
-              <div class="dropdown-wrapper">
-                <div class="dropdown">
-                  <button class="dropdown__btn">en</button>
-                  <ul class="dropdown__list">
-                    <li class="dropdown__item" data-value="en">en</li>
-                    <li class="dropdown__item" data-value="ru">ru</li>
-                    <li class="dropdown__item" data-value="it">it</li>
-                    <li class="dropdown__item" data-value="fr">fr</li>
-                  </ul>
-                  <input class="dropdown__input-hidden" type="text" name="lang" value="">
+            <div class="menu__list-wrapper">
+              <button class="menu__close-btn">
+                <img src="images/icons/close-btn.svg" alt="">
+              </button>
+              <div class="menu__logo">
+                <a class="menu__logo-link" href="#">
+                  <img src="images/logo.png" alt="">
+                </a>
+              </div>
+              <div class="menu__dropdowns">
+                <div class="dropdown-wrapper">
+                  <div class="dropdown">
+                    <button class="dropdown__btn">en</button>
+                    <ul class="dropdown__list">
+                      <li class="dropdown__item" data-value="en">en</li>
+                      <li class="dropdown__item" data-value="ru">ru</li>
+                      <li class="dropdown__item" data-value="it">it</li>
+                      <li class="dropdown__item" data-value="fr">fr</li>
+                    </ul>
+                    <input class="dropdown__input-hidden" type="text" name="lang" value="">
+                  </div>
+                </div>
+                <div class="dropdown-wrapper">
+                  <div class="dropdown">
+                    <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                    <ul class="dropdown__list">
+                      <li class="dropdown__item" data-value="eur">€ eur</li>
+                      <li class="dropdown__item" data-value="usd">$ usd</li>
+                      <li class="dropdown__item" data-value="rub">₽ rub</li>
+                      <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                    </ul>
+                    <input class="dropdown__input-hidden" type="text" name="currency" value="">
+                  </div>
                 </div>
               </div>
-              <div class="dropdown-wrapper">
-                <div class="dropdown">
-                  <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
-                  <ul class="dropdown__list">
-                    <li class="dropdown__item" data-value="eur">€ eur</li>
-                    <li class="dropdown__item" data-value="usd">$ usd</li>
-                    <li class="dropdown__item" data-value="rub">₽ rub</li>
-                    <li class="dropdown__item" data-value="gbp">£ gbp</li>
-                  </ul>
-                  <input class="dropdown__input-hidden" type="text" name="currency" value="">
-                </div>
-              </div>
-            </div>
-            <ul class="menu__list">
-              <li class="menu__item">
-                <a class="menu__link menu__link--active" href="/index.html">
-                  buy
-                </a>
-              </li>
-              <li class="menu__item">
-                <a class="menu__link" href="/deal.html">
-                  sell
-                </a>
-              </li>
-              <li class="menu__item">
-                <a class="menu__link" href="/deal.html">
-                  trade
-                </a>
-              </li>
-              <li class="menu__item menu__item--last">
-                <a class="menu__link" href="/info.html">
-                  info
-                </a>
-              </li>
-            </ul>
-            <div class="menu__footer">
-              <p class="menu__footer-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis.
-              </p>
-              <ul class="menu__footer-list">
-                <li class="menu__footer-item">
-                  <a class="menu__footer-link" href="#">
-                    Privacy policy
+              <ul class="menu__list">
+                <li class="menu__item">
+                  <a class="menu__link menu__link--active" href="/index.html">
+                    buy
                   </a>
                 </li>
-                <li class="menu__footer-item">
-                  <a class="menu__footer-link" href="#">
-                    Terms of use
+                <li class="menu__item">
+                  <a class="menu__link" href="/deal.html">
+                    sell
                   </a>
                 </li>
-                <li class="menu__footer-item">
-                  <a class="menu__footer-link" href="#">
-                    Contact us
+                <li class="menu__item">
+                  <a class="menu__link" href="/deal.html">
+                    trade
+                  </a>
+                </li>
+                <li class="menu__item menu__item--last">
+                  <a class="menu__link" href="/info.html">
+                    info
                   </a>
                 </li>
               </ul>
+              <div class="menu__footer">
+                <p class="menu__footer-text">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                  dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+                  lacus vel facilisis.
+                </p>
+                <ul class="menu__footer-list">
+                  <li class="menu__footer-item">
+                    <a class="menu__footer-link" href="#">
+                      Privacy policy
+                    </a>
+                  </li>
+                  <li class="menu__footer-item">
+                    <a class="menu__footer-link" href="#">
+                      Terms of use
+                    </a>
+                  </li>
+                  <li class="menu__footer-item">
+                    <a class="menu__footer-link" href="#">
+                      Contact us
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
+          </nav>
+          <div class="header__category category">
+            <a class="category__item category__item-cs category__item--active" href="#">
+              <img class="category__img" src="images/icons/cs.svg" alt="">
+            </a>
+            <a class="category__item category__item-dota" href="#">
+              <img class="category__img" src="images/icons/dota.svg" alt="">
+            </a>
           </div>
-        </nav>
-        <div class="header__category category">
-          <a class="category__item category__item-cs category__item--active" href="#">
-            <img class="category__img" src="images/icons/cs.svg" alt="">
-          </a>
-          <a class="category__item category__item-dota" href="#">
-            <img class="category__img" src="images/icons/dota.svg" alt="">
-          </a>
         </div>
         <div class="header__logo logo">
           <a class="logo__link" href="#">
@@ -119,46 +121,48 @@
             </picture>
           </a>
         </div>
-        <div class="header__dropdowns">
-          <div class="dropdown-wrapper">
-            <div class="dropdown">
-              <button class="dropdown__btn">en</button>
-              <ul class="dropdown__list">
-                <li class="dropdown__item" data-value="en">en</li>
-                <li class="dropdown__item" data-value="ru">ru</li>
-                <li class="dropdown__item" data-value="it">it</li>
-                <li class="dropdown__item" data-value="fr">fr</li>
-              </ul>
-              <input class="dropdown__input-hidden" type="text" name="lang" value="">
+        <div class="header__info header__info--right">
+          <div class="header__dropdowns">
+            <div class="dropdown-wrapper">
+              <div class="dropdown">
+                <button class="dropdown__btn">en</button>
+                <ul class="dropdown__list">
+                  <li class="dropdown__item" data-value="en">en</li>
+                  <li class="dropdown__item" data-value="ru">ru</li>
+                  <li class="dropdown__item" data-value="it">it</li>
+                  <li class="dropdown__item" data-value="fr">fr</li>
+                </ul>
+                <input class="dropdown__input-hidden" type="text" name="lang" value="">
+              </div>
+            </div>
+            <div class="dropdown-wrapper">
+              <div class="dropdown">
+                <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                <ul class="dropdown__list">
+                  <li class="dropdown__item" data-value="eur">€ eur</li>
+                  <li class="dropdown__item" data-value="usd">$ usd</li>
+                  <li class="dropdown__item" data-value="rub">₽ rub</li>
+                  <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                </ul>
+                <input class="dropdown__input-hidden" type="text" name="currency" value="">
+              </div>
             </div>
           </div>
-          <div class="dropdown-wrapper">
-            <div class="dropdown">
-              <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
-              <ul class="dropdown__list">
-                <li class="dropdown__item" data-value="eur">€ eur</li>
-                <li class="dropdown__item" data-value="usd">$ usd</li>
-                <li class="dropdown__item" data-value="rub">₽ rub</li>
-                <li class="dropdown__item" data-value="gbp">£ gbp</li>
-              </ul>
-              <input class="dropdown__input-hidden" type="text" name="currency" value="">
-            </div>
+          <div class="header__balance balance balance--off">
+            <span class="balance__summ">
+              $ 100
+            </span>
+            <a class="balance__add-btn" href="#"></a>
           </div>
-        </div>
-        <div class="header__balance balance balance--off">
-          <span class="balance__summ">
-            $ 100
-          </span>
-          <a class="balance__add-btn" href="#"></a>
-        </div>
-        <div class="header__user-wrapper header__user--notification header__user--off">
-          <a class="header__user" href="#">
-            <img class="header__user-img" src="images/user-img.jpg" alt="">
+          <div class="header__user-wrapper header__user--notification header__user--off">
+            <a class="header__user" href="#">
+              <img class="header__user-img" src="images/user-img.jpg" alt="">
+            </a>
+          </div>
+          <a class="header__sign-in btn" href="#">
+            sign in
           </a>
         </div>
-        <a class="header__sign-in btn" href="#">
-          sign in
-        </a>
       </div>
     </div>
   </header>

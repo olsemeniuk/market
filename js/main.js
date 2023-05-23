@@ -448,14 +448,6 @@ document.querySelectorAll('.deal__side-header').forEach((header) => {
 });
 
 
-const headerCategory = document.querySelector('.header__category'),
-      headerLogo = document.querySelector('.header__logo');
-    
-if (headerCategory.classList.contains('header__category--off')) {
-  headerLogo.style.marginLeft = 'auto';
-};
-
-
 /*
 смена имейла на странице account
 */
