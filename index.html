@@ -1,0 +1,3104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market4.pro</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/nouislider.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/media.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <nav class="menu">
+          <button class="menu__open-btn">
+            <img src="images/icons/menu-icon.svg" alt="">
+          </button>
+          <div class="menu__list-wrapper">
+            <button class="menu__close-btn">
+              <img src="images/icons/close-btn.svg" alt="">
+            </button>
+            <div class="menu__logo">
+              <a class="menu__logo-link" href="#">
+                <img src="images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="menu__dropdowns">
+              <div class="dropdown-wrapper">
+                <div class="dropdown">
+                  <button class="dropdown__btn">en</button>
+                  <ul class="dropdown__list">
+                    <li class="dropdown__item" data-value="en">en</li>
+                    <li class="dropdown__item" data-value="ru">ru</li>
+                    <li class="dropdown__item" data-value="it">it</li>
+                    <li class="dropdown__item" data-value="fr">fr</li>
+                  </ul>
+                  <input class="dropdown__input-hidden" type="text" name="lang" value="">
+                </div>
+              </div>
+              <div class="dropdown-wrapper">
+                <div class="dropdown">
+                  <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                  <ul class="dropdown__list">
+                    <li class="dropdown__item" data-value="eur">€ eur</li>
+                    <li class="dropdown__item" data-value="usd">$ usd</li>
+                    <li class="dropdown__item" data-value="rub">₽ rub</li>
+                    <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                  </ul>
+                  <input class="dropdown__input-hidden" type="text" name="currency" value="">
+                </div>
+              </div>
+            </div>
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a class="menu__link menu__link--active" href="#">
+                  buy
+                </a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#">
+                  sell
+                </a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#">
+                  trade
+                </a>
+              </li>
+              <li class="menu__item menu__item--last">
+                <a class="menu__link" href="#">
+                  info
+                </a>
+              </li>
+            </ul>
+            <div class="menu__footer">
+              <p class="menu__footer-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+                lacus vel facilisis.
+              </p>
+              <ul class="menu__footer-list">
+                <li class="menu__footer-item">
+                  <a class="menu__footer-link" href="#">
+                    Privacy policy
+                  </a>
+                </li>
+                <li class="menu__footer-item">
+                  <a class="menu__footer-link" href="#">
+                    Terms of use
+                  </a>
+                </li>
+                <li class="menu__footer-item">
+                  <a class="menu__footer-link" href="#">
+                    Contact us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="header__category category">
+          <a class="category__item category__item-cs category__item--active" href="#">
+            <img class="category__img" src="images/icons/cs.svg" alt="">
+          </a>
+          <a class="category__item category__item-dota" href="#">
+            <img class="category__img" src="images/icons/dota.svg" alt="">
+          </a>
+        </div>
+        <div class="header__logo logo">
+          <a class="logo__link" href="#">
+            <picture class="logo__img">
+              <source srcset="images/logo-small.png" media="(max-width: 900px)">
+              <img src="images/logo.png" alt="">
+            </picture>
+          </a>
+        </div>
+        <div class="header__dropdowns">
+          <div class="dropdown-wrapper">
+            <div class="dropdown">
+              <button class="dropdown__btn">en</button>
+              <ul class="dropdown__list">
+                <li class="dropdown__item" data-value="en">en</li>
+                <li class="dropdown__item" data-value="ru">ru</li>
+                <li class="dropdown__item" data-value="it">it</li>
+                <li class="dropdown__item" data-value="fr">fr</li>
+              </ul>
+              <input class="dropdown__input-hidden" type="text" name="lang" value="">
+            </div>
+          </div>
+          <div class="dropdown-wrapper">
+            <div class="dropdown">
+              <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+              <ul class="dropdown__list">
+                <li class="dropdown__item" data-value="eur">€ eur</li>
+                <li class="dropdown__item" data-value="usd">$ usd</li>
+                <li class="dropdown__item" data-value="rub">₽ rub</li>
+                <li class="dropdown__item" data-value="gbp">£ gbp</li>
+              </ul>
+              <input class="dropdown__input-hidden" type="text" name="currency" value="">
+            </div>
+          </div>
+        </div>
+        <div class="header__balance balance balance--off">
+          <span class="balance__summ">
+            $ 100
+          </span>
+          <a class="balance__add-btn" href="#"></a>
+        </div>
+        <div class="header__user-wrapper header__user--notification header__user--off">
+          <a class="header__user" href="#">
+            <img class="header__user-img" src="images/user-img.jpg" alt="">
+          </a>
+        </div>
+        <a class="header__sign-in btn" href="#">
+          sign in
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <section class="products">
+      <div class="container">
+        <div class="products__inner">
+          <div class="products__aside">
+            <form class="filter products__filter" action="#">
+              <div class="filter__title">
+                filter
+              </div>
+              <button class="filter__close-btn">
+                <img src="images/icons/close-btn.svg" alt="">
+              </button>
+              <label class="filter__checkbox-label filter__checkbox-label-top">
+                <input class="filter__checkbox-hidden" type="checkbox">
+                <div class="filter__checkbox"></div>
+                <span>only avaible</span>
+              </label>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  type
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  exterior
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  trade lock
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  collection
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  rarity
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  pattern
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="filter__form-section">
+                <div class="filter__section-title">
+                  price
+                  <span class="filter__count">
+                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
+                  </span>
+                </div>
+                <div class="filter__checkbox-wrapper">
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>knives</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>gloves</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>pistols</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>SMGs</span>
+                  </label>
+                  <label class="filter__checkbox-label">
+                    <input class="filter__checkbox-hidden" type="checkbox">
+                    <div class="filter__checkbox"></div>
+                    <span>assault rifles</span>
+                  </label>
+                </div>
+              </fieldset>
+              <div class="range-slider">
+                <div class="range-slider__base"></div>
+                <div class="range-slider__inputs">
+                  <input class="range-slider__nums range-slider__nums--low" type="text" value="0">
+                  <span>$</span>
+                  <input class="range-slider__nums range-slider__nums--high" type="text" value="10000">
+                </div>
+              </div>
+              <div class="filter__buttons">
+                <button class="filter__btn filter__submit-btn" type="submit">
+                  apply
+                </button>
+                <button class="filter__btn filter__decline-btn" type="reset">
+                  decline
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="products__content">
+            <div class="products__content-header">
+              <div class="dropdown-wrapper">
+                <div class="dropdown dropdown-sort products__dropdown-sort">
+                  <button class="dropdown__btn dropdown__btn-sort">default</button>
+                  <ul class="dropdown__list dropdown__sort-list">
+                    <li class="dropdown__item">default</li>
+                    <li class="dropdown__item">default1</li>
+                    <li class="dropdown__item">default2</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="settings products__settings">
+                <button class="settings-btn">
+                  <img src="images/icons/settings.svg" alt="">
+                </button>
+                <ul class="settings__list">
+                  <li class="settings__item">
+                    <a class="settings__link" href="#">
+                      settings 1
+                    </a>
+                  </li>
+                  <li class="settings__item">
+                    <a class="settings__link" href="#">
+                      settings 2
+                    </a>
+                  </li>
+                  <li class="settings__item">
+                    <a class="settings__link" href="#">
+                      settings 3
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="search products__search">
+                <div class="search__show-btn">
+                  <img src="images/icons/search-small.svg" alt="">
+                </div>
+                <form class="search__form" action="#">
+                  <input class="search__field" type="text" placeholder="Search...">
+                  <button class="search__form-btn" type="submit">
+                    <img src="images/icons/search.svg" alt="">
+                  </button>
+                </form>
+              </div>
+              <div class="products__category category">
+                <a class="category__item category__item-cs category__item--active" href="#">
+                  <img class="category__img" src="images/icons/cs.svg" alt="">
+                </a>
+                <a class="category__item category__item-dota" href="#">
+                  <img class="category__img" src="images/icons/dota.svg" alt="">
+                </a>
+              </div>
+              <div class="products__content-buy">
+                <a class="products__cart" href="#">
+                  <img src="images/icons/cart.svg" alt="">
+                  <span>20</span>
+                </a>
+                <div class="products__summ">
+                  $ 10 923. 18
+                </div>
+                <a class="products__buy-btn btn" href="#">
+                  buy
+                </a>
+              </div>
+              <button class="products__filter-btn filter-btn">
+                <img src="images/icons/filter-icon.svg" alt="">
+              </button>
+            </div>
+            <div class="products__content-items">
+              <div class="item products__item item--icons">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/gloves.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/red-knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/golden-gun.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item item--icons">
+                <img class="item__img" src="images/items/green-knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/orange-sniper.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/black-sniper.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/red-knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item item--icons">
+                <img class="item__img" src="images/items/red-curved-knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/golden-knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/light-green-knife.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+              <div class="item products__item">
+                <img class="item__img" src="images/items/red-sniper.png" alt="">
+                <div class="item__about">
+                  <div class="item__about-row">
+                    <span class="item__first-index">ST</span>
+                    <span class="item__info">Some info</span>
+                    <span class="item__second-index">SI</span>
+                  </div>
+                  <div class="item__price">
+                    $ 7 851.31
+                  </div>
+                </div>
+                <div class="item__icons">
+                  <img class="item__icon" src="images/items/items-icon-1.png" alt="">
+                  <img class="item__icon" src="images/items/items-icon-2.png" alt="">
+                </div>
+                <div class="item__overlay">
+                  <div class="item__overlay-sign"></div>
+                </div>
+                <a class="item__star" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17px"
+                    height="16px">
+                    <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                      d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                  </svg>
+                </a>
+                <button class="item__details">
+                  <span>details</span>
+                </button>
+                <div class="modal-item">
+                  <button class="modal-item__close">
+                    <img src="images/icons/close-btn.svg" alt="">
+                  </button>
+                  <div class="modal-item__inner">
+                    <div class="modal-item__slider-block">
+                      <img class="modal-item__img" src="images/items/item-big.png" alt="">
+                      <div class="slider-shadow">
+                        <div class="modal-item__slider swiper">
+                          <div class="modal-item__slider-wrapper swiper-wrapper">
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                            <div class="modal-item__slide swiper-slide">
+                              <img class="modal-item__slide-img" src="images/items/item-slide.jpg" alt="">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-item__info">
+                      <div class="modal-item__title">
+                        Lavapick
+                      </div>
+                      <div class="modal-item__about">
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            type
+                          </div>
+                          <div class="modal-item__about-value">
+                            Stiletto Knife / <span>Factory New</span>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            rarity
+                          </div>
+                          <div class="modal-item__about-value">
+                            Covert
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            pattern
+                          </div>
+                          <div class="modal-item__about-value">
+                            301
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__about-title">
+                            float
+                          </div>
+                          <div class="modal-item__about-value float-value">
+                            0.05937123
+                          </div>
+                        </div>
+                        <div class="float-scale">
+                          <div class="float-scale__base"></div>
+                          <div class="float-scale__inner">
+                            <div class="float-scale__color float-scale__blue"></div>
+                            <div class="float-scale__color float-scale__green"></div>
+                            <div class="float-scale__color float-scale__yellow"></div>
+                            <div class="float-scale__color float-scale__orange"></div>
+                            <div class="float-scale__color float-scale__red"></div>
+                          </div>
+                        </div>
+                        <div class="modal-item__about-row">
+                          <div class="modal-item__price">
+                            $9.95 <span class="modal-item__old-price">$10.25</span>
+                          </div>
+                          <div class="modal-item__favourite">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              width="17px" height="16px">
+                              <path fill-rule="evenodd" fill="rgb(114, 96, 138)"
+                                d="M8.412,0.0 C10.185,0.389 10.536,3.404 11.376,4.738 C12.771,5.113 16.378,4.762 16.951,5.974 C17.463,7.943 13.683,8.816 13.281,10.300 C12.720,12.374 15.387,14.328 13.493,15.999 C11.464,16.29 10.491,14.127 8.765,13.733 C6.976,13.326 5.438,16.436 3.261,15.931 C3.120,15.748 2.979,15.565 2.838,15.381 C2.101,13.906 4.106,12.50 3.684,10.369 C3.199,8.434 0.834,8.199 0.156,5.630 C1.352,5.23 4.655,5.458 5.590,4.738 C6.998,3.652 6.412,0.996 8.412,0.0 Z" />
+                            </svg>
+                            <span>favourite</span>
+                          </div>
+                        </div>
+                        <a class="modal-item__btn btn" href="#">buy</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__links-row">
+                    <a class="modal-item__link modal-item__link-copy" href="#">copy item link</a>
+                    <a class="modal-item__link modal-item__link-share" href="#">share item</a>
+                    <a class="modal-item__link modal-item__link-steam" href="#"> item on Steam</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <a class="footer__logo-link" href="#">
+            <img class="footer__logo-img" src="images/footer-logo.png" alt="">
+          </a>
+        </div>
+        <div class="footer__content">
+          <p class="footer__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+          <ul class="footer__menu">
+            <li class="footer__menu-item">
+              <a class="footer__menu-link" href="#">
+                Privacy policy
+              </a>
+            </li>
+            <li class="footer__menu-item">
+              <a class="footer__menu-link" href="#">
+                Terms of use
+              </a>
+            </li>
+            <li class="footer__menu-item">
+              <a class="footer__menu-link" href="#">
+                Contact us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal-overlay"></div>
+
+
+  <script src="js/nouislider.min.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market4.pro</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/nouislider.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/media.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <nav class="menu">
+          <button class="menu__open-btn">
+            <img src="images/icons/menu-icon.svg" alt="">
+          </button>
+          <div class="menu__list-wrapper">
+            <button class="menu__close-btn">
+              <img src="images/icons/close-btn.svg" alt="">
+            </button>
+            <div class="menu__logo">
+              <a class="menu__logo-link" href="#">
+                <img src="images/logo.png" alt="">
+              </a>
+            </div>
+            <div class="menu__dropdowns">
+              <div class="dropdown-wrapper">
+                <div class="dropdown">
+                  <button class="dropdown__btn">en</button>
+                  <ul class="dropdown__list">
+                    <li class="dropdown__item" data-value="en">en</li>
+                    <li class="dropdown__item" data-value="ru">ru</li>
+                    <li class="dropdown__item" data-value="it">it</li>
+                    <li class="dropdown__item" data-value="fr">fr</li>
+                  </ul>
+                  <input class="dropdown__input-hidden" type="text" name="lang" value="">
+                </div>
+              </div>
+              <div class="dropdown-wrapper">
+                <div class="dropdown">
+                  <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                  <ul class="dropdown__list">
+                    <li class="dropdown__item" data-value="eur">€ eur</li>
+                    <li class="dropdown__item" data-value="usd">$ usd</li>
+                    <li class="dropdown__item" data-value="rub">₽ rub</li>
+                    <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                  </ul>
+                  <input class="dropdown__input-hidden" type="text" name="currency" value="">
+                </div>
+              </div>
+            </div>
+            <ul class="menu__list">
+              <li class="menu__item">
+                <a class="menu__link" href="#">
+                  buy
+                </a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#">
+                  sell
+                </a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link" href="#">
+                  trade
+                </a>
+              </li>
+              <li class="menu__item menu__item--last">
+                <a class="menu__link menu__link--active" href="#">
+                  info
+                </a>
+              </li>
+            </ul>
+            <div class="menu__footer">
+              <p class="menu__footer-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+                lacus vel facilisis.
+              </p>
+              <ul class="menu__footer-list">
+                <li class="menu__footer-item">
+                  <a class="menu__footer-link" href="#">
+                    Privacy policy
+                  </a>
+                </li>
+                <li class="menu__footer-item">
+                  <a class="menu__footer-link" href="#">
+                    Terms of use
+                  </a>
+                </li>
+                <li class="menu__footer-item">
+                  <a class="menu__footer-link" href="#">
+                    Contact us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="header__category category header__category--off">
+          <a class="category__item category__item-cs category__item--active" href="#">
+            <img class="category__img" src="images/icons/cs.svg" alt="">
+          </a>
+          <a class="category__item category__item-dota" href="#">
+            <img class="category__img" src="images/icons/dota.svg" alt="">
+          </a>
+        </div>
+        <div class="header__logo logo">
+          <a class="logo__link" href="#">
+            <picture class="logo__img">
+              <source srcset="images/logo-small.png" media="(max-width: 900px)">
+              <img src="images/logo.png" alt="">
+            </picture>
+          </a>
+        </div>
+        <div class="header__dropdowns">
+          <div class="dropdown-wrapper">
+            <div class="dropdown">
+              <button class="dropdown__btn">en</button>
+              <ul class="dropdown__list">
+                <li class="dropdown__item" data-value="en">en</li>
+                <li class="dropdown__item" data-value="ru">ru</li>
+                <li class="dropdown__item" data-value="it">it</li>
+                <li class="dropdown__item" data-value="fr">fr</li>
+              </ul>
+              <input class="dropdown__input-hidden" type="text" name="lang" value="">
+            </div>
+          </div>
+          <div class="dropdown-wrapper">
+            <div class="dropdown">
+              <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+              <ul class="dropdown__list">
+                <li class="dropdown__item" data-value="eur">€ eur</li>
+                <li class="dropdown__item" data-value="usd">$ usd</li>
+                <li class="dropdown__item" data-value="rub">₽ rub</li>
+                <li class="dropdown__item" data-value="gbp">£ gbp</li>
+              </ul>
+              <input class="dropdown__input-hidden" type="text" name="currency" value="">
+            </div>
+          </div>
+        </div>
+        <div class="header__balance balance">
+          <span class="balance__summ">
+            $ 100
+          </span>
+          <a class="balance__add-btn" href="#"></a>
+        </div>
+        <div class="header__user-wrapper header__user--notification">
+          <a class="header__user" href="#">
+            <img class="header__user-img" src="images/user-img.jpg" alt="">
+          </a>
+        </div>
+        <a class="header__sign-in btn header__sign-in--off" href="#">
+          sign in
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class="main">
+    <section class="info">
+      <div class="container">
+        <div class="info__inner">
+          <div class="info__aside">
+            <ul class="info__menu">
+              <li class="info__menu-item">
+                <a class="info__menu-link" href="#">
+                  some informational
+                  page #1
+                </a>
+              </li>
+              <li class="info__menu-item">
+                <a class="info__menu-link" href="#">
+                  some informational
+                  page #2
+                </a>
+              </li>
+              <li class="info__menu-item">
+                <a class="info__menu-link" href="#">
+                  another informational
+                  page #3
+                </a>
+              </li>
+              <li class="info__menu-item">
+                <a class="info__menu-link" href="#">
+                  one more page #4
+                </a>
+              </li>
+              <li class="info__menu-item">
+                <a class="info__menu-link" href="#">
+                  one more page #5
+                </a>
+              </li>
+            </ul>
+            <div class="info__pages">
+              <a class="info__pages-link" href="#">
+                some page #1
+              </a>
+              <a class="info__pages-link" href="#">
+                some page #2
+              </a>
+              <a class="info__pages-link" href="#">
+                some page #3
+              </a>
+            </div>
+          </div>
+          <div class="info__content">
+            <h2 class="info__main-title">
+              Some informational header
+            </h2>
+            <p class="info__content-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+              lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+              viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+              gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </p>
+            <h3 class="info__content-title">
+              Some info heare h3
+            </h3>
+            <p class="info__content-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+              lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+              viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+              gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </p>
+            <figure class="info__poster-wrapper">
+              <img class="info__poster" src="images/info/info-poster.jpg" alt="">
+              <figcaption class="info__poster-caption">
+                Lorem Ipsum
+              </figcaption>
+            </figure>
+            <p class="info__content-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
+              lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+              viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
+              gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            </p>
+            <div class="info__img-wrapper">
+              <img class="info__img" src="images/info/info-img.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__logo">
+          <a class="footer__logo-link" href="#">
+            <img class="footer__logo-img" src="images/footer-logo.png" alt="">
+          </a>
+        </div>
+        <div class="footer__content">
+          <p class="footer__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+          <ul class="footer__menu">
+            <li class="footer__menu-item">
+              <a class="footer__menu-link" href="#">
+                Privacy policy
+              </a>
+            </li>
+            <li class="footer__menu-item">
+              <a class="footer__menu-link" href="#">
+                Terms of use
+              </a>
+            </li>
+            <li class="footer__menu-item">
+              <a class="footer__menu-link" href="#">
+                Contact us
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal-overlay"></div>
+
+
+  <script src="js/nouislider.min.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

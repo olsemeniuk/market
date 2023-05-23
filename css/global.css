@@ -1,0 +1,104 @@
+/* ==============================
+    VARIABLES
+   ==============================*/
+
+:root {
+  --color-bg: #202025;
+  --color-t: #acacbf;
+  --color-w: #f2f2f3;
+  --color-c: #25252b;
+  --color-hc: #373740;
+  --color-chc: #42424d;
+  --color-mc: #5b3889;
+  --color-lc: #72608a;
+}
+
+
+/* ==============================
+    GLOBAL STYLES
+   ==============================*/
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+  color: var(--color-t);
+  font-family: 'BrisaSans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: normal;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+input {
+  border: none;
+  background-color: transparent;
+}
+
+figure, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+.container {
+  max-width: 1430px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.btn {
+  font-weight: 500;
+  font-size: 16px;
+  color: #f3f3f4;
+  border-radius: 10px;
+  background-color: var(--color-mc);
+  padding: 10px;
+  text-align: center;
+}
