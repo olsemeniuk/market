@@ -171,261 +171,286 @@
       <div class="container">
         <div class="products__inner">
           <div class="products__aside">
-            <form class="filter products__filter" action="#">
-              <div class="filter__title">
-                filter
-              </div>
-              <button class="filter__close-btn">
-                <img src="images/icons/close-btn.svg" alt="">
+            <form class="filter products__filter" action="#" method="get">
+              <h2 class="filter__title">filter</h2>
+              <button class="filter__close-btn" type="button">
+                <span class="visually-hidden">Close filter</span>
               </button>
               <label class="filter__checkbox-label filter__checkbox-label-top">
-                <input class="filter__checkbox-hidden" type="checkbox">
-                <div class="filter__checkbox"></div>
-                <span>only avaible</span>
+                <input class="visually-hidden" type="checkbox">
+                <span class="custom-checkbox">only avaible</span>
               </label>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  type
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  type<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  exterior
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  exterior<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  trade lock
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  trade lock<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  collection
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  collection<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  rarity
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  rarity<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  pattern
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  pattern<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <fieldset class="filter__form-section">
-                <div class="filter__section-title">
-                  price
-                  <span class="filter__count">
-                    (<span class="filter__item-checked"></span>/<span class="filter__items-ammount"></span>)
-                  </span>
-                </div>
+                <legend class="filter__section-title">
+                  price<span class="filter__count"></span>
+                </legend>
                 <div class="filter__checkbox-wrapper">
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>knives</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>gloves</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>pistols</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>SMGs</span>
-                  </label>
-                  <label class="filter__checkbox-label">
-                    <input class="filter__checkbox-hidden" type="checkbox">
-                    <div class="filter__checkbox"></div>
-                    <span>assault rifles</span>
-                  </label>
+                  <ul class="filter__checkbox-list">
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">knives</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">gloves</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">pistols</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">SMGs</span>
+                      </label>
+                    </li>
+                    <li class="filter__checkbox-item">
+                      <label class="filter__checkbox-label">
+                        <input class="visually-hidden" type="checkbox">
+                        <span class="custom-checkbox">assault rifles</span>
+                      </label>
+                    </li>
+                  </ul>
                 </div>
               </fieldset>
               <div class="range-slider">
@@ -511,8 +536,8 @@
                   buy
                 </a>
               </div>
-              <button class="products__filter-btn filter-btn">
-                <img src="images/icons/filter-icon.svg" alt="">
+              <button class="products__filter-btn filter-btn" type="button">
+                <span class="visually-hidden">Open filter</span>
               </button>
             </div>
             <ul class="products__content-items">
@@ -522,38 +547,21 @@
               <li class="item products__item">
                 <div class="item__inner">
                   <div class="item__content">
-                    <img 
-                      class="item__img" 
-                      width="" 
-                      height="" 
-                      src="images/items/knife.png" 
-                      srcset="" 
-                      sizes="" 
-                      alt="">
+                    <img class="item__img" width="" height="" src="images/items/knife.png" srcset="" sizes="" alt="">
                     <div class="item__about">
                       <div class="item__about-row">
                         <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam, animi ad reiciendis hic nisi a sed quod!</span>
+                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
+                          animi ad reiciendis hic nisi a sed quod!</span>
                         <span class="item__second-index">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
                     <div class="item__icons">
-                      <img 
-                        class="item__icon" 
-                        width="" 
-                        height="" 
-                        src="images/items/items-icon-1.png" 
-                        srcset="" 
-                        sizes=""
+                      <img class="item__icon" width="" height="" src="images/items/items-icon-1.png" srcset="" sizes=""
                         alt="">
-                      <img 
-                        class="item__icon" 
-                        width="" 
-                        height="" 
-                        src="images/items/items-icon-2.png" 
-                        srcset="" 
-                        sizes=""
+                      <img class="item__icon" width="" height="" src="images/items/items-icon-2.png" srcset="" sizes=""
                         alt="">
                     </div>
                     <div class="item__overlay">
@@ -591,106 +599,46 @@
                   </div>
                   <section class="modal-item__inner">
                     <div class="modal-item__slider-block">
-                      <img 
-                        class="modal-item__img" 
-                        width="" 
-                        height="" 
-                        src="images/items/item-big.png" 
-                        srcset="" 
-                        sizes=""
+                      <img class="modal-item__img" width="" height="" src="images/items/item-big.png" srcset="" sizes=""
                         alt="">
                       <div class="slider-shadow">
                         <div class="modal-item__slider swiper">
                           <div class="modal-item__slider-wrapper swiper-wrapper">
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                             <div class="modal-item__slide swiper-slide">
-                              <img 
-                                class="modal-item__slide-img" 
-                                width="" 
-                                height="" 
-                                src="images/items/item-slide.jpg"
-                                srcset="" 
-                                sizes="" 
-                                alt="">
+                              <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                                srcset="" sizes="" alt="">
                             </div>
                           </div>
                         </div>
@@ -702,7 +650,8 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife/<span class="item-info__quality">Factory New</span></td>
+                          <td class="item-info__data">Stiletto Knife/<span class="item-info__quality">Factory New</span>
+                          </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
@@ -747,7 +696,7 @@
                   </section>
                 </article>
               </li>
-              
+
 
 
 
@@ -798,16 +747,13 @@
   <div class="modal-overlay"></div>
 
 
-   <!-- svg color filters -->
-   <div class="visually-hidden" aria-hidden="true">
+  <!-- svg color filters -->
+  <div class="visually-hidden" aria-hidden="true">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
 
       <!-- #5B3889 -->
       <filter id="color_5B3889">
-        <fecolormatrix
-          color-interpolation-filters="sRGB"
-          type="matrix"
-          values="0 0 0 0 0.36
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.36
                   0 0 0 0 0.22
                   0 0 0 0 0.54
                   0 0 0 1 0">
@@ -817,12 +763,19 @@
 
       <!-- #72608a -->
       <filter id="color_72608a">
-        <fecolormatrix
-          color-interpolation-filters="sRGB"
-          type="matrix"
-          values="0 0 0 0 0.45
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.45
                   0 0 0 0 0.38
                   0 0 0 0 0.54
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+
+      <!-- #f2f2f3 -->
+      <filter id="color_f2f2f3">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.95
+                  0 0 0 0 0.95
+                  0 0 0 0 0.95
                   0 0 0 1 0">
         </fecolormatrix>
       </filter>

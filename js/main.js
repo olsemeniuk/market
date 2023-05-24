@@ -1,5 +1,10 @@
 // variables
 const gameItems = document.querySelectorAll('.item');
+const filter = document.querySelector('.filter');
+const rangeSlider = filter.querySelector('.range-slider__base');
+const rangeSliderLowNums = filter.querySelector('.range-slider__nums--low');
+const rangeSliderHighNums = filter.querySelector('.range-slider__nums--high');
+const openFilterButton = document.querySelector('.filter-btn');
 
 
 // function calls and events
@@ -8,7 +13,50 @@ if (gameItems.length > 0) {
     item.addEventListener('click', event => {
       addItem(event, item);
       choseItem(event, item);
-    })
+    });
+  });
+}
+
+if (filter) {
+  filter.addEventListener('click', event => {
+    toggleFilterSection(event);
+    countCheckedFilterItems(event);
+    declineFilterForm(event);
+    closeMobileFilter(event);
+  });
+
+  openFilterButton.addEventListener('click', openMobileFilter);
+}
+
+if (rangeSlider) {
+  noUiSlider.create(rangeSlider, {
+    start: [0, 10000],
+    connect: true,
+    step: 1,
+    range: {
+      'min': 0,
+      'max': 10000
+    },
+    margin: 1
+  });
+    
+  rangeSlider.noUiSlider.on('update', function (values, handle) {
+  
+    let value = values[handle];
+  
+    if (handle) {
+      rangeSliderHighNums.value = Math.round(value);
+    } else {
+      rangeSliderLowNums.value = Math.round(value);
+    };
+  });
+  
+  rangeSliderLowNums.addEventListener('change', function () {
+    rangeSlider.noUiSlider.set([this.value, null]);
+  });
+  
+  rangeSliderHighNums.addEventListener('change', function () {
+    rangeSlider.noUiSlider.set([null, this.value]);
   });
 }
 
@@ -27,95 +75,161 @@ function choseItem(event, item) {
   if (isFavouriteButton) item.classList.toggle('item--chosen');
 }
 
+function toggleFilterSection(event) {
+  const {target} = event;
+  const title = target.closest('.filter__section-title');
 
+  if (!title) return;
 
+  const parentSection = target.closest('.filter__form-section');
+  const wrapper = parentSection.querySelector('.filter__checkbox-wrapper');
+  const list = wrapper.querySelector('.filter__checkbox-list');
+  const wrapperHeight = wrapper.getBoundingClientRect().height;
+  const listHeight = list.getBoundingClientRect().height;
 
+  if (wrapperHeight === 0) {
+    wrapper.style.height = `${listHeight}px`;
+    title.classList.add('filter__section-title--active');
+  } else {
+    wrapper.style.height = 0;
+    title.classList.remove('filter__section-title--active');
+  }
+}
 
+function countCheckedFilterItems(event) {
+  const {target} = event;
+  const label = target.closest('.filter__checkbox-label');
+  const isTopLabel = target.closest('.filter__checkbox-label-top');
 
+  if (!label || isTopLabel) return;
+  
+  const parentSection = label.closest('.filter__form-section');
+  const countElement = parentSection.querySelector('.filter__count');
+  const allItems = parentSection.querySelectorAll('.filter__checkbox-label');
+  const allInputs = parentSection.querySelectorAll('.filter__checkbox-label input[type="checkbox"]');
 
-
-
-
-
-
-
-
-// dropdowns
-document.querySelectorAll('.dropdown-wrapper').forEach(function (dropdownWrapper) {
-
-  const dropdownBtn = dropdownWrapper.querySelector('.dropdown__btn'),
-        dropdown = dropdownWrapper.querySelector('.dropdown'),
-        dropdownList = dropdownWrapper.querySelector('.dropdown__list'),
-        dropdownListItem = dropdownList.querySelectorAll('.dropdown__item'),
-        dropdownInput = dropdownWrapper.querySelector('.dropdown__input-hidden');
-
-  /*
-  по клику открывается и закрывается меню дропдауна
-  */ 
-  dropdownBtn.addEventListener('click', function () {
-    dropdown.classList.toggle('dropdown--active');
-
-    if (dropdownList.classList.contains('dropdown__list--active')) {
-      dropdownList.classList.remove('dropdown__list--active');
-      dropdownList.style.maxHeight = 0;
-    } else {
-      dropdownList.classList.add('dropdown__list--active');
-      dropdownList.style.maxHeight = dropdownList.scrollHeight + 10 + 'px';
-      /*
-      при ширине экрана меньше 700px, в меню дропдауна, отвечающего за сортировку товаров,
-      добавляется 25px нижнего отступа (нужно только для стилистического оформления)
-      */
-      if (document.documentElement.clientWidth < 700) {
-        if (dropdownList.classList.contains('dropdown__sort-list')) {
-          dropdownList.style.maxHeight = dropdownList.scrollHeight + 25 + 'px';
-        };
-      };
-    };
+  let checkedAmount = 0;
+  allInputs.forEach(input => {
+    if (input.checked === true) checkedAmount++;
   });
 
-  /*
-  функция, которая закрывает дропдаун
-  */
-  const removeClassActive = () => {
-    dropdown.classList.remove('dropdown--active');
-    dropdownList.classList.remove('dropdown__list--active');
-    dropdownList.style.maxHeight = 0;
+  if (checkedAmount > 0) {
+    countElement.classList.add('filter__count--active');
+  } else {
+    countElement.classList.remove('filter__count--active');
   }
 
-  /* 
-  при клике по элементу из меню дропдауна, значение этого элемента 
-  отображается сверху в дропдауне. Также это значение передается в 
-  input value, а сам дропдаун закрывается
-  */
-  dropdownListItem.forEach(function (listItem) {
-    listItem.addEventListener('click', function (e) {
-      e.stopPropagation();
-      removeClassActive();
+  countElement.textContent = `(${checkedAmount}/${allItems.length})`;
+}
 
-      dropdownBtn.innerText = this.innerText;
-      dropdownInput.value = this.dataset.value;
-    });
+function declineFilterForm(event) {
+  const {target} = event;
+  const declineButton = target.closest('.filter__decline-btn');
+  if (!declineButton) return;
+
+  const filterSections = filter.querySelectorAll('.filter__form-section');
+  filterSections.forEach(section => {
+    const title = section.querySelector('.filter__section-title');
+    const listWrapper = section.querySelector('.filter__checkbox-wrapper');
+    const count = section.querySelector('.filter__count');
+
+    listWrapper.style.height = 0;
+    count.classList.remove('filter__count--active');
+    title.classList.remove('filter__section-title--active');
   });
 
-  /* 
-  при клике где-угодно, кроме самого дропдауна, этот дропдаун закрывается
-  */
-  document.addEventListener('click', function (e) {
-    if (e.target !== dropdownBtn) {
-      removeClassActive();
-    };
-  });
+  rangeSlider.noUiSlider.reset();
+}
 
-  /* 
-  при нажатии кнопок tab или escape, дропдаун закрывается
-  */
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Tab' || e.key === 'Escape') {
-      removeClassActive();
-    };
-  });
+function openMobileFilter() {
+  filter.classList.toggle('filter--active');
+}
 
-});
+function closeMobileFilter(event) {
+  const {target} = event;
+  const closeButton = target.closest('.filter__close-btn');
+  if (!closeButton) return;
+  filter.classList.remove('filter--active');
+}
+
+
+
+// // dropdowns
+// document.querySelectorAll('.dropdown-wrapper').forEach(function (dropdownWrapper) {
+
+//   const dropdownBtn = dropdownWrapper.querySelector('.dropdown__btn'),
+//         dropdown = dropdownWrapper.querySelector('.dropdown'),
+//         dropdownList = dropdownWrapper.querySelector('.dropdown__list'),
+//         dropdownListItem = dropdownList.querySelectorAll('.dropdown__item'),
+//         dropdownInput = dropdownWrapper.querySelector('.dropdown__input-hidden');
+
+//   /*
+//   по клику открывается и закрывается меню дропдауна
+//   */ 
+//   dropdownBtn.addEventListener('click', function () {
+//     dropdown.classList.toggle('dropdown--active');
+
+//     if (dropdownList.classList.contains('dropdown__list--active')) {
+//       dropdownList.classList.remove('dropdown__list--active');
+//       dropdownList.style.maxHeight = 0;
+//     } else {
+//       dropdownList.classList.add('dropdown__list--active');
+//       dropdownList.style.maxHeight = dropdownList.scrollHeight + 10 + 'px';
+//       /*
+//       при ширине экрана меньше 700px, в меню дропдауна, отвечающего за сортировку товаров,
+//       добавляется 25px нижнего отступа (нужно только для стилистического оформления)
+//       */
+//       if (document.documentElement.clientWidth < 700) {
+//         if (dropdownList.classList.contains('dropdown__sort-list')) {
+//           dropdownList.style.maxHeight = dropdownList.scrollHeight + 25 + 'px';
+//         };
+//       };
+//     };
+//   });
+
+//   /*
+//   функция, которая закрывает дропдаун
+//   */
+//   const removeClassActive = () => {
+//     dropdown.classList.remove('dropdown--active');
+//     dropdownList.classList.remove('dropdown__list--active');
+//     dropdownList.style.maxHeight = 0;
+//   }
+
+//   /* 
+//   при клике по элементу из меню дропдауна, значение этого элемента 
+//   отображается сверху в дропдауне. Также это значение передается в 
+//   input value, а сам дропдаун закрывается
+//   */
+//   dropdownListItem.forEach(function (listItem) {
+//     listItem.addEventListener('click', function (e) {
+//       e.stopPropagation();
+//       removeClassActive();
+
+//       dropdownBtn.innerText = this.innerText;
+//       dropdownInput.value = this.dataset.value;
+//     });
+//   });
+
+//   /* 
+//   при клике где-угодно, кроме самого дропдауна, этот дропдаун закрывается
+//   */
+//   document.addEventListener('click', function (e) {
+//     if (e.target !== dropdownBtn) {
+//       removeClassActive();
+//     };
+//   });
+
+//   /* 
+//   при нажатии кнопок tab или escape, дропдаун закрывается
+//   */
+//   document.addEventListener('keydown', function (e) {
+//     if (e.key === 'Tab' || e.key === 'Escape') {
+//       removeClassActive();
+//     };
+//   });
+
+// });
 
 
 // filter
@@ -216,40 +330,7 @@ document.querySelectorAll('.dropdown-wrapper').forEach(function (dropdownWrapper
 //   });
   
   
-//   // слайдер цен в фильтре 
-//   const rangeSlider = document.querySelector('.range-slider__base'),
-//         lowNums = document.querySelector('.range-slider__nums--low'),
-//         highNums = document.querySelector('.range-slider__nums--high');
-  
-//   noUiSlider.create(rangeSlider, {
-//     start: [0, 10000],
-//     connect: true,
-//     step: 1,
-//     range: {
-//       'min': 0,
-//       'max': 10000
-//     }
-//   });
-  
-//   rangeSlider.noUiSlider.on('update', function (values, handle) {
-  
-//     let value = values[handle];
-  
-//     if (handle) {
-//       highNums.value = Math.round(value);
-//     } else {
-//       lowNums.value = Math.round(value);
-//     };
-//   });
-  
-//   lowNums.addEventListener('change', function () {
-//     rangeSlider.noUiSlider.set([this.value, null]);
-//   });
-  
-//   highNums.addEventListener('change', function () {
-//     rangeSlider.noUiSlider.set([null, this.value]);
-//   });
-// };
+
 
 
 // // шестеренка с настройками
