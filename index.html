@@ -18,64 +18,98 @@
       <div class="header__inner">
         <div class="header__info header__info--left">
           <nav class="menu">
-            <button class="menu__open-btn">
-              <img src="images/icons/menu-icon.svg" alt="">
+            <button class="menu__open-btn" type="button">
+              <span class="visually-hidden">Open navigation menu</span>
             </button>
             <div class="menu__list-wrapper">
-              <button class="menu__close-btn">
-                <img src="images/icons/close-btn.svg" alt="">
+              <button class="menu__close-btn" type="button">
+                <span class="visually-hidden">Close navigation menu</span>
               </button>
               <div class="menu__logo">
                 <a class="menu__logo-link" href="#">
-                  <img src="images/logo.png" alt="">
+                  <img 
+                    width="153" 
+                    height="49" 
+                    src="images/logo.png" 
+                    alt="Market4pro logo.">
                 </a>
               </div>
               <div class="menu__dropdowns">
-                <div class="dropdown-wrapper">
-                  <div class="dropdown">
-                    <button class="dropdown__btn">en</button>
+                <div class="dropdown" id="menu_language_dropdown">
+                  <button class="dropdown__button" type="button">
+                    <span class="dropdown__text-wrapper">
+                      <span class="dropdown__text"></span>
+                    </span>
+                  </button>
+                  <div class="dropdown__list-wrapper">
                     <ul class="dropdown__list">
-                      <li class="dropdown__item" data-value="en">en</li>
-                      <li class="dropdown__item" data-value="ru">ru</li>
-                      <li class="dropdown__item" data-value="it">it</li>
-                      <li class="dropdown__item" data-value="fr">fr</li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">en</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">ru</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">it</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">fr</button>
+                      </li>
                     </ul>
-                    <input class="dropdown__input-hidden" type="text" name="lang" value="">
                   </div>
+                  <form action="#" method="get">
+                    <input
+                      class="dropdown__input"
+                      id="menu_language_input"
+                      type="text"
+                      name="menuLaguageInput"
+                      aria-hidden="true">
+                  </form>
                 </div>
-                <div class="dropdown-wrapper">
-                  <div class="dropdown">
-                    <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                <div class="dropdown" id="menu_currency_dropdown">
+                  <button class="dropdown__button" type="button">
+                    <span class="dropdown__text-wrapper">
+                      <span class="dropdown__text"></span>
+                    </span>
+                  </button>
+                  <div class="dropdown__list-wrapper">
                     <ul class="dropdown__list">
-                      <li class="dropdown__item" data-value="eur">€ eur</li>
-                      <li class="dropdown__item" data-value="usd">$ usd</li>
-                      <li class="dropdown__item" data-value="rub">₽ rub</li>
-                      <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">€ eur</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">$ usd</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">₽ rub</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">£ gbp</button>
+                      </li>
                     </ul>
-                    <input class="dropdown__input-hidden" type="text" name="currency" value="">
                   </div>
+                  <form action="#" method="get">
+                    <input
+                      class="dropdown__input"
+                      id="menu_currency_input"
+                      type="text"
+                      name="menuCurrencyInput"
+                      aria-hidden="true">
+                  </form>
                 </div>
               </div>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a class="menu__link menu__link--active" href="/index.html">
-                    buy
-                  </a>
+                  <a class="menu__link menu__link--active" href="/index.html">buy</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="/deal.html">
-                    sell
-                  </a>
+                  <a class="menu__link" href="/deal.html">sell</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="/deal.html">
-                    trade
-                  </a>
+                  <a class="menu__link" href="/deal.html">trade</a>
                 </li>
                 <li class="menu__item menu__item--last">
-                  <a class="menu__link" href="/info.html">
-                    info
-                  </a>
+                  <a class="menu__link" href="/info.html">info</a>
                 </li>
               </ul>
               <div class="menu__footer">
@@ -86,19 +120,13 @@
                 </p>
                 <ul class="menu__footer-list">
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Privacy policy
-                    </a>
+                    <a class="menu__footer-link" href="#">Privacy policy</a>
                   </li>
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Terms of use
-                    </a>
+                    <a class="menu__footer-link" href="#">Terms of use</a>
                   </li>
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Contact us
-                    </a>
+                    <a class="menu__footer-link" href="#">Contact us</a>
                   </li>
                 </ul>
               </div>
@@ -106,10 +134,10 @@
           </nav>
           <div class="header__category category">
             <a class="category__item category__item-cs category__item--active" href="#">
-              <img class="category__img" src="images/icons/cs.svg" alt="">
+              <span class="visually-hidden">Open CS items</span>
             </a>
             <a class="category__item category__item-dota" href="#">
-              <img class="category__img" src="images/icons/dota.svg" alt="">
+              <span class="visually-hidden">Open Dota items</span>
             </a>
           </div>
         </div>
@@ -123,45 +151,87 @@
         </div>
         <div class="header__info header__info--right">
           <div class="header__dropdowns">
-            <div class="dropdown-wrapper">
-              <div class="dropdown">
-                <button class="dropdown__btn">en</button>
+            <div class="dropdown" id="language_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
                 <ul class="dropdown__list">
-                  <li class="dropdown__item" data-value="en">en</li>
-                  <li class="dropdown__item" data-value="ru">ru</li>
-                  <li class="dropdown__item" data-value="it">it</li>
-                  <li class="dropdown__item" data-value="fr">fr</li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">en</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">ru</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">it</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">fr</button>
+                  </li>
                 </ul>
-                <input class="dropdown__input-hidden" type="text" name="lang" value="">
               </div>
+              <form action="#" method="get">
+                <input
+                  class="dropdown__input"
+                  id="language_input"
+                  type="text"
+                  name="laguageInput"
+                  aria-hidden="true">
+              </form>
             </div>
-            <div class="dropdown-wrapper">
-              <div class="dropdown">
-                <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+            <div class="dropdown" id="currency_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
                 <ul class="dropdown__list">
-                  <li class="dropdown__item" data-value="eur">€ eur</li>
-                  <li class="dropdown__item" data-value="usd">$ usd</li>
-                  <li class="dropdown__item" data-value="rub">₽ rub</li>
-                  <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">€ eur</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">$ usd</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">₽ rub</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">£ gbp</button>
+                  </li>
                 </ul>
-                <input class="dropdown__input-hidden" type="text" name="currency" value="">
               </div>
+              <form action="#" method="get">
+                <input
+                  class="dropdown__input"
+                  id="currency_input"
+                  type="text"
+                  name="currencyInput"
+                  aria-hidden="true">
+              </form>
             </div>
           </div>
           <div class="header__balance balance balance--off">
-            <span class="balance__summ">
-              $ 100
-            </span>
+            <span class="balance__summ">$ 100</span>
             <a class="balance__add-btn" href="#"></a>
           </div>
           <div class="header__user-wrapper header__user--notification header__user--off">
             <a class="header__user" href="#">
-              <img class="header__user-img" src="images/user-img.jpg" alt="">
+              <img 
+                class="header__user-img" 
+                width="48"
+                height="48"
+                src="images/user-img.jpg" 
+                srcset="images/x2/user-img-2x.jpg 2x,
+                        images/x3/user-img-3x.jpg 3x"
+                sizes="48px"
+                alt="">
             </a>
           </div>
-          <a class="header__sign-in btn" href="#">
-            sign in
-          </a>
+          <a class="header__sign-in btn" href="#">sign in</a>
         </div>
       </div>
     </div>
@@ -171,7 +241,7 @@
       <div class="container">
         <div class="products__inner">
           <div class="products__aside">
-            <form class="filter products__filter" action="#" method="get">
+            <form class="filter products__filter page-block" action="#" method="get">
               <h2 class="filter__title">filter</h2>
               <button class="filter__close-btn" type="button">
                 <span class="visually-hidden">Close filter</span>
@@ -462,79 +532,82 @@
                 </div>
               </div>
               <div class="filter__buttons">
-                <button class="filter__btn filter__submit-btn" type="submit">
-                  apply
-                </button>
-                <button class="filter__btn filter__decline-btn" type="reset">
-                  decline
-                </button>
+                <button class="filter__btn filter__submit-btn" type="submit">apply</button>
+                <button class="filter__btn filter__decline-btn" type="reset">decline</button>
               </div>
             </form>
           </div>
           <div class="products__content">
             <div class="products__content-header">
-              <div class="dropdown-wrapper">
-                <div class="dropdown dropdown-sort products__dropdown-sort">
-                  <button class="dropdown__btn dropdown__btn-sort">default</button>
-                  <ul class="dropdown__list dropdown__sort-list">
-                    <li class="dropdown__item">default</li>
-                    <li class="dropdown__item">default1</li>
-                    <li class="dropdown__item">default2</li>
+              <div class="dropdown dropdown-sort" id="sort_dropdown">
+                <button class="dropdown__button" type="button">
+                  <span class="dropdown__text-wrapper">
+                    <span class="dropdown__text"></span>
+                  </span>
+                </button>
+                <div class="dropdown__list-wrapper">
+                  <ul class="dropdown__list">
+                    <li class="dropdown__item">
+                      <button class="dropdown__list-button" type="button">default</button>
+                    </li>
+                    <li class="dropdown__item">
+                      <button class="dropdown__list-button" type="button">ascending</button>
+                    </li>
+                    <li class="dropdown__item">
+                      <button class="dropdown__list-button" type="button">descending</button>
+                    </li>
                   </ul>
                 </div>
+                <form action="#" method="get">
+                  <input
+                    class="dropdown__input"
+                    id="sort_input"
+                    type="text"
+                    name="sortInput"
+                    aria-hidden="true">
+                </form>
               </div>
               <div class="settings products__settings">
-                <button class="settings-btn">
-                  <img src="images/icons/settings.svg" alt="">
+                <button class="settings-btn" type="button">
+                  <span class="visually-hidden">Open settings</span>
                 </button>
                 <ul class="settings__list">
                   <li class="settings__item">
-                    <a class="settings__link" href="#">
-                      settings 1
-                    </a>
+                    <a class="settings__link" href="#">settings 1</a>
                   </li>
                   <li class="settings__item">
-                    <a class="settings__link" href="#">
-                      settings 2
-                    </a>
+                    <a class="settings__link" href="#">settings 2</a>
                   </li>
                   <li class="settings__item">
-                    <a class="settings__link" href="#">
-                      settings 3
-                    </a>
+                    <a class="settings__link" href="#">settings 3</a>
                   </li>
                 </ul>
               </div>
               <div class="search products__search">
-                <div class="search__show-btn">
-                  <img src="images/icons/search-small.svg" alt="">
-                </div>
+                <button class="search__show-btn" type="button">
+                  <span class="visually-hidden">Open search field</span>
+                </button>
                 <form class="search__form" action="#">
                   <input class="search__field" type="text" placeholder="Search...">
                   <button class="search__form-btn" type="submit">
-                    <img src="images/icons/search.svg" alt="">
+                    <span class="visually-hidden">Search</span>
                   </button>
                 </form>
               </div>
               <div class="products__category category">
                 <a class="category__item category__item-cs category__item--active" href="#">
-                  <img class="category__img" src="images/icons/cs.svg" alt="">
+                  <span class="visually-hidden">Open CS items</span>
                 </a>
                 <a class="category__item category__item-dota" href="#">
-                  <img class="category__img" src="images/icons/dota.svg" alt="">
+                  <span class="visually-hidden">Open Dota items</span>
                 </a>
               </div>
               <div class="products__content-buy">
                 <a class="products__cart" href="#">
-                  <img src="images/icons/cart.svg" alt="">
                   <span>20</span>
                 </a>
-                <div class="products__summ">
-                  $ 10 923. 18
-                </div>
-                <a class="products__buy-btn btn" href="#">
-                  buy
-                </a>
+                <b class="products__summ">$ 10 923. 18</b>
+                <a class="products__buy-btn btn" href="#">buy</a>
               </div>
               <button class="products__filter-btn filter-btn" type="button">
                 <span class="visually-hidden">Open filter</span>
@@ -544,10 +617,25 @@
 
 
 
-              <li class="item products__item">
+              <li class="item">
                 <div class="item__inner">
                   <div class="item__content">
-                    <img class="item__img" width="" height="" src="images/items/knife.png" srcset="" sizes="" alt="">
+                    <div class="item__img-wrapper">
+                      <img class="item__img" 
+                        width="137" 
+                        height="89" 
+                        src="images/items/knife.png" 
+                        srcset="images/x2/knife-2x.png 2x,
+                                images/x3/knife-3x.png 3x" 
+                        sizes="(max-width: 471px) calc((100vw - 110px) / 2),
+                               (max-width: 739px) calc((100vw - 170px) / 3),
+                               (max-width: 900px) calc((100vw - 220px) / 4),
+                               (max-width: 1189px) calc((100vw - 490px) / 4),
+                               (max-width: 1369px) calc((100vw - 540px) / 5),
+                               (max-width: 1429px) calc((100vw - 580px) / 6),
+                               137px"
+                        alt="">
+                    </div>
                     <div class="item__about">
                       <div class="item__about-row">
                         <span class="item__first-index">ST</span>
@@ -559,9 +647,21 @@
                       <b class="item__price">$ 7 851.31</b>
                     </div>
                     <div class="item__icons">
-                      <img class="item__icon" width="" height="" src="images/items/items-icon-1.png" srcset="" sizes=""
+                      <img class="item__icon" 
+                        width="20" 
+                        height="20" 
+                        src="images/items/items-icon-1.png" 
+                        srcset="images/x2/items-icon-1-2x.png 2x,
+                                images/x3/items-icon-1-3x.png 3x" 
+                        sizes="20px"
                         alt="">
-                      <img class="item__icon" width="" height="" src="images/items/items-icon-2.png" srcset="" sizes=""
+                      <img class="item__icon" 
+                        width="20" 
+                        height="20" 
+                        src="images/items/items-icon-2.png" 
+                        srcset="images/x2/items-icon-2-2x.png 2x,
+                                images/x3/items-icon-2-3x.png 3x" 
+                        sizes="20px"
                         alt="">
                     </div>
                     <div class="item__overlay">
@@ -683,7 +783,7 @@
                           <button class="item-order__button btn" type="button">order</button>
                         </div>
                         <button class="modal-item__cancel-button" type="button">cancel $10 order</button>
-                        <div class="info"></div>
+                        <div class="info-block"></div>
                       </div>
                     </div>
                   </section>
@@ -709,10 +809,15 @@
   </main>
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner">
+      <div class="footer__inner page-block">
         <div class="footer__logo">
           <a class="footer__logo-link" href="#">
-            <img class="footer__logo-img" src="images/footer-logo.png" alt="">
+            <img 
+              class="footer__logo-img" 
+              width="66"
+              height="49"
+              src="images/footer-logo.png" 
+              alt="">
           </a>
         </div>
         <div class="footer__content">
@@ -725,19 +830,13 @@
           </p>
           <ul class="footer__menu">
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Privacy policy
-              </a>
+              <a class="footer__menu-link" href="#">Privacy policy</a>
             </li>
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Terms of use
-              </a>
+              <a class="footer__menu-link" href="#">Terms of use</a>
             </li>
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Contact us
-              </a>
+              <a class="footer__menu-link" href="#">Contact us</a>
             </li>
           </ul>
         </div>
@@ -779,11 +878,21 @@
                   0 0 0 1 0">
         </fecolormatrix>
       </filter>
+
+      <!-- #acacbf -->
+      <filter id="color_acacbf">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.67
+                  0 0 0 0 0.67
+                  0 0 0 0 0.75
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
     </svg>
   </div>
 
   <script src="libs/js/nouislider.min.js"></script>
   <script src="libs/js/swiper-bundle.min.js"></script>
+  <script src="js/dropdown.js"></script>
   <script src="js/main.js"></script>
 </body>
 

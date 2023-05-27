@@ -18,64 +18,98 @@
       <div class="header__inner">
         <div class="header__info header__info--left">
           <nav class="menu">
-            <button class="menu__open-btn">
-              <img src="images/icons/menu-icon.svg" alt="">
+            <button class="menu__open-btn" type="button">
+              <span class="visually-hidden">Open navigation menu</span>
             </button>
             <div class="menu__list-wrapper">
-              <button class="menu__close-btn">
-                <img src="images/icons/close-btn.svg" alt="">
+              <button class="menu__close-btn" type="button">
+                <span class="visually-hidden">Close navigation menu</span>
               </button>
               <div class="menu__logo">
                 <a class="menu__logo-link" href="#">
-                  <img src="images/logo.png" alt="">
+                  <img 
+                    width="153" 
+                    height="49" 
+                    src="images/logo.png" 
+                    alt="Market4pro logo.">
                 </a>
               </div>
               <div class="menu__dropdowns">
-                <div class="dropdown-wrapper">
-                  <div class="dropdown">
-                    <button class="dropdown__btn">en</button>
+                <div class="dropdown" id="menu_language_dropdown">
+                  <button class="dropdown__button" type="button">
+                    <span class="dropdown__text-wrapper">
+                      <span class="dropdown__text"></span>
+                    </span>
+                  </button>
+                  <div class="dropdown__list-wrapper">
                     <ul class="dropdown__list">
-                      <li class="dropdown__item" data-value="en">en</li>
-                      <li class="dropdown__item" data-value="ru">ru</li>
-                      <li class="dropdown__item" data-value="it">it</li>
-                      <li class="dropdown__item" data-value="fr">fr</li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">en</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">ru</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">it</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">fr</button>
+                      </li>
                     </ul>
-                    <input class="dropdown__input-hidden" type="text" name="lang" value="">
                   </div>
+                  <form action="#" method="get">
+                    <input
+                      class="dropdown__input"
+                      id="menu_language_input"
+                      type="text"
+                      name="menuLaguageInput"
+                      aria-hidden="true">
+                  </form>
                 </div>
-                <div class="dropdown-wrapper">
-                  <div class="dropdown">
-                    <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                <div class="dropdown" id="menu_currency_dropdown">
+                  <button class="dropdown__button" type="button">
+                    <span class="dropdown__text-wrapper">
+                      <span class="dropdown__text"></span>
+                    </span>
+                  </button>
+                  <div class="dropdown__list-wrapper">
                     <ul class="dropdown__list">
-                      <li class="dropdown__item" data-value="eur">€ eur</li>
-                      <li class="dropdown__item" data-value="usd">$ usd</li>
-                      <li class="dropdown__item" data-value="rub">₽ rub</li>
-                      <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">€ eur</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">$ usd</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">₽ rub</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">£ gbp</button>
+                      </li>
                     </ul>
-                    <input class="dropdown__input-hidden" type="text" name="currency" value="">
                   </div>
+                  <form action="#" method="get">
+                    <input
+                      class="dropdown__input"
+                      id="menu_currency_input"
+                      type="text"
+                      name="menuCurrencyInput"
+                      aria-hidden="true">
+                  </form>
                 </div>
               </div>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a class="menu__link" href="/index.html">
-                    buy
-                  </a>
+                  <a class="menu__link menu__link--active" href="/index.html">buy</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="/deal.html">
-                    sell
-                  </a>
+                  <a class="menu__link" href="/deal.html">sell</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="/deal.html">
-                    trade
-                  </a>
+                  <a class="menu__link" href="/deal.html">trade</a>
                 </li>
                 <li class="menu__item menu__item--last">
-                  <a class="menu__link" href="/info.html">
-                    info
-                  </a>
+                  <a class="menu__link" href="/info.html">info</a>
                 </li>
               </ul>
               <div class="menu__footer">
@@ -86,19 +120,13 @@
                 </p>
                 <ul class="menu__footer-list">
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Privacy policy
-                    </a>
+                    <a class="menu__footer-link" href="#">Privacy policy</a>
                   </li>
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Terms of use
-                    </a>
+                    <a class="menu__footer-link" href="#">Terms of use</a>
                   </li>
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Contact us
-                    </a>
+                    <a class="menu__footer-link" href="#">Contact us</a>
                   </li>
                 </ul>
               </div>
@@ -106,10 +134,10 @@
           </nav>
           <div class="header__category category header__category--off">
             <a class="category__item category__item-cs category__item--active" href="#">
-              <img class="category__img" src="images/icons/cs.svg" alt="">
+              <span class="visually-hidden">Open CS items</span>
             </a>
             <a class="category__item category__item-dota" href="#">
-              <img class="category__img" src="images/icons/dota.svg" alt="">
+              <span class="visually-hidden">Open Dota items</span>
             </a>
           </div>
         </div>
@@ -123,29 +151,67 @@
         </div>
         <div class="header__info header__info--right">
           <div class="header__dropdowns">
-            <div class="dropdown-wrapper">
-              <div class="dropdown">
-                <button class="dropdown__btn">en</button>
+            <div class="dropdown" id="language_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
                 <ul class="dropdown__list">
-                  <li class="dropdown__item" data-value="en">en</li>
-                  <li class="dropdown__item" data-value="ru">ru</li>
-                  <li class="dropdown__item" data-value="it">it</li>
-                  <li class="dropdown__item" data-value="fr">fr</li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">en</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">ru</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">it</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">fr</button>
+                  </li>
                 </ul>
-                <input class="dropdown__input-hidden" type="text" name="lang" value="">
               </div>
+              <form action="#" method="get">
+                <input
+                  class="dropdown__input"
+                  id="language_input"
+                  type="text"
+                  name="laguageInput"
+                  aria-hidden="true">
+              </form>
             </div>
-            <div class="dropdown-wrapper">
-              <div class="dropdown">
-                <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+            <div class="dropdown" id="currency_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
                 <ul class="dropdown__list">
-                  <li class="dropdown__item" data-value="eur">€ eur</li>
-                  <li class="dropdown__item" data-value="usd">$ usd</li>
-                  <li class="dropdown__item" data-value="rub">₽ rub</li>
-                  <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">€ eur</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">$ usd</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">₽ rub</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">£ gbp</button>
+                  </li>
                 </ul>
-                <input class="dropdown__input-hidden" type="text" name="currency" value="">
               </div>
+              <form action="#" method="get">
+                <input
+                  class="dropdown__input"
+                  id="currency_input"
+                  type="text"
+                  name="currencyInput"
+                  aria-hidden="true">
+              </form>
             </div>
           </div>
           <div class="header__balance balance">
@@ -156,71 +222,611 @@
           </div>
           <div class="header__user-wrapper header__user--notification">
             <a class="header__user" href="#">
-              <img class="header__user-img" src="images/user-img.jpg" alt="">
+              <img 
+                class="header__user-img" 
+                width="48"
+                height="48"
+                src="images/user-img.jpg" 
+                srcset="images/x2/user-img-2x.jpg 2x,
+                        images/x3/user-img-3x.jpg 3x"
+                sizes="48px"
+                alt="">
             </a>
           </div>
-          <a class="header__sign-in btn header__sign-in--off" href="#">
-            sign in
-          </a>
+          <a class="header__sign-in btn header__sign-in--off" href="#">sign in</a>
         </div>
-
       </div>
     </div>
   </header>
   <main class="main">
-    <section class="account">
-      <section class="account__about">
-        <div class="container">
-          <div class="account__about-inner">
-            <div class="account__user account-block">
-              <div class="account__user-img">
-                <img src="images/user-img.jpg" alt="">
-              </div>
-              <div class="account__user-name">
-                NickName
-              </div>
-              <div class="account__email">
-                e-mail:
-                <span class="account__email-value">
-                  some_email_adress@gmail.com
-                </span>
-                <form class="account__email-form" action="#">
-                  <input class="account__email-input" type="email" required>
-                  <button class="account__email-submit" type="submit"></button>
-                </form>
-                <button class="account__email-change">
-                  <img src="images/icons/pencil-icon.svg" alt="">
-                </button>
-              </div>
-            </div>
-            <div class="account__balance account-block">
-              <div class="account-block__title account__balance-title">
-                balance
-              </div>
-              <div class="account__balance-summ">
-                $100
-              </div>
-              <div class="account__balance-buttons">
-                <a class="account__balance-btn btn" href="#">
-                  deposit
-                </a>
-                <a class="account__balance-btn account__balance-btn-withdraw btn" href="#">
-                  withdraw
-                </a>
-              </div>
-            </div>
-            <div class="account__info account-block"></div>
+    <div class="container">
+      <div class="account">
+        <section class="user page-block account__page-block">
+          <h2 class="visually-hidden">User</h2>
+          <div class="user__photo-wrapper">
+            <img 
+              class="user__photo" 
+              width="150"
+              height="150"
+              src="images/user-img.jpg" 
+              srcset=""
+              sizes=""
+              alt="">
           </div>
-        </div>
-      </section>
-    </section>
+          <b class="user__name">NickName</b>
+          <form class="user__email-form" action="#">
+            <label class="user__email-label" for="user_email">email:</label>
+            <input class="user__email-input" id="user_email" type="email" name="userEmail" value="some_email_address@gmail.com" disabled>
+            <button class="user__email-button" type="button">
+              <span class="visually-hidden">Change Email</span>
+            </button>
+          </form>
+        </section>
+        <section class="user-balance page-block account__page-block">
+          <h2 class="account__title">balance</h2>
+          <b class="user-balance__sum">$100</b>
+          <div class="user-balance__buttons">
+            <button class="user-balance__button user-balance__button--deposit btn" type="button">deposit</button>
+            <button class="user-balance__button user-balance__button--withdraw btn" type="button">withdraw</button>
+          </div>
+        </section>
+        <section class="information page-block account__page-block">
+          <h2 class="account__title">general information</h2>
+          <div class="information__info">
+            <div class="information__info-data">
+              <span>Steam ID:</span>
+              <i>76561198045217588</i>
+            </div>
+            <div class="information__info-data">
+              <span>ragistration:</span>
+              <time datetime="2022-07-09">09.07.2022</time>
+            </div>
+          </div>
+          <ul class="information__list">
+            <li class="information__list-item info-item">
+              <b class="info-item__sum">$20074.12</b>
+              <span class="info-item__text">1021 all operations</span>
+            </li>
+            <li class="information__list-item info-item">
+              <b class="info-item__sum">$10717.31</b>
+              <span class="info-item__text">501 <span class="icon icon--cart">purchases</span></span>
+            </li>
+            <li class="information__list-item info-item">
+              <b class="info-item__sum">$10218.99</b>
+              <span class="info-item__text">520 <span class="icon icon--money">sales</span></span>
+            </li>
+            <li class="information__list-item info-item">
+              <b class="info-item__sum">$0</b>
+              <span class="info-item__text">0 <span class="icon icon--deal">deals</span></span>
+            </li>
+          </ul>
+          <div class="information__link-block trade">
+            <p class="trade__title">trade link:</p>
+            <form class="trade__form" action="#">
+              <input class="trade__input" type="text" name="tradeInput" value="https://steamcommunity.com/tradeoffer/new/?partner=8412/tradeoffer/new/?partner=8loreminpsumdolorsitamet">
+              <button class="trade__button btn" type="submit">apply</button>
+              <div class="info-block"></div>
+            </form>
+          </div>
+        </section>
+        <section class="statistic page-block account__page-block">
+          <h2 class="account__title">statistic</h2>
+          <table class="statistic__table">
+            <thead class="statistic__table-head">
+              <tr class="statistic__table-row">
+                <th class="statistic__table-title statistic__table-data statistic__table-data--type">type</th>
+                <th class="statistic__table-title statistic__table-data statistic__table-data--id">id</th>
+                <th class="statistic__table-title statistic__table-data statistic__table-data--status">status</th>
+                <th class="statistic__table-title statistic__table-data statistic__table-data--change">change</th>
+                <th class="statistic__table-title statistic__table-data statistic__table-data--balance">balance</th>
+                <th class="statistic__table-title statistic__table-data statistic__table-data--description">description</th>
+                <th class="statistic__table-title statistic__table-data statistic__table-data--date">date</th>
+              </tr>
+            </thead>
+            <tbody class="statistic__table-body">
+              <tr class="statistic__table-row">
+                <td class="statistic__table-data statistic__table-data--type">deposit</td>
+                <td class="statistic__table-data statistic__table-data--id">1092137</td>
+                <td class="statistic__table-data statistic__table-data--status">done</td>
+                <td class="statistic__table-data statistic__table-data--change success">+ $10</td>
+                <td class="statistic__table-data statistic__table-data--balance">$10</td>
+                <td class="statistic__table-data statistic__table-data--description">$10 top up</td>
+                <td class="statistic__table-data statistic__table-data--date">
+                  <time datetime="2022-07-09 02:55">09.07.2022 02:50</time>
+                </td>
+              </tr>
+              <tr class="statistic__table-row">
+                <td class="statistic__table-data statistic__table-data--type">withdraw</td>
+                <td class="statistic__table-data statistic__table-data--id">1092138</td>
+                <td class="statistic__table-data statistic__table-data--status">done</td>
+                <td class="statistic__table-data statistic__table-data--change fail">- $5</td>
+                <td class="statistic__table-data statistic__table-data--balance">$5</td>
+                <td class="statistic__table-data statistic__table-data--description">$5 withdraw</td>
+                <td class="statistic__table-data statistic__table-data--date">
+                  <time datetime="2022-07-10 02:55">10.07.2022 02:55</time> 
+                </td>
+              </tr>
+              <tr class="statistic__table-row">
+                <td class="statistic__table-data statistic__table-data--type">sell</td>
+                <td class="statistic__table-data statistic__table-data--id">1092151</td>
+                <td class="statistic__table-data statistic__table-data--status">done</td>
+                <td class="statistic__table-data statistic__table-data--change success">+ $1.1</td>
+                <td class="statistic__table-data statistic__table-data--balance">$6.1</td>
+                <td class="statistic__table-data statistic__table-data--description">selling of 2 items</td>
+                <td class="statistic__table-data statistic__table-data--date">
+                  <time datetime="2022-07-11 02:50">11.07.2022 02:50</time>
+                </td>
+              </tr>
+              <tr class="statistic__table-row">
+                <td class="statistic__table-data statistic__table-data--type">buy</td>
+                <td class="statistic__table-data statistic__table-data--id">1094138</td>
+                <td class="statistic__table-data statistic__table-data--status">done</td>
+                <td class="statistic__table-data statistic__table-data--change fail">- $2.87</td>
+                <td class="statistic__table-data statistic__table-data--balance">$3.23</td>
+                <td class="statistic__table-data statistic__table-data--description">5 items purchase</td>
+                <td class="statistic__table-data statistic__table-data--date">
+                  <time datetime="2022-08-12 03:21">12.08.2022 03:21</time> 
+                </td>
+              </tr>
+              <tr class="statistic__table-row">
+                <td class="statistic__table-data statistic__table-data--type">sell</td>
+                <td class="statistic__table-data statistic__table-data--id">1095251</td>
+                <td class="statistic__table-data statistic__table-data--status fail">canceled</td>
+                <td class="statistic__table-data statistic__table-data--change">-</td>
+                <td class="statistic__table-data statistic__table-data--balance">$3.23</td>
+                <td class="statistic__table-data statistic__table-data--description">UNDONE selling of 2 items</td>
+                <td class="statistic__table-data statistic__table-data--date">
+                  <time datetime="2022-08-12 04:50">12.08.2022 04:50</time>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="pagination">
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">1</button>
+            </li>
+            <li class="pagination__item">...</li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">7</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">8</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">9</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button pagination__button--current" type="button">10</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">11</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">12</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">13</button>
+            </li>
+            <li class="pagination__item">...</li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">22</button>
+            </li>
+          </ul>
+        </section>
+        <section class="ordered page-block account__page-block">
+          <h2 class="account__title">ordered items</h2>
+          <ul class="account__items-list">
+            <li class="item">
+              <div class="item__inner">
+                <div class="item__content">
+                  <div class="item__img-wrapper">
+                    <img class="item__img" 
+                      width="137" 
+                      height="89" 
+                      src="images/items/knife.png" 
+                      srcset="images/x2/knife-2x.png 2x,
+                              images/x3/knife-3x.png 3x" 
+                      sizes="(max-width: 471px) calc((100vw - 110px) / 2),
+                             (max-width: 739px) calc((100vw - 170px) / 3),
+                             (max-width: 900px) calc((100vw - 220px) / 4),
+                             (max-width: 1189px) calc((100vw - 490px) / 4),
+                             (max-width: 1369px) calc((100vw - 540px) / 5),
+                             (max-width: 1429px) calc((100vw - 580px) / 6),
+                             137px"
+                      alt="">
+                  </div>
+                  <div class="item__about">
+                    <div class="item__about-row">
+                      <span class="item__first-index">ST</span>
+                      <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
+                        animi ad reiciendis hic nisi a sed quod!</span>
+                      <span class="item__second-index">SI</span>
+                    </div>
+                    <b class="item__price">$ 7 851.31</b>
+                  </div>
+                  <div class="item__icons">
+                    <img class="item__icon" 
+                      width="20" 
+                      height="20" 
+                      src="images/items/items-icon-1.png" 
+                      srcset="images/x2/items-icon-1-2x.png 2x,
+                              images/x3/items-icon-1-3x.png 3x" 
+                      sizes="20px"
+                      alt="">
+                    <img class="item__icon" 
+                      width="20" 
+                      height="20" 
+                      src="images/items/items-icon-2.png" 
+                      srcset="images/x2/items-icon-2-2x.png 2x,
+                              images/x3/items-icon-2-3x.png 3x" 
+                      sizes="20px"
+                      alt="">
+                  </div>
+                  <div class="item__overlay">
+                    <button class="item__remove-button" type="button">
+                      <span class="visually-hidden">Remove item from cart</span>
+                    </button>
+                  </div>
+                  <button class="item__favourite-button" type="button">
+                    <span class="visually-hidden">Add item to favourite</span>
+                  </button>
+                  <button class="item__details" type="button">
+                    <span>details</span>
+                  </button>
+                </div>
+              </div>
+              <article class="modal-item">
+                <div class="modal-item__header">
+                  <ul class="modal-item__menu">
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">favourite</a>
+                    </li>
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">copy item link</a>
+                    </li>
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">share item</a>
+                    </li>
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">item on Steam</a>
+                    </li>
+                  </ul>
+                  <button class="modal-item__close" type="button">
+                    <span class="visually-hidden">Close modal popup</span>
+                  </button>
+                </div>
+                <section class="modal-item__inner">
+                  <div class="modal-item__slider-block">
+                    <img class="modal-item__img" width="" height="" src="images/items/item-big.png" srcset="" sizes=""
+                      alt="">
+                    <div class="slider-shadow">
+                      <div class="modal-item__slider swiper">
+                        <div class="modal-item__slider-wrapper swiper-wrapper">
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__info">
+                    <h2 class="modal-item__title">Lavapick</h2>
+                    <table class="modal-item__about item-info">
+                      <caption class="visually-hidden">Information about item</caption>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">type</th>
+                        <td class="item-info__data">Stiletto Knife/<span class="item-info__quality">Factory New</span>
+                        </td>
+                      </tr>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">rarity</th>
+                        <td class="item-info__data">Covert</td>
+                      </tr>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">pattern</th>
+                        <td class="item-info__data">301</td>
+                      </tr>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">float</th>
+                        <td class="item-info__data" id="float-value">0.05937123</td>
+                      </tr>
+                    </table>
+                    <div class="float-scale">
+                      <div class="float-scale__base"></div>
+                      <div class="float-scale__inner"></div>
+                    </div>
+                    <div class="modal-item__info-row">
+                      <div class="modal-item__price">
+                        <b class="modal-item__current-price">$9.95</b>
+                        <s class="modal-item__old-price">$10.25</s>
+                      </div>
+                      <button class="modal-item__buy-button btn" type="button">buy</button>
+                    </div>
+                    <div class="modal-item__info-row">
+                      <div class="modal-item__order-block item-order">
+                        <span class="item-order__price">price</span>
+                        <button class="item-order__button btn" type="button">order</button>
+                      </div>
+                      <button class="modal-item__cancel-button" type="button">cancel $10 order</button>
+                      <div class="info"></div>
+                    </div>
+                  </div>
+                </section>
+                <section class="modal-item__statistic">
+                  <h3 class="modal-item__section-title">statistic</h3>
+                </section>
+                <section class="modal-item__orders item-orders">
+                  <h3 class="modal-item__section-title">autobuy orders</h3>
+                  <ul class="item-orders__list"></ul>
+                </section>
+              </article>
+            </li>
+            <li class="item">
+              <div class="item__inner">
+                <div class="item__content">
+                  <div class="item__img-wrapper">
+                    <img class="item__img" 
+                      width="137" 
+                      height="89" 
+                      src="images/items/knife.png" 
+                      srcset="images/x2/knife-2x.png 2x,
+                              images/x3/knife-3x.png 3x" 
+                      sizes="(max-width: 471px) calc((100vw - 110px) / 2),
+                             (max-width: 739px) calc((100vw - 170px) / 3),
+                             (max-width: 900px) calc((100vw - 220px) / 4),
+                             (max-width: 1189px) calc((100vw - 490px) / 4),
+                             (max-width: 1369px) calc((100vw - 540px) / 5),
+                             (max-width: 1429px) calc((100vw - 580px) / 6),
+                             137px"
+                      alt="">
+                  </div>
+                  <div class="item__about">
+                    <div class="item__about-row">
+                      <span class="item__first-index">ST</span>
+                      <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
+                        animi ad reiciendis hic nisi a sed quod!</span>
+                      <span class="item__second-index">SI</span>
+                    </div>
+                    <b class="item__price">$ 7 851.31</b>
+                  </div>
+                  <div class="item__icons">
+                    <img class="item__icon" 
+                      width="20" 
+                      height="20" 
+                      src="images/items/items-icon-1.png" 
+                      srcset="images/x2/items-icon-1-2x.png 2x,
+                              images/x3/items-icon-1-3x.png 3x" 
+                      sizes="20px"
+                      alt="">
+                    <img class="item__icon" 
+                      width="20" 
+                      height="20" 
+                      src="images/items/items-icon-2.png" 
+                      srcset="images/x2/items-icon-2-2x.png 2x,
+                              images/x3/items-icon-2-3x.png 3x" 
+                      sizes="20px"
+                      alt="">
+                  </div>
+                  <div class="item__overlay">
+                    <button class="item__remove-button" type="button">
+                      <span class="visually-hidden">Remove item from cart</span>
+                    </button>
+                  </div>
+                  <button class="item__favourite-button" type="button">
+                    <span class="visually-hidden">Add item to favourite</span>
+                  </button>
+                  <button class="item__details" type="button">
+                    <span>details</span>
+                  </button>
+                </div>
+              </div>
+              <article class="modal-item">
+                <div class="modal-item__header">
+                  <ul class="modal-item__menu">
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">favourite</a>
+                    </li>
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">copy item link</a>
+                    </li>
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">share item</a>
+                    </li>
+                    <li class="modal-item__menu-item">
+                      <a class="modal-item__menu-link" href="#">item on Steam</a>
+                    </li>
+                  </ul>
+                  <button class="modal-item__close" type="button">
+                    <span class="visually-hidden">Close modal popup</span>
+                  </button>
+                </div>
+                <section class="modal-item__inner">
+                  <div class="modal-item__slider-block">
+                    <img class="modal-item__img" width="" height="" src="images/items/item-big.png" srcset="" sizes=""
+                      alt="">
+                    <div class="slider-shadow">
+                      <div class="modal-item__slider swiper">
+                        <div class="modal-item__slider-wrapper swiper-wrapper">
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                          <div class="modal-item__slide swiper-slide">
+                            <img class="modal-item__slide-img" width="" height="" src="images/items/item-slide.jpg"
+                              srcset="" sizes="" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-item__info">
+                    <h2 class="modal-item__title">Lavapick</h2>
+                    <table class="modal-item__about item-info">
+                      <caption class="visually-hidden">Information about item</caption>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">type</th>
+                        <td class="item-info__data">Stiletto Knife/<span class="item-info__quality">Factory New</span>
+                        </td>
+                      </tr>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">rarity</th>
+                        <td class="item-info__data">Covert</td>
+                      </tr>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">pattern</th>
+                        <td class="item-info__data">301</td>
+                      </tr>
+                      <tr class="item-info__row">
+                        <th class="item-info__head">float</th>
+                        <td class="item-info__data" id="float-value">0.05937123</td>
+                      </tr>
+                    </table>
+                    <div class="float-scale">
+                      <div class="float-scale__base"></div>
+                      <div class="float-scale__inner"></div>
+                    </div>
+                    <div class="modal-item__info-row">
+                      <div class="modal-item__price">
+                        <b class="modal-item__current-price">$9.95</b>
+                        <s class="modal-item__old-price">$10.25</s>
+                      </div>
+                      <button class="modal-item__buy-button btn" type="button">buy</button>
+                    </div>
+                    <div class="modal-item__info-row">
+                      <div class="modal-item__order-block item-order">
+                        <span class="item-order__price">price</span>
+                        <button class="item-order__button btn" type="button">order</button>
+                      </div>
+                      <button class="modal-item__cancel-button" type="button">cancel $10 order</button>
+                      <div class="info"></div>
+                    </div>
+                  </div>
+                </section>
+                <section class="modal-item__statistic">
+                  <h3 class="modal-item__section-title">statistic</h3>
+                </section>
+                <section class="modal-item__orders item-orders">
+                  <h3 class="modal-item__section-title">autobuy orders</h3>
+                  <ul class="item-orders__list"></ul>
+                </section>
+              </article>
+            </li>
+          </ul>
+          <p class="placeholder-text">no items ordered yet</p>
+          <ul class="pagination">
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">1</button>
+            </li>
+            <li class="pagination__item">...</li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">7</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">8</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">9</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button pagination__button--current" type="button">10</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">11</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">12</button>
+            </li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">13</button>
+            </li>
+            <li class="pagination__item">...</li>
+            <li class="pagination__item">
+              <button class="pagination__button" type="button">22</button>
+            </li>
+          </ul>
+        </section>
+        <section class="favourited page-block account__page-block">
+          <h2 class="account__title">favourited items</h2>
+          <ul class="account__items-list"></ul>
+          <p class="placeholder-text">no items favourited yet</p>
+        </section>
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner">
+      <div class="footer__inner page-block">
         <div class="footer__logo">
           <a class="footer__logo-link" href="#">
-            <img class="footer__logo-img" src="images/footer-logo.png" alt="">
+            <img 
+              class="footer__logo-img" 
+              width="66"
+              height="49"
+              src="images/footer-logo.png" 
+              alt="">
           </a>
         </div>
         <div class="footer__content">
@@ -233,19 +839,13 @@
           </p>
           <ul class="footer__menu">
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Privacy policy
-              </a>
+              <a class="footer__menu-link" href="#">Privacy policy</a>
             </li>
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Terms of use
-              </a>
+              <a class="footer__menu-link" href="#">Terms of use</a>
             </li>
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Contact us
-              </a>
+              <a class="footer__menu-link" href="#">Contact us</a>
             </li>
           </ul>
         </div>
@@ -254,9 +854,54 @@
   </footer>
   <div class="modal-overlay"></div>
 
+  <!-- svg color filters -->
+  <div class="visually-hidden" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+      <!-- #5B3889 -->
+      <filter id="color_5B3889">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.36
+                  0 0 0 0 0.22
+                  0 0 0 0 0.54
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+
+      <!-- #72608a -->
+      <filter id="color_72608a">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.45
+                  0 0 0 0 0.38
+                  0 0 0 0 0.54
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+
+      <!-- #f2f2f3 -->
+      <filter id="color_f2f2f3">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.95
+                  0 0 0 0 0.95
+                  0 0 0 0 0.95
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+
+      <!-- #acacbf -->
+      <filter id="color_acacbf">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.67
+                  0 0 0 0 0.67
+                  0 0 0 0 0.75
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+    </svg>
+  </div>
 
   <script src="libs/js/nouislider.min.js"></script>
   <script src="libs/js/swiper-bundle.min.js"></script>
+  <script src="js/dropdown.js"></script>
   <script src="js/main.js"></script>
 </body>
 

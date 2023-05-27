@@ -1,10 +1,30 @@
 // variables
 const gameItems = document.querySelectorAll('.item');
 const filter = document.querySelector('.filter');
-const rangeSlider = filter.querySelector('.range-slider__base');
-const rangeSliderLowNums = filter.querySelector('.range-slider__nums--low');
-const rangeSliderHighNums = filter.querySelector('.range-slider__nums--high');
+const rangeSlider = filter?.querySelector('.range-slider__base');
+const rangeSliderLowNums = filter?.querySelector('.range-slider__nums--low');
+const rangeSliderHighNums = filter?.querySelector('.range-slider__nums--high');
 const openFilterButton = document.querySelector('.filter-btn');
+const menu = document.querySelector('.menu');
+const menuOpenBtn = menu?.querySelector('.menu__open-btn');
+const menuCloseBtn = menu?.querySelector('.menu__close-btn');
+const menuListWrapper = menu.querySelector('.menu__list-wrapper');
+const languageDropdown = document.getElementById('language_dropdown');
+const currencyDropdown = document.getElementById('currency_dropdown');
+const menuLangDropdown = document.getElementById('menu_language_dropdown');
+const menuCurrencyDropdown = document.getElementById('menu_currency_dropdown');
+const sortDropdown = document.getElementById('sort_dropdown');
+const storeSort = document.getElementById('sort_dropdown_store');
+const inventorySort = document.getElementById('sort_dropdown_inventory');
+const search = document.querySelectorAll('.search');
+const searchForms = document.querySelectorAll('.search__form');
+const dealItemsSlider = document.querySelector('.deal__items-slider');
+const settings = document.querySelectorAll('.settings');
+const accountItemsList = document.querySelectorAll('.account__items-list');
+const emailForm = document.querySelector('.user__email-form');
+const emailFormInput = emailForm?.querySelector('.user__email-input');
+const emailFormLabel = emailForm?.querySelector('.user__email-label');
+const emailFormButton = emailForm?.querySelector('.user__email-button');
 
 
 // function calls and events
@@ -13,20 +33,19 @@ if (gameItems.length > 0) {
     item.addEventListener('click', event => {
       addItem(event, item);
       choseItem(event, item);
+      deleteButton(event, item)
     });
   });
 }
 
-if (filter) {
-  filter.addEventListener('click', event => {
-    toggleFilterSection(event);
-    countCheckedFilterItems(event);
-    declineFilterForm(event);
-    closeMobileFilter(event);
-  });
+filter?.addEventListener('click', event => {
+  toggleFilterSection(event);
+  countCheckedFilterItems(event);
+  declineFilterForm(event);
+  closeMobileFilter(event);
+});
 
-  openFilterButton.addEventListener('click', openMobileFilter);
-}
+openFilterButton?.addEventListener('click', openMobileFilter);
 
 if (rangeSlider) {
   noUiSlider.create(rangeSlider, {
@@ -60,19 +79,121 @@ if (rangeSlider) {
   });
 }
 
+menuOpenBtn?.addEventListener('click', openMainMenu);
+menuCloseBtn?.addEventListener('click', closeMainMenu);
+
+if (languageDropdown) {
+  new Dropdown('#language_dropdown').start();
+}
+if (currencyDropdown) {
+  new Dropdown('#currency_dropdown').start();
+}
+if (menuLangDropdown) {
+  new Dropdown('#menu_language_dropdown').start();
+}
+if (menuCurrencyDropdown) {
+  new Dropdown('#menu_currency_dropdown').start();
+}
+if (sortDropdown) {
+  new Dropdown('#sort_dropdown').start();
+}
+if (storeSort) {
+  new Dropdown('#sort_dropdown_store').start();
+}
+if (inventorySort) {
+  new Dropdown('#sort_dropdown_inventory').start();
+}
+
+if (search.length > 0) {
+  search.forEach((search) => {
+    const searchForm = search.querySelector('.search__form');
+    const showFormBtn = search.querySelector('.search__show-btn');
+    showFormBtn.addEventListener('click', () => {
+      searchForm.classList.add('search__form--active')
+    });
+  });
+
+  document.addEventListener('click', hideSearchField);
+}
+
+if (dealItemsSlider) {
+  const dealSwiper = new Swiper('.deal__items-slider', {
+    grabCursor: true,
+    slidesPerView: 5.5,
+  });
+}
+
+if (settings.length > 0) {
+  settings.forEach(setting => {
+    const settingsBtn = setting.querySelector('.settings-btn');
+    const settingsList = setting.querySelector('.settings__list');
+  
+    settingsBtn.addEventListener('click', () => {
+      toggleSettings(settingsBtn, settingsList);
+    });
+  });
+
+  document.addEventListener('click', event => {
+    const {target} = event;
+    const isSettings = target.closest('.settings');
+    if (!isSettings) {
+      const list = document.querySelectorAll('.settings__list');
+      const button = document.querySelectorAll('.settings-btn');
+      list.forEach(item => {
+        item.classList.remove('settings__list--active');
+        item.style.maxHeight = 0;
+      });
+      button.forEach(btn => {
+        btn.classList.remove('settings-btn--active');
+      });
+    }
+  });
+}
+
+accountItemsList?.forEach(list => {
+  showAccountItemsPlaceholder(list);
+});
+
+emailFormButton?.addEventListener('click', chengeEmail);
+
+
 
 // functions
 function addItem(event, item) {
   const {target} = event;
-  const isOverlay = target.classList.contains('item__overlay');
-  const isAddButton = target.classList.contains('item__add-button');
-  if (isOverlay || isAddButton) item.classList.toggle('item--added');
+  const addButton = item.querySelector('.item__add-button');
+  if (addButton) {
+    const isAddButton = target.classList.contains('item__add-button');
+    const isOverlay = target.classList.contains('item__overlay');
+    if (isOverlay || isAddButton) item.classList.toggle('item--added');
+  }
 }
 
 function choseItem(event, item) {
   const {target} = event;
   const isFavouriteButton = target.classList.contains('item__favourite-button');
   if (isFavouriteButton) item.classList.toggle('item--chosen');
+}
+
+function deleteButton(event, item) {
+  const {target} = event;
+  const deleteButton = item.querySelector('.item__remove-button');
+  if (deleteButton) {
+    const isDeleteButton = target.classList.contains('item__remove-button');
+    const isOverlay = target.classList.contains('item__overlay');
+    if (isOverlay || isDeleteButton) {
+      const itemWidth = item.getBoundingClientRect().width;
+      item.style.marginRight = `-${itemWidth}px`;
+      item.style.transform = `perspective(700px) rotateY(90deg)`;
+      const parentList = item.closest('.account__items-list');
+      setTimeout(() => {
+        item.remove();
+      }, 500);
+      setTimeout(() => {
+        showAccountItemsPlaceholder(parentList);
+      }, 501);
+    }
+  }
 }
 
 function toggleFilterSection(event) {
@@ -152,234 +273,105 @@ function closeMobileFilter(event) {
   filter.classList.remove('filter--active');
 }
 
+function openMainMenu() {
+  menuListWrapper.classList.add('menu__list-wrapper--active');
+}
+
+function closeMainMenu() {
+  menuListWrapper.classList.remove('menu__list-wrapper--active');
+}
+
+function hideSearchField(event) {
+  const {target} = event;
+  const searchField = target.closest('.search');
+  if (!searchField) {
+    searchForms.forEach(form => {
+      form.classList.remove('search__form--active');
+    });
+  }
+}
+
+function toggleSettings(button, list) {
+  button.classList.add('settings-btn--active');
+  if(list.classList.contains('settings__list--active')) {
+    closeSettings(list, button);
+  } else {
+    list.classList.add('settings__list--active');
+    list.style.maxHeight = list.scrollHeight + 20 + 'px';
+  };
+}
+
+function closeSettings(list, button) {
+  list.classList.remove('settings__list--active');
+  button.classList.remove('settings-btn--active');
+  list.style.maxHeight = 0;
+}
 
 
-// // dropdowns
-// document.querySelectorAll('.dropdown-wrapper').forEach(function (dropdownWrapper) {
+const tabsButtons = document.querySelectorAll('.deal__items-header');
+const tabsContent = document.querySelectorAll('.deal__side');
 
-//   const dropdownBtn = dropdownWrapper.querySelector('.dropdown__btn'),
-//         dropdown = dropdownWrapper.querySelector('.dropdown'),
-//         dropdownList = dropdownWrapper.querySelector('.dropdown__list'),
-//         dropdownListItem = dropdownList.querySelectorAll('.dropdown__item'),
-//         dropdownInput = dropdownWrapper.querySelector('.dropdown__input-hidden');
+tabsButtons.forEach(button => {
+  button.addEventListener('click', switchTabs);
+});
 
-//   /*
-//   по клику открывается и закрывается меню дропдауна
-//   */ 
-//   dropdownBtn.addEventListener('click', function () {
-//     dropdown.classList.toggle('dropdown--active');
+function switchTabs() {
+  tabsButtons.forEach(button => {
+    button.classList.remove('deal__items-header--active');
+  });
+  this.classList.add('deal__items-header--active');
 
-//     if (dropdownList.classList.contains('dropdown__list--active')) {
-//       dropdownList.classList.remove('dropdown__list--active');
-//       dropdownList.style.maxHeight = 0;
-//     } else {
-//       dropdownList.classList.add('dropdown__list--active');
-//       dropdownList.style.maxHeight = dropdownList.scrollHeight + 10 + 'px';
-//       /*
-//       при ширине экрана меньше 700px, в меню дропдауна, отвечающего за сортировку товаров,
-//       добавляется 25px нижнего отступа (нужно только для стилистического оформления)
-//       */
-//       if (document.documentElement.clientWidth < 700) {
-//         if (dropdownList.classList.contains('dropdown__sort-list')) {
-//           dropdownList.style.maxHeight = dropdownList.scrollHeight + 25 + 'px';
-//         };
-//       };
-//     };
-//   });
+  tabsContent.forEach(content => {
+    content.classList.remove('deal__side--active');
+    if (this.dataset.btn === content.dataset.tab) {
+      content.classList.add('deal__side--active');
+    }
+  });
+}
 
-//   /*
-//   функция, которая закрывает дропдаун
-//   */
-//   const removeClassActive = () => {
-//     dropdown.classList.remove('dropdown--active');
-//     dropdownList.classList.remove('dropdown__list--active');
-//     dropdownList.style.maxHeight = 0;
-//   }
-
-//   /* 
-//   при клике по элементу из меню дропдауна, значение этого элемента 
-//   отображается сверху в дропдауне. Также это значение передается в 
-//   input value, а сам дропдаун закрывается
-//   */
-//   dropdownListItem.forEach(function (listItem) {
-//     listItem.addEventListener('click', function (e) {
-//       e.stopPropagation();
-//       removeClassActive();
-
-//       dropdownBtn.innerText = this.innerText;
-//       dropdownInput.value = this.dataset.value;
-//     });
-//   });
-
-//   /* 
-//   при клике где-угодно, кроме самого дропдауна, этот дропдаун закрывается
-//   */
-//   document.addEventListener('click', function (e) {
-//     if (e.target !== dropdownBtn) {
-//       removeClassActive();
-//     };
-//   });
-
-//   /* 
-//   при нажатии кнопок tab или escape, дропдаун закрывается
-//   */
-//   document.addEventListener('keydown', function (e) {
-//     if (e.key === 'Tab' || e.key === 'Escape') {
-//       removeClassActive();
-//     };
-//   });
-
-// });
+function showAccountItemsPlaceholder(list) {
+  const listBlock = list.closest('.account__page-block');
+  const listItems = list.querySelectorAll('.item');
+  if (listItems.length === 0) {
+    listBlock.classList.add('no-items');
+  } else {
+    listBlock.classList.remove('no-items');
+  }
+}
 
 
-// filter
-/*
-сначала проверяем, есть ли на странице фильтр
-*/
-// if (document.querySelector('.filter') !== null) {
-
-//   const filterDeclineBtn = document.querySelector('.filter__decline-btn');
+function chengeEmail() {
+  const labelWidth = emailFormLabel.scrollWidth;  
+  const valueIsValid = emailInputValidation();
   
-//   document.querySelectorAll('.filter__form-section').forEach(function (formSection) {
-  
-//     const filterSectionTitle = formSection.querySelector('.filter__section-title'),
-//           checkboxWrapper = formSection.querySelector('.filter__checkbox-wrapper'),
-//           checkedProducts = formSection.querySelector('.filter__item-checked'),
-//           productsAmmount = formSection.querySelector('.filter__items-ammount'),
-//           products = formSection.querySelectorAll('.filter__checkbox-label'),
-//           checkbox = formSection.querySelectorAll('.filter__checkbox-hidden'),
-//           productsCount = formSection.querySelector('.filter__count');
-  
-//     /* 
-//     в первое число из счетчика в фильтре записывается общее количество 
-//     доступных чекбоксов, а во второе число записывается количество
-//     отмеченных чекбоксов
-//     */
-//     productsAmmount.innerText = products.length;
-//     checkedProducts.innerText = formSection.querySelectorAll('input:checked').length;
-  
-//     checkbox.forEach(function(checked) {
-//       /*
-//       при клике на чекбокс, к нему добавляется или 
-//       удаляется атрибут checked, а счетчик 
-//       отмеченных чекбоксов обновляется
-//       */
-//       checked.addEventListener('click', function () {
-//         checked.toggleAttribute('checked');
-//         checkedProducts.innerText = formSection.querySelectorAll('input:checked').length;
-//         /*
-//         если количество отмеченных чекбоксов больше 0,
-//         счетчик появляется, если меньше - исчезает
-//         */
-//         if (formSection.querySelectorAll('input:checked').length > 0) {
-//           productsCount.classList.add('filter__count--active');
-//         } else {
-//           productsCount.classList.remove('filter__count--active');
-//         };
-//       });
-//     });
-  
-//     /*
-//     при клике на кнопку decline, счетчик отмеченных чекбоксов
-//     обнуляется и исчезает, а у всех чекбоксов удаляется
-//     атрибут checked 
-//     */
-//     filterDeclineBtn.addEventListener('click', () => {
-//       checkedProducts.innerText = 0;    
-//       productsCount.classList.remove('filter__count--active');
-//       checkbox.forEach((checked) => {
-//         checked.removeAttribute('checked');
-//       });
-//     });
-  
-//     /*
-//     при клике на заголовок секции в фильтре, список чекбоксов
-//     под ним открывается
-//     */
-//     filterSectionTitle.addEventListener('click', () => {
-//       filterSectionTitle.classList.toggle('filter__section-title--active');
-  
-//       if (checkboxWrapper.classList.contains('filter__checkbox-wrapper--active')) {
-//         checkboxWrapper.classList.remove('filter__checkbox-wrapper--active');
-//         checkboxWrapper.style.maxHeight = 0;
-//       } else {
-//         checkboxWrapper.classList.add('filter__checkbox-wrapper--active');
-//         checkboxWrapper.style.maxHeight = checkboxWrapper.scrollHeight + 'px';
-//       };
-//     });
-//   });
-  
-//   // открытие и закрытие фильтра
-//   const filterOpenBtn = document.querySelectorAll('.filter-btn'),
-//         filterCloseBtn = document.querySelector('.filter__close-btn'),
-//         filterSubmitBtn = document.querySelector('.filter__submit-btn'),
-//         filterForm = document.querySelector('.filter');
-  
-//   filterOpenBtn.forEach((openBtn) => {
-//     openBtn.addEventListener('click', () => {
-//       filterForm.classList.add('filter--active');
-//     });
-//   });
-  
-//   filterCloseBtn.addEventListener('click', () => {
-//     filterForm.classList.remove('filter--active');
-//   });
-  
-//   filterSubmitBtn.addEventListener('click', () => {
-//     filterForm.classList.remove('filter--active');
-//   });
-  
-  
+  if (!valueIsValid) {
+    emailForm.classList.add('user__email-form--error');
+    setTimeout(() => {
+      emailForm.classList.remove('user__email-form--error');
+    }, 600);
+    return;
 
+  } else {
+    emailForm.classList.toggle('user__email-form--active');
+    const isActive = emailForm.classList.contains('user__email-form--active');
+    
+    if (isActive) {
+      emailFormInput.disabled = false;
+      emailFormLabel.style.width = 0;
+    } else {
+      emailFormInput.disabled = true;
+      emailFormLabel.style.width = `${labelWidth}px`;
+    }
+  }
+}
 
-
-// // шестеренка с настройками
-// document.querySelectorAll('.settings').forEach((settings) => {
-
-//   const settingsBtn = settings.querySelector('.settings-btn'),
-//         settingsList = settings.querySelector('.settings__list');
-
-//   settings.addEventListener('click', (e) => {
-//     e.stopPropagation();
-//   });
-//   /*
-//   фукция, которая закрывает меню настроек
-//   */
-//   const removeSettings = () => {
-//     settingsList.classList.remove('settings__list--active');
-//     settingsBtn.classList.remove('settings-btn--active')
-//     settingsList.style.maxHeight = 0;
-//   };
-//   /*
-//   по клику на шестеренку открывается меню настроек
-//   */
-//   settingsBtn.addEventListener('click', () => {
-//     settingsBtn.classList.add('settings-btn--active')
-//     if(settingsList.classList.contains('settings__list--active')) {
-//       removeSettings();
-//     } else {
-//       settingsList.classList.add('settings__list--active');
-//       settingsList.style.maxHeight = settingsList.scrollHeight + 20 + 'px';
-//     };
-//   });
-//   /*
-//   при клике где-угодно, кроме меню настроек, оно закрывается
-//   */
-//   document.addEventListener('click', (e) => {
-//     if (e.target !== settings) {
-//       removeSettings();
-//     };
-//   });
-//   /* 
-//   при нажатии кнопки tab или escape, меню настроек закрывается
-//   */
-//   document.addEventListener('keydown', (e) => {
-//     if (e.key === 'Tab' || e.key === 'Escape') {
-//       removeSettings();
-//     };
-//   });
-// });
-
+function emailInputValidation() {
+  const value = emailFormInput.value;
+  const isEmail = value.includes('@');
+  if (value.length < 3) return false;
+  if (!isEmail) return false;
+  return true;
+}
 
 // // item
 // const item = document.querySelectorAll('.item'),
@@ -479,96 +471,6 @@ function closeMobileFilter(event) {
 //   });
 // });
 
-// // открытие и закрытие главного меню
-// const menuOpenBtn = document.querySelector('.menu__open-btn'),
-//       menuCloseBtn = document.querySelector('.menu__close-btn'),
-//       menuListWrapper = document.querySelector('.menu__list-wrapper');
-
-// menuOpenBtn.addEventListener('click', () => {
-//   menuListWrapper.classList.add('menu__list-wrapper--active');
-// });
-
-// menuCloseBtn.addEventListener('click', () => {
-//   menuListWrapper.classList.remove('menu__list-wrapper--active');
-// });
-
-// /* 
-// разворачивание и сворачивание формы поиска.
-// Это происходит только при ширине экрана меньше 1100px 
-// */
-// document.querySelectorAll('.search').forEach((search) => {
-
-//   const showFormBtn = search.querySelector('.search__show-btn'),
-//         searchForm = search.querySelector('.search__form');
-//   /*
-//   по клику на иконку лупы, открывается форма поиска
-//   */
-//   showFormBtn.addEventListener('click', () => {
-//     searchForm.classList.toggle('search__form--active');
-//   });
-  
-//   search.addEventListener('click', function(e) {
-//     e.stopPropagation();
-//   });
-//   /*
-//   при клике где-угодно, кроме формы поиска, она сворачивается
-//   */
-//   document.addEventListener('click', function (e) {
-//     if (e.target !== search) {
-//       searchForm.classList.remove('search__form--active');
-//     };
-//   });
-//   /*
-//   при нажатии кнопок tab или escape, форма поиска сворачивается
-//   */
-//   document.addEventListener('keydown', function (e) {
-//     if (e.key === 'Tab' || e.key === 'Escape') {
-//       searchForm.classList.remove('search__form--active');
-//     };
-//   });
-// });
-
-// /*
-// слайдер в deal__buy-items на странице deal
-// */
-// const dealSwiper = new Swiper('.deal__items-slider', {
-//   grabCursor: true,
-//   slidesPerView: 5.5,
-// });
-
-// /* 
-//   табы на странице deal (работает начиная с ширины 1000px)
-// */
-// const tabsButtons = document.querySelectorAll('.deal__items-header'),
-//       tabsContent = document.querySelectorAll('.deal__side');
-
-// tabsButtons.forEach((btn) => {
-//   btn.addEventListener('click', () => {
-//     for (let i = 0; i < tabsButtons.length; i++) {
-//       tabsButtons[i].classList.remove('deal__items-header--active');
-//     };
-//     for (let i = 0; i < tabsContent.length; i++) {
-//       tabsContent[i].classList.remove('deal__side--active');
-//       if (tabsContent[i].dataset.tab === btn.dataset.btn) {
-//         tabsContent[i].classList.add('deal__side--active');
-//       };
-//     };
-//     btn.classList.add('deal__items-header--active');
-//   });
-// });
-
-
-
-// const dealHeader = document.querySelector('.deal__header');
-
-// document.querySelectorAll('.deal__side-header').forEach((header) => {
-//   header.style.top = dealHeader.clientHeight - 1 + 'px';  
-  
-//   window.addEventListener('resize', () => {
-//     header.style.top = dealHeader.clientHeight - 1 + 'px';
-//     console.log(dealHeader.clientHeight);
-//   });
-// });
 
 
 // /*

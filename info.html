@@ -18,64 +18,98 @@
       <div class="header__inner">
         <div class="header__info header__info--left">
           <nav class="menu">
-            <button class="menu__open-btn">
-              <img src="images/icons/menu-icon.svg" alt="">
+            <button class="menu__open-btn" type="button">
+              <span class="visually-hidden">Open navigation menu</span>
             </button>
             <div class="menu__list-wrapper">
-              <button class="menu__close-btn">
-                <img src="images/icons/close-btn.svg" alt="">
+              <button class="menu__close-btn" type="button">
+                <span class="visually-hidden">Close navigation menu</span>
               </button>
               <div class="menu__logo">
                 <a class="menu__logo-link" href="#">
-                  <img src="images/logo.png" alt="">
+                  <img 
+                    width="153" 
+                    height="49" 
+                    src="images/logo.png" 
+                    alt="Market4pro logo.">
                 </a>
               </div>
               <div class="menu__dropdowns">
-                <div class="dropdown-wrapper">
-                  <div class="dropdown">
-                    <button class="dropdown__btn">en</button>
+                <div class="dropdown" id="menu_language_dropdown">
+                  <button class="dropdown__button" type="button">
+                    <span class="dropdown__text-wrapper">
+                      <span class="dropdown__text"></span>
+                    </span>
+                  </button>
+                  <div class="dropdown__list-wrapper">
                     <ul class="dropdown__list">
-                      <li class="dropdown__item" data-value="en">en</li>
-                      <li class="dropdown__item" data-value="ru">ru</li>
-                      <li class="dropdown__item" data-value="it">it</li>
-                      <li class="dropdown__item" data-value="fr">fr</li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">en</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">ru</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">it</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">fr</button>
+                      </li>
                     </ul>
-                    <input class="dropdown__input-hidden" type="text" name="lang" value="">
                   </div>
+                  <form action="#" method="get">
+                    <input
+                      class="dropdown__input"
+                      id="menu_language_input"
+                      type="text"
+                      name="menuLaguageInput"
+                      aria-hidden="true">
+                  </form>
                 </div>
-                <div class="dropdown-wrapper">
-                  <div class="dropdown">
-                    <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+                <div class="dropdown" id="menu_currency_dropdown">
+                  <button class="dropdown__button" type="button">
+                    <span class="dropdown__text-wrapper">
+                      <span class="dropdown__text"></span>
+                    </span>
+                  </button>
+                  <div class="dropdown__list-wrapper">
                     <ul class="dropdown__list">
-                      <li class="dropdown__item" data-value="eur">€ eur</li>
-                      <li class="dropdown__item" data-value="usd">$ usd</li>
-                      <li class="dropdown__item" data-value="rub">₽ rub</li>
-                      <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">€ eur</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">$ usd</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">₽ rub</button>
+                      </li>
+                      <li class="dropdown__item">
+                        <button class="dropdown__list-button" type="button">£ gbp</button>
+                      </li>
                     </ul>
-                    <input class="dropdown__input-hidden" type="text" name="currency" value="">
                   </div>
+                  <form action="#" method="get">
+                    <input
+                      class="dropdown__input"
+                      id="menu_currency_input"
+                      type="text"
+                      name="menuCurrencyInput"
+                      aria-hidden="true">
+                  </form>
                 </div>
               </div>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a class="menu__link" href="/index.html">
-                    buy
-                  </a>
+                  <a class="menu__link" href="/index.html">buy</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="/deal.html">
-                    sell
-                  </a>
+                  <a class="menu__link" href="/deal.html">sell</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="/deal.html">
-                    trade
-                  </a>
+                  <a class="menu__link" href="/deal.html">trade</a>
                 </li>
                 <li class="menu__item menu__item--last">
-                  <a class="menu__link menu__link--active" href="/info.html">
-                    info
-                  </a>
+                  <a class="menu__link menu__link--active" href="/info.html">info</a>
                 </li>
               </ul>
               <div class="menu__footer">
@@ -86,30 +120,24 @@
                 </p>
                 <ul class="menu__footer-list">
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Privacy policy
-                    </a>
+                    <a class="menu__footer-link" href="#">Privacy policy</a>
                   </li>
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Terms of use
-                    </a>
+                    <a class="menu__footer-link" href="#">Terms of use</a>
                   </li>
                   <li class="menu__footer-item">
-                    <a class="menu__footer-link" href="#">
-                      Contact us
-                    </a>
+                    <a class="menu__footer-link" href="#">Contact us</a>
                   </li>
                 </ul>
               </div>
             </div>
           </nav>
-          <div class="header__category category header__category--off">
+          <div class="header__category category">
             <a class="category__item category__item-cs category__item--active" href="#">
-              <img class="category__img" src="images/icons/cs.svg" alt="">
+              <span class="visually-hidden">Open CS items</span>
             </a>
             <a class="category__item category__item-dota" href="#">
-              <img class="category__img" src="images/icons/dota.svg" alt="">
+              <span class="visually-hidden">Open Dota items</span>
             </a>
           </div>
         </div>
@@ -123,100 +151,123 @@
         </div>
         <div class="header__info header__info--right">
           <div class="header__dropdowns">
-            <div class="dropdown-wrapper">
-              <div class="dropdown">
-                <button class="dropdown__btn">en</button>
+            <div class="dropdown" id="language_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
                 <ul class="dropdown__list">
-                  <li class="dropdown__item" data-value="en">en</li>
-                  <li class="dropdown__item" data-value="ru">ru</li>
-                  <li class="dropdown__item" data-value="it">it</li>
-                  <li class="dropdown__item" data-value="fr">fr</li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">en</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">ru</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">it</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">fr</button>
+                  </li>
                 </ul>
-                <input class="dropdown__input-hidden" type="text" name="lang" value="">
               </div>
+              <form action="#" method="get">
+                <input
+                  class="dropdown__input"
+                  id="language_input"
+                  type="text"
+                  name="laguageInput"
+                  aria-hidden="true">
+              </form>
             </div>
-            <div class="dropdown-wrapper">
-              <div class="dropdown">
-                <button class="dropdown__btn dropdown__btn-currency">€ eur</button>
+            <div class="dropdown" id="currency_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
                 <ul class="dropdown__list">
-                  <li class="dropdown__item" data-value="eur">€ eur</li>
-                  <li class="dropdown__item" data-value="usd">$ usd</li>
-                  <li class="dropdown__item" data-value="rub">₽ rub</li>
-                  <li class="dropdown__item" data-value="gbp">£ gbp</li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">€ eur</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">$ usd</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">₽ rub</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">£ gbp</button>
+                  </li>
                 </ul>
-                <input class="dropdown__input-hidden" type="text" name="currency" value="">
               </div>
+              <form action="#" method="get">
+                <input
+                  class="dropdown__input"
+                  id="currency_input"
+                  type="text"
+                  name="currencyInput"
+                  aria-hidden="true">
+              </form>
             </div>
           </div>
-          <div class="header__balance balance">
+          <div class="header__balance balance balance--off">
             <span class="balance__summ">
               $ 100
             </span>
             <a class="balance__add-btn" href="#"></a>
           </div>
-          <div class="header__user-wrapper header__user--notification">
+          <div class="header__user-wrapper header__user--notification header__user--off">
             <a class="header__user" href="#">
-              <img class="header__user-img" src="images/user-img.jpg" alt="">
+              <img 
+                class="header__user-img" 
+                width="48"
+                height="48"
+                src="images/user-img.jpg" 
+                srcset="images/x2/user-img-2x.jpg 2x,
+                        images/x3/user-img-3x.jpg 3x"
+                sizes="48px"
+                alt="">
             </a>
           </div>
-          <a class="header__sign-in btn header__sign-in--off" href="#">
-            sign in
-          </a>
+          <a class="header__sign-in btn" href="#">sign in</a>
         </div>
       </div>
     </div>
   </header>
   <main class="main">
-    <section class="info">
+    <section class="i nfo">
       <div class="container">
         <div class="info__inner">
           <div class="info__aside">
-            <ul class="info__menu">
+            <ul class="info__menu page-block">
               <li class="info__menu-item">
-                <a class="info__menu-link" href="#">
-                  some informational
-                  page #1
-                </a>
+                <a class="info__menu-link" href="#">some informational page #1</a>
               </li>
               <li class="info__menu-item">
-                <a class="info__menu-link" href="#">
-                  some informational
-                  page #2
-                </a>
+                <a class="info__menu-link" href="#">some informational page #2</a>
               </li>
               <li class="info__menu-item">
-                <a class="info__menu-link" href="#">
-                  another informational
-                  page #3
-                </a>
+                <a class="info__menu-link" href="#">another informational page #3</a>
               </li>
               <li class="info__menu-item">
-                <a class="info__menu-link" href="#">
-                  one more page #4
-                </a>
+                <a class="info__menu-link" href="#">one more page #4</a>
               </li>
               <li class="info__menu-item">
-                <a class="info__menu-link" href="#">
-                  one more page #5
-                </a>
+                <a class="info__menu-link" href="#">one more page #5</a>
               </li>
             </ul>
             <div class="info__pages">
-              <a class="info__pages-link" href="#">
-                some page #1
-              </a>
-              <a class="info__pages-link" href="#">
-                some page #2
-              </a>
-              <a class="info__pages-link" href="#">
-                some page #3
-              </a>
+              <a class="info__pages-link page-block" href="#">some page #1</a>
+              <a class="info__pages-link page-block" href="#">some page #2</a>
+              <a class="info__pages-link page-block" href="#">some page #3</a>
             </div>
           </div>
           <div class="info__content">
-            <h2 class="info__main-title">
-              Some informational header
-            </h2>
+            <h2 class="info__main-title">Some informational header</h2>
             <p class="info__content-text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
@@ -226,9 +277,7 @@
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
               gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
             </p>
-            <h3 class="info__content-title">
-              Some info heare h3
-            </h3>
+            <h3 class="info__content-title">Some info heare h3</h3>
             <p class="info__content-text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
@@ -239,10 +288,19 @@
               gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
             </p>
             <figure class="info__poster-wrapper">
-              <img class="info__poster" src="images/info/info-poster.jpg" alt="">
-              <figcaption class="info__poster-caption">
-                Lorem Ipsum
-              </figcaption>
+              <img 
+                class="info__poster" 
+                width="1130"
+                height="285"
+                src="images/info/info-poster.jpg" 
+                srcset="images/x2/info-poster-2x.jpg 2x,
+                        images/x3/info-poster-3x.jpg 3x"
+                sizes="(max-width: 500px) calc(100vw - 20px),
+                       (max-width: 700px) calc(100vw - 30px),
+                       (max-width: 1430px) calc(100vw - 300px),
+                       1130px"
+                alt="">
+              <figcaption class="info__poster-caption">Lorem Ipsum</figcaption>
             </figure>
             <p class="info__content-text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -254,7 +312,18 @@
               gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
             </p>
             <div class="info__img-wrapper">
-              <img class="info__img" src="images/info/info-img.jpg" alt="">
+              <img 
+                class="info__img" 
+                width="1030"
+                height="451"
+                src="images/info/info-img.jpg" 
+                srcset="images/x2/info-img-2x.jpg 2x,
+                        images/x3/info-img-3x.jpg 3x"
+                sizes="(max-width: 500px) calc(100vw - 90px),
+                       (max-width: 700px) calc(100vw - 100px),
+                       (max-width: 1430px) calc(100vw - 370px),
+                       1030px"
+                alt="">
             </div>
           </div>
         </div>
@@ -263,10 +332,15 @@
   </main>
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner">
+      <div class="footer__inner page-block">
         <div class="footer__logo">
           <a class="footer__logo-link" href="#">
-            <img class="footer__logo-img" src="images/footer-logo.png" alt="">
+            <img 
+              class="footer__logo-img" 
+              width="66"
+              height="49"
+              src="images/footer-logo.png" 
+              alt="">
           </a>
         </div>
         <div class="footer__content">
@@ -279,19 +353,13 @@
           </p>
           <ul class="footer__menu">
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Privacy policy
-              </a>
+              <a class="footer__menu-link" href="#">Privacy policy</a>
             </li>
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Terms of use
-              </a>
+              <a class="footer__menu-link" href="#">Terms of use</a>
             </li>
             <li class="footer__menu-item">
-              <a class="footer__menu-link" href="#">
-                Contact us
-              </a>
+              <a class="footer__menu-link" href="#">Contact us</a>
             </li>
           </ul>
         </div>
@@ -300,9 +368,54 @@
   </footer>
   <div class="modal-overlay"></div>
 
+  <!-- svg color filters -->
+  <div class="visually-hidden" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+      <!-- #5B3889 -->
+      <filter id="color_5B3889">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.36
+                  0 0 0 0 0.22
+                  0 0 0 0 0.54
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+
+      <!-- #72608a -->
+      <filter id="color_72608a">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.45
+                  0 0 0 0 0.38
+                  0 0 0 0 0.54
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+
+      <!-- #f2f2f3 -->
+      <filter id="color_f2f2f3">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.95
+                  0 0 0 0 0.95
+                  0 0 0 0 0.95
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+      <!-- #acacbf -->
+      <filter id="color_acacbf">
+        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.67
+                  0 0 0 0 0.67
+                  0 0 0 0 0.75
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+    </svg>
+  </div>
+
 
   <script src="libs/js/nouislider.min.js"></script>
   <script src="libs/js/swiper-bundle.min.js"></script>
+  <script src="js/dropdown.js"></script>
   <script src="js/main.js"></script>
 </body>
 
