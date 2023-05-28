@@ -2974,7 +2974,44 @@ p {
   }
 
   .statistic__table-wrapper {
-    overflow-x: auto;
+    position: relative;
+    padding-bottom: 10px;
+  }
+
+  .table-left-shadow::before,
+  .table-right-shadow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 100%;
+    box-shadow: 0 0 15px 15px var(--color-c);
+    animation: appearing 0.3s;
+  }
+
+  .table-left-shadow::before {
+    left: 0;
+  }
+
+  .table-right-shadow::after {
+    right: 0;
+  }
+
+  .statistic__table-wrapper .simplebar-track.simplebar-horizontal {
+    left: 5px;
+    right: 5px;
+  }
+
+  .statistic__table-wrapper .simplebar-track.simplebar-horizontal .simplebar-scrollbar::before {
+    background-color: var(--color-hc);
+    height: 3px;
+    bottom: 0;
+    top: auto;
+  }
+
+  .statistic__table-wrapper .simplebar-track.simplebar-horizontal .simplebar-scrollbar:hover::before {
+    background-color: var(--color-chc);
   }
 
   .statistic__table {

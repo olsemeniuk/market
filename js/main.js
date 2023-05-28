@@ -28,6 +28,8 @@ const emailFormButton = emailForm?.querySelector('.user__email-button');
 const emailFormHiddenText = emailForm?.querySelector('.user__email-text');
 const tabsButtons = document.querySelectorAll('.deal__items-header');
 const tabsContent = document.querySelectorAll('.deal__side');
+const statisticTableWrapper = document.querySelector('.statistic__table-wrapper');
+const statisticTable = statisticTableWrapper?.querySelector('.statistic__table');
 
 
 // function calls and events
@@ -168,7 +170,42 @@ emailFormButton?.addEventListener('click', chengeEmail);
 emailFormInput?.addEventListener('input', changeEmailInputWidth);
 
 
+if (statisticTableWrapper) {
+  const tableScroll = new SimpleBar(statisticTableWrapper, {
+    autoHide: false,
+  });
+
+  tableScroll.getScrollElement().addEventListener('scroll', showHideTableShadow);
+  showEndShadow();
+}
+
+
 // functions
+function showHideTableShadow(event) {
+  const {target} = event;
+  const distanceToLeft = target.scrollLeft;
+  const distanceToRight = statisticTable.scrollWidth - statisticTableWrapper.clientWidth - distanceToLeft;
+
+  if (distanceToLeft < 10) {
+    statisticTableWrapper.classList.remove('table-left-shadow');
+  } else {
+    statisticTableWrapper.classList.add('table-left-shadow');
+  }
+  
+  if (distanceToRight < 10) {
+    statisticTableWrapper.classList.remove('table-right-shadow');
+  } else {
+    statisticTableWrapper.classList.add('table-right-shadow');
+  }
+}
+
+function showEndShadow() {
+  const scrollbar = statisticTableWrapper.querySelector('.simplebar-track.simplebar-horizontal');
+  if (scrollbar.style.visibility === 'visible') {
+    statisticTableWrapper.classList.add('table-right-shadow');
+  }
+}
+
 function addItem(event, item) {
   const {target} = event;
   const addButton = item.querySelector('.item__add-button');
