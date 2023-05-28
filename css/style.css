@@ -2044,7 +2044,7 @@ p {
 
 .ordered, 
 .favourited {
-  min-height: 336px;
+  min-height: 285px;
 }
 
 .account__title {
@@ -2093,46 +2093,43 @@ p {
 .user__email-form {
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  max-width: 100%;
   padding: 4px 10px;
   border: 1px solid transparent;
   border-radius: 10px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s linear;
 }
 
 .user__email-label {
   flex-shrink: 0;
   margin-right: 10px;
   overflow: hidden;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .user__email-input {
-  flex-grow: 1;
-  max-width: 185px;
-  padding: 0 20px 0 0;
+  max-width: 100%;
+  min-width: 20px;
+  padding: 0;
   color: var(--color-w);
   text-overflow: ellipsis;
   pointer-events: none;
   outline: none;
-  transition: all 0.3s;
 }
 
 .user__email-button {
-  position: absolute;
-  top: 50%;
-  right: 10px;
+  flex-shrink: 0;
   width: 14px;
   height: 14px;
+  margin-left: 5px;
   background-image: url("../images/icons/pencil-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   filter: var(--color-lc-filter);
-  transform: translateY(-50%);
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .user__email-button:hover {
@@ -2148,13 +2145,12 @@ p {
 }
 
 .user__email-form--active .user__email-input {
-  max-width: 100%;
-  padding-right: 30px;
   text-overflow: unset;
   pointer-events: auto;
 }
 
 .user__email-form--active .user__email-button {
+  margin-left: 15px;
   background-image: url("../images/icons/check-icon.svg");
 }
 
@@ -2219,15 +2215,20 @@ p {
 }
 
 .information__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-right: -10px;
+  margin-bottom: 10px;
   padding: 0 25px;
 }
 
-.information__list-item {}
+.information__list-item {
+  width: calc(25% - 10px);
+  min-width: 150px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
 
 .info-item {
   display: flex;
@@ -2280,9 +2281,11 @@ p {
   color: var(--color-t);
   background-color: var(--color-hc);
   border-radius: 10px;
+  outline: none;
 }
 
-.trade__input:hover {
+.trade__input:hover,
+.trade__input:focus {
   background-color: var(--color-chc);
 }
 
@@ -2317,9 +2320,12 @@ p {
   grid-column: 1/-1;
 }
 
+.statistic__table-wrapper {
+  margin-bottom: 20px;
+}
+
 .statistic__table {
   width: 100%;
-  margin-bottom: 20px;
   overflow: hidden;
   border-collapse: collapse;
   border-radius: 0 0 10px 10px;
@@ -2347,7 +2353,7 @@ p {
 .statistic__table-title {}
 
 .statistic__table-data {
-  padding: 12px 0;
+  padding: 12px 3px;
   font-weight: 400;
 }
 
@@ -2375,7 +2381,7 @@ p {
 .statistic__table-data--description {}
 
 .statistic__table-data--date {
-  padding-right: 15px;
+  padding-right: 12px;
   width: 125px;
 }
 
@@ -2536,6 +2542,12 @@ p {
 /* ===============
     ADAPTIVE
    ===============*/
+@media (max-width: 1400px) {
+  .information__list-item {
+    width: calc((100% / 3) - 10px);
+  }
+}
+
 @media (max-width: 1270px) {
   .deal__search {
     order: 1;
@@ -2595,6 +2607,14 @@ p {
 
   .header__category {
     margin: 0 auto;
+  }
+
+  .account__items-list .item {
+    width: calc((100% / 6) - 10px);
+  }
+
+  .information__list-item {
+    width: calc(50% - 10px);
   }
 }
 
@@ -2683,6 +2703,37 @@ p {
 
   .deal__search .search__form--active {
     width: calc(100% - 35px);
+  }
+
+  .account {
+    grid-template-columns: repeat(2, calc(50% - 5px));
+    max-width: 100%;
+  }
+
+  .information {
+    grid-column: 1/-1;
+  }
+
+  .account__items-list .item {
+    width: calc((100% / 5) - 10px);
+  }
+
+  .information__list-item {
+    width: calc(25% - 10px);
+  }
+
+  .user-balance__buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .user-balance__button {
+    width: calc(50% - 5px);
+  }
+
+  .user-balance__button + .user-balance__button {
+    margin-top: 0;
+    margin-left: 10px;
   }
 }
 
@@ -2921,6 +2972,18 @@ p {
     left: auto;
     right: 0;
   }
+
+  .statistic__table-wrapper {
+    overflow-x: auto;
+  }
+
+  .statistic__table {
+    width: 900px;
+  }
+
+  .account__items-list .item {
+    width: calc((100% / 4) - 10px);
+  }
 }
 
 @media (max-width: 800px) {
@@ -2997,6 +3060,14 @@ p {
 
   .info__poster-wrapper {
     margin: 5px -15px 20px;
+  }
+
+  .account__items-list .item {
+    width: calc((100% / 3) - 10px);
+  }
+
+  .information__list {
+    padding: 0;
   }
 }
 
@@ -3368,6 +3439,23 @@ p {
   .products__search {
     margin-left: 10px;
   }
+
+  .information__list-item {
+    width: calc((100% / 3) - 10px);
+  }
+
+  .user-balance__buttons {
+    flex-direction: column;
+  }
+
+  .user-balance__button {
+    width: auto;
+  }
+
+  .user-balance__button + .user-balance__button {
+    margin-top: 10px;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 600px) {
@@ -3413,6 +3501,23 @@ p {
 
   .deal__header-name span {
     font-size: 12px;
+  }
+
+  .account__page-block {
+    grid-column: 1/-1;
+  }
+
+  .user-balance__buttons {
+    flex-direction: row;
+  }
+
+  .user-balance__button {
+    width: calc(50% - 5px);
+  }
+
+  .user-balance__button + .user-balance__button {
+    margin-top: 0;
+    margin-left: 10px;
   }
 }
 
@@ -3499,6 +3604,88 @@ p {
   .info__menu {
     margin-right: 0;
     margin-bottom: 10px;
+  }
+
+  .account__items-list .item,
+  .information__list-item {
+    width: calc((100% / 2) - 10px);
+  }
+
+  .information__info {
+    flex-direction: column;
+  }
+
+  .information__info-data + .information__info-data {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+
+  .account__page-block {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .user-balance__buttons {
+    flex-direction: column;
+  }
+
+  .user-balance__button {
+    width: 100%;
+  }
+
+  .user-balance__button + .user-balance__button {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .information__list-item {
+    width: 100%;
+  }
+
+  .ordered, .favourited {
+    min-height: 260px;
+  }
+  
+  .trade {
+    position: relative;
+  }
+
+  .trade__title {
+    margin-bottom: 15px;
+    padding-right: 25px;
+  }
+
+  .trade__form {
+    position: static;
+    flex-direction: column;
+  }
+
+  .trade__input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+  }
+
+  .trade__button {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    transform: none;
+  }
+
+  .trade .info-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .pagination__item {
+    font-size: 14px;
+  }
+
+  .pagination__item + .pagination__item {
+    margin-left: 10px;
   }
 }
 

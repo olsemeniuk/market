@@ -25,6 +25,9 @@ const emailForm = document.querySelector('.user__email-form');
 const emailFormInput = emailForm?.querySelector('.user__email-input');
 const emailFormLabel = emailForm?.querySelector('.user__email-label');
 const emailFormButton = emailForm?.querySelector('.user__email-button');
+const emailFormHiddenText = emailForm?.querySelector('.user__email-text');
+const tabsButtons = document.querySelectorAll('.deal__items-header');
+const tabsContent = document.querySelectorAll('.deal__side');
 
 
 // function calls and events
@@ -154,8 +157,15 @@ accountItemsList?.forEach(list => {
   showAccountItemsPlaceholder(list);
 });
 
-emailFormButton?.addEventListener('click', chengeEmail);
+if (emailForm) {
+  setEmailLabelWidth();
+  addEmailValueToText();
+  setEmailInputWidth();
+}
 
+emailForm?.addEventListener('submit', controlEmailSubmit);
+emailFormButton?.addEventListener('click', chengeEmail);
+emailFormInput?.addEventListener('input', changeEmailInputWidth);
 
 
 // functions
@@ -307,10 +317,6 @@ function closeSettings(list, button) {
   list.style.maxHeight = 0;
 }
 
-
-const tabsButtons = document.querySelectorAll('.deal__items-header');
-const tabsContent = document.querySelectorAll('.deal__side');
-
 tabsButtons.forEach(button => {
   button.addEventListener('click', switchTabs);
 });
@@ -339,38 +345,74 @@ function showAccountItemsPlaceholder(list) {
   }
 }
 
-
 function chengeEmail() {
-  const labelWidth = emailFormLabel.scrollWidth;  
   const valueIsValid = emailInputValidation();
   
   if (!valueIsValid) {
-    emailForm.classList.add('user__email-form--error');
-    setTimeout(() => {
-      emailForm.classList.remove('user__email-form--error');
-    }, 600);
+    addErrorAnimationToInput();
     return;
 
   } else {
     emailForm.classList.toggle('user__email-form--active');
     const isActive = emailForm.classList.contains('user__email-form--active');
-    
+
     if (isActive) {
       emailFormInput.disabled = false;
       emailFormLabel.style.width = 0;
+      emailFormInput.style.transition = 'all 0.3s';
+      setTimeout(() => {
+        emailFormInput.style.transition = 'none';
+      }, 300);
     } else {
+      emailFormInput.style.transition = 'all 0.3s';
       emailFormInput.disabled = true;
-      emailFormLabel.style.width = `${labelWidth}px`;
+      setEmailLabelWidth();
+      addEmailValueToText();
+      setEmailInputWidth();
     }
   }
 }
 
+function setEmailLabelWidth() {
+  const labelWidth = emailFormLabel.scrollWidth;  
+  emailFormLabel.style.width = `${labelWidth}px`;
+}
+
+function setEmailInputWidth() {
+  const hiddenTextWidth = emailFormHiddenText.scrollWidth;
+  emailFormInput.style.width = `${hiddenTextWidth + 10}px`;
+}
+
+function addEmailValueToText() {
+  const value = emailFormInput.value;
+  emailFormHiddenText.textContent = value;
+}
+
+function changeEmailInputWidth() {
+  const value = this.value;
+  emailFormHiddenText.textContent = value;
+  this.style.width = `${emailFormHiddenText.scrollWidth}px`
+}
+
 function emailInputValidation() {
   const value = emailFormInput.value;
-  const isEmail = value.includes('@');
-  if (value.length < 3) return false;
-  if (!isEmail) return false;
-  return true;
+  var regexp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+  return regexp.test(String(value).toLowerCase());
+}
+
+function controlEmailSubmit(event) {
+  const valueIsValid = emailInputValidation();
+  if (!valueIsValid) {
+    event.preventDefault();
+    addErrorAnimationToInput();
+  }
+}
+
+function addErrorAnimationToInput() {
+  emailForm.classList.add('user__email-form--error');
+  setTimeout(() => {
+    emailForm.classList.remove('user__email-form--error');
+  }, 600);
 }
 
 // // item
@@ -403,33 +445,6 @@ function emailInputValidation() {
 //     }
 //   });
 
-//   /*
-//   если у айтема есть клас item--icons,
-//   на нем отображаются две иконки
-//   */
-//   if (oneItem.classList.contains('item--icons')) {
-//     icons.style.display = 'block'; 
-//   };
-//   /*
-//   при клике на звезду на айтеме, она меняет свой цвет
-//   */
-//   favouriteBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     favouriteBtn.classList.toggle('item__star--chosen');
-//   });
-//   /*
-//   при клике на оверлей айтема, у айтема появляется
-//   или удаляется фиолетовый бордер
-//   */
-//   overlay.addEventListener('click', () => {
-//     oneItem.classList.toggle('item--chosen');
-    
-//     if (oneItem.classList.contains('item--chosen')) {
-//       overlay.classList.add('item__overlay-chosen');
-//     } else {
-//       overlay.classList.remove('item__overlay-chosen');
-//     };
-//   });
 //   /*
 //   при клике на item__details открывается модальное окно
 //   */
@@ -469,33 +484,4 @@ function emailInputValidation() {
 //       modal.classList.remove('modal-item--active');
 //     });
 //   });
-// });
-
-
-
-// /*
-// смена имейла на странице account
-// */
-// const emailValue = document.querySelector('.account__email-value'),
-//       emailChangeBtn = document.querySelector('.account__email-change'),
-//       emailForm = document.querySelector('.account__email-form'),
-//       emailInput = document.querySelector('.account__email-input'),
-//       emailSubmitBtn = document.querySelector('.account__email-submit');
-
-// emailInput.value = emailValue.innerText;
-
-// emailChangeBtn.addEventListener('click', () => {
-//   emailValue.classList.add('account__email-value--off');
-//   emailChangeBtn.classList.add('account__email-change--off');
-
-//   emailForm.classList.add('account__email-form--active');
-// });
-
-// emailSubmitBtn.addEventListener('click', () => {
-//   emailValue.innerText = emailInput.value;
-
-//   emailValue.classList.remove('account__email-value--off');
-//   emailChangeBtn.classList.remove('account__email-change--off');
-
-//   emailForm.classList.remove('account__email-form--active');
 // });

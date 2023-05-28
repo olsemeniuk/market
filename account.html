@@ -256,7 +256,8 @@
           <b class="user__name">NickName</b>
           <form class="user__email-form" action="#">
             <label class="user__email-label" for="user_email">email:</label>
-            <input class="user__email-input" id="user_email" type="email" name="userEmail" value="some_email_address@gmail.com" disabled>
+            <input class="user__email-input" id="user_email" type="text" name="userEmail" value="some_email_address@gmail.com" disabled>
+            <span class="user__email-text visually-hidden" aria-hidden="true"></span>
             <button class="user__email-button" type="button">
               <span class="visually-hidden">Change Email</span>
             </button>
@@ -311,76 +312,78 @@
         </section>
         <section class="statistic page-block account__page-block">
           <h2 class="account__title">statistic</h2>
-          <table class="statistic__table">
-            <thead class="statistic__table-head">
-              <tr class="statistic__table-row">
-                <th class="statistic__table-title statistic__table-data statistic__table-data--type">type</th>
-                <th class="statistic__table-title statistic__table-data statistic__table-data--id">id</th>
-                <th class="statistic__table-title statistic__table-data statistic__table-data--status">status</th>
-                <th class="statistic__table-title statistic__table-data statistic__table-data--change">change</th>
-                <th class="statistic__table-title statistic__table-data statistic__table-data--balance">balance</th>
-                <th class="statistic__table-title statistic__table-data statistic__table-data--description">description</th>
-                <th class="statistic__table-title statistic__table-data statistic__table-data--date">date</th>
-              </tr>
-            </thead>
-            <tbody class="statistic__table-body">
-              <tr class="statistic__table-row">
-                <td class="statistic__table-data statistic__table-data--type">deposit</td>
-                <td class="statistic__table-data statistic__table-data--id">1092137</td>
-                <td class="statistic__table-data statistic__table-data--status">done</td>
-                <td class="statistic__table-data statistic__table-data--change success">+ $10</td>
-                <td class="statistic__table-data statistic__table-data--balance">$10</td>
-                <td class="statistic__table-data statistic__table-data--description">$10 top up</td>
-                <td class="statistic__table-data statistic__table-data--date">
-                  <time datetime="2022-07-09 02:55">09.07.2022 02:50</time>
-                </td>
-              </tr>
-              <tr class="statistic__table-row">
-                <td class="statistic__table-data statistic__table-data--type">withdraw</td>
-                <td class="statistic__table-data statistic__table-data--id">1092138</td>
-                <td class="statistic__table-data statistic__table-data--status">done</td>
-                <td class="statistic__table-data statistic__table-data--change fail">- $5</td>
-                <td class="statistic__table-data statistic__table-data--balance">$5</td>
-                <td class="statistic__table-data statistic__table-data--description">$5 withdraw</td>
-                <td class="statistic__table-data statistic__table-data--date">
-                  <time datetime="2022-07-10 02:55">10.07.2022 02:55</time> 
-                </td>
-              </tr>
-              <tr class="statistic__table-row">
-                <td class="statistic__table-data statistic__table-data--type">sell</td>
-                <td class="statistic__table-data statistic__table-data--id">1092151</td>
-                <td class="statistic__table-data statistic__table-data--status">done</td>
-                <td class="statistic__table-data statistic__table-data--change success">+ $1.1</td>
-                <td class="statistic__table-data statistic__table-data--balance">$6.1</td>
-                <td class="statistic__table-data statistic__table-data--description">selling of 2 items</td>
-                <td class="statistic__table-data statistic__table-data--date">
-                  <time datetime="2022-07-11 02:50">11.07.2022 02:50</time>
-                </td>
-              </tr>
-              <tr class="statistic__table-row">
-                <td class="statistic__table-data statistic__table-data--type">buy</td>
-                <td class="statistic__table-data statistic__table-data--id">1094138</td>
-                <td class="statistic__table-data statistic__table-data--status">done</td>
-                <td class="statistic__table-data statistic__table-data--change fail">- $2.87</td>
-                <td class="statistic__table-data statistic__table-data--balance">$3.23</td>
-                <td class="statistic__table-data statistic__table-data--description">5 items purchase</td>
-                <td class="statistic__table-data statistic__table-data--date">
-                  <time datetime="2022-08-12 03:21">12.08.2022 03:21</time> 
-                </td>
-              </tr>
-              <tr class="statistic__table-row">
-                <td class="statistic__table-data statistic__table-data--type">sell</td>
-                <td class="statistic__table-data statistic__table-data--id">1095251</td>
-                <td class="statistic__table-data statistic__table-data--status fail">canceled</td>
-                <td class="statistic__table-data statistic__table-data--change">-</td>
-                <td class="statistic__table-data statistic__table-data--balance">$3.23</td>
-                <td class="statistic__table-data statistic__table-data--description">UNDONE selling of 2 items</td>
-                <td class="statistic__table-data statistic__table-data--date">
-                  <time datetime="2022-08-12 04:50">12.08.2022 04:50</time>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="statistic__table-wrapper">
+            <table class="statistic__table">
+              <thead class="statistic__table-head">
+                <tr class="statistic__table-row">
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--type">type</th>
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--id">id</th>
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--status">status</th>
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--change">change</th>
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--balance">balance</th>
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--description">description</th>
+                  <th class="statistic__table-title statistic__table-data statistic__table-data--date">date</th>
+                </tr>
+              </thead>
+              <tbody class="statistic__table-body">
+                <tr class="statistic__table-row">
+                  <td class="statistic__table-data statistic__table-data--type">deposit</td>
+                  <td class="statistic__table-data statistic__table-data--id">1092137</td>
+                  <td class="statistic__table-data statistic__table-data--status">done</td>
+                  <td class="statistic__table-data statistic__table-data--change success">+ $10</td>
+                  <td class="statistic__table-data statistic__table-data--balance">$10</td>
+                  <td class="statistic__table-data statistic__table-data--description">$10 top up</td>
+                  <td class="statistic__table-data statistic__table-data--date">
+                    <time datetime="2022-07-09 02:55">09.07.2022 02:50</time>
+                  </td>
+                </tr>
+                <tr class="statistic__table-row">
+                  <td class="statistic__table-data statistic__table-data--type">withdraw</td>
+                  <td class="statistic__table-data statistic__table-data--id">1092138</td>
+                  <td class="statistic__table-data statistic__table-data--status">done</td>
+                  <td class="statistic__table-data statistic__table-data--change fail">- $5</td>
+                  <td class="statistic__table-data statistic__table-data--balance">$5</td>
+                  <td class="statistic__table-data statistic__table-data--description">$5 withdraw</td>
+                  <td class="statistic__table-data statistic__table-data--date">
+                    <time datetime="2022-07-10 02:55">10.07.2022 02:55</time> 
+                  </td>
+                </tr>
+                <tr class="statistic__table-row">
+                  <td class="statistic__table-data statistic__table-data--type">sell</td>
+                  <td class="statistic__table-data statistic__table-data--id">1092151</td>
+                  <td class="statistic__table-data statistic__table-data--status">done</td>
+                  <td class="statistic__table-data statistic__table-data--change success">+ $1.1</td>
+                  <td class="statistic__table-data statistic__table-data--balance">$6.1</td>
+                  <td class="statistic__table-data statistic__table-data--description">selling of 2 items</td>
+                  <td class="statistic__table-data statistic__table-data--date">
+                    <time datetime="2022-07-11 02:50">11.07.2022 02:50</time>
+                  </td>
+                </tr>
+                <tr class="statistic__table-row">
+                  <td class="statistic__table-data statistic__table-data--type">buy</td>
+                  <td class="statistic__table-data statistic__table-data--id">1094138</td>
+                  <td class="statistic__table-data statistic__table-data--status">done</td>
+                  <td class="statistic__table-data statistic__table-data--change fail">- $2.87</td>
+                  <td class="statistic__table-data statistic__table-data--balance">$3.23</td>
+                  <td class="statistic__table-data statistic__table-data--description">5 items purchase</td>
+                  <td class="statistic__table-data statistic__table-data--date">
+                    <time datetime="2022-08-12 03:21">12.08.2022 03:21</time> 
+                  </td>
+                </tr>
+                <tr class="statistic__table-row">
+                  <td class="statistic__table-data statistic__table-data--type">sell</td>
+                  <td class="statistic__table-data statistic__table-data--id">1095251</td>
+                  <td class="statistic__table-data statistic__table-data--status fail">canceled</td>
+                  <td class="statistic__table-data statistic__table-data--change">-</td>
+                  <td class="statistic__table-data statistic__table-data--balance">$3.23</td>
+                  <td class="statistic__table-data statistic__table-data--description">UNDONE selling of 2 items</td>
+                  <td class="statistic__table-data statistic__table-data--date">
+                    <time datetime="2022-08-12 04:50">12.08.2022 04:50</time>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <ul class="pagination">
             <li class="pagination__item">
               <button class="pagination__button" type="button">1</button>
