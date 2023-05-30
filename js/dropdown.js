@@ -42,6 +42,10 @@ class Dropdown {
         this.arrowToggle();
       }
     });
+
+    window.addEventListener('resize', () => {
+      this.removeActiveStateOfList();
+    })
   }
 
   toggleList() {
@@ -148,6 +152,7 @@ class Dropdown {
   removeActiveStateOfList() {
     this.listAndButtonShrinkWidth();
     this.listWrapper.style.height = '0';
+    this.target.classList.remove('dropdown--open');
     this.target.classList.remove('dropdown--open-top');
     this.target.classList.remove('dropdown--open-bottom');
   }
