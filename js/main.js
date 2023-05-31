@@ -594,17 +594,17 @@ const chartData = [
   { date: new Date('2024-07-01T14:22'), value: 10565.12 },
   { date: new Date('2024-07-15T14:22'), value: 10600.12 },
   { date: new Date('2024-08-01T14:22'), value: 10550.12 },
-  { date: new Date('2024-08-15T14:22'), value: 13565.12 },
-  { date: new Date('2024-09-01T14:22'), value: 13570.12 },
-  { date: new Date('2024-09-15T14:22'), value: 13555.12 },
-  { date: new Date('2024-10-01T14:22'), value: 13575.12 },
-  { date: new Date('2024-10-15T14:22'), value: 13580.12 },
-  { date: new Date('2024-11-01T14:22'), value: 13565.12 },
-  { date: new Date('2024-11-15T14:22'), value: 13600.12 },
-  { date: new Date('2024-12-01T14:22'), value: 13550.12 },
-  { date: new Date('2025-01-01T14:22'), value: 13500.12 },
-  { date: new Date('2025-01-15T14:22'), value: 13450.12 },
-  { date: new Date('2025-02-01T14:22'), value: 13475.12 },
+  { date: new Date('2024-08-15T14:22'), value: 10565.12 },
+  { date: new Date('2024-09-01T14:22'), value: 10570.12 },
+  { date: new Date('2024-09-15T14:22'), value: 10555.12 },
+  { date: new Date('2024-10-01T14:22'), value: 10575.12 },
+  { date: new Date('2024-10-15T14:22'), value: 10580.12 },
+  { date: new Date('2024-11-01T14:22'), value: 10565.12 },
+  { date: new Date('2024-11-15T14:22'), value: 10600.12 },
+  { date: new Date('2024-12-01T14:22'), value: 10550.12 },
+  { date: new Date('2025-01-01T14:22'), value: 10500.12 },
+  { date: new Date('2025-01-15T14:22'), value: 10450.12 },
+  { date: new Date('2025-02-01T14:22'), value: 10475.12 },
   { date: new Date('2025-02-15T14:22'), value: 10460.12 },
   { date: new Date('2025-03-01T14:22'), value: 10500.12 },
   { date: new Date('2025-03-15T14:22'), value: 10525.12 },
@@ -612,24 +612,22 @@ const chartData = [
   { date: new Date('2025-04-15T14:22'), value: 10500.12 },
   { date: new Date('2025-05-01T14:22'), value: 10522.12 },
   { date: new Date('2025-05-15T14:22'), value: 10550.12 },
-  { date: new Date('2025-06-01T14:22'), value: 11565.12 },
-  { date: new Date('2025-06-15T14:22'), value: 11600.12 },
-  { date: new Date('2025-07-01T14:22'), value: 11565.12 },
-  { date: new Date('2025-07-01T14:22'), value: 11565.12 },
-  { date: new Date('2025-07-15T14:22'), value: 11600.12 },
-  { date: new Date('2025-08-01T14:22'), value: 11550.12 },
-  { date: new Date('2025-08-15T14:22'), value: 11565.12 },
-  { date: new Date('2025-09-01T14:22'), value: 11570.12 },
-  { date: new Date('2025-09-15T14:22'), value: 11555.12 },
-  { date: new Date('2025-10-01T14:22'), value: 11575.12 },
-  { date: new Date('2025-10-15T14:22'), value: 11580.12 },
-  { date: new Date('2025-11-01T14:22'), value: 11565.12 },
-  { date: new Date('2025-11-15T14:22'), value: 11600.12 },
-  { date: new Date('2025-12-01T14:22'), value: 11550.12 },
-  { date: new Date('2025-12-15T14:22'), value: 11565.12 },
-];
-
-
+  { date: new Date('2025-06-01T14:22'), value: 10765.12 },
+  { date: new Date('2025-06-15T14:22'), value: 10700.12 },
+  { date: new Date('2025-07-01T14:22'), value: 10765.12 },
+  { date: new Date('2025-07-01T14:22'), value: 10765.12 },
+  { date: new Date('2025-07-15T14:22'), value: 10700.12 },
+  { date: new Date('2025-08-01T14:22'), value: 10750.12 },
+  { date: new Date('2025-08-15T14:22'), value: 10765.12 },
+  { date: new Date('2025-09-01T14:22'), value: 10770.12 },
+  { date: new Date('2025-09-15T14:22'), value: 10755.12 },
+  { date: new Date('2025-10-01T14:22'), value: 10775.12 },
+  { date: new Date('2025-10-15T14:22'), value: 10780.12 },
+  { date: new Date('2025-11-01T14:22'), value: 10765.12 },
+  { date: new Date('2025-11-15T14:22'), value: 10700.12 },
+  { date: new Date('2025-12-01T14:22'), value: 10750.12 },
+  { date: new Date('2025-12-15T14:22'), value: 10765.12 }
+]
 
 const chartContainer = document.querySelectorAll('.chart-container');
 
@@ -637,8 +635,7 @@ chartContainer?.forEach(item => {
   window.addEventListener('resize', () => {
     resizeCharts(item)
   });
-})
-
+});
 
 function resizeCharts(container) {
   const chart = container.querySelector('svg')
