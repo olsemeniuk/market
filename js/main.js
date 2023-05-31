@@ -626,7 +626,7 @@ const chartData = [
   { date: new Date('2025-11-01T14:22'), value: 10765.12 },
   { date: new Date('2025-11-15T14:22'), value: 10700.12 },
   { date: new Date('2025-12-01T14:22'), value: 10750.12 },
-  { date: new Date('2025-12-15T14:22'), value: 10765.12 }
+  { date: new Date('2025-12-15T14:22'), value: 10765.12 },
 ]
 
 const chartContainer = document.querySelectorAll('.chart-container');
@@ -691,8 +691,43 @@ function createChart(id, dataset) {
     .append('div')
     .attr('class', 'tooltip');
 
-  x.domain(d3.extent(dataset, d => d.date));
-  y.domain([d3.min(dataset, d => d.value), d3.max(dataset, d => d.value)]);
+  minX = d3.min(dataset, d => d.date);
+  maxX = d3.max(dataset, d => d.date);
+
+  minY = d3.min(dataset, d => d.value);
+  maxY = d3.max(dataset, d => d.value);
+
+  function addDate(min, max) {
+    let diff = 0;
+    const d1 = new Date(min.getFullYear(), min.getMonth(), (min.getDate() - diff));
+    const d2 = new Date(max.getFullYear(), max.getMonth(), (max.getDate() + diff));
+
+    const t1 = d1.getTime();
+    const t2 = d2.getTime();
+
+    diff = (t2 - t1) * 1000;
+    if (diff > 30 * 24 * 3600) {
+      d1.setDate(1);
+      d2.setDate(1);
+      d2.setMonth(d2.getMonth() + 1);
+    }
+
+    return [d1, d2];
+  }
+  
+  function addPrice(s, e, percentage) {
+    let diff = Math.ceil((e - s) * percentage / 100);
+    if (diff < 8) {
+      diff = 8;
+    }
+    const min = s - diff;
+    const max = e + diff;
+
+    return [min, max];
+  }  
+  
+  x.domain(addDate(minX, maxX));
+  y.domain(addPrice(minY, maxY, 10));
 
   svg
     .append('defs')
@@ -788,8 +823,8 @@ function createChart(id, dataset) {
     .style('text-anchor', 'start')
     .call(d3.axisBottom(x)
       .tickSizeOuter(0)
-      .ticks(width < 600 ? 6 : 12)
-      .tickFormat((d, index, array) => {
+      .ticks(width < 600 ? 6 : 15)
+      .tickFormat(d => {
         const year = d.getFullYear();
         let month = d.getMonth();
         month = months[month];
@@ -805,10 +840,8 @@ function createChart(id, dataset) {
     .call(d3.axisLeft(y)
       .ticks(dataset.forEach(d => d.value))
       .tickSizeOuter(0)
-      .ticks(
-        ((d3.max(dataset, d => d.value) - d3.min(dataset, d => d.value)) <= 3 ? 2 : 4)
-      )
-      .tickFormat((d, index) => {
+      .ticks(width < 600 ? 2 : 4)
+      .tickFormat(d => {
         return `$${Number(d.toFixed(0)).toLocaleString('ru-RU')}`;
       }))
     .attr('class', 'price-axis');
