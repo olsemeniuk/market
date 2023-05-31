@@ -554,6 +554,79 @@ const chartData = [
   { date: new Date('2022-12-01T14:22'), value: 10550.12 },
   { date: new Date('2022-12-15T14:22'), value: 10565.12 },
   { date: new Date('2023-01-01T14:22'), value: 10570.12 },
+  { date: new Date('2023-01-15T14:22'), value: 10450.12 },
+  { date: new Date('2023-02-01T14:22'), value: 10475.12 },
+  { date: new Date('2023-02-15T14:22'), value: 10460.12 },
+  { date: new Date('2023-03-01T14:22'), value: 10500.12 },
+  { date: new Date('2023-03-15T14:22'), value: 10525.12 },
+  { date: new Date('2023-04-01T14:22'), value: 10475.12 },
+  { date: new Date('2023-04-15T14:22'), value: 10500.12 },
+  { date: new Date('2023-05-01T14:22'), value: 10522.12 },
+  { date: new Date('2023-05-15T14:22'), value: 10550.12 },
+  { date: new Date('2023-06-01T14:22'), value: 10565.12 },
+  { date: new Date('2023-06-15T14:22'), value: 10600.12 },
+  { date: new Date('2023-07-01T14:22'), value: 10565.12 },
+  { date: new Date('2023-07-01T14:22'), value: 10565.12 },
+  { date: new Date('2023-07-15T14:22'), value: 10600.12 },
+  { date: new Date('2023-08-01T14:22'), value: 10550.12 },
+  { date: new Date('2023-08-15T14:22'), value: 10565.12 },
+  { date: new Date('2023-09-01T14:22'), value: 10570.12 },
+  { date: new Date('2023-09-15T14:22'), value: 10555.12 },
+  { date: new Date('2023-10-01T14:22'), value: 10575.12 },
+  { date: new Date('2023-10-15T14:22'), value: 10580.12 },
+  { date: new Date('2023-11-01T14:22'), value: 10565.12 },
+  { date: new Date('2023-11-15T14:22'), value: 10600.12 },
+  { date: new Date('2023-12-01T14:22'), value: 10550.12 },
+  { date: new Date('2023-12-15T14:22'), value: 10565.12 },
+  { date: new Date('2024-01-01T14:22'), value: 10500.12 },
+  { date: new Date('2024-01-15T14:22'), value: 10450.12 },
+  { date: new Date('2024-02-01T14:22'), value: 10475.12 },
+  { date: new Date('2024-02-15T14:22'), value: 10460.12 },
+  { date: new Date('2024-03-01T14:22'), value: 10500.12 },
+  { date: new Date('2024-03-15T14:22'), value: 10525.12 },
+  { date: new Date('2024-04-01T14:22'), value: 10475.12 },
+  { date: new Date('2024-04-15T14:22'), value: 10500.12 },
+  { date: new Date('2024-05-01T14:22'), value: 10522.12 },
+  { date: new Date('2024-05-15T14:22'), value: 10550.12 },
+  { date: new Date('2024-06-01T14:22'), value: 10565.12 },
+  { date: new Date('2024-06-15T14:22'), value: 10600.12 },
+  { date: new Date('2024-07-01T14:22'), value: 10565.12 },
+  { date: new Date('2024-07-01T14:22'), value: 10565.12 },
+  { date: new Date('2024-07-15T14:22'), value: 10600.12 },
+  { date: new Date('2024-08-01T14:22'), value: 10550.12 },
+  { date: new Date('2024-08-15T14:22'), value: 10565.12 },
+  { date: new Date('2024-09-01T14:22'), value: 10570.12 },
+  { date: new Date('2024-09-15T14:22'), value: 10555.12 },
+  { date: new Date('2024-10-01T14:22'), value: 10575.12 },
+  { date: new Date('2024-10-15T14:22'), value: 10580.12 },
+  { date: new Date('2024-11-01T14:22'), value: 10565.12 },
+  { date: new Date('2024-11-15T14:22'), value: 10600.12 },
+  { date: new Date('2024-12-01T14:22'), value: 10550.12 },
+  { date: new Date('2025-01-01T14:22'), value: 10500.12 },
+  { date: new Date('2025-01-15T14:22'), value: 10450.12 },
+  { date: new Date('2025-02-01T14:22'), value: 10475.12 },
+  { date: new Date('2025-02-15T14:22'), value: 10460.12 },
+  { date: new Date('2025-03-01T14:22'), value: 10500.12 },
+  { date: new Date('2025-03-15T14:22'), value: 10525.12 },
+  { date: new Date('2025-04-01T14:22'), value: 10475.12 },
+  { date: new Date('2025-04-15T14:22'), value: 10500.12 },
+  { date: new Date('2025-05-01T14:22'), value: 10522.12 },
+  { date: new Date('2025-05-15T14:22'), value: 10550.12 },
+  { date: new Date('2025-06-01T14:22'), value: 10565.12 },
+  { date: new Date('2025-06-15T14:22'), value: 10600.12 },
+  { date: new Date('2025-07-01T14:22'), value: 10565.12 },
+  { date: new Date('2025-07-01T14:22'), value: 10565.12 },
+  { date: new Date('2025-07-15T14:22'), value: 10600.12 },
+  { date: new Date('2025-08-01T14:22'), value: 10550.12 },
+  { date: new Date('2025-08-15T14:22'), value: 10565.12 },
+  { date: new Date('2025-09-01T14:22'), value: 10570.12 },
+  { date: new Date('2025-09-15T14:22'), value: 10555.12 },
+  { date: new Date('2025-10-01T14:22'), value: 10575.12 },
+  { date: new Date('2025-10-15T14:22'), value: 10580.12 },
+  { date: new Date('2025-11-01T14:22'), value: 10565.12 },
+  { date: new Date('2025-11-15T14:22'), value: 10600.12 },
+  { date: new Date('2025-12-01T14:22'), value: 10550.12 },
+  { date: new Date('2025-12-15T14:22'), value: 10565.12 },
 ];
 
 
@@ -718,7 +791,7 @@ function createChart(id, dataset) {
     .style('text-anchor', 'start')
     .call(d3.axisBottom(x)
       .tickSizeOuter(0)
-      .ticks(width < 600 ? 6 : d3.timeDay.every(1))
+      .ticks(width < 600 ? 6 : 12)
       .tickFormat((d, index, array) => {
         const year = d.getFullYear();
         let month = d.getMonth();
@@ -726,11 +799,8 @@ function createChart(id, dataset) {
         const day = d.getDate();
         if (day === 1 && month === 'jan') {
           return year;
-        } else if (day === 1) {
+        } else {
           return `${day}, ${month}`;
-        } else if (day !== 15 && day !== 1) {
-          const parentTick = array[index].closest('.tick');
-          parentTick.remove();
         }
       }));
 
@@ -739,18 +809,10 @@ function createChart(id, dataset) {
       .ticks(dataset.forEach(d => d.value))
       .tickSizeOuter(0)
       .ticks(
-        (width < 600 ? 4 : (d3.max(dataset, d => d.value) - d3.min(dataset, d => d.value)) <= 3 ? 4 : 8)
+        ((d3.max(dataset, d => d.value) - d3.min(dataset, d => d.value)) <= 3 ? 2 : 4)
       )
       .tickFormat((d, index) => {
-        if (width < 600) {
-          return `$${Number(d.toFixed(0)).toLocaleString('ru-RU')}`;
-        } else {
-          if (index % 2 === 0) {
-            return `$${Number(d.toFixed(0)).toLocaleString('ru-RU')}`;
-          } else {
-            return ''
-          }
-        }
+        return `$${Number(d.toFixed(0)).toLocaleString('ru-RU')}`;
       }))
     .attr('class', 'price-axis');
 
