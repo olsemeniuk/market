@@ -32,6 +32,7 @@ const statisticTableWrapper = document.querySelector('.statistic__table-wrapper'
 const statisticTable = statisticTableWrapper?.querySelector('.statistic__table');
 const modalOverlay = document.querySelector('.modal-overlay');
 const modalItems = document.querySelectorAll('.modal-item');
+const infoContent = document.querySelector('.info__content');
 
 
 // function calls and events
@@ -207,6 +208,15 @@ if (statisticTableWrapper) {
 
   tableScroll.getScrollElement().addEventListener('scroll', showHideTableShadow);
   showEndShadow();
+}
+
+smoothScrolling();
+
+let lastScroll = 0;
+if (infoContent) {
+  createActiveLinkDot();
+  document.addEventListener('scroll', showCurrentTitle);
+  showCurrentTitle();
 }
 
 
@@ -524,6 +534,77 @@ function destroyChart(item) {
   tooltipCircle?.remove();
 }
 
+function smoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (event) {
+      event.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+}
+
+function showCurrentTitle() {
+  let scrollDirection = 'down';
+  if (window.scrollY > lastScroll) {
+    scrollDirection = 'down';
+  } else {
+    scrollDirection = 'up'
+  }
+  lastScroll = window.scrollY;
+
+  const infoSections = document.querySelectorAll('.info__content-section');
+  infoSections.forEach(section => {
+    const top = section.getBoundingClientRect().top;
+    const bottom = section.getBoundingClientRect().bottom;
+    const sectionHeight = section.getBoundingClientRect().height;
+    
+    const id = section.id;
+    const menuLinks = document.querySelectorAll('.info__menu-link');
+    const menuLink = document.querySelector(`.info__menu-link[href="#${id}"]`);
+        
+    let isCurrentSection;
+    if (scrollDirection === 'down') {
+      isCurrentSection = bottom > 0 && top <= 20;
+    } else if (scrollDirection === 'up') {
+      isCurrentSection = bottom > sectionHeight / 2 && bottom < sectionHeight;
+    }
+    
+    if (window.scrollY < infoContent.getBoundingClientRect().top) {
+      menuLinks.forEach(link => link.classList.remove('info__menu-link--current'));
+      menuLinks[0].classList.add('info__menu-link--current');
+    }
+
+    if (isCurrentSection) {
+      menuLinks.forEach(link => link.classList.remove('info__menu-link--current'));
+      menuLink.classList.add('info__menu-link--current');
+    }
+
+    moveActiveLinkDot(document.querySelector('.info__menu-link--current'));
+  });
+}
+
+function createActiveLinkDot() {
+  const infoAside = document.querySelector('.info__aside');
+  const dot = document.createElement('span');
+  dot.className = 'active-link-dot';
+  infoAside.append(dot);
+}
+
+function moveActiveLinkDot(activeLink) {
+  const dot = document.querySelector('.active-link-dot');
+  if (activeLink) {
+    setTimeout(() => {
+      dot.style.opacity = 1;
+    }, 300);
+    const linkHeight = activeLink.getBoundingClientRect().height;
+    const left = activeLink.offsetLeft;
+    const top = activeLink.offsetTop;
+    dot.style.transform = `translate(${left}px, calc(${top + 8}px))`;
+  }
+}
+
 // chart
 const chartData = [
   { date: new Date('2021-12-01T14:22'), value: 10400.12 },
@@ -714,7 +795,7 @@ function createChart(id, dataset) {
 
     return [d1, d2];
   }
-  
+
   function addPrice(s, e, percentage) {
     let diff = Math.ceil((e - s) * percentage / 100);
     if (diff < 8) {
@@ -724,8 +805,8 @@ function createChart(id, dataset) {
     const max = e + diff;
 
     return [min, max];
-  }  
-  
+  }
+
   x.domain(addDate(minX, maxX));
   y.domain(addPrice(minY, maxY, 10));
 
