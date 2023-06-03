@@ -33,7 +33,7 @@ const statisticTable = statisticTableWrapper?.querySelector('.statistic__table')
 const modalOverlay = document.querySelector('.modal-overlay');
 const modalItems = document.querySelectorAll('.modal-item');
 const infoContent = document.querySelector('.info__content');
-
+const deal = document.querySelector('.deal');
 
 // function calls and events
 if (gameItems.length > 0) {
@@ -95,7 +95,7 @@ if (rangeSlider) {
     margin: 1
   });
 
-  rangeSlider.noUiSlider.on('update', function (values, handle) {
+  rangeSlider.noUiSlider.on('update', function(values, handle) {
 
     let value = values[handle];
 
@@ -106,11 +106,11 @@ if (rangeSlider) {
     };
   });
 
-  rangeSliderLowNums.addEventListener('change', function () {
+  rangeSliderLowNums.addEventListener('change', function() {
     rangeSlider.noUiSlider.set([this.value, null]);
   });
 
-  rangeSliderHighNums.addEventListener('change', function () {
+  rangeSliderHighNums.addEventListener('change', function() {
     rangeSlider.noUiSlider.set([null, this.value]);
   });
 }
@@ -217,6 +217,20 @@ if (infoContent) {
   createActiveLinkDot();
   document.addEventListener('scroll', showCurrentTitle);
   showCurrentTitle();
+}
+
+if (deal) {
+  stickyHeader();
+  document.addEventListener('scroll', () => {
+    stickyHeader();
+  });
+  window.addEventListener('resize', () => {
+    stickyHeader();
+  })
+
+  tabsButtons.forEach(button => {
+    button.addEventListener('click', switchTabs);
+  });
 }
 
 
@@ -394,9 +408,6 @@ function closeSettings(list, button) {
   list.style.maxHeight = 0;
 }
 
-tabsButtons.forEach(button => {
-  button.addEventListener('click', switchTabs);
-});
 
 function switchTabs() {
   tabsButtons.forEach(button => {
@@ -536,7 +547,7 @@ function destroyChart(item) {
 
 function smoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (event) {
+    anchor.addEventListener('click', function(event) {
       event.preventDefault();
       document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
@@ -559,18 +570,18 @@ function showCurrentTitle() {
     const top = section.getBoundingClientRect().top;
     const bottom = section.getBoundingClientRect().bottom;
     const sectionHeight = section.getBoundingClientRect().height;
-    
+
     const id = section.id;
     const menuLinks = document.querySelectorAll('.info__menu-link');
     const menuLink = document.querySelector(`.info__menu-link[href="#${id}"]`);
-        
+
     let isCurrentSection;
     if (scrollDirection === 'down') {
       isCurrentSection = bottom > 0 && top <= 20;
     } else if (scrollDirection === 'up') {
       isCurrentSection = bottom > sectionHeight / 2 && bottom < sectionHeight;
     }
-    
+
     if (window.scrollY < infoContent.getBoundingClientRect().top) {
       menuLinks.forEach(link => link.classList.remove('info__menu-link--current'));
       menuLinks[0].classList.add('info__menu-link--current');
@@ -598,12 +609,67 @@ function moveActiveLinkDot(activeLink) {
     setTimeout(() => {
       dot.style.opacity = 1;
     }, 300);
-    const linkHeight = activeLink.getBoundingClientRect().height;
     const left = activeLink.offsetLeft;
     const top = activeLink.offsetTop;
     dot.style.transform = `translate(${left}px, calc(${top + 8}px))`;
   }
 }
+
+function stickyHeader() {
+  const dealHeader = document.querySelector('.deal__header');
+  const distanceToTop = dealHeader.getBoundingClientRect().top;
+  const headerHeight = dealHeader.getBoundingClientRect().height;
+  const currentWindowWidth = getWindowWidth();
+  const dealSide = document.querySelectorAll('.deal__side');
+
+  dealSide.forEach(side => {
+    const dealSideHeader = side.querySelector('.deal__side-header');
+    const dealItems = side.querySelector('.deal__items');
+    const dealSideHeaderHeight = dealSideHeader.getBoundingClientRect().height;
+    if (currentWindowWidth < 700) {
+      if (distanceToTop <= 0) {
+        dealSideHeader.style.position = 'fixed';
+        dealSideHeader.style.top = `${headerHeight}px`;
+        dealItems.style.paddingTop = `${dealSideHeaderHeight}px`;
+        if (currentWindowWidth <= 500) {
+          dealSideHeader.style.left = '10px';
+          dealSideHeader.style.right = '10px';
+        } else {
+          dealSideHeader.style.left = '15px';
+          dealSideHeader.style.right = '15px';
+        }
+      } else {
+        removeSticky(dealItems, dealSideHeader);
+      }
+
+      addDealHeaderShadow(dealHeader, dealSideHeader);
+    } else {
+      removeSticky(dealItems, dealSideHeader);
+    }
+  });
+
+  function removeSticky(items, header) {
+    items.style.paddingTop = 0;
+    header.style.position = 'relative';
+    header.style.top = 0;
+    header.style.left = 0;
+    header.style.right = 0;
+  }
+}
+
+function getWindowWidth() {
+  return window.innerWidth;
+}
+
+function addDealHeaderShadow(header, sideHeader) {
+  const distanceToTop = header.getBoundingClientRect().top;
+  if (distanceToTop === 0) {
+    sideHeader.classList.add('deal__side-header--shadow');
+  } else {
+    sideHeader.classList.remove('deal__side-header--shadow');
+  }
+}
+
 
 // chart
 const chartData = [
@@ -957,7 +1023,7 @@ function createChart(id, dataset) {
     .attr('width', width)
     .attr('height', height);
 
-  listeningRect.on("mousemove", function (event) {
+  listeningRect.on("mousemove", function(event) {
     const [xCoord] = d3.pointer(event, this);
     const bisectDate = d3.bisector(d => d.date).left;
     const x0 = x.invert(xCoord);
@@ -985,7 +1051,7 @@ function createChart(id, dataset) {
 
   });
 
-  listeningRect.on("mouseleave", function () {
+  listeningRect.on("mouseleave", function() {
     circle.style('display', 'none');
     tooltip.style("display", "none");
   });

@@ -2070,7 +2070,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   min-height: 40px;
 }
 
@@ -2482,10 +2482,11 @@ p {
 .ordered,
 .favourited {
   grid-column: 1/-1;
+  padding: 30px 30px 15px;
 }
 
 .statistic__table-wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .statistic__table {
@@ -2564,6 +2565,7 @@ p {
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: baseline;
   margin-top: auto;
 }
 
@@ -2572,12 +2574,13 @@ p {
   color: var(--color-t);
 }
 
-.pagination__item+.pagination__item {
-  margin-left: 15px;
+.pagination__item--empty {
+  margin: 0 5px;
 }
 
 .pagination__button {
   position: relative;
+  padding: 5px 8px;
   font-weight: 700;
   color: var(--color-lc);
   transition: color 0.3s ease;
@@ -2586,7 +2589,7 @@ p {
 .pagination__button::after {
   content: "";
   position: absolute;
-  top: calc(100% + 1px);
+  bottom: 3px;
   left: 50%;
   width: 4px;
   height: 4px;
@@ -2594,7 +2597,7 @@ p {
   border-radius: 50%;
   background-color: var(--color-mc);
   transform: translateX(-50%);
-  transition: opacity 0.3s ease, top 0.2s ease-in-out;
+  transition: opacity 0.3s ease, bottom 0.2s ease-in-out;
 }
 
 .pagination__button:hover,
@@ -2604,7 +2607,7 @@ p {
 
 .pagination__button:hover::after,
 .pagination__button--current::after {
-  top: calc(100% + 5px);
+  bottom: -2px;
   opacity: 1;
 }
 
@@ -2612,7 +2615,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   margin-right: -10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .account__items-list .item {
@@ -3061,6 +3064,7 @@ p {
 
   .deal__side--active {
     display: block;
+    animation: appearing 0.5s ease;
   }
 
   .deal__search .search__show-btn {
@@ -3498,9 +3502,11 @@ p {
   }
 
   .deal__side-header {
-    position: sticky;
     z-index: 10;
     background-color: var(--color-bg);
+  }
+
+  .deal__side-header--shadow {
     box-shadow: 0 5px 10px 5px var(--color-bg);
   }
 
