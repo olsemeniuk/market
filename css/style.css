@@ -1614,7 +1614,7 @@ p {
   max-width: 900px;
   max-height: 80vh;
   min-height: 500px;
-  padding: 35px 25px 15px;
+  padding: 10px 25px 20px;
   background-color: var(--color-c);
   transform: translate(-50%, -50%);
   border-radius: 10px;
@@ -1640,7 +1640,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding-right: 40px;
 }
 
@@ -1648,6 +1648,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin: 0 -22px;
 }
 
 .modal-item__menu-item {
@@ -3056,7 +3057,7 @@ p {
   }
 
   .modal-item--active {
-    padding: 35px 15px 15px;
+    padding: 10px 25px 20px;
   }
 
   .modal-item__slider-block {
