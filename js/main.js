@@ -66,12 +66,6 @@ if (gameItems.length > 0) {
   });
 
   modalOverlay.addEventListener('click', closeModal);
-
-  const modalSwiper = new Swiper('.modal-item__slider', {
-    grabCursor: true,
-    slidesPerView: 4.5,
-    spaceBetween: 3,
-  });
 }
 
 
@@ -151,13 +145,6 @@ if (search.length > 0) {
   });
 
   document.addEventListener('click', hideSearchField);
-}
-
-if (dealItemsSlider) {
-  const dealSwiper = new Swiper('.deal__items-slider', {
-    grabCursor: true,
-    slidesPerView: 5.5,
-  });
 }
 
 if (settings.length > 0) {
@@ -753,6 +740,66 @@ function dealHeaderChangeAt800() {
   });
 
 }
+
+const grabBlock = document.querySelectorAll('.grab-block')
+let grabBlockPosition = { left: 0, x: 0 };
+grabBlock?.forEach(element => {
+  element.addEventListener('mousedown', event => {
+    element.style.cursor = 'grabbing';
+    grabScroll(event, element);
+  });
+
+  element.addEventListener('scroll', () => {
+    addShadowToGrabBlock(element);
+  });
+
+  addShadowToGrabBlock(element)
+})
+
+function grabScroll(event, element) {
+  event.preventDefault();
+  element.style.userSelect = 'none';
+
+  grabBlockPosition = {
+    left: element.scrollLeft,
+    x: event.clientX,
+  }
+
+  function mouseMoveHandler(event) {
+    const dx = event.clientX - grabBlockPosition.x;
+    element.scrollLeft = grabBlockPosition.left - dx;
+  };
+
+  function mouseUpHandler() {
+    document.removeEventListener('mousemove', mouseMoveHandler);
+    document.removeEventListener('mouseup', mouseUpHandler);
+
+    element.style.cursor = 'grab';
+  };
+
+  document.addEventListener('mousemove', mouseMoveHandler);
+  document.addEventListener('mouseup', mouseUpHandler);
+}
+
+function addShadowToGrabBlock(element) {
+  const distanceToStart = element.scrollLeft;
+  const distanceToEnd = element.scrollWidth - distanceToStart - element.offsetWidth;
+
+  if (element.scrollWidth > element.offsetWidth) {
+    element.classList.add('grab-wrapper__right-shadow');
+  }
+
+  if (distanceToEnd < 2) {
+    element.classList.remove('grab-wrapper__right-shadow');
+  }
+
+  if (distanceToStart > 0) {
+    element.classList.add('grab-wrapper__left-shadow');
+  } else {
+    element.classList.remove('grab-wrapper__left-shadow');
+  }
+}
+
 
 
 // chart

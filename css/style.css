@@ -1716,6 +1716,55 @@ p {
   text-align: center;
 }
 
+.grab-block {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.grab-block::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.grab-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.grab-wrapper__left-shadow::before,
+.grab-wrapper__right-shadow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-c);
+  box-shadow: 0 0 15px 20px var(--color-c),
+              inset 0 0 15px 20px var(--color-c);
+  animation: appearing 0.3s;
+}
+
+.grab-wrapper__left-shadow::before {
+  left: 0;
+}
+
+.grab-wrapper__right-shadow::after {
+  right: 0;
+}
+
+.modal-item__slide:not(:last-of-type) {
+  margin-right: 5px;
+}
+
 .modal-item__img {
   margin-bottom: 10px;
 }
@@ -1886,40 +1935,17 @@ p {
 
 /* modal item slider */
 .modal-item__slide {
-  min-width: 77px;
-  max-width: 77px;
+  flex-shrink: 0;
+  width: 77px;
   height: 50px;
   line-height: 0;
 }
 
 .modal-item__slide-img {
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-}
-
-.slider-shadow {
-  position: relative;
-}
-
-.slider-shadow::before,
-.slider-shadow::after {
-  position: absolute;
-  z-index: 5;
-  content: '';
-  top: 0;
-  bottom: 0;
-  width: 0;
-  box-shadow: 0 0 20px 30px var(--color-c);
-}
-
-.slider-shadow::before {
-  left: 0;
-}
-
-.slider-shadow::after {
-  right: 0;
-  box-shadow: -5px 0 20px 30px var(--color-c);
 }
 
 /* float scale */
@@ -2021,28 +2047,6 @@ p {
   color: var(--color-w);
   font-weight: 500;
   font-size: 16px;
-}
-
-.deal__items-slider {
-  position: relative;
-}
-
-.deal__items-slider::before,
-.deal__items-slider::after {
-  content: '';
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  height: 100%;
-  box-shadow: 0 0 5px 5px var(--color-c);
-}
-
-.deal__items-slider::before {
-  left: 0;
-}
-
-.deal__items-slider::after {
-  right: 0;
 }
 
 .deal__slider-slide {
