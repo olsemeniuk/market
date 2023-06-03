@@ -34,6 +34,7 @@ const modalOverlay = document.querySelector('.modal-overlay');
 const modalItems = document.querySelectorAll('.modal-item');
 const infoContent = document.querySelector('.info__content');
 const deal = document.querySelector('.deal');
+const productsHeader = document.querySelector('.products__content-header');
 
 // function calls and events
 if (gameItems.length > 0) {
@@ -221,10 +222,13 @@ if (infoContent) {
 
 if (deal) {
   stickyHeader();
+  dealHeaderChangeAt800();
   document.addEventListener('scroll', () => {
     stickyHeader();
   });
+
   window.addEventListener('resize', () => {
+    dealHeaderChangeAt800();
     stickyHeader();
   })
 
@@ -233,6 +237,13 @@ if (deal) {
   });
 }
 
+
+if (productsHeader) {
+  window.addEventListener('resize', () => {
+    productsHeaderChangeAt1100();
+  })
+  productsHeaderChangeAt1100();
+}
 
 // functions
 function showHideTableShadow(event) {
@@ -389,6 +400,12 @@ function hideSearchField(event) {
     searchForms.forEach(form => {
       form.classList.remove('search__form--active');
     });
+  }
+
+  const isCloseButton = target.closest('.search__form-close-btn');
+  if (isCloseButton) {
+    const parentForm = isCloseButton.closest('.search__form');
+    parentForm.classList.remove('search__form--active');
   }
 }
 
@@ -668,6 +685,73 @@ function addDealHeaderShadow(header, sideHeader) {
   } else {
     sideHeader.classList.remove('deal__side-header--shadow');
   }
+}
+
+
+function productsHeaderChangeAt1100() {
+  const currentWindowWidth = getWindowWidth();
+  const productsSearch = document.querySelector('.products__search');
+  const leftSide = document.querySelector('.products__content-header-left');
+  const rightSide = document.querySelector('.products__content-header-right');
+  const centerSide = document.querySelector('.products__content-header-center');
+  const productsSettings = document.querySelector('.products__settings');
+
+  if (currentWindowWidth <= 1100) {
+    changeSides(productsSearch, 'left');
+    changeSides(productsSettings, 'right');
+  } else {
+    changeSides(productsSearch, 'center');
+    changeSides(productsSettings, 'left');
+  }
+
+  function changeSides(element, side) {
+    switch (side) {
+      case 'left':
+        element.remove();
+        leftSide.append(element);
+        break;
+      case 'right':
+        element.remove();
+        rightSide.prepend(element);
+        break;
+      case 'center':
+        element.remove();
+        centerSide.append(element);
+        break;
+    }
+  }
+}
+
+function dealHeaderChangeAt800() {
+  const dealSideHeader = document.querySelectorAll('.deal__side-header');
+
+  dealSideHeader.forEach(header => {
+    const dealSettings = header.querySelector('.deal__settings');
+    const rightSide = header.querySelector('.deal__side-header-right');
+    const leftSide = header.querySelector('.deal__side-header-left');
+
+    const currentWindowWidth = getWindowWidth();
+    if (currentWindowWidth <= 800) {
+      changeSides(dealSettings, 'right');
+    } else {
+      changeSides(dealSettings, 'left');
+    }
+
+    function changeSides(element, side) {
+      switch (side) {
+        case 'left':
+          element.remove();
+          leftSide.append(element);
+          break;
+        case 'right':
+          element.remove();
+          rightSide.prepend(element);
+          break;
+      }
+    }
+
+  });
+
 }
 
 
