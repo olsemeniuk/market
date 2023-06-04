@@ -211,58 +211,14 @@
     <section class="deal">
       <div class="container">
         <div class="deal__header">
-          <div class="deal__items-header deal__items-header-buy deal__items-header--active page-block" data-btn="1">
+          <div class="deal__items-header deal__items-header--market deal__items-header--active page-block" data-btn="1" data-header="market">
+            <span class="deal__items-header-placeholder">choose some items</span>
             <div class="deal__cart">
-              <span class="deal__ammount">20</span>
-              <b class="deal__cost">$ 10 923.18</b>
+              <span class="deal__amount items-amount"></span>
+              <b class="deal__cost items-price"></b>
             </div>
             <div class="grab-wrapper">
-              <div class="deal__items-slider grab-block">
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-                  <div class="deal__slider-slide">
-                    <img class="deal__slider-img" width="40" height="25" src="images/items/deal-slider-img.png" srcset="images/x2/deal-slider-img-2x.png 2x,
-                              images/x3/deal-slider-img-3x.png 3x," sizes="40px" alt="">
-                  </div>
-              </div>
+              <div class="deal__items-slider grab-block"></div>
             </div>
             <div class="deal__header-name">
               <span>you’ll get</span>
@@ -271,8 +227,15 @@
           <a class="deal__btn btn" href="#">
             <span class="deal__btn-text">deal</span>
           </a>
-          <div class="deal__items-header deal__items-header-my page-block" data-btn="2">
-            <span class="deal__items-header-text">choose some items</span>
+          <div class="deal__items-header deal__items-header--inventory page-block" data-btn="2" data-header="inventory">
+            <span class="deal__items-header-placeholder">choose some items</span>
+            <div class="deal__cart">
+              <span class="deal__amount items-amount"></span>
+              <b class="deal__cost items-price"></b>
+            </div>
+            <div class="grab-wrapper">
+              <div class="deal__items-slider grab-block"></div>
+            </div>
             <div class="deal__header-name">
               <span>your inventory</span>
             </div>
@@ -355,9 +318,8 @@
                 </button>
               </div>
             </div>
-
-            <ul class="deal__items">
-              <li class="item">
+            <ul class="deal__items deal__items--market">
+              <li class="item" id="item_1" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -544,7 +506,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_2" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -731,7 +693,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_3" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -918,7 +880,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_4" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1105,7 +1067,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_5" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1292,7 +1254,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_6" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1479,7 +1441,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_7" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1666,7 +1628,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_8" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1853,7 +1815,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_9" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2415,10 +2377,8 @@
                 </button>
               </div>
             </div>
-
-
-            <ul class="deal__items">
-              <li class="item">
+            <ul class="deal__items deal__items--inventory">
+              <li class="item" id="item_10" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2605,7 +2565,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_11" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2792,7 +2752,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_12" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2979,7 +2939,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_13" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3166,7 +3126,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_14" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3353,7 +3313,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_15" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3540,7 +3500,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_16" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3727,7 +3687,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_17" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3914,7 +3874,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item">
+              <li class="item" id="item_18" data-origin="inventory">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -4187,7 +4147,7 @@
 
   <script src="libs/js/nouislider.min.js"></script>
   <script src="libs/js/simplebar.min.js"></script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="libs/js/d3js.org_d3.v7.min.js"></script>
   <script src="js/dropdown.js"></script>
   <script src="js/main.js"></script>
 </body>

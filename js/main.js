@@ -40,11 +40,11 @@ const productsHeader = document.querySelector('.products__content-header');
 if (gameItems.length > 0) {
   gameItems.forEach(item => {
     item.addEventListener('click', event => {
-      addItem(event, item);
-      choseItem(event, item);
-      deleteButton(event, item)
+      deleteButton(event, item);
       showGameItemModal(event, item);
       closeModal(event);
+      choseItem(event, item);
+      addItemsToCart(event, item);
     });
 
     const floatSlider = item.querySelector('.float-scale__base');
@@ -90,7 +90,7 @@ if (rangeSlider) {
     margin: 1
   });
 
-  rangeSlider.noUiSlider.on('update', function(values, handle) {
+  rangeSlider.noUiSlider.on('update', function (values, handle) {
 
     let value = values[handle];
 
@@ -101,11 +101,11 @@ if (rangeSlider) {
     };
   });
 
-  rangeSliderLowNums.addEventListener('change', function() {
+  rangeSliderLowNums.addEventListener('change', function () {
     rangeSlider.noUiSlider.set([this.value, null]);
   });
 
-  rangeSliderHighNums.addEventListener('change', function() {
+  rangeSliderHighNums.addEventListener('change', function () {
     rangeSlider.noUiSlider.set([null, this.value]);
   });
 }
@@ -255,16 +255,6 @@ function showEndShadow() {
   const scrollbar = statisticTableWrapper.querySelector('.simplebar-track.simplebar-horizontal');
   if (scrollbar.style.visibility === 'visible') {
     statisticTableWrapper.classList.add('table-right-shadow');
-  }
-}
-
-function addItem(event, item) {
-  const { target } = event;
-  const addButton = item.querySelector('.item__add-button');
-  if (addButton) {
-    const isAddButton = target.classList.contains('item__add-button');
-    const isOverlay = target.classList.contains('item__overlay');
-    if (isOverlay || isAddButton) item.classList.toggle('item--added');
   }
 }
 
@@ -551,7 +541,7 @@ function destroyChart(item) {
 
 function smoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(event) {
+    anchor.addEventListener('click', function (event) {
       event.preventDefault();
       document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
@@ -736,25 +726,30 @@ function dealHeaderChangeAt800() {
           break;
       }
     }
-
   });
-
 }
 
 const grabBlock = document.querySelectorAll('.grab-block')
 let grabBlockPosition = { left: 0, x: 0 };
-grabBlock?.forEach(element => {
-  element.addEventListener('mousedown', event => {
-    element.style.cursor = 'grabbing';
-    grabScroll(event, element);
-  });
 
-  element.addEventListener('scroll', () => {
+if (grabBlock.length > 0) {
+  grabBlock.forEach(element => {
+    element.addEventListener('mousedown', event => {
+      element.style.cursor = 'grabbing';
+      grabScroll(event, element);
+    });
+
+    element.addEventListener('scroll', () => {
+      addShadowToGrabBlock(element);
+    });
+
+    window.addEventListener('resize', () => {
+      addShadowToGrabBlock(element);
+    });
+
     addShadowToGrabBlock(element);
   });
-
-  addShadowToGrabBlock(element)
-})
+}
 
 function grabScroll(event, element) {
   event.preventDefault();
@@ -784,22 +779,235 @@ function grabScroll(event, element) {
 function addShadowToGrabBlock(element) {
   const distanceToStart = element.scrollLeft;
   const distanceToEnd = element.scrollWidth - distanceToStart - element.offsetWidth;
+  const elementWrapper = element.closest('.grab-wrapper');
 
   if (element.scrollWidth > element.offsetWidth) {
-    element.classList.add('grab-wrapper__right-shadow');
+    elementWrapper.classList.add('grab-wrapper__right-shadow');
   }
 
   if (distanceToEnd < 2) {
-    element.classList.remove('grab-wrapper__right-shadow');
+    elementWrapper.classList.remove('grab-wrapper__right-shadow');
   }
 
   if (distanceToStart > 0) {
-    element.classList.add('grab-wrapper__left-shadow');
+    elementWrapper.classList.add('grab-wrapper__left-shadow');
   } else {
-    element.classList.remove('grab-wrapper__left-shadow');
+    elementWrapper.classList.remove('grab-wrapper__left-shadow');
   }
 }
 
+toggleDealHeaderPlaceholder();
+showAddedItems();
+
+function toggleDealHeaderPlaceholder() {
+  const headers = document.querySelectorAll('.deal__items-header');
+  headers.forEach(header => {
+    const placeholder = header.querySelector('.deal__items-header-placeholder');
+    const slides = header.querySelectorAll('.deal__slider-slide');
+    const cart = header.querySelector('.deal__cart');
+    if (slides.length === 0) {
+      placeholder.style.display = 'block';
+      cart.style.display = 'none';
+    } else {
+      placeholder.style.display = 'none';
+      cart.style.display = 'flex';
+    }
+  });
+}
+
+function addItemsToCart(event, item) {
+  let totalPrice = 0;
+  let totalAmount = 0;
+
+  const addButton = item.querySelector('.item__add-button');
+  if (!addButton) return;
+
+  const { target } = event;
+  const isAddButton = target.classList.contains('item__add-button');
+  const isOverlay = target.classList.contains('item__overlay');
+
+  if (!isAddButton && !isOverlay) return;
+
+  item.classList.toggle('item--added');
+
+  const itemOrigin = item.dataset.origin;
+  const header = document.querySelector(`[data-header="${itemOrigin}"]`);
+  const slider = header.querySelector('.deal__items-slider');
+  const amount = header.querySelector('.items-amount');
+  const itemsSum = header.querySelector('.items-price');
+  const id = item.id;
+
+  const itemPriceHTML = item.querySelector('.item__price');
+  const price = getItemPrice(itemPriceHTML);
+
+  if (getItemPrice(itemsSum) > 0) {
+    totalPrice = getItemPrice(itemsSum);
+  }
+
+  if (Number(amount.textContent.trim()) > 0) {
+    totalAmount = Number(amount.textContent.trim());
+  }
+
+  if (item.classList.contains('item--added')) {
+    if (slider) {
+      const imageSource = item.querySelector('.item__img').src;
+      addImageToSlider(imageSource, id, slider);
+    }
+    totalPrice += price;
+    totalAmount++;
+    saveItemToLocalStorage(item);
+  } else {
+    totalPrice -= price;
+    totalAmount--;
+    if (slider) {
+      const slideToRemove = slider.querySelector(`[data-id="${id}"]`);
+      slideToRemove.remove();
+    }
+    removeItemFromLocalStorage(item);
+  }
+
+  if (totalPrice < 0) totalPrice = 0;
+  totalPrice = formatPrice(totalPrice);
+  totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
+
+  itemsSum.textContent = totalPrice;
+  amount.textContent = totalAmount;
+  if (slider) {
+    addShadowToGrabBlock(slider);
+  }
+  toggleDealHeaderPlaceholder();
+}
+
+function getItemPrice(priceHTML) {
+  priceHTML = priceHTML.textContent;
+  priceHTML = Number(priceHTML.slice(1).trim().split('').filter(num => /\s/g.test(num) ? false : true).join(''));
+  return priceHTML;
+}
+
+function formatPrice(price) {
+  return `$ ${Number(price).toLocaleString('ru-RU', { style: 'currency', currency: 'USD' }).replace(/\,/g, '.')}`;
+}
+
+function addImageToSlider(imageSource, itemID, slider) {
+  const sliderItem = document.createElement('div');
+  sliderItem.className = 'deal__slider-slide';
+  sliderItem.innerHTML = `<img class="deal__slider-img" width="40" height="25" src="${imageSource}" sizes="40px" alt="">`;
+  sliderItem.dataset.id = itemID;
+  sliderItem.style.animation = 'appearing 0.3s ease';
+  slider.prepend(sliderItem);
+}
+
+function saveItemToLocalStorage(item) {
+  const itemsInStorage = localStorage.getItem('chosenItemsInfo');
+  let array = [];
+
+  if (itemsInStorage) {
+    array = JSON.parse(itemsInStorage);
+  }
+
+  const id = item.id;
+  const price = getItemPrice(item.querySelector('.item__price'));
+  const imageSource = item.querySelector('.item__img').src;
+  const origin = item.dataset.origin;
+  let containsItem = false;
+
+  array.forEach(element => {
+    if (element.id === id) {
+      containsItem = true;
+    }
+  });
+
+  if (!containsItem) {
+    array.push({
+      id: id,
+      price: price,
+      src: imageSource,
+      origin: origin
+    });
+  }
+
+  localStorage.setItem('chosenItemsInfo', JSON.stringify(array));
+}
+
+function removeItemFromLocalStorage(item) {
+  const itemsInStorage = localStorage.getItem('chosenItemsInfo');
+  let array = JSON.parse(itemsInStorage);
+  const id = item.id;
+  let itemIndex;
+  array.forEach((obj, index) => {
+    if (obj.id === id) {
+      itemIndex = index;
+    }
+  });
+
+  array.splice(itemIndex, 1);
+  localStorage.setItem('chosenItemsInfo', JSON.stringify(array));
+}
+
+function showAddedItems() {
+  const itemsFromStorage = JSON.parse(localStorage.getItem('chosenItemsInfo'));
+  if (!itemsFromStorage) return;
+  const allItems = document.querySelectorAll('.item');
+
+  let marketItemsAmount = 0;
+  let inventoryItemsAmount = 0;
+  let marketItemsTotalCost = 0;
+  let inventoryItemsTotalCost = 0;
+
+  itemsFromStorage.forEach(storageItem => {
+    allItems.forEach(item => {
+      if (item.id === storageItem.id) {
+        item.classList.add('item--added');
+      }
+    });
+
+    const currentItem = document.querySelector(`#${storageItem.id}`);
+    if (!currentItem) return;
+
+    const header = document.querySelector(`[data-header="${storageItem.origin}"]`);
+    const slider = header.querySelector('.deal__items-slider');
+
+    if (slider) {
+      addImageToSlider(storageItem.src, storageItem.id, slider);
+      addShadowToGrabBlock(slider);
+    }
+
+    switch (storageItem.origin) {
+      case 'market':
+        marketItemsAmount++;
+        marketItemsTotalCost += storageItem.price;
+        break;
+      case 'inventory':
+        inventoryItemsAmount++;
+        inventoryItemsTotalCost += storageItem.price;
+        break;
+    }
+  });
+
+  const marketHeader = document.querySelector('[data-header="market"]');
+  const inventoryHeader = document.querySelector('[data-header="inventory"]');
+  const marketAmount = marketHeader?.querySelector('.items-amount');
+  const marketCost = marketHeader?.querySelector('.items-price');
+  const inventoryAmount = inventoryHeader?.querySelector('.items-amount');
+  const inventoryCost = inventoryHeader?.querySelector('.items-price');
+
+  if (marketHeader) {
+    showData(marketAmount, marketItemsAmount, marketCost, marketItemsTotalCost);
+  }
+
+  if (inventoryHeader) {
+    showData(inventoryAmount, inventoryItemsAmount, inventoryCost, inventoryItemsTotalCost);
+  }
+
+  toggleDealHeaderPlaceholder();
+
+  function showData(amountHTML, amountNum, priceHTML, priceNum) {
+    amountHTML.textContent = amountNum;
+    priceNum = formatPrice(priceNum);
+    priceNum = priceNum.slice(0, priceNum.length - 1).trim();
+    priceHTML.textContent = priceNum;
+  }
+}
 
 
 // chart
@@ -909,11 +1117,13 @@ const chartData = [
 
 const chartContainer = document.querySelectorAll('.chart-container');
 
-chartContainer?.forEach(item => {
-  window.addEventListener('resize', () => {
-    resizeCharts(item)
+if (chartContainer.length > 0) {
+  chartContainer.forEach(item => {
+    window.addEventListener('resize', () => {
+      resizeCharts(item)
+    });
   });
-});
+}
 
 function resizeCharts(container) {
   const chart = container.querySelector('svg')
@@ -924,7 +1134,7 @@ function resizeCharts(container) {
     chart.remove();
     tooltip.remove();
     tooltipCircle.remove();
-    createChart(`#${container.id}`, chartData);
+    createChart(`#${container.id} `, chartData);
   }
 }
 
@@ -963,7 +1173,7 @@ function createChart(id, dataset) {
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
+    .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
   const tooltip = d3.select(id)
     .append('div')
@@ -1110,7 +1320,7 @@ function createChart(id, dataset) {
         if (day === 1 && month === 'jan') {
           return year;
         } else {
-          return `${day}, ${month}`;
+          return `${day}, ${month} `;
         }
       }));
 
@@ -1120,7 +1330,7 @@ function createChart(id, dataset) {
       .tickSizeOuter(0)
       .ticks(width < 600 ? 2 : 4)
       .tickFormat(d => {
-        return `$${Number(d.toFixed(0)).toLocaleString('ru-RU')}`;
+        return `$${Number(d.toFixed(0)).toLocaleString('ru-RU')} `;
       }))
     .attr('class', 'price-axis');
 
@@ -1154,7 +1364,7 @@ function createChart(id, dataset) {
     .attr('width', width)
     .attr('height', height);
 
-  listeningRect.on("mousemove", function(event) {
+  listeningRect.on("mousemove", function (event) {
     const [xCoord] = d3.pointer(event, this);
     const bisectDate = d3.bisector(d => d.date).left;
     const x0 = x.invert(xCoord);
@@ -1173,8 +1383,8 @@ function createChart(id, dataset) {
     tooltip
       .style("display", "block")
       .style('transform', `translate(${xPos + 75}px, ${yPos + 12}px)`)
-      .html(`<span>$${d.value !== undefined ? d.value.toFixed(2) : 'N/A'}</span>
-             <span>${addZero(d.date.getHours())}:${addZero(d.date.getMinutes())},${months[d.date.getMonth()]},${d.date.getFullYear()}</span>`);
+      .html(`<span> $${d.value !== undefined ? d.value.toFixed(2) : 'N/A'}</span >
+  <span>${addZero(d.date.getHours())}:${addZero(d.date.getMinutes())},${months[d.date.getMonth()]},${d.date.getFullYear()}</span>`);
 
     if (width - xPos < 120) {
       tooltip.style('transform', `translate(${xPos - 40}px, ${yPos + 16}px)`);
@@ -1182,15 +1392,15 @@ function createChart(id, dataset) {
 
   });
 
-  listeningRect.on("mouseleave", function() {
+  listeningRect.on("mouseleave", function () {
     circle.style('display', 'none');
-    tooltip.style("display", "none");
+    tooltip.style('display', 'none');
   });
 
   function addZero(value) {
     value = String(value);
     if (value.length < 2) {
-      return `0${value}`;
+      return `0${value} `;
     } else {
       return value;
     }

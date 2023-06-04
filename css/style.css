@@ -2028,18 +2028,19 @@ p {
 }
 
 .deal__cart {
-  display: flex;
+  display: none;
   align-items: center;
   flex-shrink: 0;
   margin-right: 45px;
+  animation: appearing 0.3s ease;
 }
 
-.deal__ammount {
+.deal__amount {
   color: var(--color-c);
   font-weight: 700;
   background-color: var(--color-w);
   border-radius: 10px;
-  padding: 2px 7px;
+  padding: 2px 7px 1px;
   margin-right: 10px;
 }
 
@@ -2089,9 +2090,10 @@ p {
   transform: translateY(-50%);
 }
 
-.deal__items-header-text {
+.deal__items-header-placeholder {
   text-align: center;
   margin: 0 auto;
+  animation: appearing 0.3s ease;
 }
 
 .deal__header-name {
@@ -2120,6 +2122,7 @@ p {
   justify-content: space-between;
   padding-bottom: 10px;
   min-height: 40px;
+  transition: box-shadow 0.3s;
 }
 
 .deal__side-header-left,
@@ -3096,6 +3099,23 @@ p {
 
   .deal__items-header--active {
     background-color: var(--color-mc);
+  }
+
+  .deal__items-header--market {
+    border-radius: 10px 0 0 10px;
+  }
+
+  .deal__items-header--inventory {
+    flex-direction: column-reverse;
+    border-radius: 0 10px 10px 0;
+  }
+
+  .deal__items-header--inventory .deal__cart {
+    margin-left: 0;
+  }
+
+  .deal__items-header--inventory .deal__header-name {
+    order: -1;
   }
 
   .deal__header-name {
