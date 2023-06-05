@@ -1655,7 +1655,7 @@ p {
   transition: all .3s;
 }
 
-.modal-item {
+.modal {
   position: fixed;
   left: -200%;
   top: -200%;
@@ -1663,7 +1663,6 @@ p {
   width: 90%;
   max-width: 900px;
   max-height: 80vh;
-  min-height: 500px;
   padding: 10px 25px 20px;
   background-color: var(--color-c);
   transform: translate(-50%, -50%);
@@ -1672,8 +1671,8 @@ p {
   opacity: 0;
 }
 
-.modal-item--active {
-  height: 100%;
+.modal--active {
+  height: auto;
   left: 50%;
   top: 50%;
   opacity: 1;
@@ -1683,6 +1682,116 @@ p {
 .modal-overlay--active {
   z-index: 20;
   opacity: .7;
+}
+
+.deposit-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px 40px;
+
+}
+
+.deposit-modal__header {
+  position: relative;
+  margin-bottom: 40px;
+  padding-right: 40px;
+}
+
+.deposit-modal .account-title {
+  margin-bottom: 0;
+}
+
+.deposit-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.deposit-form__section {}
+
+.deposit-form__section + .deposit-form__section {
+  margin-top: 30px;
+}
+
+.deposit-form__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.deposit-form__input {
+  height: 40px;
+  width: 100px;
+  margin: 0 10px 0 20px;
+  padding: 0 10px;
+  text-align: center;
+  color: var(--color-w);
+  background-color: var(--color-hc);
+  border-radius: 10px;
+}
+
+.deposit-form__input::-webkit-outer-spin-button,
+.deposit-form__input::-webkit-inner-spin-button {
+	appearance: none;
+	margin: 0;
+}
+
+.deposit-form__input:focus {
+  outline: none;
+  background-color: var(--color-chc);
+}
+
+.deposit-form__section-title {
+  margin-bottom: 20px;
+}
+
+.deposit-form__payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -20px;
+  margin-bottom: 10px;
+}
+
+.deposit-form__payment-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(25% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 15px 10px 10px;
+  background-color: var(--color-hc);
+  border-radius: 10px;
+}
+
+.deposit-form__payment-img {
+  width: 42px;
+  margin-bottom: 5px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.deposit-form__payment-text {
+  margin-top: auto;
+}
+
+.deposit-form__payment-text span { 
+  color: var(--color-w);
+}
+
+.deposit-form__submit {
+  display: block;
+  min-width: 100px;
+  margin-top: auto;
+  margin-left: auto;
+  font-weight: 400;
+  background-color: transparent;
+  border: 1px solid var(--color-w);
+}
+
+.deposit-form__submit:hover {
+  background-color: var(--color-hc);
 }
 
 .modal-item__header {
@@ -1724,7 +1833,7 @@ p {
   filter: var(--color-mc-filter);
 }
 
-.modal-item__close {
+.modal__close {
   position: absolute;
   right: 0;
   top: 50%;
@@ -1733,7 +1842,7 @@ p {
   transform: translateY(-50%);
 }
 
-.modal-item__close::before {
+.modal__close::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -1748,7 +1857,7 @@ p {
   filter: var(--color-lc-filter);
 }
 
-.modal-item__close:hover::before {
+.modal__close:hover::before {
   filter: var(--color-mc-filter);
 }
 
@@ -2362,7 +2471,7 @@ p {
   min-height: 285px;
 }
 
-.account__title {
+.account-title {
   font-weight: 500;
   font-size: 24px;
   color: var(--color-w);
@@ -2478,7 +2587,7 @@ p {
   flex-direction: column;
 }
 
-.user-balance .account__title {
+.user-balance .account-title {
   margin-bottom: 0;
 }
 
@@ -3473,7 +3582,6 @@ p {
     border-radius: 10px 0 0 10px;
   }
 
-
   .products__buy-btn,
   .products__cart {
     margin-left: auto;
@@ -3543,6 +3651,10 @@ p {
 
   .information__list {
     padding: 0;
+  }
+
+  .deposit-form__payment-item {
+    width: calc(100% / 3 - 20px);
   }
 }
 
@@ -3966,7 +4078,7 @@ p {
     left: 15px;
   }
 
-  .modal-item {
+  .modal {
     max-width: 100%;
     height: 100%;
     width: 100%;
@@ -4001,6 +4113,10 @@ p {
 
   .user-balance__button {
     width: calc(50% - 5px);
+  }
+
+  .deposit-form__payment-item {
+    width: calc(50% - 20px);
   }
 
   .user-balance__button+.user-balance__button {
@@ -4104,7 +4220,7 @@ p {
     width: calc(50% - 10px);
   }
 
-  .modal-item__close {
+  .modal__close {
     top: 0;
     transform: none;
   }
@@ -4202,5 +4318,14 @@ p {
 
   .item-orders__list-item {
     width: calc(100% - 10px);
+  }
+
+  .deposit-form__payment-item,
+  .deposit-form__submit {
+    width: 100%;
+  }
+
+  .deposit-form__input {
+    flex-grow: 1;
   }
 }

@@ -30,11 +30,14 @@ const tabsButtons = document.querySelectorAll('.deal__items-header');
 const tabsContent = document.querySelectorAll('.deal__side');
 const statisticTableWrapper = document.querySelector('.statistic__table-wrapper');
 const statisticTable = statisticTableWrapper?.querySelector('.statistic__table');
+const modalWindow = document.querySelectorAll('.modal');
 const modalOverlay = document.querySelector('.modal-overlay');
+const modalCloseButton = document.querySelectorAll('.modal__close');
 const modalItems = document.querySelectorAll('.modal-item');
 const infoContent = document.querySelector('.info__content');
 const deal = document.querySelector('.deal');
 const productsHeader = document.querySelector('.products__content-header');
+const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
 
 // function calls and events
 if (gameItems.length > 0) {
@@ -42,7 +45,6 @@ if (gameItems.length > 0) {
     item.addEventListener('click', event => {
       deleteButton(event, item);
       showGameItemModal(event, item);
-      closeModal(event);
       choseItem(event, item);
       addItemsToCart(event, item);
     });
@@ -64,10 +66,22 @@ if (gameItems.length > 0) {
       autoHide: false,
     });
   });
-
-  modalOverlay.addEventListener('click', closeModal);
 }
 
+if (modalWindow.length > 0) {
+  modalCloseButton.forEach(button => {
+    button.addEventListener('click', closeModal);
+  });
+  modalOverlay.addEventListener('click', closeModal);
+  showAddedItems();
+}
+
+console.log(depositOpenButtons.length > 0)
+if (depositOpenButtons.length > 0) {
+  depositOpenButtons.forEach(button => {
+    button.addEventListener('click', openDepositModal);
+  });
+}
 
 filter?.addEventListener('click', event => {
   toggleFilterSection(event);
@@ -75,6 +89,17 @@ filter?.addEventListener('click', event => {
   declineFilterForm(event);
   closeMobileFilter(event);
   cancelAllFilterButton(event);
+
+  const filterSections = document.querySelectorAll('.filter__form-section');
+  filterSections.forEach(section => {
+    section.addEventListener('mousemove', selectAllFilterButton);
+    section.addEventListener('mouseleave', () => {
+      const labels = document.querySelectorAll('.filter__checkbox-label');
+      labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
+      const selectAllButton = section.querySelector('.filter__select-all');
+      selectAllButton.style.opacity = 0;
+    });
+  });
 });
 
 openFilterButton?.addEventListener('click', openMobileFilter);
@@ -211,6 +236,7 @@ if (infoContent) {
 if (deal) {
   stickyHeader();
   dealHeaderChangeAt800();
+  toggleDealHeaderPlaceholder();
   document.addEventListener('scroll', () => {
     stickyHeader();
   });
@@ -233,6 +259,27 @@ if (productsHeader) {
     productsHeaderChangeAt1100();
   })
   productsHeaderChangeAt1100();
+}
+
+const grabBlock = document.querySelectorAll('.grab-block')
+let grabBlockPosition = { left: 0, x: 0 };
+
+if (grabBlock.length > 0) {
+  grabBlock.forEach(element => {
+    element.addEventListener('mousedown', event => {
+      grabScroll(event, element);
+    });
+
+    element.addEventListener('scroll', () => {
+      addShadowToGrabBlock(element);
+    });
+
+    window.addEventListener('resize', () => {
+      addShadowToGrabBlock(element);
+    });
+
+    addShadowToGrabBlock(element);
+  });
 }
 
 // functions
@@ -527,7 +574,7 @@ function showGameItemModal(event, item) {
   const isDetailsButton = target.closest('.item__details');
   if (!isDetailsButton) return;
   const modal = item.querySelector('.modal-item');
-  modal.classList.add('modal-item--active');
+  modal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
 
   renderChart(item);
@@ -536,16 +583,22 @@ function showGameItemModal(event, item) {
 
 function closeModal(event) {
   const { target } = event;
-  const closeButton = target.closest('.modal-item__close');
+  const closeButton = target.closest('.modal__close');
 
   if (closeButton || target === modalOverlay) {
-    const allModal = document.querySelectorAll('.modal-item');
-    allModal.forEach(modal => modal.classList.remove('modal-item--active'));
+    const allModal = document.querySelectorAll('.modal');
+    allModal.forEach(modal => modal.classList.remove('modal--active'));
     modalOverlay.classList.remove('modal-overlay--active');
     gameItems.forEach(item => {
       destroyChart(item);
     });
   }
+}
+
+function openDepositModal() {
+  const depositModal = document.querySelector('.deposit-modal');
+  depositModal.classList.add('modal--active');
+  modalOverlay.classList.add('modal-overlay--active');
 }
 
 function renderChart(item) {
@@ -648,7 +701,7 @@ function stickyHeader() {
     if (currentWindowWidth < 700) {
       if (distanceToTop <= 0) {
         dealSideHeader.style.position = 'fixed';
-        dealSideHeader.style.top = `${headerHeight}px`;
+        dealSideHeader.style.top = `${headerHeight - 2}px`;
         dealItems.style.paddingTop = `${dealSideHeaderHeight}px`;
         if (currentWindowWidth <= 500) {
           dealSideHeader.style.left = '10px';
@@ -754,28 +807,6 @@ function dealHeaderChangeAt800() {
   });
 }
 
-const grabBlock = document.querySelectorAll('.grab-block')
-let grabBlockPosition = { left: 0, x: 0 };
-
-if (grabBlock.length > 0) {
-  grabBlock.forEach(element => {
-    element.addEventListener('mousedown', event => {
-      element.style.cursor = 'grabbing';
-      grabScroll(event, element);
-    });
-
-    element.addEventListener('scroll', () => {
-      addShadowToGrabBlock(element);
-    });
-
-    window.addEventListener('resize', () => {
-      addShadowToGrabBlock(element);
-    });
-
-    addShadowToGrabBlock(element);
-  });
-}
-
 function grabScroll(event, element) {
   event.preventDefault();
   element.style.userSelect = 'none';
@@ -793,8 +824,6 @@ function grabScroll(event, element) {
   function mouseUpHandler() {
     document.removeEventListener('mousemove', mouseMoveHandler);
     document.removeEventListener('mouseup', mouseUpHandler);
-
-    element.style.cursor = 'grab';
   };
 
   document.addEventListener('mousemove', mouseMoveHandler);
@@ -820,9 +849,6 @@ function addShadowToGrabBlock(element) {
     elementWrapper.classList.remove('grab-wrapper__left-shadow');
   }
 }
-
-toggleDealHeaderPlaceholder();
-showAddedItems();
 
 function toggleDealHeaderPlaceholder() {
   const headers = document.querySelectorAll('.deal__items-header');
@@ -1034,28 +1060,17 @@ function showAddedItems() {
   }
 }
 
-const filterSections = document.querySelectorAll('.filter__form-section');
-filterSections.forEach(section => {
-  section.addEventListener('mousemove', selectAllFilterButton);
-  section.addEventListener('mouseleave', () => {
-    const labels = document.querySelectorAll('.filter__checkbox-label');
-    labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
-    const selectAllButton = section.querySelector('.filter__select-all');
-    selectAllButton.style.opacity = 0;
-  });
-});
-
 function selectAllFilterButton(event) {
   const { target } = event;
   const label = target.closest('.filter__checkbox-label');
   const labels = document.querySelectorAll('.filter__checkbox-label');
-  if (target.closest('.filter__section-title') || 
-      target.classList.contains('filter__checkbox-list') ||
-      target.classList.contains('filter__checkbox-wrapper')) {
+  if (target.closest('.filter__section-title') ||
+    target.classList.contains('filter__checkbox-list') ||
+    target.classList.contains('filter__checkbox-wrapper')) {
     document.querySelectorAll('.filter__select-all').forEach(button => button.style.opacity = 0);
     labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
   }
-  
+
   if (!label) return;
 
   labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
@@ -1083,7 +1098,7 @@ function selectAllFilterButton(event) {
 }
 
 function cancelAllFilterButton(event) {
-  const {target} = event;
+  const { target } = event;
   const cancelButton = target.closest('.filter__cancel-all');
   if (!cancelButton) return;
   const parentSection = cancelButton.closest('.filter__form-section');

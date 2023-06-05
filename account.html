@@ -196,7 +196,7 @@
             <span class="balance__summ">
               $ 100
             </span>
-            <a class="balance__add-btn" href="#"></a>
+            <button class="balance__add-btn deposit-modal-open" type="button"></button>
           </div>
           <div class="header__user-wrapper header__user--notification">
             <a class="header__user" href="#">
@@ -230,15 +230,17 @@
           </form>
         </section>
         <section class="user-balance page-block account__page-block">
-          <h2 class="account__title">balance</h2>
+          <h2 class="account-title">balance</h2>
           <b class="user-balance__sum">$100</b>
           <div class="user-balance__buttons">
-            <button class="user-balance__button user-balance__button--deposit btn" type="button">deposit</button>
-            <button class="user-balance__button user-balance__button--withdraw btn" type="button">withdraw</button>
+            <button class="user-balance__button user-balance__button--deposit btn deposit-modal-open"
+              type="button">deposit</button>
+            <button class="user-balance__button user-balance__button--withdraw btn deposit-modal-open"
+              type="button">withdraw</button>
           </div>
         </section>
         <section class="information page-block account__page-block">
-          <h2 class="account__title">general information</h2>
+          <h2 class="account-title">general information</h2>
           <div class="information__info">
             <div class="information__info-data">
               <span>Steam ID:</span>
@@ -278,7 +280,7 @@
           </div>
         </section>
         <section class="statistic page-block account__page-block">
-          <h2 class="account__title">statistic</h2>
+          <h2 class="account-title">statistic</h2>
           <div class="statistic__table-wrapper">
             <table class="statistic__table">
               <thead class="statistic__table-head">
@@ -385,7 +387,7 @@
           </ul>
         </section>
         <section class="ordered page-block account__page-block">
-          <h2 class="account__title">ordered items</h2>
+          <h2 class="account-title">ordered items</h2>
           <ul class="account__items-list">
             <li class="item">
               <div class="item__inner">
@@ -429,7 +431,7 @@
                   </button>
                 </div>
               </div>
-              <article class="modal-item">
+              <article class="modal-item modal">
                 <div class="modal-item__header">
                   <ul class="modal-item__menu">
                     <li class="modal-item__menu-item">
@@ -445,7 +447,7 @@
                       <a class="modal-item__menu-link icon icon--link" href="#">item on Steam</a>
                     </li>
                   </ul>
-                  <button class="modal-item__close" type="button">
+                  <button class="modal__close" type="button">
                     <span class="visually-hidden">Close modal popup</span>
                   </button>
                 </div>
@@ -453,41 +455,43 @@
                   <div class="modal-item__slider-block">
                     <img class="modal-item__img" width="287" height="173" src="images/items/item-big.png" srcset="images/x2/item-big-2x.png 2x,
                               images/x3/item-big-3x.png 3x" sizes="287px" alt="">
-                    <div class="modal-item__slider grab-block">
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                    <div class="grab-wrapper">
+                      <div class="modal-item__slider grab-block">
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -613,7 +617,7 @@
                   </button>
                 </div>
               </div>
-              <article class="modal-item">
+              <article class="modal-item modal">
                 <div class="modal-item__header">
                   <ul class="modal-item__menu">
                     <li class="modal-item__menu-item">
@@ -629,7 +633,7 @@
                       <a class="modal-item__menu-link icon icon--link" href="#">item on Steam</a>
                     </li>
                   </ul>
-                  <button class="modal-item__close" type="button">
+                  <button class="modal__close" type="button">
                     <span class="visually-hidden">Close modal popup</span>
                   </button>
                 </div>
@@ -637,41 +641,43 @@
                   <div class="modal-item__slider-block">
                     <img class="modal-item__img" width="287" height="173" src="images/items/item-big.png" srcset="images/x2/item-big-2x.png 2x,
                               images/x3/item-big-3x.png 3x" sizes="287px" alt="">
-                    <div class="modal-item__slider grab-block">
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
-                      </div>
-                      <div class="modal-item__slide">
-                        <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
-                          srcset="images/x2/item-slide-2x.jpg 2x,
-                                      images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                    <div class="grab-wrapper">
+                      <div class="modal-item__slider grab-block">
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
+                        <div class="modal-item__slide">
+                          <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            srcset="images/x2/item-slide-2x.jpg 2x,
+                                        images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -790,7 +796,7 @@
           </ul>
         </section>
         <section class="favourited page-block account__page-block">
-          <h2 class="account__title">favourited items</h2>
+          <h2 class="account-title">favourited items</h2>
           <ul class="account__items-list"></ul>
           <p class="placeholder-text">no items favourited yet</p>
         </section>
@@ -829,6 +835,55 @@
     </div>
   </footer>
   <div class="modal-overlay"></div>
+  <div class="modal deposit-modal">
+    <div class="deposit-modal__header">
+      <h2 class="account-title">deposit</h2>
+      <button class="modal__close" type="button">
+        <span class="visually-hidden">Close modal popup</span>
+      </button>
+    </div>
+    <form class="deposit-form" action="#">
+      <fieldset class="deposit-form__section">
+        <label class="deposit-form__label" for="deposit_input">
+          amount:
+          <input class="deposit-form__input" id="deposit_input" type="number" name="depositInput" placeholder="0"
+            required>
+          $
+        </label>
+      </fieldset>
+      <fieldset class="deposit-form__section">
+        <legend class="deposit-form__section-title">payment method:</legend>
+        <ul class="deposit-form__payment-methods">
+          <li class="deposit-form__payment-item">
+            <img class="deposit-form__payment-img" width="40" height="42" src="images/payment-methods/visa.png"
+              srcset="" sizes="40" alt="">
+            <p class="deposit-form__payment-text">commission: <span>3%</span></p>
+          </li>
+          <li class="deposit-form__payment-item">
+            <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/bitcoin.png"
+              srcset="" sizes="42" alt="">
+            <p class="deposit-form__payment-text">commission: <span>4%</span></p>
+          </li>
+          <li class="deposit-form__payment-item">
+            <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/webmoney.png"
+              srcset="" sizes="42" alt="">
+            <p class="deposit-form__payment-text">commission: <span>0%</span></p>
+          </li>
+          <li class="deposit-form__payment-item">
+            <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/bitcoin.png"
+              srcset="" sizes="42" alt="">
+            <p class="deposit-form__payment-text">commission: <span>4%</span></p>
+          </li>
+          <li class="deposit-form__payment-item">
+            <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/bitcoin.png"
+              srcset="" sizes="42" alt="">
+            <p class="deposit-form__payment-text">commission: <span>4%</span></p>
+          </li>
+        </ul>
+      </fieldset>
+      <button class="deposit-form__submit btn" type="submit">proceed</button>
+    </form>
+  </div>
 
   <!-- svg color filters -->
   <div class="visually-hidden" aria-hidden="true">
