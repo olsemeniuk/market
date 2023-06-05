@@ -33,11 +33,11 @@ const statisticTable = statisticTableWrapper?.querySelector('.statistic__table')
 const modalWindow = document.querySelectorAll('.modal');
 const modalOverlay = document.querySelector('.modal-overlay');
 const modalCloseButton = document.querySelectorAll('.modal__close');
-const modalItems = document.querySelectorAll('.modal-item');
 const infoContent = document.querySelector('.info__content');
 const deal = document.querySelector('.deal');
 const productsHeader = document.querySelector('.products__content-header');
 const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
+const infoBlocks = document.querySelectorAll('.info-block');
 
 // function calls and events
 if (gameItems.length > 0) {
@@ -61,11 +61,6 @@ if (gameItems.length > 0) {
     });
   });
 
-  modalItems.forEach(modal => {
-    const modalScroll = new SimpleBar(modal, {
-      autoHide: false,
-    });
-  });
 }
 
 if (modalWindow.length > 0) {
@@ -74,9 +69,21 @@ if (modalWindow.length > 0) {
   });
   modalOverlay.addEventListener('click', closeModal);
   showAddedItems();
+  modalWindow.forEach(modal => {
+    const modalScroll = new SimpleBar(modal, {
+      autoHide: false,
+    });
+  });
 }
 
-console.log(depositOpenButtons.length > 0)
+if (infoBlocks.length > 0) {
+  infoBlocks.forEach(info => {
+    info.addEventListener('click', () => {
+      openInfoModal(info)
+    });
+  })
+}
+
 if (depositOpenButtons.length > 0) {
   depositOpenButtons.forEach(button => {
     button.addEventListener('click', openDepositModal);
@@ -474,6 +481,16 @@ function closeSettings(list, button) {
   list.style.maxHeight = 0;
 }
 
+function openInfoModal(parentBlock) {
+  const modal = parentBlock.querySelector('.info-block__modal');
+  modal.classList.add('modal--active');
+  modalOverlay.classList.add('modal-overlay--active');
+
+  const isInGameItemModal = parentBlock.closest('.modal-item');
+  if (isInGameItemModal) {
+    modal.classList.add('info-block__modal--with-shadow');
+  }
+}
 
 function switchTabs(btn) {
   tabsButtons.forEach(button => {
@@ -584,8 +601,9 @@ function showGameItemModal(event, item) {
 function closeModal(event) {
   const { target } = event;
   const closeButton = target.closest('.modal__close');
+  const isInInfoModal = target.closest('.info-block__modal')
 
-  if (closeButton || target === modalOverlay) {
+  if ((closeButton || target === modalOverlay) && !isInInfoModal) {
     const allModal = document.querySelectorAll('.modal');
     allModal.forEach(modal => modal.classList.remove('modal--active'));
     modalOverlay.classList.remove('modal-overlay--active');
@@ -593,6 +611,28 @@ function closeModal(event) {
       destroyChart(item);
     });
   }
+}
+
+modalWindow.forEach(modal => {
+  modal.addEventListener('click', event => {
+    event.stopPropagation();
+  })
+})
+
+const infoModalCloseButtons = document.querySelectorAll('.info-block__modal .modal__close');
+infoModalCloseButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    closeInfoModal(button);
+  });
+});
+
+function closeInfoModal(button) {
+  const isInGameItemModal = button.closest('.modal-item');
+  const parentModal = button.closest('.info-block__modal');
+  if (!isInGameItemModal) {
+    modalOverlay.classList.remove('modal-overlay--active');
+  }
+  parentModal.classList.remove('modal--active');
 }
 
 function openDepositModal() {
