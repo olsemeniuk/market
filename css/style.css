@@ -2068,6 +2068,7 @@ p {
 .deal__items-header {
   flex-basis: 560px;
   min-width: 0;
+  min-height: 62px;
   display: flex;
   justify-content: space-between;
   align-items: center;
