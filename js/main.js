@@ -38,6 +38,7 @@ const deal = document.querySelector('.deal');
 const productsHeader = document.querySelector('.products__content-header');
 const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
 const infoBlocks = document.querySelectorAll('.info-block');
+const paymentMethodsLists = document.querySelectorAll('.deposit-form__payment-methods');
 
 // function calls and events
 if (gameItems.length > 0) {
@@ -260,6 +261,13 @@ if (deal) {
   });
 }
 
+if (paymentMethodsLists.length > 0) {
+  paymentMethodsLists.forEach(list => {
+    list.addEventListener('click', event => {
+      chosePaymentMethod(event, list);
+    })
+  })
+}
 
 if (productsHeader) {
   window.addEventListener('resize', () => {
@@ -1147,6 +1155,18 @@ function cancelAllFilterButton(event) {
   const allCheckboxes = parentSection.querySelectorAll('input[type="checkbox"]');
   allCheckboxes.forEach(checkbox => checkbox.checked = false);
   countCheckedFilterItems(parentSection);
+}
+
+function chosePaymentMethod(event, list) {
+  const {target} = event;
+  const paymentButton = target.closest('.deposit-form__payment-button');
+
+  if (!paymentButton) return;
+  const allButtons = list.querySelectorAll('.deposit-form__payment-button');
+  allButtons.forEach(button => {
+    button.classList.remove('deposit-form__payment-button--chosen');
+  });
+  paymentButton.classList.add('deposit-form__payment-button--chosen');
 }
 
 

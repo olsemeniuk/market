@@ -1768,15 +1768,29 @@ p {
 }
 
 .deposit-form__payment-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: calc(25% - 20px);
   margin-right: 20px;
   margin-bottom: 20px;
+}
+
+.deposit-form__payment-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   padding: 15px 10px 10px;
   background-color: var(--color-hc);
   border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.deposit-form__payment-button:not(.deposit-form__payment-button--chosen):hover {
+  background-color: var(--color-chc);
+}
+
+.deposit-form__payment-button--chosen {
+  background-color: var(--color-mc);
+  border-color: var(--color-w);
 }
 
 .deposit-form__payment-img {
@@ -1805,7 +1819,7 @@ p {
 }
 
 .deposit-form__submit:hover {
-  background-color: var(--color-hc);
+  background-color: var(--color-mc);
 }
 
 .modal__header {
