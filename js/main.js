@@ -71,9 +71,10 @@ if (gameItems.length > 0) {
 
 filter?.addEventListener('click', event => {
   toggleFilterSection(event);
-  countCheckedFilterItems(event);
+  countCheckedFilterItemsOnClick(event);
   declineFilterForm(event);
   closeMobileFilter(event);
+  cancelAllFilterButton(event);
 });
 
 openFilterButton?.addEventListener('click', openMobileFilter);
@@ -220,7 +221,9 @@ if (deal) {
   })
 
   tabsButtons.forEach(button => {
-    button.addEventListener('click', switchTabs);
+    button.addEventListener('click', () => {
+      switchTabs(button);
+    });
   });
 }
 
@@ -288,35 +291,51 @@ function deleteButton(event, item) {
 function toggleFilterSection(event) {
   const { target } = event;
   const title = target.closest('.filter__section-title');
+  const cancelAllButton = target.closest('.filter__cancel-all');
 
-  if (!title) return;
+  if (!title || cancelAllButton) return;
 
   const parentSection = target.closest('.filter__form-section');
   const wrapper = parentSection.querySelector('.filter__checkbox-wrapper');
   const list = wrapper.querySelector('.filter__checkbox-list');
   const wrapperHeight = wrapper.getBoundingClientRect().height;
   const listHeight = list.getBoundingClientRect().height;
+  const selectAllButton = parentSection.querySelector('.filter__select-all');
+  const allCheckbox = parentSection.querySelectorAll('input[type="checkbox"]');
+  let containsChecked = false;
+  allCheckbox.forEach(checkbox => {
+    if (checkbox.checked === true) containsChecked = true;
+  })
 
   if (wrapperHeight === 0) {
     wrapper.style.height = `${listHeight}px`;
     title.classList.add('filter__section-title--active');
+    if (!containsChecked) selectAllButton.style.display = 'block';
   } else {
     wrapper.style.height = 0;
     title.classList.remove('filter__section-title--active');
+    selectAllButton.style.display = 'none';
   }
 }
 
-function countCheckedFilterItems(event) {
+function countCheckedFilterItemsOnClick(event) {
   const { target } = event;
   const label = target.closest('.filter__checkbox-label');
   const isTopLabel = target.closest('.filter__checkbox-label-top');
 
   if (!label || isTopLabel) return;
-
   const parentSection = label.closest('.filter__form-section');
+
+  countCheckedFilterItems(parentSection);
+}
+
+function countCheckedFilterItems(parentSection) {
   const countElement = parentSection.querySelector('.filter__count');
   const allItems = parentSection.querySelectorAll('.filter__checkbox-label');
   const allInputs = parentSection.querySelectorAll('.filter__checkbox-label input[type="checkbox"]');
+
+  const selectAllButton = parentSection.querySelector('.filter__select-all');
+  const cancelAllButton = parentSection.querySelector('.filter__cancel-all');
 
   let checkedAmount = 0;
   allInputs.forEach(input => {
@@ -325,8 +344,12 @@ function countCheckedFilterItems(event) {
 
   if (checkedAmount > 0) {
     countElement.classList.add('filter__count--active');
+    selectAllButton.style.display = 'none';
+    cancelAllButton.classList.add('filter__cancel-all--active');
   } else {
     countElement.classList.remove('filter__count--active');
+    selectAllButton.style.display = 'block';
+    cancelAllButton.classList.remove('filter__cancel-all--active');
   }
 
   countElement.textContent = `(${checkedAmount}/${allItems.length})`;
@@ -342,10 +365,12 @@ function declineFilterForm(event) {
     const title = section.querySelector('.filter__section-title');
     const listWrapper = section.querySelector('.filter__checkbox-wrapper');
     const count = section.querySelector('.filter__count');
+    const cancelAllButton = section.querySelector('.filter__cancel-all');
 
     listWrapper.style.height = 0;
     count.classList.remove('filter__count--active');
     title.classList.remove('filter__section-title--active');
+    cancelAllButton.classList.remove('filter__cancel-all--active');
   });
 
   rangeSlider.noUiSlider.reset();
@@ -403,15 +428,15 @@ function closeSettings(list, button) {
 }
 
 
-function switchTabs() {
+function switchTabs(btn) {
   tabsButtons.forEach(button => {
     button.classList.remove('deal__items-header--active');
   });
-  this.classList.add('deal__items-header--active');
+  btn.classList.add('deal__items-header--active');
 
   tabsContent.forEach(content => {
     content.classList.remove('deal__side--active');
-    if (this.dataset.btn === content.dataset.tab) {
+    if (btn.dataset.btn === content.dataset.tab) {
       content.classList.add('deal__side--active');
     }
   });
@@ -1007,6 +1032,66 @@ function showAddedItems() {
     priceNum = priceNum.slice(0, priceNum.length - 1).trim();
     priceHTML.textContent = priceNum;
   }
+}
+
+const filterSections = document.querySelectorAll('.filter__form-section');
+filterSections.forEach(section => {
+  section.addEventListener('mousemove', selectAllFilterButton);
+  section.addEventListener('mouseleave', () => {
+    const labels = document.querySelectorAll('.filter__checkbox-label');
+    labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
+    const selectAllButton = section.querySelector('.filter__select-all');
+    selectAllButton.style.opacity = 0;
+  });
+});
+
+function selectAllFilterButton(event) {
+  const { target } = event;
+  const label = target.closest('.filter__checkbox-label');
+  const labels = document.querySelectorAll('.filter__checkbox-label');
+  if (target.closest('.filter__section-title') || 
+      target.classList.contains('filter__checkbox-list') ||
+      target.classList.contains('filter__checkbox-wrapper')) {
+    document.querySelectorAll('.filter__select-all').forEach(button => button.style.opacity = 0);
+    labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
+  }
+  
+  if (!label) return;
+
+  labels.forEach(element => element.classList.remove('filter__checkbox-label--active'));
+  label.classList.add('filter__checkbox-label--active');
+  const parentSection = label.closest('.filter__form-section');
+  const selectAllButton = parentSection.querySelector('.filter__select-all');
+
+  const title = parentSection.querySelector('.filter__section-title');
+  const titleHeight = title.getBoundingClientRect().height;
+  let titleMargin = window.getComputedStyle(title).getPropertyValue('margin-bottom');
+  titleMargin = Number(titleMargin.slice(0, titleMargin.indexOf('px')));
+  const titleSize = titleHeight + titleMargin;
+
+  selectAllButton.style.transform = `translateY(${label.offsetTop + 5 - titleSize}px)`;
+  selectAllButton.style.opacity = 1;
+
+  selectAllButton.addEventListener('click', () => {
+    const currentCheckbox = label.querySelector('input[type="checkbox"]');
+    const allSectionCheckbox = parentSection.querySelectorAll('input[type="checkbox"]');
+    allSectionCheckbox.forEach(checkbox => checkbox.checked = true);
+    currentCheckbox.checked = false;
+    selectAllButton.style.display = 'none';
+    countCheckedFilterItems(parentSection);
+  })
+}
+
+function cancelAllFilterButton(event) {
+  const {target} = event;
+  const cancelButton = target.closest('.filter__cancel-all');
+  if (!cancelButton) return;
+  const parentSection = cancelButton.closest('.filter__form-section');
+  const cancelAllButton = parentSection.querySelector('.filter__cancel-all');
+  cancelAllButton.classList.remove('filter__cancel-all--active');
+  const allCheckboxes = parentSection.querySelectorAll('input[type="checkbox"]');
+  allCheckboxes.forEach(checkbox => checkbox.checked = false);
+  countCheckedFilterItems(parentSection);
 }
 
 
