@@ -1885,6 +1885,7 @@ p {
   color: var(--color-w);
   background-color: var(--color-hc);
   border-radius: 10px;
+  -moz-appearance: textfield;
 }
 
 .deposit-form__input::-webkit-outer-spin-button,
