@@ -4,7 +4,7 @@ const filter = document.querySelector('.filter');
 const rangeSlider = filter?.querySelector('.range-slider__base');
 const rangeSliderLowNums = filter?.querySelector('.range-slider__nums--low');
 const rangeSliderHighNums = filter?.querySelector('.range-slider__nums--high');
-const openFilterButton = document.querySelector('.filter-btn');
+const openFilterButton = document.querySelectorAll('.filter-btn');
 const menu = document.querySelector('.menu');
 const menuOpenBtn = menu?.querySelector('.menu__open-btn');
 const menuCloseBtn = menu?.querySelector('.menu__close-btn');
@@ -61,7 +61,6 @@ if (gameItems.length > 0) {
       }
     });
   });
-
 }
 
 if (modalWindow.length > 0) {
@@ -74,6 +73,29 @@ if (modalWindow.length > 0) {
     const modalScroll = new SimpleBar(modal, {
       autoHide: false,
     });
+
+    modalScroll.getScrollElement().addEventListener('scroll', event => {
+      toggleModalShadow(event, modal);
+    });
+    showEndModalShadow(modal);
+    window.addEventListener('resize', () => {
+      showEndModalShadow(modal);
+    });
+
+    modal.addEventListener('click', event => {
+      event.stopPropagation();
+    });
+  });
+
+  document.addEventListener('keydown', event => {
+    const { code } = event;
+    if (code === 'Escape') {
+      modalWindow.forEach(modal => {
+        modal.classList.remove('modal--active');
+        destroyChart(modal);
+      });
+      modalOverlay.classList.remove('modal-overlay--active');
+    }
   });
 }
 
@@ -110,7 +132,11 @@ filter?.addEventListener('click', event => {
   });
 });
 
-openFilterButton?.addEventListener('click', openMobileFilter);
+if (openFilterButton.length > 0) {
+  openFilterButton.forEach(button => {
+    button.addEventListener('click', openMobileFilter);
+  });
+}
 
 if (rangeSlider) {
   noUiSlider.create(rangeSlider, {
@@ -184,10 +210,11 @@ if (search.length > 0) {
 if (settings.length > 0) {
   settings.forEach(setting => {
     const settingsBtn = setting.querySelector('.settings-btn');
+    const settingsListWrapper = setting.querySelector('.settings__list-wrapper');
     const settingsList = setting.querySelector('.settings__list');
 
     settingsBtn.addEventListener('click', () => {
-      toggleSettings(settingsBtn, settingsList);
+      toggleSettings(settingsBtn, settingsListWrapper, settingsList);
     });
   });
 
@@ -195,11 +222,11 @@ if (settings.length > 0) {
     const { target } = event;
     const isSettings = target.closest('.settings');
     if (!isSettings) {
-      const list = document.querySelectorAll('.settings__list');
+      const wrapper = document.querySelectorAll('.settings__list-wrapper');
       const button = document.querySelectorAll('.settings-btn');
-      list.forEach(item => {
-        item.classList.remove('settings__list--active');
-        item.style.maxHeight = 0;
+      wrapper.forEach(item => {
+        item.classList.remove('settings__list-wrapper--active');
+        item.style.height = 0;
       });
       button.forEach(btn => {
         btn.classList.remove('settings-btn--active');
@@ -228,8 +255,10 @@ if (statisticTableWrapper) {
     autoHide: false,
   });
 
+
   tableScroll.getScrollElement().addEventListener('scroll', showHideTableShadow);
-  showEndShadow();
+  showEndTableShadow();
+  window.addEventListener('resize', showEndTableShadow);
 }
 
 smoothScrolling();
@@ -261,14 +290,6 @@ if (deal) {
   });
 }
 
-if (paymentMethodsLists.length > 0) {
-  paymentMethodsLists.forEach(list => {
-    list.addEventListener('click', event => {
-      chosePaymentMethod(event, list);
-    })
-  })
-}
-
 if (productsHeader) {
   window.addEventListener('resize', () => {
     productsHeaderChangeAt1100();
@@ -285,42 +306,26 @@ if (grabBlock.length > 0) {
       grabScroll(event, element);
     });
 
-    element.addEventListener('scroll', () => {
-      addShadowToGrabBlock(element);
+    element.addEventListener('wheel', event => {
+      event.preventDefault();
+      const delta = Math.sign(event.deltaY) * 15;
+      element.scrollLeft += delta;
+    });
+  });
+
+  const grabBlockWrapper = document.querySelectorAll('.grab-wrapper');
+  grabBlockWrapper.forEach(wrapper => {
+    const inner = wrapper.querySelector('.grab-block');
+    addVerticalShadows(wrapper, inner);
+
+    inner.addEventListener('scroll', () => {
+      addVerticalShadows(wrapper, inner);
     });
 
     window.addEventListener('resize', () => {
-      addShadowToGrabBlock(element);
+      addVerticalShadows(wrapper, inner);
     });
-
-    addShadowToGrabBlock(element);
   });
-}
-
-// functions
-function showHideTableShadow(event) {
-  const { target } = event;
-  const distanceToLeft = target.scrollLeft;
-  const distanceToRight = statisticTable.scrollWidth - statisticTableWrapper.clientWidth - distanceToLeft;
-
-  if (distanceToLeft < 10) {
-    statisticTableWrapper.classList.remove('table-left-shadow');
-  } else {
-    statisticTableWrapper.classList.add('table-left-shadow');
-  }
-
-  if (distanceToRight < 10) {
-    statisticTableWrapper.classList.remove('table-right-shadow');
-  } else {
-    statisticTableWrapper.classList.add('table-right-shadow');
-  }
-}
-
-function showEndShadow() {
-  const scrollbar = statisticTableWrapper.querySelector('.simplebar-track.simplebar-horizontal');
-  if (scrollbar.style.visibility === 'visible') {
-    statisticTableWrapper.classList.add('table-right-shadow');
-  }
 }
 
 function choseItem(event, item) {
@@ -473,20 +478,19 @@ function hideSearchField(event) {
   }
 }
 
-function toggleSettings(button, list) {
-  button.classList.add('settings-btn--active');
-  if (list.classList.contains('settings__list--active')) {
-    closeSettings(list, button);
-  } else {
-    list.classList.add('settings__list--active');
-    list.style.maxHeight = list.scrollHeight + 20 + 'px';
-  };
-}
+function toggleSettings(button, wrapper, list) {
+  const listHeight = list.getBoundingClientRect().height;
+  const isOpened = wrapper.classList.contains('settings__list-wrapper--active');
 
-function closeSettings(list, button) {
-  list.classList.remove('settings__list--active');
-  button.classList.remove('settings-btn--active');
-  list.style.maxHeight = 0;
+  if (isOpened) {
+    wrapper.style.height = 0;
+    wrapper.classList.remove('settings__list-wrapper--active');
+    button.classList.remove('settings-btn--active');
+  } else {
+    wrapper.style.height = `${listHeight}px`;
+    wrapper.classList.add('settings__list-wrapper--active');
+    button.classList.add('settings-btn--active');
+  }
 }
 
 function openInfoModal(parentBlock) {
@@ -497,6 +501,33 @@ function openInfoModal(parentBlock) {
   const isInGameItemModal = parentBlock.closest('.modal-item');
   if (isInGameItemModal) {
     modal.classList.add('info-block__modal--with-shadow');
+  }
+}
+
+function showHideTableShadow(event) {
+  const { target } = event;
+  const distanceToLeft = target.scrollLeft;
+  const distanceToRight = statisticTable.scrollWidth - statisticTableWrapper.clientWidth - distanceToLeft;
+
+  if (distanceToLeft < 10) {
+    statisticTableWrapper.classList.remove('horizontal-shadow--left');
+  } else {
+    statisticTableWrapper.classList.add('horizontal-shadow--left');
+  }
+
+  if (distanceToRight < 10) {
+    statisticTableWrapper.classList.remove('horizontal-shadow--right');
+  } else {
+    statisticTableWrapper.classList.add('horizontal-shadow--right');
+  }
+}
+
+function showEndTableShadow() {
+  const scrollbar = statisticTableWrapper.querySelector('.simplebar-track.simplebar-horizontal');
+  if (scrollbar.style.visibility === 'visible') {
+    statisticTableWrapper.classList.add('horizontal-shadow--right');
+  } else {
+    statisticTableWrapper.classList.remove('horizontal-shadow--right');
   }
 }
 
@@ -620,12 +651,6 @@ function closeModal(event) {
     });
   }
 }
-
-modalWindow.forEach(modal => {
-  modal.addEventListener('click', event => {
-    event.stopPropagation();
-  })
-})
 
 const infoModalCloseButtons = document.querySelectorAll('.info-block__modal .modal__close');
 infoModalCloseButtons.forEach(button => {
@@ -878,23 +903,22 @@ function grabScroll(event, element) {
   document.addEventListener('mouseup', mouseUpHandler);
 }
 
-function addShadowToGrabBlock(element) {
-  const distanceToStart = element.scrollLeft;
-  const distanceToEnd = element.scrollWidth - distanceToStart - element.offsetWidth;
-  const elementWrapper = element.closest('.grab-wrapper');
+function addVerticalShadows(wrapper, inner) {
+  const distanceToStart = inner.scrollLeft;
+  const distanceToEnd = inner.scrollWidth - distanceToStart - inner.offsetWidth;
 
-  if (element.scrollWidth > element.offsetWidth) {
-    elementWrapper.classList.add('grab-wrapper__right-shadow');
+  if (inner.scrollWidth > inner.offsetWidth) {
+    wrapper.classList.add('horizontal-shadow--right');
   }
 
   if (distanceToEnd < 2) {
-    elementWrapper.classList.remove('grab-wrapper__right-shadow');
+    wrapper.classList.remove('horizontal-shadow--right');
   }
 
   if (distanceToStart > 0) {
-    elementWrapper.classList.add('grab-wrapper__left-shadow');
+    wrapper.classList.add('horizontal-shadow--left');
   } else {
-    elementWrapper.classList.remove('grab-wrapper__left-shadow');
+    wrapper.classList.remove('horizontal-shadow--left');
   }
 }
 
@@ -972,7 +996,6 @@ function addItemsToCart(event, item) {
   itemsSum.textContent = totalPrice;
   amount.textContent = totalAmount;
   if (slider) {
-    addShadowToGrabBlock(slider);
   }
   toggleDealHeaderPlaceholder();
 }
@@ -1068,7 +1091,6 @@ function showAddedItems() {
 
     if (slider) {
       addImageToSlider(storageItem.src, storageItem.id, slider);
-      addShadowToGrabBlock(slider);
     }
 
     switch (storageItem.origin) {
@@ -1142,7 +1164,7 @@ function selectAllFilterButton(event) {
     currentCheckbox.checked = false;
     selectAllButton.style.display = 'none';
     countCheckedFilterItems(parentSection);
-  })
+  });
 }
 
 function cancelAllFilterButton(event) {
@@ -1157,16 +1179,32 @@ function cancelAllFilterButton(event) {
   countCheckedFilterItems(parentSection);
 }
 
-function chosePaymentMethod(event, list) {
-  const {target} = event;
-  const paymentButton = target.closest('.deposit-form__payment-button');
+function toggleModalShadow(event, modal) {
+  const { target } = event;
+  const distanceToTop = target.scrollTop;
+  const distanceToBottom = target.scrollHeight - target.offsetHeight - distanceToTop;
 
-  if (!paymentButton) return;
-  const allButtons = list.querySelectorAll('.deposit-form__payment-button');
-  allButtons.forEach(button => {
-    button.classList.remove('deposit-form__payment-button--chosen');
-  });
-  paymentButton.classList.add('deposit-form__payment-button--chosen');
+  if (distanceToBottom < 10) {
+    modal.classList.remove('modal-shadow--bottom');
+  } else {
+    modal.classList.add('modal-shadow--bottom');
+  }
+
+  if (distanceToTop < 10) {
+    modal.classList.remove('modal-shadow--top');
+  } else {
+    modal.classList.add('modal-shadow--top');
+  }
+}
+
+
+function showEndModalShadow(modal) {
+  const scrollbar = modal.querySelector('.simplebar-track.simplebar-vertical');
+  if (scrollbar.style.visibility === 'visible') {
+    modal.classList.add('modal-shadow--bottom');
+  } else {
+    modal.classList.remove('modal-shadow--bottom');
+  }
 }
 
 

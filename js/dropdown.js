@@ -23,14 +23,9 @@ class Dropdown {
 
     this.button.addEventListener('click', () => {
       this.toggleList();
-      this.arrowToggle();
     });
 
     this.list.addEventListener('click', event => {
-      const { target } = event;
-      if (target.classList.contains('dropdown__list-button')) {
-        this.arrowToggle();
-      }
       this.selectActiveItem(event);
     });
 
@@ -39,7 +34,6 @@ class Dropdown {
       const isDropdown = Boolean(target.closest(this.selector));
       if (!isDropdown) {
         this.removeActiveStateOfList();
-        this.arrowToggle();
       }
     });
 
@@ -57,20 +51,9 @@ class Dropdown {
     this.removeActiveStateOfList();
 
     if (listWrapperHeight === 0) {
-      this.setOpenListPosition();
+      this.target.classList.add('dropdown--open');
       this.listWrapper.style.height = `${listHeight}px`;
       this.listAndButtonGrowWidth();
-    }
-  }
-
-  arrowToggle() {
-    const isOpened = this.target.classList.contains('dropdown--open-top') ||
-                     this.target.classList.contains('dropdown--open-bottom');
-
-    if (isOpened) {
-      this.target.classList.add('dropdown--open');
-    } else {
-      this.target.classList.remove('dropdown--open');
     }
   }
 
@@ -89,22 +72,6 @@ class Dropdown {
     const buttonWidth = this.textWrapper.getBoundingClientRect().width;
     this.button.style.width = `${buttonWidth}px`;
     this.list.style.width = `${buttonWidth}px`;
-  }
-
-  setOpenListPosition() {
-    const listDistanceToBottom = this.list.getBoundingClientRect().bottom;
-    const windowHeight = document.documentElement.clientHeight;
-
-    if (listDistanceToBottom > windowHeight - 10) {
-      this.listWrapper.style.top = 'auto';
-      this.listWrapper.style.bottom = '50%';
-      this.target.classList.add('dropdown--open-top');
-
-    } else {
-      this.listWrapper.style.bottom = 'auto';
-      this.listWrapper.style.top = '50%';
-      this.target.classList.add('dropdown--open-bottom');
-    }
   }
 
   selectActiveItem(event) {
@@ -153,7 +120,5 @@ class Dropdown {
     this.listAndButtonShrinkWidth();
     this.listWrapper.style.height = '0';
     this.target.classList.remove('dropdown--open');
-    this.target.classList.remove('dropdown--open-top');
-    this.target.classList.remove('dropdown--open-bottom');
   }
 }
