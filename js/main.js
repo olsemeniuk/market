@@ -1215,8 +1215,8 @@ function changeFavicon() {
   const appleIcon = document.getElementById('favicon_apple');
 
   const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  
   changePath();
-
   isDarkTheme.addEventListener('change', changePath);
   isDarkTheme.addListener(changePath); // for safari
 
