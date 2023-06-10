@@ -1924,7 +1924,7 @@ p {
   padding: 15px 10px 10px;
   background-color: var(--color-hc);
   border-radius: 10px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   cursor: pointer;
 }
 
