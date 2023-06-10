@@ -1,4 +1,3 @@
-// variables
 const gameItems = document.querySelectorAll('.item');
 const filter = document.querySelector('.filter');
 const rangeSlider = filter?.querySelector('.range-slider__base');
@@ -40,7 +39,7 @@ const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
 const infoBlocks = document.querySelectorAll('.info-block');
 const paymentMethodsLists = document.querySelectorAll('.deposit-form__payment-methods');
 
-// function calls and events
+
 if (gameItems.length > 0) {
   gameItems.forEach(item => {
     item.addEventListener('click', event => {
@@ -316,17 +315,19 @@ if (grabBlock.length > 0) {
   const grabBlockWrapper = document.querySelectorAll('.grab-wrapper');
   grabBlockWrapper.forEach(wrapper => {
     const inner = wrapper.querySelector('.grab-block');
-    addVerticalShadows(wrapper, inner);
+    addHorizontalShadows(wrapper, inner);
 
     inner.addEventListener('scroll', () => {
-      addVerticalShadows(wrapper, inner);
+      addHorizontalShadows(wrapper, inner);
     });
 
     window.addEventListener('resize', () => {
-      addVerticalShadows(wrapper, inner);
+      addHorizontalShadows(wrapper, inner);
     });
   });
 }
+
+changeFavicon();
 
 function choseItem(event, item) {
   const { target } = event;
@@ -903,7 +904,7 @@ function grabScroll(event, element) {
   document.addEventListener('mouseup', mouseUpHandler);
 }
 
-function addVerticalShadows(wrapper, inner) {
+function addHorizontalShadows(wrapper, inner) {
   const distanceToStart = inner.scrollLeft;
   const distanceToEnd = inner.scrollWidth - distanceToStart - inner.offsetWidth;
 
@@ -956,6 +957,7 @@ function addItemsToCart(event, item) {
   const itemOrigin = item.dataset.origin;
   const header = document.querySelector(`[data-header="${itemOrigin}"]`);
   const slider = header.querySelector('.deal__items-slider');
+  const sliderWrapper = header.querySelector('.grab-wrapper');
   const amount = header.querySelector('.items-amount');
   const itemsSum = header.querySelector('.items-price');
   const id = item.id;
@@ -996,6 +998,7 @@ function addItemsToCart(event, item) {
   itemsSum.textContent = totalPrice;
   amount.textContent = totalAmount;
   if (slider) {
+    addHorizontalShadows(sliderWrapper, slider);
   }
   toggleDealHeaderPlaceholder();
 }
@@ -1197,13 +1200,36 @@ function toggleModalShadow(event, modal) {
   }
 }
 
-
 function showEndModalShadow(modal) {
   const scrollbar = modal.querySelector('.simplebar-track.simplebar-vertical');
   if (scrollbar.style.visibility === 'visible') {
     modal.classList.add('modal-shadow--bottom');
   } else {
     modal.classList.remove('modal-shadow--bottom');
+  }
+}
+
+function changeFavicon() {
+  const icoIcon = document.getElementById('favicon_ico');
+  const svgIcon = document.getElementById('favicon_svg');
+  const appleIcon = document.getElementById('favicon_apple');
+
+  const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  changePath();
+
+  isDarkTheme.addEventListener('change', changePath);
+  isDarkTheme.addListener(changePath); // for safari
+
+  function changePath() {
+    if (isDarkTheme.matches) {
+      icoIcon.href = '/favicon-dark-theme.ico';
+      svgIcon.href = '/images/favicons/dark-theme/favicon.svg';
+      appleIcon.href = '/images/favicons/dark-theme/favicon180.png'
+    } else {
+      icoIcon.href = '/favicon.ico';
+      svgIcon.href = '/images/favicons/light-theme/favicon.svg';
+      appleIcon.href = '/images/favicons/light-theme/favicon180.png';
+    }
   }
 }
 
