@@ -1222,13 +1222,13 @@ function changeFavicon() {
 
   function changePath() {
     if (isDarkTheme.matches) {
-      icoIcon.href = '/favicon-dark-theme.ico';
-      svgIcon.href = '/images/favicons/dark-theme/favicon.svg';
-      appleIcon.href = '/images/favicons/dark-theme/favicon180.png'
+      icoIcon.href = './favicon-dark-theme.ico';
+      svgIcon.href = './images/favicons/dark-theme/favicon.svg';
+      appleIcon.href = './images/favicons/dark-theme/favicon180.png'
     } else {
-      icoIcon.href = '/favicon.ico';
-      svgIcon.href = '/images/favicons/light-theme/favicon.svg';
-      appleIcon.href = '/images/favicons/light-theme/favicon180.png';
+      icoIcon.href = './favicon.ico';
+      svgIcon.href = './images/favicons/light-theme/favicon.svg';
+      appleIcon.href = './images/favicons/light-theme/favicon180.png';
     }
   }
 }
