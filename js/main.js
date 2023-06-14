@@ -38,6 +38,7 @@ const productsHeader = document.querySelector('.products__content-header');
 const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
 const infoBlocks = document.querySelectorAll('.info-block');
 const paymentMethodsLists = document.querySelectorAll('.deposit-form__payment-methods');
+const numberInputs = document.querySelectorAll('.input--number');
 
 
 if (gameItems.length > 0) {
@@ -96,6 +97,10 @@ if (modalWindow.length > 0) {
       modalOverlay.classList.remove('modal-overlay--active');
     }
   });
+}
+
+if(numberInputs.length > 0) {
+  numberInputValidation();
 }
 
 if (infoBlocks.length > 0) {
@@ -1215,7 +1220,7 @@ function changeFavicon() {
   const appleIcon = document.getElementById('favicon_apple');
 
   const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
-  
+
   changePath();
   isDarkTheme.addEventListener('change', changePath);
   isDarkTheme.addListener(changePath); // for safari
@@ -1231,6 +1236,17 @@ function changeFavicon() {
       appleIcon.href = '/images/favicons/light-theme/favicon180.png';
     }
   }
+}
+
+function numberInputValidation() {
+  numberInputs.forEach(input => {
+    input.addEventListener('input', () => {
+      let value = input.value;
+      value = value.replace(/[^.\d]+|^00+|^\./g, '')
+        .replace(/^([^\.]*\.)|\./g, '$1');
+      input.value = value;
+    });
+  });
 }
 
 

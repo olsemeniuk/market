@@ -222,6 +222,23 @@ p {
   background-color: var(--color-lc);
 }
 
+.input {
+  height: 40px;
+  padding: 0 10px;
+  color: var(--color-w);
+  background-color: var(--color-hc);
+  border-radius: 10px;
+}
+
+.input::placeholder {
+  color: var(--color-t);
+}
+
+.input:focus {
+  outline: none;
+  background-color: var(--color-chc);
+}
+
 /* page block */
 .page-block {
   background-color: var(--color-c);
@@ -1294,12 +1311,8 @@ p {
 
 .search__field {
   width: 100%;
-  height: 40px;
-  border-radius: 10px;
   background-color: var(--color-c);
   padding: 0 15px 0 45px;
-  color: var(--color-w);
-  outline: none;
 }
 
 .search__form--active .search__field {
@@ -1308,10 +1321,6 @@ p {
  
 .search__field:focus {
   background-color: var(--color-hc);
-}
-
-.search__field::placeholder {
-  color: var(--color-t);
 }
 
 .search__form-btn {
@@ -1625,6 +1634,10 @@ p {
   filter: var(--color-lc-filter);
 }
 
+.item--chosen .item__favourite-button {
+  opacity: 1;
+}
+
 .item__overlay {
   position: absolute;
   opacity: 0;
@@ -1877,26 +1890,9 @@ p {
 }
 
 .deposit-form__input {
-  height: 40px;
   width: 100px;
   margin: 0 10px 0 20px;
-  padding: 0 10px;
   text-align: center;
-  color: var(--color-w);
-  background-color: var(--color-hc);
-  border-radius: 10px;
-  -moz-appearance: textfield;
-}
-
-.deposit-form__input::-webkit-outer-spin-button,
-.deposit-form__input::-webkit-inner-spin-button {
-	appearance: none;
-	margin: 0;
-}
-
-.deposit-form__input:focus {
-  outline: none;
-  background-color: var(--color-chc);
 }
 
 .deposit-form__section-title {
@@ -2157,16 +2153,19 @@ p {
   display: flex;
   align-items: center;
   overflow: hidden;
+  width: 173px;
   margin-right: 25px;
   background-color: var(--color-hc);
   border-radius: 10px;
 }
 
-.item-order__price {
-  display: inline-block;
-  min-width: 100px;
-  padding: 0 10px;
+.item-order__input {
+  align-self: stretch;
+  width: 100%;
+  height: auto;
+  margin-right: -10px;
   text-align: center;
+  border-radius: 0;
 }
 
 .item-order__button {
@@ -2177,6 +2176,7 @@ p {
 
 .modal-item__cancel-button {
   position: relative;
+  margin-right: 10px;
   padding-left: 18px;
   color: var(--color-lc);
 }
@@ -4288,6 +4288,27 @@ p {
   .chart-container {
     height: 230px;
   }
+
+  .modal-item__info-row+.modal-item__info-row {
+    position: relative;
+    flex-direction: column;
+  }
+
+  .item-order {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .item-order__input {
+    text-align: left;
+  }
+
+  .modal-item .info-block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 @media (max-width: 500px) {
@@ -4453,28 +4474,6 @@ p {
 
   .modal-item--active {
     padding: 15px 10px;
-  }
-
-  .modal-item__info-row+.modal-item__info-row {
-    position: relative;
-    flex-direction: column;
-  }
-
-  .item-order {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-
-  .item-order__price {
-    width: 100%;
-    text-align: left;
-  }
-
-  .modal-item .info-block {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
 
   .item-orders__list-item {
