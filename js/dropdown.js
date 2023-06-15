@@ -10,6 +10,7 @@ class Dropdown {
     this.list = this.target.querySelector('.dropdown__list');
     this.listButton = this.target.querySelectorAll('.dropdown__list-button');
     this.input = this.target.querySelector('.dropdown__input');
+    this.modal = document.querySelectorAll('.modal');
   }
 
   start() {
@@ -37,9 +38,19 @@ class Dropdown {
       }
     });
 
+    this.modal.forEach(item => {
+      item.addEventListener('click', event => {
+        const { target } = event;
+        const isDropdown = Boolean(target.closest(this.selector));
+        if (!isDropdown) {
+          this.removeActiveStateOfList();
+        }
+      });
+    })
+
     window.addEventListener('resize', () => {
       this.removeActiveStateOfList();
-    })
+    });
   }
 
   toggleList() {

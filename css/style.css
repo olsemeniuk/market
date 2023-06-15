@@ -43,6 +43,7 @@
   --color-chc: #42424d;
   --color-mc: #5b3889;
   --color-lc: #72608a;
+  --color-error: #be2c19;
 
   /* filters */
   --color-mc-filter: url("#color_5B3889");
@@ -220,6 +221,23 @@ p {
 
 .btn:hover {
   background-color: var(--color-lc);
+}
+
+.input {
+  height: 40px;
+  padding: 0 10px;
+  color: var(--color-w);
+  background-color: var(--color-hc);
+  border-radius: 10px;
+}
+
+.input::placeholder {
+  color: var(--color-t);
+}
+
+.input:focus {
+  outline: none;
+  background-color: var(--color-chc);
 }
 
 /* page block */
@@ -490,17 +508,13 @@ p {
   position: relative;
   z-index: 3;
   max-width: 100%;
-  padding: 5px 0 4px;
+  padding: 4px 0 5px;
   text-align: left;
   border: 1px solid transparent;
 }
 
 .dropdown__button:hover {
   border-color: var(--color-chc);
-}
-
-.dropdown--dark .dropdown__button:hover {
-  border-color: var(--color-bg)
 }
 
 .dropdown__text-wrapper {
@@ -560,6 +574,12 @@ p {
   padding: 5px 0 2px 0;
   list-style-type: none;
   background-color: var(--color-chc);
+  border: 1px solid transparent;
+}
+
+.dropdown--dark .dropdown__list {
+  border-color: var(--color-bg);
+  border-top-color: transparent;
 }
 
 .dropdown--dark .dropdown__list {
@@ -619,13 +639,19 @@ p {
 
 .dropdown--dark.dropdown--open .dropdown__button {
   background-color: var(--color-c);
+  border-color: var(--color-bg);
+  border-bottom-color: var(--color-c);
+}
+
+.dropdown--dark .dropdown__button:hover {
+  border-color: var(--color-bg)
 }
 
 .dropdown--dark.dropdown--open .dropdown__button:hover {
-  border-color: var(--color-c);
+  border-bottom-color: var(--color-c);
 }
 
-.dropdown--open *{
+.dropdown--open * {
   transition: all 0.3s;
 }
 
@@ -1294,24 +1320,16 @@ p {
 
 .search__field {
   width: 100%;
-  height: 40px;
-  border-radius: 10px;
   background-color: var(--color-c);
   padding: 0 15px 0 45px;
-  color: var(--color-w);
-  outline: none;
 }
 
 .search__form--active .search__field {
   transition: all 0.3s;
 }
- 
+
 .search__field:focus {
   background-color: var(--color-hc);
-}
-
-.search__field::placeholder {
-  color: var(--color-t);
 }
 
 .search__form-btn {
@@ -1625,6 +1643,10 @@ p {
   filter: var(--color-lc-filter);
 }
 
+.item--chosen .item__favourite-button {
+  opacity: 1;
+}
+
 .item__overlay {
   position: absolute;
   opacity: 0;
@@ -1841,15 +1863,18 @@ p {
 }
 
 .deposit-modal {
+  display: block;
+  overflow-x: unset;
+}
+
+.deposit-modal__inner {
   display: flex;
   flex-direction: column;
-  padding: 30px 30px 40px;
-
 }
 
 .deposit-modal__header {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
   padding-right: 40px;
 }
 
@@ -1857,46 +1882,233 @@ p {
   margin-bottom: 0;
 }
 
-.deposit-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
+.deposit-modal.modal {
+  padding: 0;
+  background-color: transparent;
 }
 
-.deposit-form__section + .deposit-form__section {
+.deposit-form {
+  position: relative;
+  z-index: 99;
+  max-height: 80vh;
+  transform-style: preserve-3d;
+  transform: perspective(1200px) rotateX(0);
+  transition: all 0.8s;
+}
+
+.deposit-form--rotate {
+  transform: perspective(1200px) rotateX(180deg);
+}
+
+.deposit-modal__front,
+.deposit-modal__back {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  bottom: 0;
   width: 100%;
+  min-height: 200px;
+  max-height: 80vh;
+  padding: 30px 30px 40px;
+  overflow-x: hidden;
+  background-color: var(--color-c);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  transform: translateY(-50%);
+}
+
+.deposit-modal__front {
+  z-index: 100;
+}
+
+.deposit-form--rotate .deposit-modal__front {
+  z-index: 99;
+}
+
+.deposit-form--rotate .deposit-modal__back {
+  z-index: 100;
+}
+
+.deposit-modal__back {
+  transform: translateY(-50%) rotateX(180deg);
+}
+
+.deposit-modal__back .deposit-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 0;
+}
+
+.deposit-modal .account-title span {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-t);
+}
+
+.chosen-method {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.chosen-method__icon {
+  margin-left: 10px;
+  filter: var(--color-t-filter);
+}
+
+.deposit-form__dropdown-wrapper {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 35px;
+  margin-bottom: 30px;
+}
+
+.deposit-form__dropdown {
+  margin-left: 8px;
+}
+
+.deposit-form__dropdown .dropdown__button {
+  border-color: var(--color-chc);
+}
+
+.deposit-form__dropdown .dropdown__button:hover {
+  background-color: var(--color-chc);
+}
+
+.deposit-form__dropdown .dropdown__text,
+.deposit-form__dropdown .dropdown__list-button:hover {
+  color: var(--color-w);
+}
+
+.deposit-form__dropdown .dropdown__text-wrapper::before {
+  filter: var(--color-w-filter);
+}
+
+.deposit-form__dropdown .dropdown__list-button {
+  color: var(--color-t);
+}
+
+.deposit-form__dropdown .dropdown__list-button:before {
+  background-color: var(--color-w);
+}
+
+.deposit-form__text {
+  margin-bottom: 25px;
+}
+
+.deposit-form__buttons-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.deposit-form__section {
+  display: flex;
+}
+
+.deposit-form__section-step-two {
+  flex-wrap: wrap;
+}
+
+.deposit-form__section-methods {
+  display: block;
   margin-top: 30px;
 }
 
-.deposit-form__label {
-  display: flex;
+.deposit-form__section--items-center {
   justify-content: center;
+}
+
+.deposit-form__section--items-left {
+  justify-content: flex-start;
+}
+
+.deposit-form__label {
+  position: relative;
+  display: flex;
   align-items: center;
-  text-align: center;
+  margin-top: 25px;
+}
+
+.deposit-form__label:not(:last-of-type) {
+  margin-right: 50px;
+}
+
+.deposit-form__label-amount .deposit-form__input {
+  width: 100px;
+  margin: 0 10px 0 20px;
+}
+
+.deposit-form__label-card .deposit-form__input {
+  margin-left: 20px;
 }
 
 .deposit-form__input {
-  height: 40px;
-  width: 100px;
-  margin: 0 10px 0 20px;
-  padding: 0 10px;
   text-align: center;
-  color: var(--color-w);
-  background-color: var(--color-hc);
+  border: 2px solid transparent;
+}
+
+.deposit-form__input--error {
+  border-color: var(--color-error);
+}
+
+.input-tooltip {
+  position: absolute;
+  z-index: 30;
+  width: max-content;
+  max-width: 345px;
+  padding: 10px 15px;
+  color: var(--color-error);
+  background-color: var(--color-c);
+  border: 2px solid var(--color-error);
   border-radius: 10px;
-  -moz-appearance: textfield;
+  animation: appearing 0.3s;
 }
 
-.deposit-form__input::-webkit-outer-spin-button,
-.deposit-form__input::-webkit-inner-spin-button {
-	appearance: none;
-	margin: 0;
+.deposit-form__input-tooltip {
+  top: calc(100% + 10px);
 }
 
-.deposit-form__input:focus {
-  outline: none;
-  background-color: var(--color-chc);
+.input-tooltip__arrow {
+  position: absolute;
+  bottom: calc(100% + 1px);
+  left: 15px;
+  width: 4px;
+  height: 4px;
+  transform: translateY(50%) rotate(-45deg);
+  background-color: var(--color-c);
+}
+
+.input-tooltip.input-tooltip--right-arrow .input-tooltip__arrow {
+  left: auto;
+  right: 15px;
+}
+
+.input-tooltip__arrow::before,
+.input-tooltip__arrow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 10px;
+}
+
+.input-tooltip__arrow::before {
+  left: 0;
+  width: 8px;
+  border-top: 2px solid var(--color-error);
+  transform: rotate(-25deg) translate(0px, -2px);
+}
+
+.input-tooltip__arrow::after {
+  bottom: 0;
+  height: 8px;
+  border-left: 2px solid var(--color-error);
+  transform: rotate(26deg) translate(0px, -4px);
 }
 
 .deposit-form__section-title {
@@ -1932,13 +2144,23 @@ p {
   background-color: var(--color-chc);
 }
 
-.deposit-form__payment-radio:checked ~ .deposit-form__payment-button {
+.deposit-form__payment-radio:checked~.deposit-form__payment-button {
   border-color: var(--color-mc);
   cursor: default;
 }
 
-.deposit-form__payment-radio:checked ~ .deposit-form__payment-button:hover {
+.deposit-form__payment-radio:checked~.deposit-form__payment-button:hover {
   background-color: var(--color-hc);
+}
+
+.deposit-form__payment-radio:disabled~.deposit-form__payment-button {
+  background-color: transparent;
+  border-color: var(--color-hc);
+  cursor: default;
+}
+
+.deposit-form__payment-radio:disabled~.deposit-form__payment-button .deposit-form__payment-img {
+  opacity: 0.5;
 }
 
 .deposit-form__payment-img {
@@ -1952,23 +2174,53 @@ p {
   margin-top: auto;
 }
 
-.deposit-form__payment-text b { 
+.deposit-form__payment-text b {
   font-weight: 400;
   color: var(--color-w);
 }
 
-.deposit-form__submit {
+.deposit-form__payment-text.deposit-form__payment-text--warning,
+.deposit-form__payment-text.deposit-form__payment-text--warning b {
+  color: var(--color-error);
+}
+
+.deposit-form__button {
   display: block;
   min-width: 100px;
   margin-top: auto;
   margin-left: auto;
   font-weight: 400;
-  background-color: transparent;
-  border: 1px solid var(--color-w);
+  background-color: var(--color-mc);
+  border: 1px solid transparent;
 }
 
-.deposit-form__submit:hover {
-  background-color: var(--color-mc);
+.deposit-form__button:disabled {
+  background-color: transparent;
+  border-color: var(--color-w);
+  cursor: default;
+}
+
+.deposit-form__submit:disabled {
+  opacity: 0.5;
+}
+
+.deposit-form__back-button {
+  display: block;
+  font-weight: 400;
+  min-width: 100px;
+  color: var(--color-t);
+  background-color: transparent;
+  border: 1px solid var(--color-t);
+}
+
+.deposit-form__back-button:hover {
+  color: var(--color-w);
+  background-color: transparent;
+  border-color: var(--color-w);
+}
+
+.input--card {
+  width: 175px;
 }
 
 .modal__header {
@@ -2157,16 +2409,19 @@ p {
   display: flex;
   align-items: center;
   overflow: hidden;
+  width: 173px;
   margin-right: 25px;
   background-color: var(--color-hc);
   border-radius: 10px;
 }
 
-.item-order__price {
-  display: inline-block;
-  min-width: 100px;
-  padding: 0 10px;
+.item-order__input {
+  align-self: stretch;
+  width: 100%;
+  height: auto;
+  margin-right: -10px;
   text-align: center;
+  border-radius: 0;
 }
 
 .item-order__button {
@@ -2177,6 +2432,7 @@ p {
 
 .modal-item__cancel-button {
   position: relative;
+  margin-right: 10px;
   padding-left: 18px;
   color: var(--color-lc);
 }
@@ -2954,7 +3210,7 @@ p {
 }
 
 .fail {
-  color: #be2c19;
+  color: var(--color-error);
 }
 
 .pagination {
@@ -3165,7 +3421,7 @@ p {
 @keyframes errorInput {
   0% {
     transform: rotateZ(-2deg);
-    border-color: #be2c19;
+    border-color: var(--color-error);
   }
 
   50% {
@@ -3175,7 +3431,7 @@ p {
 
   100% {
     transform: rotateZ(-2deg);
-    border-color: #be2c19;
+    border-color: var(--color-error);
   }
 }
 
@@ -3204,7 +3460,7 @@ p {
     width: 0;
     overflow: hidden;
   }
-  
+
   .search__form--active {
     transition: all 0.3s;
   }
@@ -3299,7 +3555,7 @@ p {
     width: 0;
     overflow: hidden;
   }
-  
+
   .products__search .search__form--active {
     transition: all 0.3s;
   }
@@ -4239,13 +4495,29 @@ p {
     left: 15px;
   }
 
+  .deposit-form,
   .modal {
-    max-width: 100%;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
     max-height: 100vh;
-    overflow-y: auto;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  .deposit-modal__back,
+  .deposit-modal__front {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  .deposit-modal__back {
+    transform: translateY(-50%) rotateY(180deg);
+  }
+
+  .deposit-form--rotate {
+    transform: perspective(1200px) rotateY(180deg);
   }
 
   .modal-item__links-row {
@@ -4287,6 +4559,83 @@ p {
 
   .chart-container {
     height: 230px;
+  }
+
+  .modal-item__info-row+.modal-item__info-row {
+    position: relative;
+    flex-direction: column;
+  }
+
+  .item-order {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .item-order__input {
+    text-align: left;
+  }
+
+  .modal-item .info-block {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .deposit-modal__inner {
+    min-height: calc(100vh - 70px);
+  }
+
+  .deposit-form__section-step-two {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .deposit-form__label:not(:last-of-type) {
+    margin-right: 0;
+  }
+  
+  .deposit-form__label {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .deposit-form__input.input {
+    width: 100%;
+    margin: 10px 0 0 0;
+    text-align: left;
+  }
+
+  .deposit-form__input-dollar {
+    display: none;
+  }
+
+  .deposit-modal__back .deposit-modal__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chosen-method {
+    flex-direction: row-reverse;
+    margin-top: 15px;
+  }
+
+  .chosen-method__icon {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .input-tooltip {
+    max-width: 200px;
+  }
+
+  .deposit-form__input-tooltip {
+    left: 0 !important;
+    right: auto !important;
+  }
+  
+  .input-tooltip__arrow {
+    left: 15px !important;
   }
 }
 
@@ -4455,38 +4804,21 @@ p {
     padding: 15px 10px;
   }
 
-  .modal-item__info-row+.modal-item__info-row {
-    position: relative;
-    flex-direction: column;
-  }
-
-  .item-order {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-
-  .item-order__price {
-    width: 100%;
-    text-align: left;
-  }
-
-  .modal-item .info-block {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-
   .item-orders__list-item {
     width: calc(100% - 10px);
   }
 
   .deposit-form__payment-item,
-  .deposit-form__submit {
+  .deposit-form__button,
+  .deposit-form__back-button {
     width: 100%;
   }
 
-  .deposit-form__input {
-    flex-grow: 1;
+  .deposit-form__buttons-row {
+    flex-direction: column;
+  }
+
+  .deposit-form__buttons-row button + button {
+    margin-top: 15px;
   }
 }
