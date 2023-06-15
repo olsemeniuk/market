@@ -1379,12 +1379,12 @@ function rotateDepositModal() {
   });
 }
 
-depositForm.addEventListener('click', changeChosenPaymentMethod);
+depositForm.addEventListener('change', changeChosenPaymentMethod);
 
 
-function changeChosenPaymentMethod({ target }) {
-  const changePaymentMethodLabel = target.closest('.deposit-form__payment-label');
-  if (!changePaymentMethodLabel) return;
+function changeChosenPaymentMethod() {
+  const activePaymentMethod = depositForm.querySelector('.deposit-form__payment-radio:checked');
+  const changePaymentMethodLabel = activePaymentMethod.closest('.deposit-form__payment-label');
 
   const imageSource = changePaymentMethodLabel.querySelector('.deposit-form__payment-img').src;
   const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
@@ -1395,7 +1395,7 @@ function changeChosenPaymentMethod({ target }) {
   chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
 }
 
-errorDepositInput()
+errorDepositInput();
 
 function errorDepositInput() {
   const inputs = depositForm.querySelectorAll('.deposit-form__input');
