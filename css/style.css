@@ -1892,12 +1892,12 @@ p {
   z-index: 99;
   max-height: 80vh;
   transform-style: preserve-3d;
-  transform: perspective(1200px) rotateX(0);
-  transition: all 0.8s;
+  transform: rotateX(0);
+  transition: all 0.5s;
 }
 
 .deposit-form--rotate {
-  transform: perspective(1200px) rotateX(180deg);
+  transform: rotateX(180deg);
 }
 
 .deposit-modal__front,
