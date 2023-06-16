@@ -1366,6 +1366,10 @@ function rotateDepositModal() {
     const isBackButton = target.closest('.deposit-form__back-button')
     if (isProceedButton || isBackButton) {
       depositForm.classList.toggle('deposit-form--rotate');
+      depositModal.style.perspective = '1200px';
+      setTimeout(() => {
+        depositModal.style.perspective = 'none';
+      }, 500);
 
       const isFlipped = depositForm.classList.contains('deposit-form--rotate');
       if (isFlipped) {
@@ -1384,7 +1388,9 @@ depositForm.addEventListener('change', changeChosenPaymentMethod);
 
 function changeChosenPaymentMethod() {
   const activePaymentMethod = depositForm.querySelector('.deposit-form__payment-radio:checked');
-  const changePaymentMethodLabel = activePaymentMethod.closest('.deposit-form__payment-label');
+  const changePaymentMethodLabel = activePaymentMethod?.closest('.deposit-form__payment-label');
+
+  if (!changePaymentMethodLabel) return;
 
   const imageSource = changePaymentMethodLabel.querySelector('.deposit-form__payment-img').src;
   const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
@@ -1424,14 +1430,16 @@ function errorDepositInput() {
         const tooltipText = tooltip.querySelector('.input-tooltip__text');
         tooltipText.textContent = `please, choose amount between $${min} and $${max}`;
 
-        if (tooltip.getBoundingClientRect().right > parentModal.clientWidth) {
+        tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
+        tooltip.style.right = 'auto';
+        tooltip.classList.remove('input-tooltip--right-arrow');
+        
+        const leftDocumentField = (document.documentElement.clientWidth - parentModal.clientWidth) / 2;
+        const tooltipOffsetRight = tooltip.getBoundingClientRect().right - leftDocumentField;
+        if (tooltipOffsetRight > parentModal.clientWidth) {
           tooltip.style.left = 'auto';
           tooltip.style.right = `${inputWidth / 2}px`;
           tooltip.classList.add('input-tooltip--right-arrow');
-        } else {
-          tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
-          tooltip.style.right = 'auto';
-          tooltip.classList.remove('input-tooltip--right-arrow');
         }
 
         setTimeout(() => {
@@ -1452,7 +1460,6 @@ function createInputErrorTooltip() {
   tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`
   return tooltip;
 }
-
 
 bankCardInputValidation();
 
