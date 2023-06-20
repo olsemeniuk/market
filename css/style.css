@@ -2149,7 +2149,8 @@ p {
   background-color: var(--color-hc);
 }
 
-.payment-form__payment-radio:disabled~.payment-form__payment-button {
+.payment-form__payment-radio:disabled~.payment-form__payment-button,
+.payment-form__payment-radio:disabled~.payment-form__payment-button:hover {
   background-color: transparent;
   border-color: var(--color-hc);
   cursor: default;
