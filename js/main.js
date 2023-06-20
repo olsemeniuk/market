@@ -37,12 +37,9 @@ const deal = document.querySelector('.deal');
 const productsHeader = document.querySelector('.products__content-header');
 const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
 const infoBlocks = document.querySelectorAll('.info-block');
-const paymentMethodsLists = document.querySelectorAll('.deposit-form__payment-methods');
 const numberInputs = document.querySelectorAll('.input--number');
 const depositModal = document.querySelector('.deposit-modal');
-const depositForm = depositModal.querySelector('.deposit-form');
-const depositAmount = depositModal.querySelector('#deposit_input');
-const depositRadios = depositModal.querySelectorAll('.deposit-form__payment-radio');
+const paymentModals = document.querySelectorAll('.payment-modal');
 const flipBlocks = document.querySelectorAll('.flip');
 
 
@@ -124,18 +121,34 @@ if (infoBlocks.length > 0) {
   })
 }
 
-if (depositOpenButtons.length > 0) {
-  depositOpenButtons.forEach(button => {
-    button.addEventListener('click', openDepositModal);
-  });
+if (paymentModals.length > 0) {
+  if (depositOpenButtons.length > 0) {
+    depositOpenButtons.forEach(button => {
+      button.addEventListener('click', openDepositModal);
+    });
+  }
 
-  handleDepositProceedButton();
-  handleDepositSubmitButton();
-  depositForm.addEventListener('input', () => {
-    handleDepositProceedButton();
-    handleDepositSubmitButton();
+  paymentModals.forEach(modal => {
+    handlePaymentProceedButton(modal);
+    handlePaymentSubmitButton(modal);
+    errorPaymentInput(modal);
+
+    const form = modal.querySelector('.payment-form');
+    const frontAmountInput = modal.querySelector('.payment-form__front-amount-input')
+
+    frontAmountInput.addEventListener('input', () => {
+      paymentMethodsMinMax(modal);
+    });
+
+    form.addEventListener('change', () => {
+      changeChosenPaymentMethod(modal);
+    })
+
+    form.addEventListener('input', () => {
+      handlePaymentProceedButton(modal);
+      handlePaymentSubmitButton(modal);
+    });
   });
-  depositAmount.addEventListener('input', paymentMethodsMinMax);
 
   new Dropdown('#deposit_currency_dropdown').start();
 }
@@ -711,10 +724,14 @@ function closeInfoModal(button) {
 function openDepositModal() {
   depositModal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
+  handleFilpHeight(depositModal)
+}
 
-  const front = depositForm.querySelector('.flip__front');
+function handleFilpHeight(parentBlock) {
+  const flip = parentBlock.querySelector('.flip');
+  const front = flip.querySelector('.flip__front');
   front.style.height = `${front.scrollHeight}px`;
-  depositForm.style.height = `${front.scrollHeight}px`;
+  flip.style.height = `${front.scrollHeight}px`;
 }
 
 function renderChart(item) {
@@ -1286,28 +1303,56 @@ function numberInputValidation() {
   });
 }
 
-function handleDepositProceedButton() {
-  const proceedButton = depositModal.querySelector('.deposit-form__proceed');
+function handlePaymentProceedButton(modal) {
+  const proceedButton = modal.querySelector('.payment-form__proceed');
+  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
+  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
+  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
 
-  const inputIsEmpty = depositAmount.value === '';
+  const isWithdrawModal = modal.classList.contains('withdraw-modal');
+  let amountIsEmpty = false;
+
+  if (isWithdrawModal) {
+    const withdrawAmount = modal.querySelector('#withdraw_input');
+    amountIsEmpty = withdrawAmount.value === '';
+  }
+
   let radiosAreNotChecked = true;
 
-  depositRadios.forEach(radio => {
+  paymentRadios.forEach(radio => {
     if (radio.checked) radiosAreNotChecked = false;
   });
 
-  if (inputIsEmpty || radiosAreNotChecked) {
+  if (amountIsEmpty || radiosAreNotChecked) {
     proceedButton.disabled = true;
+    proceedButtonWrapper.classList.add('payment-form__proceed-wrapper--active');
   } else {
     proceedButton.disabled = false;
+    proceedButtonWrapper.classList.remove('payment-form__proceed-wrapper--active');
   }
+
+  proceedButtonWrapper.addEventListener('click', () => {
+    if (proceedButton.disabled === true) {
+      paymentMethods.forEach(method => {
+        method.classList.add('input--error');
+      });
+      const tooltipHTML = paymentMethodsBlock.querySelector('.input-tooltip');
+      const tooltip = createInputErrorTooltip()
+      if (!tooltipHTML) paymentMethodsBlock.append(tooltip);
+      const tooltipText = tooltip.querySelector('.input-tooltip__text');
+      tooltipText.textContent = `please, choose payment method`;
+      setTimeout(() => {
+        tooltip.remove();
+      }, 2000)
+    }
+  });
 }
 
-
-function handleDepositSubmitButton() {
-  const submitButton = depositModal.querySelector('.deposit-form__submit');
-  const cardInput = depositModal.querySelector('#deposit_input_card');
-  const inputs = depositModal.querySelectorAll('.deposit-form__input');
+function handlePaymentSubmitButton(modal) {
+  const submitButton = modal.querySelector('.payment-form__submit');
+  const cardInput = modal.querySelector('.payment-form__input.input--card');
+  const inputs = modal.querySelectorAll('.payment-form__input');
 
   const noCard = cardInput.value.length < 19;
   let emptyInputs = false;
@@ -1330,33 +1375,36 @@ function handleDepositSubmitButton() {
   }
 }
 
-function paymentMethodsMinMax() {
-  const inputValue = Number(depositAmount.value);
-  depositRadios.forEach(radio => {
+function paymentMethodsMinMax(modal) {
+  const frontAmountInput = modal.querySelector('.payment-form__front-amount-input');
+  const paymentRadios = document.querySelectorAll('.payment-form__payment-radio');
+  const inputValue = Number(frontAmountInput.value);
+
+  paymentRadios.forEach(radio => {
     const paymentMin = Number(radio.dataset.min);
     const paymentMax = Number(radio.dataset.max);
     const comission = radio.dataset.comission;
-    const parentLabel = radio.closest('.deposit-form__payment-label');
-    const text = parentLabel.querySelector('.deposit-form__payment-text');
+    const parentLabel = radio.closest('.payment-form__payment-label');
+    const text = parentLabel.querySelector('.payment-form__payment-text');
 
-    if (depositAmount.value === '') {
+    if (frontAmountInput.value === '') {
       radio.disabled = false;
       text.innerHTML = `comission: <b>${comission}%</b>`;
-      text.classList.remove('deposit-form__payment-text--warning');
+      text.classList.remove('payment-form__payment-text--warning');
     } else if (inputValue < paymentMin) {
       radio.disabled = true;
       radio.checked = false;
       text.innerHTML = `from: <b>${paymentMin}$</b>`;
-      text.classList.add('deposit-form__payment-text--warning');
+      text.classList.add('payment-form__payment-text--warning');
     } else if (inputValue > paymentMax) {
       radio.disabled = true;
       radio.checked = false;
       text.innerHTML = `up to: <b>${paymentMax}$</b>`;
-      text.classList.add('deposit-form__payment-text--warning');
+      text.classList.add('payment-form__payment-text--warning');
     } else {
       radio.disabled = false;
       text.innerHTML = `comission: <b>${comission}%</b>`;
-      text.classList.remove('deposit-form__payment-text--warning');
+      text.classList.remove('payment-form__payment-text--warning');
     }
   });
 }
@@ -1389,34 +1437,34 @@ function rotateFlipBlock() {
   });
 }
 
-depositForm.addEventListener('change', changeChosenPaymentMethod);
-
-function changeChosenPaymentMethod() {
-  const activePaymentMethod = depositForm.querySelector('.deposit-form__payment-radio:checked');
-  const changePaymentMethodLabel = activePaymentMethod?.closest('.deposit-form__payment-label');
+function changeChosenPaymentMethod(modal) {
+  const activePaymentMethod = modal.querySelector('.payment-form__payment-radio:checked');
+  const changePaymentMethodLabel = activePaymentMethod?.closest('.payment-form__payment-label');
 
   if (!changePaymentMethodLabel) return;
+  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  paymentMethods.forEach(method => {
+    method.classList.remove('input--error');
+  });
 
-  const imageSource = changePaymentMethodLabel.querySelector('.deposit-form__payment-img').src;
+  const imageSource = changePaymentMethodLabel.querySelector('.payment-form__payment-img').src;
   const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
-  let paymentMethodName = changePaymentMethodLabel.querySelector('.deposit-form__payment-radio').dataset.paymentMethod;
+  let paymentMethodName = changePaymentMethodLabel.querySelector('.payment-form__payment-radio').dataset.paymentMethod;
   paymentMethodName = paymentMethodName[0].toUpperCase() + paymentMethodName.slice(1).toLowerCase();
 
   const chosenMethodElement = document.querySelector('.chosen-method');
   chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
 }
 
-errorDepositInput();
-
-function errorDepositInput() {
-  const inputs = depositForm.querySelectorAll('.deposit-form__input');
+function errorPaymentInput(modal) {
+  const inputs = modal.querySelectorAll('.payment-form__input');
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       const min = input.dataset.min;
       const max = input.dataset.max;
       if (!min || !max) return;
 
-      const parentLabel = input.closest('.deposit-form__label');
+      const parentLabel = input.closest('.payment-form__label');
       const parentModal = input.closest('.modal');
 
       const inputValue = Number(input.value);
@@ -1461,7 +1509,7 @@ function errorDepositInput() {
 
 function createInputErrorTooltip() {
   const tooltip = document.createElement('span');
-  tooltip.className = 'deposit-form__input-tooltip input-tooltip';
+  tooltip.className = 'input-tooltip';
   tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`;
   return tooltip;
 }
@@ -1469,46 +1517,45 @@ function createInputErrorTooltip() {
 bankCardInputValidation();
 
 function bankCardInputValidation() {
-  const input = document.querySelector('#deposit_input_card');
+  const cardInputs = document.querySelectorAll('.payment-form__input.input--card');
 
-  input.addEventListener('input', () => {
-    input.classList.remove('input--error');
-    input.value = input.value.replaceAll(/\D/gi, '');
-
-    let pattern = '**** **** **** ****';
-    let value = input.value;
-    value = getPatternedValue(value, pattern);
-    input.value = value;
-
-    function getPatternedValue(string, pattern) {
-      let newString = '';
-      let counter = 0;
-
-      for (let i = 0; i < pattern.length; i++) {
-        if (!string[counter]) continue;
-        if (pattern[i] === '*') {
-          newString += string[counter];
-          counter++;
-          continue;
-        }
-        newString += pattern[i];
-      }
-
-      return newString;
-    }
-  });
-
-  input.addEventListener('change', () => {
-    const value = input.value;
-    if (value.length < 19) {
-      input.classList.add('input--error');
-    } else {
+  cardInputs.forEach(input => {
+    input.addEventListener('input', () => {
       input.classList.remove('input--error');
-    }
+      input.value = input.value.replaceAll(/\D/gi, '');
+
+      let pattern = '**** **** **** ****';
+      let value = input.value;
+      value = getPatternedValue(value, pattern);
+      input.value = value;
+
+      function getPatternedValue(string, pattern) {
+        let newString = '';
+        let counter = 0;
+
+        for (let i = 0; i < pattern.length; i++) {
+          if (!string[counter]) continue;
+          if (pattern[i] === '*') {
+            newString += string[counter];
+            counter++;
+            continue;
+          }
+          newString += pattern[i];
+        }
+
+        return newString;
+      }
+    });
+    input.addEventListener('change', () => {
+      const value = input.value;
+      if (value.length < 19) {
+        input.classList.add('input--error');
+      } else {
+        input.classList.remove('input--error');
+      }
+    });
   });
 }
-
-
 
 
 // chart

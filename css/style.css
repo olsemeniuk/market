@@ -1862,27 +1862,27 @@ p {
   animation: appearing 0.3s;
 }
 
-.deposit-modal {
+.payment-modal {
   display: block;
   overflow-x: unset;
 }
 
-.deposit-modal__inner {
+.payment-modal__inner {
   display: flex;
   flex-direction: column;
 }
 
-.deposit-modal__header {
+.payment-modal__header {
   position: relative;
   margin-bottom: 15px;
   padding-right: 40px;
 }
 
-.deposit-modal .account-title {
+.payment-modal .account-title {
   margin-bottom: 0;
 }
 
-.deposit-modal.modal {
+.payment-modal.modal {
   padding: 0;
   background-color: transparent;
 }
@@ -1935,14 +1935,14 @@ p {
   transform: translateY(-50%) rotateX(180deg);
 }
 
-.flip__back .deposit-modal__header {
+.flip__back .payment-modal__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-right: 0;
 }
 
-.deposit-modal .account-title span {
+.payment-modal .account-title span {
   font-weight: 400;
   font-size: 14px;
   color: var(--color-t);
@@ -1959,101 +1959,113 @@ p {
   filter: var(--color-t-filter);
 }
 
-.deposit-form__dropdown-wrapper {
+.payment-form__dropdown-wrapper {
   display: inline-block;
   align-self: flex-start;
   margin-top: 35px;
   margin-bottom: 30px;
 }
 
-.deposit-form__dropdown {
+.payment-form__dropdown {
   margin-left: 8px;
 }
 
-.deposit-form__dropdown .dropdown__button {
+.payment-form__dropdown .dropdown__button {
   border-color: var(--color-chc);
 }
 
-.deposit-form__dropdown .dropdown__button:hover {
+.payment-form__dropdown .dropdown__button:hover {
   background-color: var(--color-chc);
 }
 
-.deposit-form__dropdown .dropdown__text,
-.deposit-form__dropdown .dropdown__list-button:hover {
+.payment-form__dropdown .dropdown__text,
+.payment-form__dropdown .dropdown__list-button:hover {
   color: var(--color-w);
 }
 
-.deposit-form__dropdown .dropdown__text-wrapper::before {
+.payment-form__dropdown .dropdown__text-wrapper::before {
   filter: var(--color-w-filter);
 }
 
-.deposit-form__dropdown .dropdown__list-button {
+.payment-form__dropdown .dropdown__list-button {
   color: var(--color-t);
 }
 
-.deposit-form__dropdown .dropdown__list-button:before {
+.payment-form__dropdown .dropdown__list-button:before {
   background-color: var(--color-w);
 }
 
-.deposit-form__text {
+.payment-form__text {
   margin-bottom: 25px;
 }
 
-.deposit-form__buttons-row {
+.payment-form__buttons-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
 }
 
-.deposit-form__section {
+.payment-form__section {
   display: flex;
 }
 
-.deposit-form__section-step-two {
+.payment-form__section-step-two {
   flex-wrap: wrap;
 }
 
-.deposit-form__section-methods {
+.payment-form__section-methods {
+  position: relative;
   display: block;
   margin-top: 30px;
 }
 
-.deposit-form__section--items-center {
+.payment-form__section-methods .input-tooltip {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 50px 30px var(--color-c);
+}
+
+.payment-form__section-methods .input-tooltip .input-tooltip__arrow {
+  display: none;
+}
+
+.payment-form__section--items-center {
   justify-content: center;
 }
 
-.deposit-form__section--items-left {
+.payment-form__section--items-left {
   justify-content: flex-start;
 }
 
-.deposit-form__label {
+.payment-form__label {
   position: relative;
   display: flex;
   align-items: center;
   margin-top: 25px;
 }
 
-.deposit-form__label:not(:last-of-type) {
+.payment-form__label:not(:last-of-type) {
   margin-right: 50px;
 }
 
-.deposit-form__label-amount .deposit-form__input {
+.payment-form__label-amount .payment-form__input {
   width: 100px;
   margin: 0 10px 0 20px;
 }
 
-.deposit-form__label-card .deposit-form__input {
+.payment-form__label-card .payment-form__input {
   margin-left: 20px;
 }
 
-.deposit-form__input {
+.payment-form__input {
   text-align: center;
   border: 2px solid transparent;
 }
 
 .input--error {
-  border-color: var(--color-error);
+  border-color: var(--color-error) !important;
 }
 
 .input-tooltip {
@@ -2069,7 +2081,7 @@ p {
   animation: appearing 0.3s;
 }
 
-.deposit-form__input-tooltip {
+.payment-form__label .input-tooltip {
   top: calc(100% + 10px);
 }
 
@@ -2111,24 +2123,24 @@ p {
   transform: rotate(26deg) translate(0px, -4px);
 }
 
-.deposit-form__section-title {
+.payment-form__section-title {
   margin-bottom: 20px;
 }
 
-.deposit-form__payment-methods {
+.payment-form__payment-methods {
   display: flex;
   flex-wrap: wrap;
   margin-right: -20px;
   margin-bottom: 10px;
 }
 
-.deposit-form__payment-item {
+.payment-form__payment-item {
   width: calc(25% - 20px);
   margin-right: 20px;
   margin-bottom: 20px;
 }
 
-.deposit-form__payment-button {
+.payment-form__payment-button {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2140,51 +2152,70 @@ p {
   cursor: pointer;
 }
 
-.deposit-form__payment-button:hover {
+.payment-form__payment-button:hover {
   background-color: var(--color-chc);
 }
 
-.deposit-form__payment-radio:checked~.deposit-form__payment-button {
+.payment-form__payment-radio:checked~.payment-form__payment-button {
   border-color: var(--color-mc);
   cursor: default;
 }
 
-.deposit-form__payment-radio:checked~.deposit-form__payment-button:hover {
+.payment-form__payment-radio:checked~.payment-form__payment-button:hover {
   background-color: var(--color-hc);
 }
 
-.deposit-form__payment-radio:disabled~.deposit-form__payment-button {
+.payment-form__payment-radio:disabled~.payment-form__payment-button {
   background-color: transparent;
   border-color: var(--color-hc);
   cursor: default;
 }
 
-.deposit-form__payment-radio:disabled~.deposit-form__payment-button .deposit-form__payment-img {
+.payment-form__payment-radio:disabled~.payment-form__payment-button .payment-form__payment-img {
   opacity: 0.5;
 }
 
-.deposit-form__payment-img {
+.payment-form__payment-img {
   width: 42px;
   margin-bottom: 5px;
   object-fit: contain;
   object-position: center;
 }
 
-.deposit-form__payment-text {
+.payment-form__payment-text {
   margin-top: auto;
 }
 
-.deposit-form__payment-text b {
+.payment-form__payment-text b {
   font-weight: 400;
   color: var(--color-w);
 }
 
-.deposit-form__payment-text.deposit-form__payment-text--warning,
-.deposit-form__payment-text.deposit-form__payment-text--warning b {
+.payment-form__payment-text.payment-form__payment-text--warning,
+.payment-form__payment-text.payment-form__payment-text--warning b {
   color: var(--color-error);
 }
 
-.deposit-form__button {
+.payment-form__proceed-wrapper {
+  position: relative;
+  z-index: 99;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.payment-form__proceed-wrapper--active::after {
+  content: "";
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.payment-form__button {
   display: block;
   min-width: 100px;
   margin-top: auto;
@@ -2194,17 +2225,17 @@ p {
   border: 1px solid transparent;
 }
 
-.deposit-form__button:disabled {
+.payment-form__button:disabled {
   background-color: transparent;
   border-color: var(--color-w);
   cursor: default;
 }
 
-.deposit-form__submit:disabled {
+.payment-form__submit:disabled {
   opacity: 0.5;
 }
 
-.deposit-form__back-button {
+.payment-form__back-button {
   display: block;
   font-weight: 400;
   min-width: 100px;
@@ -2213,7 +2244,7 @@ p {
   border: 1px solid var(--color-t);
 }
 
-.deposit-form__back-button:hover {
+.payment-form__back-button:hover {
   color: var(--color-w);
   background-color: transparent;
   border-color: var(--color-w);
@@ -4072,7 +4103,7 @@ p {
     padding: 0;
   }
 
-  .deposit-form__payment-item {
+  .payment-form__payment-item {
     width: calc(100% / 3 - 20px);
   }
 }
@@ -4548,7 +4579,7 @@ p {
     width: calc(50% - 5px);
   }
 
-  .deposit-form__payment-item {
+  .payment-form__payment-item {
     width: calc(50% - 20px);
   }
 
@@ -4582,35 +4613,35 @@ p {
     bottom: 0;
   }
 
-  .deposit-modal__inner {
+  .payment-modal__inner {
     min-height: calc(100vh - 70px);
   }
 
-  .deposit-form__section-step-two {
+  .payment-form__section-step-two {
     flex-direction: column;
     align-items: center;
   }
 
-  .deposit-form__label:not(:last-of-type) {
+  .payment-form__label:not(:last-of-type) {
     margin-right: 0;
   }
   
-  .deposit-form__label {
+  .payment-form__label {
     flex-wrap: wrap;
     width: 100%;
   }
 
-  .deposit-form__input.input {
+  .payment-form__input.input {
     width: 100%;
     margin: 10px 0 0 0;
     text-align: left;
   }
 
-  .deposit-form__input-dollar {
+  .payment-form__input-dollar {
     display: none;
   }
 
-  .flip__back .deposit-modal__header {
+  .flip__back .payment-modal__header {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -4626,15 +4657,16 @@ p {
   }
 
   .input-tooltip {
-    max-width: 200px;
-  }
-
-  .deposit-form__input-tooltip {
-    left: 0 !important;
-    right: auto !important;
+    max-width: 300px;
   }
   
-  .input-tooltip__arrow {
+  .payment-form__label .input-tooltip {
+    left: 0 !important;
+    right: auto !important;
+    max-width: 200px;
+  }
+  
+  .payment-form__label .input-tooltip .input-tooltip__arrow {
     left: 15px !important;
   }
 }
@@ -4808,17 +4840,21 @@ p {
     width: calc(100% - 10px);
   }
 
-  .deposit-form__payment-item,
-  .deposit-form__button,
-  .deposit-form__back-button {
+  .payment-form__proceed-wrapper {
+    align-self: stretch;
+  }
+
+  .payment-form__payment-item,
+  .payment-form__button,
+  .payment-form__back-button {
     width: 100%;
   }
 
-  .deposit-form__buttons-row {
+  .payment-form__buttons-row {
     flex-direction: column;
   }
 
-  .deposit-form__buttons-row button + button {
+  .payment-form__buttons-row button + button {
     margin-top: 15px;
   }
 }
