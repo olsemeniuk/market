@@ -2196,6 +2196,10 @@ p {
   color: var(--color-error);
 }
 
+.payment-form__payment-text.payment-form__payment-text--warning b {
+  font-weight: 700;
+}
+
 .payment-form__proceed-wrapper {
   position: relative;
   z-index: 99;
