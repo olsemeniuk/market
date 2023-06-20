@@ -170,11 +170,9 @@ if (paymentModals.length > 0) {
       handlePaymentSubmitButton(modal);
     });
 
-    const proceedButtonWrapper = document.querySelectorAll('.payment-form__proceed-wrapper');
-    proceedButtonWrapper.forEach(wrapper => {
-      wrapper.addEventListener('click', () => {
-        disabledProceedButtonClick(wrapper, modal);
-      });
+    const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
+    proceedButtonWrapper.addEventListener('click', () => {
+      disabledProceedButtonClick(proceedButtonWrapper, modal);
     });
   });
 }
@@ -637,7 +635,7 @@ function chengeEmail() {
   } else {
     emailForm.classList.toggle('user__email-form--active');
     const isActive = emailForm.classList.contains('user__email-form--active');
-    
+
     if (isActive) {
       emailFormInput.disabled = false;
       emailFormLabel.style.width = 0;
@@ -1349,7 +1347,9 @@ function handlePaymentProceedButton(modal) {
   }
   let radiosAreNotChecked = true;
   paymentRadios.forEach(radio => {
-    if (radio.checked) radiosAreNotChecked = false;
+    if (radio.disabled === false) {
+      if (radio.checked) radiosAreNotChecked = false;
+    }
   });
   if (amountIsEmpty || radiosAreNotChecked) {
     proceedButton.disabled = true;
@@ -1377,7 +1377,9 @@ function disabledProceedButtonClick(wrapper, modal) {
   }
 
   paymentRadios.forEach(radio => {
-    if (radio.checked) radiosAreNotChecked = false;
+    if (radio.disabled === false) {
+      if (radio.checked) radiosAreNotChecked = false;
+    }
   });
 
   if (button.disabled === true) {
@@ -1461,12 +1463,10 @@ function paymentMethodsMinMax(modal) {
       text.classList.remove('payment-form__payment-text--warning');
     } else if (inputValue < paymentMin) {
       radio.disabled = true;
-      radio.checked = false;
       text.innerHTML = `from: <b>${paymentMin}$</b>`;
       text.classList.add('payment-form__payment-text--warning');
     } else if (inputValue > paymentMax) {
       radio.disabled = true;
-      radio.checked = false;
       text.innerHTML = `up to: <b>${paymentMax}$</b>`;
       text.classList.add('payment-form__payment-text--warning');
     } else {
