@@ -206,8 +206,8 @@
           </div>
           <div class="header__user-wrapper header__user--notification header__user--off">
             <a class="header__user" href="#">
-              <img class="header__user-img" width="48" height="48" src="images/user-img.jpg" srcset="images/x2/user-img-2x.jpg 2x,
-                        images/x3/user-img-3x.jpg 3x" sizes="48px" alt="">
+              <img class="header__user-img" width="48" height="48" src="images/user-img.jpg"
+                srcset="images/x2/user-img-2x.jpg 2x, images/x3/user-img-3x.jpg 3x" sizes="48px" alt="">
             </a>
           </div>
           <a class="header__sign-in btn" href="./account.html">sign in</a>
@@ -2329,7 +2329,7 @@
                           <button class="item-order__button btn" type="submit">order</button>
                         </form>
                         <button class="modal-item__cancel-button" type="button">cancel $10 order</button>
-                        <div class="info-block"> 
+                        <div class="info-block">
                           <div class="modal info-block__modal modal-shadow">
                             <div class="modal__header">
                               <button class="modal__close" type="button">
@@ -4699,7 +4699,8 @@
           <fieldset class="deposit-form__section deposit-form__section--items-center">
             <label class="deposit-form__label deposit-form__label-amount" for="deposit_input">
               amount:
-              <input class="deposit-form__input input input--number" id="deposit_input" type="text" name="depositInput" inputmode="numeric" placeholder="0">
+              <input class="deposit-form__input input input--number" id="deposit_input" type="text" name="depositInput"
+                inputmode="numeric" placeholder="0">
               <span class="deposit-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -4722,8 +4723,8 @@
                   <input class="deposit-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="deposit-form__payment-button">
-                    <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/bitcoin.png"
-                      srcset="" sizes="42" alt="">
+                    <img class="deposit-form__payment-img" width="42" height="42"
+                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
                     <span class="deposit-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -4744,8 +4745,8 @@
                   <input class="deposit-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="deposit-form__payment-button">
-                    <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/bitcoin.png"
-                      srcset="" sizes="42" alt="">
+                    <img class="deposit-form__payment-img" width="42" height="42"
+                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
                     <span class="deposit-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -4755,8 +4756,8 @@
                   <input class="deposit-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="deposit-form__payment-button">
-                    <img class="deposit-form__payment-img" width="42" height="42" src="images/payment-methods/bitcoin.png"
-                      srcset="" sizes="42" alt="">
+                    <img class="deposit-form__payment-img" width="42" height="42"
+                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
                     <span class="deposit-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -4775,50 +4776,55 @@
           <fieldset class="deposit-form__section deposit-form__section-step-two deposit-form__section--items-center">
             <label class="deposit-form__label deposit-form__label-card" for="deposit_input_card">
               your card number:
-              <input class="deposit-form__input input input--card" id="deposit_input_card" type="text" name="depositInputCard" inputmode="numeric" placeholder="5555 4444 7348 2143">
+              <input class="deposit-form__input input input--card" id="deposit_input_card" type="text"
+                name="depositInputCard" inputmode="numeric" placeholder="5555 4444 7348 2143">
             </label>
           </fieldset>
           <fieldset class="deposit-form__section deposit-form__section-step-two deposit-form__section--items-left">
             <label class="deposit-form__label deposit-form__label-amount" for="deposit_input_amount-1">
               amount:
-              <input class="deposit-form__input input input--number" id="deposit_input_amount-1" type="text" name="depositInputAmount1" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="deposit-form__input input input--number" id="deposit_input_amount-1" type="text"
+                name="depositInputAmount1" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
               <span class="deposit-form__input-dollar">$</span>
             </label>
             <label class="deposit-form__label deposit-form__label-amount" for="deposit_input_amount-2">
               amount:
-              <input class="deposit-form__input input input--number" id="deposit_input_amount-2" type="text" name="depositInputAmount2" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="deposit-form__input input input--number" id="deposit_input_amount-2" type="text"
+                name="depositInputAmount2" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
               <span class="deposit-form__input-dollar">$</span>
             </label>
           </fieldset>
-            <label class="deposit-form__dropdown-wrapper">
-              choose smth:
-              <div class="dropdown dropdown-currency deposit-form__dropdown" id="deposit_currency_dropdown">
-                <button class="dropdown__button" type="button">
-                  <span class="dropdown__text-wrapper">
-                    <span class="dropdown__text"></span>
-                  </span>
-                </button>
-                <div class="dropdown__list-wrapper">
-                  <ul class="dropdown__list">
-                    <li class="dropdown__item">
-                      <button class="dropdown__list-button" type="button">€ eur</button>
-                    </li>
-                    <li class="dropdown__item">
-                      <button class="dropdown__list-button" type="button">$ usd</button>
-                    </li>
-                    <li class="dropdown__item">
-                      <button class="dropdown__list-button" type="button">₽ rub</button>
-                    </li>
-                    <li class="dropdown__item">
-                      <button class="dropdown__list-button" type="button">£ gbp</button>
-                    </li>
-                  </ul>
-                </div>
-                <input class="dropdown__input" id="deposit_currency_input" type="text" name="depositCurrencyInput"
-                  aria-hidden="true">
+          <label class="deposit-form__dropdown-wrapper">
+            choose smth:
+            <div class="dropdown dropdown-currency deposit-form__dropdown" id="deposit_currency_dropdown">
+              <button class="dropdown__button" type="button">
+                <span class="dropdown__text-wrapper">
+                  <span class="dropdown__text"></span>
+                </span>
+              </button>
+              <div class="dropdown__list-wrapper">
+                <ul class="dropdown__list">
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">€ eur</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">$ usd</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">₽ rub</button>
+                  </li>
+                  <li class="dropdown__item">
+                    <button class="dropdown__list-button" type="button">£ gbp</button>
+                  </li>
+                </ul>
               </div>
-            </label>
-          <p class="deposit-form__text">Some information about commission, or smth else, bla-bla-bla Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+              <input class="dropdown__input" id="deposit_currency_input" type="text" name="depositCurrencyInput"
+                aria-hidden="true">
+            </div>
+          </label>
+          <p class="deposit-form__text">Some information about commission, or smth else, bla-bla-bla Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
           <div class="deposit-form__buttons-row">
             <button class="deposit-form__back-button btn" type="button">back</button>
             <button class="deposit-form__submit deposit-form__button btn" type="submit">deposit</button>
@@ -4827,6 +4833,24 @@
       </div>
     </form>
   </div>
+  <!-- <div class="modal auth modal-shadow">
+    <button class="modal__close" type="button">
+      <span class="visually-hidden">Close modal popup</span>
+    </button>
+    <h2 class="auth__title">auth</h2>
+    <form class="auth__form" action="#">
+      <fieldset class="auth__block">
+        <input class="auth__input input" type="text" placeholder="name">
+        <input class="auth__input input" type="email" placeholder="mail">
+        <input class="auth__input input" id="auth_password" type="password" placeholder="password">
+        <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
+        <div class="auth__buttons-row">
+
+        </div>
+      </fieldset>
+      <fieldset class="auth__block"></fieldset>
+    </form>
+  </div> -->
 
 
   <!-- svg color filters -->

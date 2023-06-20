@@ -1887,7 +1887,7 @@ p {
   background-color: transparent;
 }
 
-.deposit-form {
+.flip {
   position: relative;
   z-index: 99;
   max-height: 80vh;
@@ -1896,12 +1896,12 @@ p {
   transition: all 0.5s;
 }
 
-.deposit-form--rotate {
+.flip--rotate {
   transform: rotateX(180deg);
 }
 
-.deposit-modal__front,
-.deposit-modal__back {
+.flip__front,
+.flip__back {
   position: absolute;
   top: 50%;
   right: 0;
@@ -1919,23 +1919,23 @@ p {
   transform: translateY(-50%);
 }
 
-.deposit-modal__front {
+.flip__front {
   z-index: 100;
 }
 
-.deposit-form--rotate .deposit-modal__front {
+.flip--rotate .flip__front {
   z-index: 99;
 }
 
-.deposit-form--rotate .deposit-modal__back {
+.flip--rotate .flip__back {
   z-index: 100;
 }
 
-.deposit-modal__back {
+.flip__back {
   transform: translateY(-50%) rotateX(180deg);
 }
 
-.deposit-modal__back .deposit-modal__header {
+.flip__back .deposit-modal__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2052,7 +2052,7 @@ p {
   border: 2px solid transparent;
 }
 
-.deposit-form__input--error {
+.input--error {
   border-color: var(--color-error);
 }
 
@@ -4495,7 +4495,7 @@ p {
     left: 15px;
   }
 
-  .deposit-form,
+  .flip,
   .modal {
     max-height: 100vh;
     max-width: 100%;
@@ -4505,18 +4505,18 @@ p {
     border-radius: 0;
   }
 
-  .deposit-modal__back,
-  .deposit-modal__front {
+  .flip__back,
+  .flip__front {
     width: 100%;
     min-height: 100%;
     border-radius: 0;
   }
 
-  .deposit-modal__back {
+  .flip__back {
     transform: translateY(-50%) rotateY(180deg);
   }
 
-  .deposit-form--rotate {
+  .flip--rotate {
     transform: perspective(1200px) rotateY(180deg);
   }
 
@@ -4610,7 +4610,7 @@ p {
     display: none;
   }
 
-  .deposit-modal__back .deposit-modal__header {
+  .flip__back .deposit-modal__header {
     flex-direction: column;
     align-items: flex-start;
   }

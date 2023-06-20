@@ -43,6 +43,7 @@ const depositModal = document.querySelector('.deposit-modal');
 const depositForm = depositModal.querySelector('.deposit-form');
 const depositAmount = depositModal.querySelector('#deposit_input');
 const depositRadios = depositModal.querySelectorAll('.deposit-form__payment-radio');
+const flipBlocks = document.querySelectorAll('.flip');
 
 
 if (gameItems.length > 0) {
@@ -101,9 +102,9 @@ if (modalWindow.length > 0) {
         modal.classList.remove('modal--active');
         destroyChart(modal);
 
-        const depositForm = modal.querySelector('.deposit-form');
-        if (depositForm) {
-          depositForm.classList.remove('deposit-form--rotate');
+        const flip = modal.querySelector('.flip');
+        if (flip) {
+          flip.classList.remove('flip--rotate');
         }
       });
       modalOverlay.classList.remove('modal-overlay--active');
@@ -135,9 +136,12 @@ if (depositOpenButtons.length > 0) {
     handleDepositSubmitButton();
   });
   depositAmount.addEventListener('input', paymentMethodsMinMax);
-  rotateDepositModal();
 
   new Dropdown('#deposit_currency_dropdown').start();
+}
+
+if (flipBlocks.length > 0) {
+  rotateFlipBlock();
 }
 
 filter?.addEventListener('click', event => {
@@ -675,9 +679,9 @@ function closeModal(event) {
     const allModal = document.querySelectorAll('.modal');
     allModal.forEach(modal => {
       modal.classList.remove('modal--active');
-      const depositForm = modal.querySelector('.deposit-form');
-      if (depositForm) {
-        depositForm.classList.remove('deposit-form--rotate');
+      const flip = modal.querySelector('.flip');
+      if (flip) {
+        flip.classList.remove('flip--rotate');
       }
     });
     modalOverlay.classList.remove('modal-overlay--active');
@@ -708,7 +712,7 @@ function openDepositModal() {
   depositModal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
 
-  const front = depositForm.querySelector('.deposit-modal__front');
+  const front = depositForm.querySelector('.flip__front');
   front.style.height = `${front.scrollHeight}px`;
   depositForm.style.height = `${front.scrollHeight}px`;
 }
@@ -1314,7 +1318,7 @@ function handleDepositSubmitButton() {
       emptyInputs = true;
     }
 
-    if (input.classList.contains('deposit-form__input--error')) {
+    if (input.classList.contains('input--error')) {
       errorInputs = true;
     }
   });
@@ -1357,34 +1361,35 @@ function paymentMethodsMinMax() {
   });
 }
 
-function rotateDepositModal() {
-  const front = depositForm.querySelector('.deposit-modal__front');
-  const back = depositForm.querySelector('.deposit-modal__back');
-  depositForm.addEventListener('click', event => {
-    const { target } = event;
-    const isProceedButton = target.closest('.deposit-form__proceed');
-    const isBackButton = target.closest('.deposit-form__back-button')
-    if (isProceedButton || isBackButton) {
-      depositForm.classList.toggle('deposit-form--rotate');
-      depositModal.style.perspective = '1200px';
-      setTimeout(() => {
-        depositModal.style.perspective = 'none';
-      }, 500);
+function rotateFlipBlock() {
+  flipBlocks.forEach(flip => {
+    const parentModal = flip.closest('.modal');
+    const front = flip.querySelector('.flip__front');
+    const back = flip.querySelector('.flip__back');
 
-      const isFlipped = depositForm.classList.contains('deposit-form--rotate');
-      if (isFlipped) {
-        back.style.height = `${back.scrollHeight}px`;
-        depositForm.style.height = `${back.scrollHeight}px`;
-      } else {
-        front.style.height = `${front.scrollHeight}px`;
-        depositForm.style.height = `${front.scrollHeight}px`;
-      }
-    }
+    const buttons = flip.querySelectorAll('.flip__button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        flip.classList.toggle('flip--rotate');
+        parentModal.style.perspective = '1000px';
+        setTimeout(() => {
+          parentModal.style.perspective = 'none';
+        }, 500);
+
+        const isFlipped = flip.classList.contains('flip--rotate');
+        if (isFlipped) {
+          back.style.height = `${back.scrollHeight}px`;
+          flip.style.height = `${back.scrollHeight}px`;
+        } else {
+          front.style.height = `${front.scrollHeight}px`;
+          flip.style.height = `${front.scrollHeight}px`;
+        }
+      });
+    });
   });
 }
 
 depositForm.addEventListener('change', changeChosenPaymentMethod);
-
 
 function changeChosenPaymentMethod() {
   const activePaymentMethod = depositForm.querySelector('.deposit-form__payment-radio:checked');
@@ -1422,10 +1427,10 @@ function errorDepositInput() {
       const inputWidth = input.getBoundingClientRect().width;
 
       if (input.value === '') {
-        input.classList.remove('deposit-form__input--error');
+        input.classList.remove('input--error');
         tooltipHTML?.remove();
       } else if (inputValue < min || inputValue > max) {
-        input.classList.add('deposit-form__input--error');
+        input.classList.add('input--error');
         if (!tooltipHTML) parentLabel.append(tooltip);
         const tooltipText = tooltip.querySelector('.input-tooltip__text');
         tooltipText.textContent = `please, choose amount between $${min} and $${max}`;
@@ -1433,7 +1438,7 @@ function errorDepositInput() {
         tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
         tooltip.style.right = 'auto';
         tooltip.classList.remove('input-tooltip--right-arrow');
-        
+
         const leftDocumentField = (document.documentElement.clientWidth - parentModal.clientWidth) / 2;
         const tooltipOffsetRight = tooltip.getBoundingClientRect().right - leftDocumentField;
         if (tooltipOffsetRight > parentModal.clientWidth) {
@@ -1447,7 +1452,7 @@ function errorDepositInput() {
         }, 2000);
 
       } else {
-        input.classList.remove('deposit-form__input--error');
+        input.classList.remove('input--error');
         tooltipHTML?.remove();
       }
     });
@@ -1457,7 +1462,7 @@ function errorDepositInput() {
 function createInputErrorTooltip() {
   const tooltip = document.createElement('span');
   tooltip.className = 'deposit-form__input-tooltip input-tooltip';
-  tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`
+  tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`;
   return tooltip;
 }
 
@@ -1465,25 +1470,40 @@ bankCardInputValidation();
 
 function bankCardInputValidation() {
   const input = document.querySelector('#deposit_input_card');
-  const numbers = /[0-9]/;
-  const regExp = /[0-9]{4}/;
 
-  input.addEventListener('input', event => {
-    if (event.inputType === 'insertText' &&
-      !numbers.test(event.data) ||
-      input.value.length > 19) {
-      input.value = input.value.slice(0, input.value.length - 1);
-      return;
+  input.addEventListener('input', () => {
+    input.classList.remove('input--error');
+    input.value = input.value.replaceAll(/\D/gi, '');
+
+    let pattern = '**** **** **** ****';
+    let value = input.value;
+    value = getPatternedValue(value, pattern);
+    input.value = value;
+
+    function getPatternedValue(string, pattern) {
+      let newString = '';
+      let counter = 0;
+
+      for (let i = 0; i < pattern.length; i++) {
+        if (!string[counter]) continue;
+        if (pattern[i] === '*') {
+          newString += string[counter];
+          counter++;
+          continue;
+        }
+        newString += pattern[i];
+      }
+
+      return newString;
     }
+  });
 
+  input.addEventListener('change', () => {
     const value = input.value;
-    if (event.inputType === 'deleteContentBackward' && regExp.test(value.slice(-4))) {
-      input.value = input.value.slice(0, input.value.length - 1);
-      return;
-    }
-
-    if (regExp.test(value.slice(-4)) && value.length < 19) {
-      input.value += ' ';
+    if (value.length < 19) {
+      input.classList.add('input--error');
+    } else {
+      input.classList.remove('input--error');
     }
   });
 }
