@@ -858,22 +858,6 @@ p {
   height: 100%;
 }
 
-.balance--off {
-  display: none;
-}
-
-.header__user--off {
-  display: none;
-}
-
-.header__category--off {
-  display: none;
-}
-
-.header__sign-in--off {
-  display: none;
-}
-
 
 /* products */
 .products {
