@@ -36,13 +36,13 @@ const infoContent = document.querySelector('.info__content');
 const deal = document.querySelector('.deal');
 const productsHeader = document.querySelector('.products__content-header');
 const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
+const withdrawOpenButtons = document.querySelectorAll('.withdraw-modal-open');
 const infoBlocks = document.querySelectorAll('.info-block');
-const paymentMethodsLists = document.querySelectorAll('.deposit-form__payment-methods');
 const numberInputs = document.querySelectorAll('.input--number');
 const depositModal = document.querySelector('.deposit-modal');
-const depositForm = depositModal.querySelector('.deposit-form');
-const depositAmount = depositModal.querySelector('#deposit_input');
-const depositRadios = depositModal.querySelectorAll('.deposit-form__payment-radio');
+const withdrawModal = document.querySelector('.withdraw-modal');
+const paymentModals = document.querySelectorAll('.payment-modal');
+const flipBlocks = document.querySelectorAll('.flip');
 
 
 if (gameItems.length > 0) {
@@ -101,9 +101,9 @@ if (modalWindow.length > 0) {
         modal.classList.remove('modal--active');
         destroyChart(modal);
 
-        const depositForm = modal.querySelector('.deposit-form');
-        if (depositForm) {
-          depositForm.classList.remove('deposit-form--rotate');
+        const flip = modal.querySelector('.flip');
+        if (flip) {
+          flip.classList.remove('flip--rotate');
         }
       });
       modalOverlay.classList.remove('modal-overlay--active');
@@ -123,21 +123,58 @@ if (infoBlocks.length > 0) {
   })
 }
 
-if (depositOpenButtons.length > 0) {
-  depositOpenButtons.forEach(button => {
-    button.addEventListener('click', openDepositModal);
-  });
+if (paymentModals.length > 0) {
+  if (depositOpenButtons.length > 0) {
+    depositOpenButtons.forEach(button => {
+      button.addEventListener('click', openDepositModal);
+    });
+    new Dropdown('#deposit_currency_dropdown').start();
+  }
 
-  handleDepositProceedButton();
-  handleDepositSubmitButton();
-  depositForm.addEventListener('input', () => {
-    handleDepositProceedButton();
-    handleDepositSubmitButton();
-  });
-  depositAmount.addEventListener('input', paymentMethodsMinMax);
-  rotateDepositModal();
+  if (withdrawOpenButtons.length > 0) {
+    withdrawOpenButtons.forEach(button => {
+      button.addEventListener('click', openWithdrawModal);
+    });
+    new Dropdown('#withdraw_currency_dropdown').start();
+  }
 
-  new Dropdown('#deposit_currency_dropdown').start();
+  paymentModals.forEach(modal => {
+    handlePaymentProceedButton(modal);
+    handlePaymentSubmitButton(modal);
+    errorPaymentInput(modal);
+
+    const form = modal.querySelector('.payment-form');
+    const frontAmountInput = modal.querySelector('.payment-form__front-amount-input')
+
+    frontAmountInput.addEventListener('input', () => {
+      frontAmountInput.classList.remove('input--error');
+      paymentMethodsMinMax(modal);
+      const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
+      if (inputAmountBack) {
+        inputAmountBack.value = frontAmountInput.value;
+      }
+    });
+
+    frontAmountInput.addEventListener('change', () => {
+      const value = frontAmountInput.value.trim();
+      if (value === '' && modal.classList.contains('withdraw-modal')) {
+        frontAmountInput.classList.add('input--error');
+      }
+    });
+
+    form.addEventListener('change', () => {
+      changeChosenPaymentMethod(modal);
+    })
+
+    form.addEventListener('input', () => {
+      handlePaymentProceedButton(modal);
+      handlePaymentSubmitButton(modal);
+    });
+  });
+}
+
+if (flipBlocks.length > 0) {
+  rotateFlipBlock();
 }
 
 filter?.addEventListener('click', event => {
@@ -675,9 +712,9 @@ function closeModal(event) {
     const allModal = document.querySelectorAll('.modal');
     allModal.forEach(modal => {
       modal.classList.remove('modal--active');
-      const depositForm = modal.querySelector('.deposit-form');
-      if (depositForm) {
-        depositForm.classList.remove('deposit-form--rotate');
+      const flip = modal.querySelector('.flip');
+      if (flip) {
+        flip.classList.remove('flip--rotate');
       }
     });
     modalOverlay.classList.remove('modal-overlay--active');
@@ -707,10 +744,20 @@ function closeInfoModal(button) {
 function openDepositModal() {
   depositModal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
+  handleFilpHeight(depositModal)
+}
 
-  const front = depositForm.querySelector('.deposit-modal__front');
+function openWithdrawModal() {
+  withdrawModal.classList.add('modal--active');
+  modalOverlay.classList.add('modal-overlay--active');
+  handleFilpHeight(withdrawModal)
+}
+
+function handleFilpHeight(parentBlock) {
+  const flip = parentBlock.querySelector('.flip');
+  const front = flip.querySelector('.flip__front');
   front.style.height = `${front.scrollHeight}px`;
-  depositForm.style.height = `${front.scrollHeight}px`;
+  flip.style.height = `${front.scrollHeight}px`;
 }
 
 function renderChart(item) {
@@ -1282,28 +1329,83 @@ function numberInputValidation() {
   });
 }
 
-function handleDepositProceedButton() {
-  const proceedButton = depositModal.querySelector('.deposit-form__proceed');
+function handlePaymentProceedButton(modal) {
+  const proceedButton = modal.querySelector('.payment-form__proceed');
+  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
+  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
+  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
+  const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
+  const paymentAmountLabel = paymentAmount.closest('.payment-form__label')
 
-  const inputIsEmpty = depositAmount.value === '';
+  const isWithdrawModal = modal.classList.contains('withdraw-modal');
+  let amountIsEmpty = false;
+
+  if (isWithdrawModal) {
+    amountIsEmpty = paymentAmount.value === '';
+  }
+
   let radiosAreNotChecked = true;
 
-  depositRadios.forEach(radio => {
+  paymentRadios.forEach(radio => {
     if (radio.checked) radiosAreNotChecked = false;
   });
 
-  if (inputIsEmpty || radiosAreNotChecked) {
+  if (amountIsEmpty || radiosAreNotChecked) {
     proceedButton.disabled = true;
+    proceedButtonWrapper.classList.add('payment-form__proceed-wrapper--active');
   } else {
     proceedButton.disabled = false;
+    proceedButtonWrapper.classList.remove('payment-form__proceed-wrapper--active');
   }
+
+  proceedButtonWrapper.addEventListener('click', () => {
+    paymentRadios.forEach(radio => {
+      if (radio.checked) radiosAreNotChecked = false;
+    });
+
+    if (proceedButton.disabled === true) {
+      if (modal.classList.contains('deposit-modal')) {
+        notFilledForm('please, choose payment method', paymentMethodsBlock)
+      } else if (modal.classList.contains('withdraw-modal')) {
+        amountIsEmpty = paymentAmount.value === '';
+        if (radiosAreNotChecked && amountIsEmpty) {
+          notFilledForm('please, choose payment method and amount', paymentMethodsBlock);
+          paymentAmount.classList.add('input--error');
+        } else if (radiosAreNotChecked) {
+          notFilledForm('please, choose payment method', paymentMethodsBlock);
+        } else if (amountIsEmpty) {
+          paymentAmount.classList.add('input--error');
+          const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
+          positionTooltip(tooltip, modal, paymentAmount);
+        }
+      }
+
+      function notFilledForm(text, tooltipParent, noMethod = true) {
+        if (noMethod) {
+          paymentMethods.forEach(method => {
+            method.classList.add('input--error');
+          });
+        }
+        const tooltipHTML = tooltipParent.querySelector('.input-tooltip');
+        const tooltip = createInputErrorTooltip()
+        if (!tooltipHTML) tooltipParent.append(tooltip);
+        const tooltipText = tooltip.querySelector('.input-tooltip__text');
+        tooltipText.textContent = text;
+        setTimeout(() => {
+          tooltip.remove();
+        }, 2000)
+
+        return tooltip;
+      }
+    }
+  });
 }
 
-
-function handleDepositSubmitButton() {
-  const submitButton = depositModal.querySelector('.deposit-form__submit');
-  const cardInput = depositModal.querySelector('#deposit_input_card');
-  const inputs = depositModal.querySelectorAll('.deposit-form__input');
+function handlePaymentSubmitButton(modal) {
+  const submitButton = modal.querySelector('.payment-form__submit');
+  const cardInput = modal.querySelector('.payment-form__input.input--card');
+  const inputs = modal.querySelectorAll('.payment-form__input');
 
   const noCard = cardInput.value.length < 19;
   let emptyInputs = false;
@@ -1314,7 +1416,7 @@ function handleDepositSubmitButton() {
       emptyInputs = true;
     }
 
-    if (input.classList.contains('deposit-form__input--error')) {
+    if (input.classList.contains('input--error')) {
       errorInputs = true;
     }
   });
@@ -1326,92 +1428,106 @@ function handleDepositSubmitButton() {
   }
 }
 
-function paymentMethodsMinMax() {
-  const inputValue = Number(depositAmount.value);
-  depositRadios.forEach(radio => {
+function paymentMethodsMinMax(modal) {
+  const frontAmountInput = modal.querySelector('.payment-form__front-amount-input');
+  const paymentRadios = document.querySelectorAll('.payment-form__payment-radio');
+  const inputValue = Number(frontAmountInput.value);
+
+  paymentRadios.forEach(radio => {
     const paymentMin = Number(radio.dataset.min);
     const paymentMax = Number(radio.dataset.max);
     const comission = radio.dataset.comission;
-    const parentLabel = radio.closest('.deposit-form__payment-label');
-    const text = parentLabel.querySelector('.deposit-form__payment-text');
+    const parentLabel = radio.closest('.payment-form__payment-label');
+    const text = parentLabel.querySelector('.payment-form__payment-text');
 
-    if (depositAmount.value === '') {
+    if (frontAmountInput.value === '') {
       radio.disabled = false;
       text.innerHTML = `comission: <b>${comission}%</b>`;
-      text.classList.remove('deposit-form__payment-text--warning');
+      text.classList.remove('payment-form__payment-text--warning');
     } else if (inputValue < paymentMin) {
       radio.disabled = true;
       radio.checked = false;
       text.innerHTML = `from: <b>${paymentMin}$</b>`;
-      text.classList.add('deposit-form__payment-text--warning');
+      text.classList.add('payment-form__payment-text--warning');
     } else if (inputValue > paymentMax) {
       radio.disabled = true;
       radio.checked = false;
       text.innerHTML = `up to: <b>${paymentMax}$</b>`;
-      text.classList.add('deposit-form__payment-text--warning');
+      text.classList.add('payment-form__payment-text--warning');
     } else {
       radio.disabled = false;
       text.innerHTML = `comission: <b>${comission}%</b>`;
-      text.classList.remove('deposit-form__payment-text--warning');
+      text.classList.remove('payment-form__payment-text--warning');
     }
   });
 }
 
-function rotateDepositModal() {
-  const front = depositForm.querySelector('.deposit-modal__front');
-  const back = depositForm.querySelector('.deposit-modal__back');
-  depositForm.addEventListener('click', event => {
-    const { target } = event;
-    const isProceedButton = target.closest('.deposit-form__proceed');
-    const isBackButton = target.closest('.deposit-form__back-button')
-    if (isProceedButton || isBackButton) {
-      depositForm.classList.toggle('deposit-form--rotate');
-      depositModal.style.perspective = '1200px';
-      setTimeout(() => {
-        depositModal.style.perspective = 'none';
-      }, 500);
+function rotateFlipBlock() {
+  flipBlocks.forEach(flip => {
+    const parentModal = flip.closest('.modal');
+    const front = flip.querySelector('.flip__front');
+    const back = flip.querySelector('.flip__back');
 
-      const isFlipped = depositForm.classList.contains('deposit-form--rotate');
-      if (isFlipped) {
-        back.style.height = `${back.scrollHeight}px`;
-        depositForm.style.height = `${back.scrollHeight}px`;
-      } else {
-        front.style.height = `${front.scrollHeight}px`;
-        depositForm.style.height = `${front.scrollHeight}px`;
-      }
-    }
+    const buttons = flip.querySelectorAll('.flip__button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        flip.classList.toggle('flip--rotate');
+        parentModal.style.perspective = '1000px';
+        setTimeout(() => {
+          parentModal.style.perspective = 'none';
+        }, 500);
+
+        const isFlipped = flip.classList.contains('flip--rotate');
+        if (isFlipped) {
+          back.style.height = `${back.scrollHeight}px`;
+          flip.style.height = `${back.scrollHeight}px`;
+        } else {
+          front.style.height = `${front.scrollHeight}px`;
+          flip.style.height = `${front.scrollHeight}px`;
+        }
+      });
+    });
   });
 }
 
-depositForm.addEventListener('change', changeChosenPaymentMethod);
-
-
-function changeChosenPaymentMethod() {
-  const activePaymentMethod = depositForm.querySelector('.deposit-form__payment-radio:checked');
-  const changePaymentMethodLabel = activePaymentMethod?.closest('.deposit-form__payment-label');
+function changeChosenPaymentMethod(modal) {
+  const activePaymentMethod = modal.querySelector('.payment-form__payment-radio:checked');
+  const changePaymentMethodLabel = activePaymentMethod?.closest('.payment-form__payment-label');
 
   if (!changePaymentMethodLabel) return;
+  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  const errorTooltip = modal.querySelector('.input-tooltip');
+  paymentMethods.forEach(method => {
+    method.classList.remove('input--error');
+    errorTooltip?.remove();
+  });
 
-  const imageSource = changePaymentMethodLabel.querySelector('.deposit-form__payment-img').src;
+  const min = activePaymentMethod.dataset.min
+  const max = activePaymentMethod.dataset.max
+
+  const imageSource = changePaymentMethodLabel.querySelector('.payment-form__payment-img').src;
   const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
-  let paymentMethodName = changePaymentMethodLabel.querySelector('.deposit-form__payment-radio').dataset.paymentMethod;
+  let paymentMethodName = changePaymentMethodLabel.querySelector('.payment-form__payment-radio').dataset.paymentMethod;
   paymentMethodName = paymentMethodName[0].toUpperCase() + paymentMethodName.slice(1).toLowerCase();
 
   const chosenMethodElement = document.querySelector('.chosen-method');
   chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
+
+  const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
+  inputAmountBack.dataset.min = min;
+  inputAmountBack.dataset.max = max;
+  inputAmountBack.setAttribute('placeholder', `up to ${max}`);
 }
 
-errorDepositInput();
-
-function errorDepositInput() {
-  const inputs = depositForm.querySelectorAll('.deposit-form__input');
+function errorPaymentInput(modal) {
+  const inputs = modal.querySelectorAll('.payment-form__input');
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       const min = input.dataset.min;
       const max = input.dataset.max;
       if (!min || !max) return;
 
-      const parentLabel = input.closest('.deposit-form__label');
+      const parentLabel = input.closest('.payment-form__label');
       const parentModal = input.closest('.modal');
 
       const inputValue = Number(input.value);
@@ -1419,76 +1535,93 @@ function errorDepositInput() {
 
       const tooltipHTML = parentLabel.querySelector('.input-tooltip');
       const tooltip = createInputErrorTooltip();
-      const inputWidth = input.getBoundingClientRect().width;
+      
 
       if (input.value === '') {
-        input.classList.remove('deposit-form__input--error');
+        input.classList.remove('input--error');
         tooltipHTML?.remove();
       } else if (inputValue < min || inputValue > max) {
-        input.classList.add('deposit-form__input--error');
+        input.classList.add('input--error');
         if (!tooltipHTML) parentLabel.append(tooltip);
         const tooltipText = tooltip.querySelector('.input-tooltip__text');
         tooltipText.textContent = `please, choose amount between $${min} and $${max}`;
-
-        tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
-        tooltip.style.right = 'auto';
-        tooltip.classList.remove('input-tooltip--right-arrow');
-        
-        const leftDocumentField = (document.documentElement.clientWidth - parentModal.clientWidth) / 2;
-        const tooltipOffsetRight = tooltip.getBoundingClientRect().right - leftDocumentField;
-        if (tooltipOffsetRight > parentModal.clientWidth) {
-          tooltip.style.left = 'auto';
-          tooltip.style.right = `${inputWidth / 2}px`;
-          tooltip.classList.add('input-tooltip--right-arrow');
-        }
-
+        positionTooltip(tooltip, parentModal, input);
         setTimeout(() => {
           tooltip.remove();
         }, 2000);
 
       } else {
-        input.classList.remove('deposit-form__input--error');
+        input.classList.remove('input--error');
         tooltipHTML?.remove();
       }
     });
   });
 }
 
+function positionTooltip(tooltip, parentModal, input) {
+  const inputWidth = input.getBoundingClientRect().width;
+  tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
+  tooltip.style.right = 'auto';
+  tooltip.classList.remove('input-tooltip--right-arrow');
+
+  const leftDocumentField = (document.documentElement.clientWidth - parentModal.clientWidth) / 2;
+  const tooltipOffsetRight = tooltip.getBoundingClientRect().right - leftDocumentField;
+  if (tooltipOffsetRight > parentModal.clientWidth) {
+    tooltip.style.left = 'auto';
+    tooltip.style.right = `${inputWidth / 2}px`;
+    tooltip.classList.add('input-tooltip--right-arrow');
+  }
+}
+
 function createInputErrorTooltip() {
   const tooltip = document.createElement('span');
-  tooltip.className = 'deposit-form__input-tooltip input-tooltip';
-  tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`
+  tooltip.className = 'input-tooltip';
+  tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`;
   return tooltip;
 }
 
 bankCardInputValidation();
 
 function bankCardInputValidation() {
-  const input = document.querySelector('#deposit_input_card');
-  const numbers = /[0-9]/;
-  const regExp = /[0-9]{4}/;
+  const cardInputs = document.querySelectorAll('.payment-form__input.input--card');
 
-  input.addEventListener('input', event => {
-    if (event.inputType === 'insertText' &&
-      !numbers.test(event.data) ||
-      input.value.length > 19) {
-      input.value = input.value.slice(0, input.value.length - 1);
-      return;
-    }
+  cardInputs.forEach(input => {
+    input.addEventListener('input', () => {
+      input.classList.remove('input--error');
+      input.value = input.value.replaceAll(/\D/gi, '');
 
-    const value = input.value;
-    if (event.inputType === 'deleteContentBackward' && regExp.test(value.slice(-4))) {
-      input.value = input.value.slice(0, input.value.length - 1);
-      return;
-    }
+      let pattern = '**** **** **** ****';
+      let value = input.value;
+      value = getPatternedValue(value, pattern);
+      input.value = value;
 
-    if (regExp.test(value.slice(-4)) && value.length < 19) {
-      input.value += ' ';
-    }
+      function getPatternedValue(string, pattern) {
+        let newString = '';
+        let counter = 0;
+
+        for (let i = 0; i < pattern.length; i++) {
+          if (!string[counter]) continue;
+          if (pattern[i] === '*') {
+            newString += string[counter];
+            counter++;
+            continue;
+          }
+          newString += pattern[i];
+        }
+
+        return newString;
+      }
+    });
+    input.addEventListener('change', () => {
+      const value = input.value;
+      if (value.length < 19) {
+        input.classList.add('input--error');
+      } else {
+        input.classList.remove('input--error');
+      }
+    });
   });
 }
-
-
 
 
 // chart
