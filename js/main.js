@@ -156,8 +156,7 @@ if (paymentModals.length > 0) {
     });
 
     frontAmountInput.addEventListener('change', () => {
-      const value = frontAmountInput.value.trim();
-      if (value === '' && modal.classList.contains('withdraw-modal')) {
+      if (frontAmountInput.value === '' && modal.classList.contains('withdraw-modal')) {
         frontAmountInput.classList.add('input--error');
       }
     });
@@ -169,6 +168,13 @@ if (paymentModals.length > 0) {
     form.addEventListener('input', () => {
       handlePaymentProceedButton(modal);
       handlePaymentSubmitButton(modal);
+    });
+
+    const proceedButtonWrapper = document.querySelectorAll('.payment-form__proceed-wrapper');
+    proceedButtonWrapper.forEach(wrapper => {
+      wrapper.addEventListener('click', () => {
+        disabledProceedButtonClick(wrapper, modal);
+      });
     });
   });
 }
@@ -1332,11 +1338,8 @@ function numberInputValidation() {
 function handlePaymentProceedButton(modal) {
   const proceedButton = modal.querySelector('.payment-form__proceed');
   const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
-  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
   const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
-  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
   const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
-  const paymentAmountLabel = paymentAmount.closest('.payment-form__label')
 
   const isWithdrawModal = modal.classList.contains('withdraw-modal');
   let amountIsEmpty = false;
@@ -1344,13 +1347,10 @@ function handlePaymentProceedButton(modal) {
   if (isWithdrawModal) {
     amountIsEmpty = paymentAmount.value === '';
   }
-
   let radiosAreNotChecked = true;
-
   paymentRadios.forEach(radio => {
     if (radio.checked) radiosAreNotChecked = false;
   });
-
   if (amountIsEmpty || radiosAreNotChecked) {
     proceedButton.disabled = true;
     proceedButtonWrapper.classList.add('payment-form__proceed-wrapper--active');
@@ -1358,48 +1358,63 @@ function handlePaymentProceedButton(modal) {
     proceedButton.disabled = false;
     proceedButtonWrapper.classList.remove('payment-form__proceed-wrapper--active');
   }
+}
 
-  proceedButtonWrapper.addEventListener('click', () => {
-    paymentRadios.forEach(radio => {
-      if (radio.checked) radiosAreNotChecked = false;
-    });
+function disabledProceedButtonClick(wrapper, modal) {
+  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
+  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
+  const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
+  const paymentAmountLabel = paymentAmount.closest('.payment-form__label');
+  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  const isWithdrawModal = modal.classList.contains('withdraw-modal');
+  const button = wrapper.querySelector('.payment-form__proceed');
 
-    if (proceedButton.disabled === true) {
-      if (modal.classList.contains('deposit-modal')) {
-        notFilledForm('please, choose payment method', paymentMethodsBlock)
-      } else if (modal.classList.contains('withdraw-modal')) {
-        amountIsEmpty = paymentAmount.value === '';
-        if (radiosAreNotChecked && amountIsEmpty) {
-          notFilledForm('please, choose payment method and amount', paymentMethodsBlock);
-          paymentAmount.classList.add('input--error');
-        } else if (radiosAreNotChecked) {
-          notFilledForm('please, choose payment method', paymentMethodsBlock);
-        } else if (amountIsEmpty) {
-          paymentAmount.classList.add('input--error');
-          const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
-          positionTooltip(tooltip, modal, paymentAmount);
-        }
-      }
+  let radiosAreNotChecked = true;
+  let amountIsEmpty = false;
 
-      function notFilledForm(text, tooltipParent, noMethod = true) {
-        if (noMethod) {
-          paymentMethods.forEach(method => {
-            method.classList.add('input--error');
-          });
-        }
-        const tooltipHTML = tooltipParent.querySelector('.input-tooltip');
-        const tooltip = createInputErrorTooltip()
-        if (!tooltipHTML) tooltipParent.append(tooltip);
-        const tooltipText = tooltip.querySelector('.input-tooltip__text');
-        tooltipText.textContent = text;
-        setTimeout(() => {
-          tooltip.remove();
-        }, 2000)
+  if (isWithdrawModal) {
+    amountIsEmpty = paymentAmount.value === '';
+  }
 
-        return tooltip;
+  paymentRadios.forEach(radio => {
+    if (radio.checked) radiosAreNotChecked = false;
+  });
+
+  if (button.disabled === true) {
+    if (modal.classList.contains('deposit-modal')) {
+      notFilledForm('please, choose payment method', paymentMethodsBlock)
+    } else if (modal.classList.contains('withdraw-modal')) {
+
+      if (radiosAreNotChecked && amountIsEmpty) {
+        notFilledForm('please, choose payment method and amount', paymentMethodsBlock);
+        paymentAmount.classList.add('input--error');
+      } else if (radiosAreNotChecked) {
+        notFilledForm('please, choose payment method', paymentMethodsBlock);
+      } else if (amountIsEmpty) {
+        const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
+        paymentAmount.classList.add('input--error');
+        positionTooltip(tooltip, modal, paymentAmount);
       }
     }
-  });
+
+    function notFilledForm(text, tooltipParent, noMethod = true) {
+      if (noMethod) {
+        paymentMethods.forEach(method => {
+          method.classList.add('input--error');
+        });
+      }
+      const tooltipHTML = modal.querySelector('.input-tooltip');
+      const tooltip = createInputErrorTooltip()
+      if (!tooltipHTML) tooltipParent.append(tooltip);
+      const tooltipText = tooltip.querySelector('.input-tooltip__text');
+      tooltipText.textContent = text;
+      setTimeout(() => {
+        tooltip.remove();
+      }, 2000)
+
+      return tooltip;
+    }
+  }
 }
 
 function handlePaymentSubmitButton(modal) {
@@ -1535,7 +1550,7 @@ function errorPaymentInput(modal) {
 
       const tooltipHTML = parentLabel.querySelector('.input-tooltip');
       const tooltip = createInputErrorTooltip();
-      
+
 
       if (input.value === '') {
         input.classList.remove('input--error');
