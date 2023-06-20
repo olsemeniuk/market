@@ -1510,7 +1510,7 @@ function changeChosenPaymentMethod(modal) {
   let paymentMethodName = changePaymentMethodLabel.querySelector('.payment-form__payment-radio').dataset.paymentMethod;
   paymentMethodName = paymentMethodName[0].toUpperCase() + paymentMethodName.slice(1).toLowerCase();
 
-  const chosenMethodElement = document.querySelector('.chosen-method');
+  const chosenMethodElement = modal.querySelector('.chosen-method');
   chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
 
   const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
