@@ -966,10 +966,9 @@
             </button>
           </div>
           <fieldset class="payment-form__section payment-form__section--items-center">
-            <label class="payment-form__label payment-form__label-amount" for="deposit_input">
+            <label class="payment-form__label payment-form__label-amount" for="deposit_amount_front">
               amount:
-              <input class="payment-form__input payment-form__front-amount-input input input--number" id="deposit_input" type="text" name="depositInput"
-                inputmode="numeric" placeholder="0">
+              <input class="payment-form__input payment-form__front-amount-input input input--number" id="deposit_amount_front" type="text" name="depositInput" inputmode="numeric" placeholder="0">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -1052,16 +1051,14 @@
             </label>
           </fieldset>
           <fieldset class="payment-form__section payment-form__section-step-two payment-form__section--items-left">
-            <label class="payment-form__label payment-form__label-amount" for="deposit_input_amount-1">
+            <label class="payment-form__label payment-form__label-amount" for="deposit_amount_back">
               amount:
-              <input class="payment-form__input input input--number" id="deposit_input_amount-1" type="text"
-                name="depositInputAmount1" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="payment-form__input payment-form__back-amount-input input input--number" id="deposit_amount_back" type="text" inputmode="numeric">
               <span class="payment-form__input-dollar">$</span>
             </label>
-            <label class="payment-form__label payment-form__label-amount" for="deposit_input_amount-2">
+            <label class="payment-form__label payment-form__label-amount">
               amount:
-              <input class="payment-form__input input input--number" id="deposit_input_amount-2" type="text"
-                name="depositInputAmount2" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>

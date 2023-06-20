@@ -138,6 +138,10 @@ if (paymentModals.length > 0) {
 
     frontAmountInput.addEventListener('input', () => {
       paymentMethodsMinMax(modal);
+      const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
+      if (inputAmountBack) {
+        inputAmountBack.value = frontAmountInput.value;
+      }
     });
 
     form.addEventListener('change', () => {
@@ -1443,9 +1447,14 @@ function changeChosenPaymentMethod(modal) {
 
   if (!changePaymentMethodLabel) return;
   const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  const errorTooltip = modal.querySelector('.input-tooltip');
   paymentMethods.forEach(method => {
     method.classList.remove('input--error');
+    errorTooltip?.remove();
   });
+
+  const min = activePaymentMethod.dataset.min
+  const max = activePaymentMethod.dataset.max
 
   const imageSource = changePaymentMethodLabel.querySelector('.payment-form__payment-img').src;
   const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
@@ -1454,6 +1463,11 @@ function changeChosenPaymentMethod(modal) {
 
   const chosenMethodElement = document.querySelector('.chosen-method');
   chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
+
+  const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
+  inputAmountBack.dataset.min = min;
+  inputAmountBack.dataset.max= max;
+  inputAmountBack.setAttribute('placeholder', `up to ${max}`);
 }
 
 function errorPaymentInput(modal) {
