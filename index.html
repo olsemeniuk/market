@@ -4953,7 +4953,7 @@
                   </li>
                 </ul>
               </div>
-              <input class="dropdown__input" id="deposit_currency_input" type="text" name="depositCurrencyInput"
+              <input class="dropdown__input" id="withdraw_currency_input" type="text" name="depositCurrencyInput"
                 aria-hidden="true">
             </div>
           </label>
@@ -4968,11 +4968,24 @@
       </div>
     </form>
   </div>
-  <!-- <div class="modal auth modal-shadow">
-    <button class="modal__close" type="button">
-      <span class="visually-hidden">Close modal popup</span>
-    </button>
-    <h2 class="auth__title">auth</h2>
+
+
+  <!-- <div class="modal auth">
+    <div class="flip">
+      <div class="flip__front modal-shadow">
+        <button class="modal__close" type="button">
+          <span class="visually-hidden">Close modal popup</span>
+        </button>
+        <h2 class="auth__title">auth</h2>
+      </div>
+      <div class="flip__back modal-shadow">
+        <button class="modal__close" type="button">
+          <span class="visually-hidden">Close modal popup</span>
+        </button>
+        <h2 class="auth__title">registration</h2>
+      </div>
+    </div>
+    
     <form class="auth__form" action="#">
       <fieldset class="auth__block">
         <input class="auth__input input" type="text" placeholder="name">
