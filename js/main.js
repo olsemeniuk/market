@@ -36,9 +36,11 @@ const infoContent = document.querySelector('.info__content');
 const deal = document.querySelector('.deal');
 const productsHeader = document.querySelector('.products__content-header');
 const depositOpenButtons = document.querySelectorAll('.deposit-modal-open');
+const withdrawOpenButtons = document.querySelectorAll('.withdraw-modal-open');
 const infoBlocks = document.querySelectorAll('.info-block');
 const numberInputs = document.querySelectorAll('.input--number');
 const depositModal = document.querySelector('.deposit-modal');
+const withdrawModal = document.querySelector('.withdraw-modal');
 const paymentModals = document.querySelectorAll('.payment-modal');
 const flipBlocks = document.querySelectorAll('.flip');
 
@@ -126,6 +128,14 @@ if (paymentModals.length > 0) {
     depositOpenButtons.forEach(button => {
       button.addEventListener('click', openDepositModal);
     });
+    new Dropdown('#deposit_currency_dropdown').start();
+  }
+
+  if (withdrawOpenButtons.length > 0) {
+    withdrawOpenButtons.forEach(button => {
+      button.addEventListener('click', openWithdrawModal);
+    });
+    new Dropdown('#withdraw_currency_dropdown').start();
   }
 
   paymentModals.forEach(modal => {
@@ -137,10 +147,18 @@ if (paymentModals.length > 0) {
     const frontAmountInput = modal.querySelector('.payment-form__front-amount-input')
 
     frontAmountInput.addEventListener('input', () => {
+      frontAmountInput.classList.remove('input--error');
       paymentMethodsMinMax(modal);
       const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
       if (inputAmountBack) {
         inputAmountBack.value = frontAmountInput.value;
+      }
+    });
+
+    frontAmountInput.addEventListener('change', () => {
+      const value = frontAmountInput.value.trim();
+      if (value === '' && modal.classList.contains('withdraw-modal')) {
+        frontAmountInput.classList.add('input--error');
       }
     });
 
@@ -153,8 +171,6 @@ if (paymentModals.length > 0) {
       handlePaymentSubmitButton(modal);
     });
   });
-
-  new Dropdown('#deposit_currency_dropdown').start();
 }
 
 if (flipBlocks.length > 0) {
@@ -729,6 +745,12 @@ function openDepositModal() {
   depositModal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
   handleFilpHeight(depositModal)
+}
+
+function openWithdrawModal() {
+  withdrawModal.classList.add('modal--active');
+  modalOverlay.classList.add('modal-overlay--active');
+  handleFilpHeight(withdrawModal)
 }
 
 function handleFilpHeight(parentBlock) {
@@ -1313,13 +1335,14 @@ function handlePaymentProceedButton(modal) {
   const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
   const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
   const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
+  const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
+  const paymentAmountLabel = paymentAmount.closest('.payment-form__label')
 
   const isWithdrawModal = modal.classList.contains('withdraw-modal');
   let amountIsEmpty = false;
 
   if (isWithdrawModal) {
-    const withdrawAmount = modal.querySelector('#withdraw_input');
-    amountIsEmpty = withdrawAmount.value === '';
+    amountIsEmpty = paymentAmount.value === '';
   }
 
   let radiosAreNotChecked = true;
@@ -1337,18 +1360,44 @@ function handlePaymentProceedButton(modal) {
   }
 
   proceedButtonWrapper.addEventListener('click', () => {
+    paymentRadios.forEach(radio => {
+      if (radio.checked) radiosAreNotChecked = false;
+    });
+
     if (proceedButton.disabled === true) {
-      paymentMethods.forEach(method => {
-        method.classList.add('input--error');
-      });
-      const tooltipHTML = paymentMethodsBlock.querySelector('.input-tooltip');
-      const tooltip = createInputErrorTooltip()
-      if (!tooltipHTML) paymentMethodsBlock.append(tooltip);
-      const tooltipText = tooltip.querySelector('.input-tooltip__text');
-      tooltipText.textContent = `please, choose payment method`;
-      setTimeout(() => {
-        tooltip.remove();
-      }, 2000)
+      if (modal.classList.contains('deposit-modal')) {
+        notFilledForm('please, choose payment method', paymentMethodsBlock)
+      } else if (modal.classList.contains('withdraw-modal')) {
+        amountIsEmpty = paymentAmount.value === '';
+        if (radiosAreNotChecked && amountIsEmpty) {
+          notFilledForm('please, choose payment method and amount', paymentMethodsBlock);
+          paymentAmount.classList.add('input--error');
+        } else if (radiosAreNotChecked) {
+          notFilledForm('please, choose payment method', paymentMethodsBlock);
+        } else if (amountIsEmpty) {
+          paymentAmount.classList.add('input--error');
+          const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
+          positionTooltip(tooltip, modal, paymentAmount);
+        }
+      }
+
+      function notFilledForm(text, tooltipParent, noMethod = true) {
+        if (noMethod) {
+          paymentMethods.forEach(method => {
+            method.classList.add('input--error');
+          });
+        }
+        const tooltipHTML = tooltipParent.querySelector('.input-tooltip');
+        const tooltip = createInputErrorTooltip()
+        if (!tooltipHTML) tooltipParent.append(tooltip);
+        const tooltipText = tooltip.querySelector('.input-tooltip__text');
+        tooltipText.textContent = text;
+        setTimeout(() => {
+          tooltip.remove();
+        }, 2000)
+
+        return tooltip;
+      }
     }
   });
 }
@@ -1466,7 +1515,7 @@ function changeChosenPaymentMethod(modal) {
 
   const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
   inputAmountBack.dataset.min = min;
-  inputAmountBack.dataset.max= max;
+  inputAmountBack.dataset.max = max;
   inputAmountBack.setAttribute('placeholder', `up to ${max}`);
 }
 
@@ -1486,7 +1535,7 @@ function errorPaymentInput(modal) {
 
       const tooltipHTML = parentLabel.querySelector('.input-tooltip');
       const tooltip = createInputErrorTooltip();
-      const inputWidth = input.getBoundingClientRect().width;
+      
 
       if (input.value === '') {
         input.classList.remove('input--error');
@@ -1496,19 +1545,7 @@ function errorPaymentInput(modal) {
         if (!tooltipHTML) parentLabel.append(tooltip);
         const tooltipText = tooltip.querySelector('.input-tooltip__text');
         tooltipText.textContent = `please, choose amount between $${min} and $${max}`;
-
-        tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
-        tooltip.style.right = 'auto';
-        tooltip.classList.remove('input-tooltip--right-arrow');
-
-        const leftDocumentField = (document.documentElement.clientWidth - parentModal.clientWidth) / 2;
-        const tooltipOffsetRight = tooltip.getBoundingClientRect().right - leftDocumentField;
-        if (tooltipOffsetRight > parentModal.clientWidth) {
-          tooltip.style.left = 'auto';
-          tooltip.style.right = `${inputWidth / 2}px`;
-          tooltip.classList.add('input-tooltip--right-arrow');
-        }
-
+        positionTooltip(tooltip, parentModal, input);
         setTimeout(() => {
           tooltip.remove();
         }, 2000);
@@ -1519,6 +1556,21 @@ function errorPaymentInput(modal) {
       }
     });
   });
+}
+
+function positionTooltip(tooltip, parentModal, input) {
+  const inputWidth = input.getBoundingClientRect().width;
+  tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
+  tooltip.style.right = 'auto';
+  tooltip.classList.remove('input-tooltip--right-arrow');
+
+  const leftDocumentField = (document.documentElement.clientWidth - parentModal.clientWidth) / 2;
+  const tooltipOffsetRight = tooltip.getBoundingClientRect().right - leftDocumentField;
+  if (tooltipOffsetRight > parentModal.clientWidth) {
+    tooltip.style.left = 'auto';
+    tooltip.style.right = `${inputWidth / 2}px`;
+    tooltip.classList.add('input-tooltip--right-arrow');
+  }
 }
 
 function createInputErrorTooltip() {

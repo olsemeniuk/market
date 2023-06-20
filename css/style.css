@@ -2024,7 +2024,7 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 50px 30px var(--color-c);
+  box-shadow: 0 0 20px 15px var(--color-c);
 }
 
 .payment-form__section-methods .input-tooltip .input-tooltip__arrow {
