@@ -637,7 +637,7 @@ function chengeEmail() {
   } else {
     emailForm.classList.toggle('user__email-form--active');
     const isActive = emailForm.classList.contains('user__email-form--active');
-
+    
     if (isActive) {
       emailFormInput.disabled = false;
       emailFormLabel.style.width = 0;

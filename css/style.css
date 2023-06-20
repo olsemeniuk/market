@@ -2990,6 +2990,7 @@ p {
   background-position: center;
   filter: var(--color-lc-filter);
   transition: all 0.3s ease;
+  outline: none;
 }
 
 .user__email-button:hover {
