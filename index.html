@@ -96,16 +96,16 @@
               </div>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a class="menu__link menu__link--active" href="/index.html">buy</a>
+                  <a class="menu__link menu__link--active" href="#">buy</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="./deal.html">sell</a>
+                  <a class="menu__link" href="/sell.html">sell</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="./deal.html">trade</a>
+                  <a class="menu__link" href="/deal.html">trade</a>
                 </li>
                 <li class="menu__item menu__item--last">
-                  <a class="menu__link" href="./info.html">info</a>
+                  <a class="menu__link" href="/info.html">info</a>
                 </li>
               </ul>
               <div class="menu__footer">
@@ -200,7 +200,7 @@
               </form>
             </div>
           </div>
-          <a class="header__sign-in btn" href="./account.html">sign in</a>
+          <button class="header__sign-in open-auth-button btn" type="button">sign in</button>
         </div>
       </div>
     </div>
@@ -4679,7 +4679,7 @@
   <div class="modal payment-modal deposit-modal">
     <form class="payment-form flip" action="#">
       <div class="flip__front modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">deposit</h2>
             <button class="modal__close" type="button">
@@ -4689,7 +4689,8 @@
           <fieldset class="payment-form__section payment-form__section--items-center">
             <label class="payment-form__label payment-form__label-amount" for="deposit_amount_front">
               amount:
-              <input class="payment-form__input payment-form__front-amount-input input input--number" id="deposit_amount_front" type="text" name="depositInput" inputmode="numeric" placeholder="0">
+              <input class="payment-form__input payment-form__front-amount-input input input--number"
+                id="deposit_amount_front" type="text" name="depositInput" inputmode="numeric" placeholder="0">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -4759,7 +4760,7 @@
         </div>
       </div>
       <div class="flip__back modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">deposit <span>(step 2)</span></h2>
             <b class="payment-modal__chosen-method chosen-method"></b>
@@ -4774,12 +4775,14 @@
           <fieldset class="payment-form__section payment-form__section-step-two payment-form__section--items-left">
             <label class="payment-form__label payment-form__label-amount" for="deposit_amount_back">
               amount:
-              <input class="payment-form__input payment-form__back-amount-input input input--number" id="deposit_amount_back" type="text" inputmode="numeric">
+              <input class="payment-form__input payment-form__back-amount-input input input--number"
+                id="deposit_amount_back" type="text" inputmode="numeric">
               <span class="payment-form__input-dollar">$</span>
             </label>
             <label class="payment-form__label payment-form__label-amount">
               amount:
-              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000"
+                inputmode="numeric" placeholder="up to 50000">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -4822,10 +4825,11 @@
       </div>
     </form>
   </div>
+
   <div class="modal payment-modal withdraw-modal">
     <form class="payment-form flip" action="#">
       <div class="flip__front modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">withdraw</h2>
             <button class="modal__close" type="button">
@@ -4835,7 +4839,8 @@
           <fieldset class="payment-form__section payment-form__section--items-center">
             <label class="payment-form__label payment-form__label-amount" for="withdraw_amount_front">
               amount:
-              <input class="payment-form__input payment-form__front-amount-input input input--number" id="withdraw_amount_front" type="text" name="withdrawInput" inputmode="numeric" placeholder="0">
+              <input class="payment-form__input payment-form__front-amount-input input input--number"
+                id="withdraw_amount_front" type="text" name="withdrawInput" inputmode="numeric" placeholder="0">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -4905,7 +4910,7 @@
         </div>
       </div>
       <div class="flip__back modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">withdraw <span>(step 2)</span></h2>
             <b class="payment-modal__chosen-method chosen-method"></b>
@@ -4920,12 +4925,14 @@
           <fieldset class="payment-form__section payment-form__section-step-two payment-form__section--items-left">
             <label class="payment-form__label payment-form__label-amount" for="withdraw_amount_back">
               amount:
-              <input class="payment-form__input payment-form__back-amount-input input input--number" id="withdraw_amount_back" type="text" inputmode="numeric">
+              <input class="payment-form__input payment-form__back-amount-input input input--number"
+                id="withdraw_amount_back" type="text" inputmode="numeric">
               <span class="payment-form__input-dollar">$</span>
             </label>
             <label class="payment-form__label payment-form__label-amount">
               amount:
-              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000"
+                inputmode="numeric" placeholder="up to 50000">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -4969,36 +4976,70 @@
     </form>
   </div>
 
-
-  <!-- <div class="modal auth">
-    <div class="flip">
+  <div class="modal auth">
+    <form class="auth__form flip" action="#">
       <div class="flip__front modal-shadow">
-        <button class="modal__close" type="button">
-          <span class="visually-hidden">Close modal popup</span>
-        </button>
-        <h2 class="auth__title">auth</h2>
+        <div class="flip__inner">
+          <button class="modal__close" type="button">
+            <span class="visually-hidden">Close modal popup</span>
+          </button>
+          <h2 class="auth__title">auth</h2>
+          <fieldset class="auth__block auth__inputs-block">
+            <input class="auth__input input" type="text" placeholder="login/email">
+            <input class="auth__input input" type="password" placeholder="password">
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button btn" type="submit">
+              <span class="auth__button-text icon icon--login">login</span>
+            </button>
+            <button class="auth__button auth__button--big btn flip__button auth__button--transparent" type="button">
+              <span class="auth__button-text icon icon--registration">registration</span>
+            </button>
+            <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+              <button class="auth__button auth__button--big btn" type="button">
+                <span class="auth__button-text icon icon--steam">login with Steam</span>
+              </button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+          </fieldset>
+        </div>
       </div>
       <div class="flip__back modal-shadow">
-        <button class="modal__close" type="button">
-          <span class="visually-hidden">Close modal popup</span>
-        </button>
-        <h2 class="auth__title">registration</h2>
-      </div>
-    </div>
-    
-    <form class="auth__form" action="#">
-      <fieldset class="auth__block">
-        <input class="auth__input input" type="text" placeholder="name">
-        <input class="auth__input input" type="email" placeholder="mail">
-        <input class="auth__input input" id="auth_password" type="password" placeholder="password">
-        <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
-        <div class="auth__buttons-row">
-
+        <div class="flip__inner">
+          <button class="modal__close" type="button">
+            <span class="visually-hidden">Close modal popup</span>
+          </button>
+          <h2 class="auth__title">registration</h2>
+          <fieldset class="auth__block auth__inputs-block">
+            <input class="auth__input input" type="text" placeholder="name">
+            <input class="auth__input input" type="email" placeholder="mail">
+            <input class="auth__input input" id="auth_password" type="password" placeholder="password">
+            <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button btn" type="submit">
+              <span class="auth__button-text icon icon--registration">registration</span>
+            </button>
+            <button class="auth__button flip__button auth__button--big auth__button--transparent btn" type="button">
+              <span class="auth__button-text icon icon--login">login</span>
+            </button>
+            <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button auth__button--big btn" type="button">
+              <span class="auth__button-text icon icon--steam">login with Steam</span>
+            </button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+          </fieldset>
         </div>
-      </fieldset>
-      <fieldset class="auth__block"></fieldset>
+      </div>
     </form>
-  </div> -->
+  </div>
 
 
   <!-- svg color filters -->

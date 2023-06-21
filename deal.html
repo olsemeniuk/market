@@ -34,7 +34,7 @@
                 <span class="visually-hidden">Close navigation menu</span>
               </button>
               <div class="menu__logo">
-                <a class="menu__logo-link" href="#">
+                <a class="menu__logo-link" href="/index.html">
                   <img width="153" height="49" src="images/logo.png" alt="Market4pro logo.">
                 </a>
               </div>
@@ -96,16 +96,16 @@
               </div>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a class="menu__link" href="./index.html">buy</a>
+                  <a class="menu__link" href="/index.html">buy</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link" href="./deal.html">sell</a>
+                  <a class="menu__link" href="/sell.html">sell</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link menu__link--active" href="./deal.html">trade</a>
+                  <a class="menu__link menu__link--active" href="#">trade</a>
                 </li>
                 <li class="menu__item menu__item--last">
-                  <a class="menu__link" href="./info.html">info</a>
+                  <a class="menu__link" href="/info.html">info</a>
                 </li>
               </ul>
               <div class="menu__footer">
@@ -138,7 +138,7 @@
           </div>
         </div>
         <div class="header__logo logo">
-          <a class="logo__link" href="#">
+          <a class="logo__link" href="/index.html">
             <picture class="logo__img">
               <source srcset="images/logo-small.png" media="(max-width: 900px)">
               <img src="images/logo.png" alt="">
@@ -200,7 +200,7 @@
               </form>
             </div>
           </div>
-          <a class="header__sign-in btn" href="./account.html">sign in</a>
+          <button class="header__sign-in open-auth-button btn" type="button">sign in</button>
         </div>
       </div>
     </div>
@@ -2675,7 +2675,7 @@
                     </ul>
                   </div>
                   <form action="#" method="get">
-                    <input class="dropdown__input" id="sort_input_store" type="text" name="sortInputStore"
+                    <input class="dropdown__input" id="sort_input_inventory" type="text" name="sortInputInventory"
                       aria-hidden="true">
                   </form>
                 </div>
@@ -4757,7 +4757,7 @@
     <div class="container">
       <div class="footer__inner page-block">
         <div class="footer__logo">
-          <a class="footer__logo-link" href="#">
+          <a class="footer__logo-link" href="/index.html">
             <img class="footer__logo-img" width="66" height="49" src="images/footer-logo.png" alt="">
           </a>
         </div>
@@ -4788,7 +4788,7 @@
   <div class="modal payment-modal deposit-modal">
     <form class="payment-form flip" action="#">
       <div class="flip__front modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">deposit</h2>
             <button class="modal__close" type="button">
@@ -4868,7 +4868,7 @@
         </div>
       </div>
       <div class="flip__back modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">deposit <span>(step 2)</span></h2>
             <b class="payment-modal__chosen-method chosen-method"></b>
@@ -4934,7 +4934,7 @@
   <div class="modal payment-modal withdraw-modal">
     <form class="payment-form flip" action="#">
       <div class="flip__front modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">withdraw</h2>
             <button class="modal__close" type="button">
@@ -5014,7 +5014,7 @@
         </div>
       </div>
       <div class="flip__back modal-shadow">
-        <div class="payment-modal__inner">
+        <div class="flip__inner">
           <div class="payment-modal__header">
             <h2 class="account-title">withdraw <span>(step 2)</span></h2>
             <b class="payment-modal__chosen-method chosen-method"></b>
@@ -5073,6 +5073,70 @@
             <button class="payment-form__back-button btn flip__button" type="button">back</button>
             <button class="payment-form__submit payment-form__button btn" type="submit">withdraw</button>
           </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal auth">
+    <form class="auth__form flip" action="#">
+      <div class="flip__front modal-shadow">
+        <div class="flip__inner">
+          <button class="modal__close" type="button">
+            <span class="visually-hidden">Close modal popup</span>
+          </button>
+          <h2 class="auth__title">auth</h2>
+          <fieldset class="auth__block auth__inputs-block">
+            <input class="auth__input input" type="text" placeholder="login/email">
+            <input class="auth__input input" type="password" placeholder="password">
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button btn" type="submit">
+              <span class="auth__button-text icon icon--login">login</span>
+            </button>
+            <button class="auth__button auth__button--big btn flip__button auth__button--transparent" type="button">
+              <span class="auth__button-text icon icon--registration">registration</span>
+            </button>
+            <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+              <button class="auth__button auth__button--big btn" type="button">
+                <span class="auth__button-text icon icon--steam">login with Steam</span>
+              </button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+          </fieldset>
+        </div>
+      </div>
+      <div class="flip__back modal-shadow">
+        <div class="flip__inner">
+          <button class="modal__close" type="button">
+            <span class="visually-hidden">Close modal popup</span>
+          </button>
+          <h2 class="auth__title">registration</h2>
+          <fieldset class="auth__block auth__inputs-block">
+            <input class="auth__input input" type="text" placeholder="name">
+            <input class="auth__input input" type="email" placeholder="mail">
+            <input class="auth__input input" id="auth_password" type="password" placeholder="password">
+            <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button btn" type="submit">
+              <span class="auth__button-text icon icon--registration">registration</span>
+            </button>
+            <button class="auth__button flip__button auth__button--big auth__button--transparent btn" type="button">
+              <span class="auth__button-text icon icon--login">login</span>
+            </button>
+            <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button auth__button--big btn" type="button">
+              <span class="auth__button-text icon icon--steam">login with Steam</span>
+            </button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+          </fieldset>
         </div>
       </div>
     </form>

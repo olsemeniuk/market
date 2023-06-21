@@ -43,7 +43,11 @@ const depositModal = document.querySelector('.deposit-modal');
 const withdrawModal = document.querySelector('.withdraw-modal');
 const paymentModals = document.querySelectorAll('.payment-modal');
 const flipBlocks = document.querySelectorAll('.flip');
+const openAuthButtons = document.querySelectorAll('.open-auth-button');
+const authModal = document.querySelector('.auth');
 
+const isSellPage = document.body.classList.contains('sell-page');
+const isAccountPage = document.body.classList.contains('account-page');
 
 if (gameItems.length > 0) {
   gameItems.forEach(item => {
@@ -64,6 +68,12 @@ if (gameItems.length > 0) {
         'max': 1
       }
     });
+  });
+}
+
+if (openAuthButtons.length > 0) {
+  openAuthButtons.forEach(button => {
+    button.addEventListener('click', openAuthorization);
   });
 }
 
@@ -128,14 +138,12 @@ if (paymentModals.length > 0) {
     depositOpenButtons.forEach(button => {
       button.addEventListener('click', openDepositModal);
     });
-    new Dropdown('#deposit_currency_dropdown').start();
   }
 
   if (withdrawOpenButtons.length > 0) {
     withdrawOpenButtons.forEach(button => {
       button.addEventListener('click', openWithdrawModal);
     });
-    new Dropdown('#withdraw_currency_dropdown').start();
   }
 
   paymentModals.forEach(modal => {
@@ -241,26 +249,11 @@ if (rangeSlider) {
 menuOpenBtn?.addEventListener('click', openMainMenu);
 menuCloseBtn?.addEventListener('click', closeMainMenu);
 
-if (languageDropdown) {
-  new Dropdown('#language_dropdown').start();
-}
-if (currencyDropdown) {
-  new Dropdown('#currency_dropdown').start();
-}
-if (menuLangDropdown) {
-  new Dropdown('#menu_language_dropdown').start();
-}
-if (menuCurrencyDropdown) {
-  new Dropdown('#menu_currency_dropdown').start();
-}
-if (sortDropdown) {
-  new Dropdown('#sort_dropdown').start();
-}
-if (storeSort) {
-  new Dropdown('#sort_dropdown_store').start();
-}
-if (inventorySort) {
-  new Dropdown('#sort_dropdown_inventory').start();
+const dropdowns = document.querySelectorAll('.dropdown');
+if (dropdowns.length > 0) {
+  dropdowns.forEach(dropdown => {
+    new Dropdown(dropdown).start();
+  });
 }
 
 if (search.length > 0) {
@@ -698,7 +691,16 @@ function addErrorAnimationToInput() {
 function showGameItemModal(event, item) {
   const { target } = event;
   const isDetailsButton = target.closest('.item__details');
-  if (!isDetailsButton) return;
+  const isOverlay = target.closest('.item__overlay');
+  const isSellButton = target.closest('.item__sell-button');
+  const isStashItem = item.classList.contains('stash__item');
+
+  if (isStashItem) {
+    if (!isOverlay && !isSellButton) return;
+  } else {
+    if (!isDetailsButton) return;
+  }
+
   const modal = item.querySelector('.modal-item');
   modal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
@@ -757,11 +759,24 @@ function openWithdrawModal() {
   handleFilpHeight(withdrawModal)
 }
 
+function openAuthorization() {
+  authModal.classList.add('modal--active');
+  modalOverlay.classList.add('modal-overlay--active');
+  handleFilpHeight(authModal);
+}
+
 function handleFilpHeight(parentBlock) {
   const flip = parentBlock.querySelector('.flip');
   const front = flip.querySelector('.flip__front');
-  front.style.height = `${front.scrollHeight}px`;
-  flip.style.height = `${front.scrollHeight}px`;
+  const frontInner = front.querySelector('.flip__inner');
+  setHeight();
+  setTimeout(setHeight, 10);
+
+  function setHeight() {
+    const frontInnerHeight = frontInner.getBoundingClientRect().height;
+    front.style.height = `${frontInnerHeight}px`;
+    flip.style.height = `${frontInnerHeight}px`;
+  }
 }
 
 function renderChart(item) {
@@ -769,7 +784,6 @@ function renderChart(item) {
   const chartContainerID = chartContainer.id;
   createChart(`#${chartContainerID}`, chartData);
 }
-
 
 function destroyChart(item) {
   const chart = item.querySelector('.chart-container svg');
@@ -1080,11 +1094,16 @@ function addItemsToCart(event, item) {
     removeItemFromLocalStorage(item);
   }
 
-  if (totalPrice < 0) totalPrice = 0;
-  totalPrice = formatPrice(totalPrice);
-  totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
+  if (totalPrice < 0 || totalPrice === 0) {
+    totalPrice = 0;
+    itemsSum.textContent = '$ 0';
+  } else {
+    totalPrice = formatPrice(totalPrice);
+    totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
 
-  itemsSum.textContent = totalPrice;
+    itemsSum.textContent = totalPrice;
+  }
+
   amount.textContent = totalAmount;
   if (slider) {
     addHorizontalShadows(sliderWrapper, slider);
@@ -1160,7 +1179,7 @@ function removeItemFromLocalStorage(item) {
 
 function showAddedItems() {
   const itemsFromStorage = JSON.parse(localStorage.getItem('chosenItemsInfo'));
-  if (!itemsFromStorage) return;
+  if (!itemsFromStorage || isSellPage || isAccountPage) return;
   const allItems = document.querySelectorAll('.item');
 
   let marketItemsAmount = 0;
@@ -1216,9 +1235,13 @@ function showAddedItems() {
 
   function showData(amountHTML, amountNum, priceHTML, priceNum) {
     amountHTML.textContent = amountNum;
-    priceNum = formatPrice(priceNum);
-    priceNum = priceNum.slice(0, priceNum.length - 1).trim();
-    priceHTML.textContent = priceNum;
+    if (priceNum === 0) {
+      priceHTML.textContent = '$ 0';
+    } else {
+      priceNum = formatPrice(priceNum);
+      priceNum = priceNum.slice(0, priceNum.length - 1).trim();
+      priceHTML.textContent = priceNum;
+    }
   }
 }
 
@@ -1482,6 +1505,8 @@ function rotateFlipBlock() {
     const parentModal = flip.closest('.modal');
     const front = flip.querySelector('.flip__front');
     const back = flip.querySelector('.flip__back');
+    const frontInner = front.querySelector('.flip__inner');
+    const backInner = back.querySelector('.flip__inner');
 
     const buttons = flip.querySelectorAll('.flip__button');
     buttons.forEach(button => {
@@ -1494,11 +1519,13 @@ function rotateFlipBlock() {
 
         const isFlipped = flip.classList.contains('flip--rotate');
         if (isFlipped) {
-          back.style.height = `${back.scrollHeight}px`;
-          flip.style.height = `${back.scrollHeight}px`;
+          const backInnerHeight = backInner.getBoundingClientRect().height;
+          back.style.height = `${backInnerHeight}px`;
+          flip.style.height = `${backInnerHeight}px`;
         } else {
-          front.style.height = `${front.scrollHeight}px`;
-          flip.style.height = `${front.scrollHeight}px`;
+          const frontInnerHeight = frontInner.getBoundingClientRect().height;
+          front.style.height = `${frontInnerHeight}px`;
+          flip.style.height = `${frontInnerHeight}px`;
         }
       });
     });
@@ -1637,6 +1664,171 @@ function bankCardInputValidation() {
     });
   });
 }
+
+
+const authForm = document.querySelector('.auth__form');
+authForm?.addEventListener('input', disableAuthButtons);
+if (authForm) {
+  disableAuthButtons();
+}
+
+function disableAuthButtons() {
+  const inners = authModal.querySelectorAll('.flip__inner');
+  inners.forEach(inner => {
+    const authButton = inner.querySelector('.auth__button[type="submit"]');
+    const inputs = inner.querySelectorAll('.auth__input');
+
+    let inputsFilled = true;
+    inputs.forEach(input => {
+      if (input.value === '') {
+        inputsFilled = false;
+      }
+    });
+
+    if (!inputsFilled) {
+      authButton.disabled = true;
+    } else {
+      authButton.disabled = false;
+    }
+  });
+}
+
+authForm?.addEventListener('change', passwordsCompare);
+
+function passwordsCompare() {
+  const pass = authModal.querySelector('#auth_password');
+  const passRepeat = authModal.querySelector('#auth_password_repeat');
+  const passwords = [pass, passRepeat];
+  const passwordsParent = pass.closest('.auth__inputs-block');
+  const tooltipHTML = passwordsParent.querySelector('.input-tooltip');
+
+  if (pass.value === '' || passRepeat.value === '') return;
+
+  passwords.forEach(input => {
+    if (passRepeat.value !== pass.value) {
+      input.classList.add('input--error');
+      const tooltip = createInputErrorTooltip();
+      if (!tooltipHTML) {
+        passwordsParent.append(tooltip);
+        const tooltipText = tooltip.querySelector('.input-tooltip__text');
+        tooltipText.textContent = 'Please, enter identical passwords';
+        setTimeout(() => {
+          tooltip.remove();
+        }, 2000);
+      }
+    } else {
+      input.classList.remove('input--error');
+    }
+  });
+
+  handleErrorPasswordBorder();
+}
+
+function handleErrorPasswordBorder() {
+  const pass = authModal.querySelector('#auth_password');
+  const passRepeat = authModal.querySelector('#auth_password_repeat');
+  const passwords = [pass, passRepeat];
+
+  passwords.forEach(input => {
+    input.addEventListener('input', () => {
+      if (pass.value !== passRepeat.value) {
+        addError();
+      } else {
+        removeError();
+      }
+    });
+  });
+
+  function addError() {
+    passwords.forEach(input => {
+      input.classList.add('input--error');
+    });
+  }
+
+  function removeError() {
+    passwords.forEach(input => {
+      input.classList.remove('input--error');
+    });
+  }
+}
+
+// const stashList = document.querySelector('.stash__items');
+// stashList.addEventListener('click', sellItem);
+
+// function sellItem({ target }) {
+//   const item = target.closest('.item');
+//   if (!item) return;
+
+//   const sellButton = target.closest('.item__sell-button');
+//   const overlay = target.closest('.item__overlay');
+//   if (!sellButton && !overlay) return;
+
+//   const sellList = document.querySelector('.items-sell__items');
+//   item.remove();
+//   sellList.append(item);
+//   item.classList.add('item--to-sell');
+//   showHideSellItemsPlaceholder();
+//   updatePriceAndAmountSellItems();
+// }
+
+
+if (isSellPage) {
+  showHideSellItemsPlaceholder();
+  updatePriceAndAmountSellItems();
+}
+
+function showHideSellItemsPlaceholder() {
+  const sections = document.querySelectorAll('.sell-page__section');
+  sections.forEach(section => {
+    const placeholder = section.querySelector('.sell-page__section-placeholder');
+    const items = section.querySelectorAll('.item');
+    if (items.length === 0) {
+      placeholder.classList.add('sell-page__section-placeholder--active');
+    } else {
+      placeholder.classList.remove('sell-page__section-placeholder--active');
+    }
+  });
+}
+
+function updatePriceAndAmountSellItems() {
+  let itemsPrice = 0;
+  let itemsAmount = 0;
+
+  const sellCart = document.querySelector('.sell-page__cart');
+  const amountHTML = sellCart.querySelector('.items-amount');
+  const sumHTML = sellCart.querySelector('.items-price');
+
+  if (!isNaN(getItemPrice(sumHTML)) && getItemPrice(sumHTML) > 0) {
+    itemsPrice = getItemPrice(sumHTML);
+  }
+
+  const amountInHTML = Number(amountHTML.textContent.trim());
+  if (!isNaN(amountInHTML) && amountInHTML > 0) {
+    itemsAmount = amountInHTML;
+  }
+
+  const itemsToSell = document.querySelectorAll('.item--to-sell');
+  itemsAmount = itemsToSell.length;
+
+  let sellItemsTotalPrice = 0
+  itemsToSell.forEach(item => {
+    const itemPriceHTML = item.querySelector('.item__price')
+    const price = getItemPrice(itemPriceHTML);
+    sellItemsTotalPrice += price;
+  });
+
+  itemsPrice = sellItemsTotalPrice;
+  itemsPrice = formatPrice(itemsPrice);
+  itemsPrice = itemsPrice.slice(0, itemsPrice.length - 1).trim();
+  amountHTML.textContent = itemsAmount;
+
+  if (sellItemsTotalPrice === 0) {
+    sumHTML.textContent = '$ 0';
+  } else {
+    sumHTML.textContent = itemsPrice;
+  }
+}
+
 
 
 // chart

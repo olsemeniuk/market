@@ -1,7 +1,6 @@
 class Dropdown {
-  constructor(targetID) {
-    this.selector = targetID;
-    this.target = document.querySelector(this.selector);
+  constructor(element) {
+    this.target = element;
 
     this.button = this.target.querySelector('.dropdown__button');
     this.buttonText = this.target.querySelector('.dropdown__text');
@@ -32,7 +31,7 @@ class Dropdown {
 
     document.addEventListener('click', event => {
       const { target } = event;
-      const isDropdown = Boolean(target.closest(this.selector));
+      const isDropdown = Boolean(this.target.contains(target));
       if (!isDropdown) {
         this.removeActiveStateOfList();
       }
@@ -41,7 +40,7 @@ class Dropdown {
     this.modal.forEach(item => {
       item.addEventListener('click', event => {
         const { target } = event;
-        const isDropdown = Boolean(target.closest(this.selector));
+        const isDropdown = Boolean(this.target.contains(target));
         if (!isDropdown) {
           this.removeActiveStateOfList();
         }
