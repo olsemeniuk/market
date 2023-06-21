@@ -43,6 +43,8 @@ const depositModal = document.querySelector('.deposit-modal');
 const withdrawModal = document.querySelector('.withdraw-modal');
 const paymentModals = document.querySelectorAll('.payment-modal');
 const flipBlocks = document.querySelectorAll('.flip');
+const openAuthButtons = document.querySelectorAll('.open-auth-button');
+const authModal = document.querySelector('.auth');
 
 
 if (gameItems.length > 0) {
@@ -64,6 +66,12 @@ if (gameItems.length > 0) {
         'max': 1
       }
     });
+  });
+}
+
+if (openAuthButtons.length > 0) {
+  openAuthButtons.forEach(button => {
+    button.addEventListener('click', openAuthorization);
   });
 }
 
@@ -757,11 +765,24 @@ function openWithdrawModal() {
   handleFilpHeight(withdrawModal)
 }
 
+function openAuthorization() {
+  authModal.classList.add('modal--active');
+  modalOverlay.classList.add('modal-overlay--active');
+  handleFilpHeight(authModal);
+}
+
 function handleFilpHeight(parentBlock) {
   const flip = parentBlock.querySelector('.flip');
   const front = flip.querySelector('.flip__front');
-  front.style.height = `${front.scrollHeight}px`;
-  flip.style.height = `${front.scrollHeight}px`;
+  const frontInner = front.querySelector('.flip__inner');
+  setHeight();
+  setTimeout(setHeight, 10);
+
+  function setHeight() {
+    const frontInnerHeight = frontInner.getBoundingClientRect().height;
+    front.style.height = `${frontInnerHeight}px`;
+    flip.style.height = `${frontInnerHeight}px`;
+  }
 }
 
 function renderChart(item) {
@@ -769,7 +790,6 @@ function renderChart(item) {
   const chartContainerID = chartContainer.id;
   createChart(`#${chartContainerID}`, chartData);
 }
-
 
 function destroyChart(item) {
   const chart = item.querySelector('.chart-container svg');
@@ -1482,6 +1502,8 @@ function rotateFlipBlock() {
     const parentModal = flip.closest('.modal');
     const front = flip.querySelector('.flip__front');
     const back = flip.querySelector('.flip__back');
+    const frontInner = front.querySelector('.flip__inner');
+    const backInner = back.querySelector('.flip__inner');
 
     const buttons = flip.querySelectorAll('.flip__button');
     buttons.forEach(button => {
@@ -1494,11 +1516,13 @@ function rotateFlipBlock() {
 
         const isFlipped = flip.classList.contains('flip--rotate');
         if (isFlipped) {
-          back.style.height = `${back.scrollHeight}px`;
-          flip.style.height = `${back.scrollHeight}px`;
+          const backInnerHeight = backInner.getBoundingClientRect().height;
+          back.style.height = `${backInnerHeight}px`;
+          flip.style.height = `${backInnerHeight}px`;
         } else {
-          front.style.height = `${front.scrollHeight}px`;
-          flip.style.height = `${front.scrollHeight}px`;
+          const frontInnerHeight = frontInner.getBoundingClientRect().height;
+          front.style.height = `${frontInnerHeight}px`;
+          flip.style.height = `${frontInnerHeight}px`;
         }
       });
     });

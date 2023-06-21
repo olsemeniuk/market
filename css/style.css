@@ -184,6 +184,12 @@ p {
   background-image: url("../images/icons/link-icon.svg");
 }
 
+.icon--google::before {
+  width: 18px;
+  height: 19px;
+  background-image: url("/images/icons/google-icon.svg");
+}
+
 
 /* ===================
     MAIN STYLES
@@ -1834,6 +1840,156 @@ p {
   opacity: .7;
 }
 
+
+/* authorization modal start */
+.modal.auth {
+  padding: 0;
+  overflow: visible;
+  background-color: transparent;
+  max-width: 400px;
+}
+
+.auth {}
+
+.auth .flip__inner {
+  padding: 40px 40px 20px;
+}
+
+.auth .flip__back {
+  transform: translateY(-50%) rotateY(180deg);
+}
+
+.auth .flip--rotate {
+  transform: rotateY(180deg);
+}
+
+.auth .modal__close {
+  top: 15px;
+  right: 15px;
+  transform: none;
+}
+
+.auth__form {
+}
+
+.auth__title {
+  margin-bottom: 35px;
+  font-size: 18px;
+  text-align: center;
+  color: var(--color-w);
+}
+
+.auth__block:not(:last-of-type) {
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-hc);
+}
+
+.auth__input {
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.auth__buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-right: -18px;
+}
+
+.auth__login,
+.auth__registration {
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.auth__registration::before,
+.auth__login::before {
+  top: 50%;
+  left: 20px;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
+}
+
+.auth__login::before {
+  background-image: url("/images/icons/login-icon.svg");
+}
+
+.auth__button {
+  position: relative;
+  flex-shrink: 0;
+  min-height: 40px;
+  margin-right: 18px;
+  margin-bottom: 18px;
+  border: 2px solid transparent;
+}
+
+.auth__button::before {
+  content: "";
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: var(--color-w-filter);
+}
+
+.auth__button--transparent {
+  color: var(--color-lc);
+  background-color: transparent;
+  border-color: var(--color-lc);
+}
+
+.auth__button--transparent:hover {
+  background-color: var(--color-hc);
+}
+
+.auth__button--transparent::before {
+  filter: var(--color-lc-filter);
+}
+
+.auth__registration::before {
+  background-image: url("/images/icons/registration-icon.svg");
+}
+
+.auth__registration,
+.auth__steam {
+  flex: 1 1 auto;
+}
+
+.auth__registration {
+  max-width: 143px;
+}
+
+.auth__key {
+  min-width: 40px;
+}
+
+.auth__steam {
+  padding-left: 40px;
+  padding-right: 18px;
+}
+
+.auth__steam::before {
+  width: 18px;
+  height: 18px;
+}
+
+.auth__button--small {
+  min-width: 50px;
+}
+
+.auth__button--small::before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* authorization modal end */
+
+
 .game-item-overlay {
   position: absolute;
   left: 0;
@@ -1854,6 +2010,7 @@ p {
 .payment-modal__inner {
   display: flex;
   flex-direction: column;
+  padding: 30px 30px 40px;
 }
 
 .payment-modal__header {
@@ -1894,7 +2051,6 @@ p {
   width: 100%;
   min-height: 200px;
   max-height: 80vh;
-  padding: 30px 30px 40px;
   overflow-x: hidden;
   background-color: var(--color-c);
   -webkit-backface-visibility: hidden;
@@ -4538,7 +4694,7 @@ p {
   }
 
   .flip--rotate {
-    transform: perspective(1200px) rotateY(180deg);
+    transform: rotateY(180deg);
   }
 
   .modal-item__links-row {
@@ -4615,7 +4771,7 @@ p {
   .payment-form__label:not(:last-of-type) {
     margin-right: 0;
   }
-  
+
   .payment-form__label {
     flex-wrap: wrap;
     width: 100%;
@@ -4649,13 +4805,13 @@ p {
   .input-tooltip {
     max-width: 300px;
   }
-  
+
   .payment-form__label .input-tooltip {
     left: 0 !important;
     right: auto !important;
     max-width: 200px;
   }
-  
+
   .payment-form__label .input-tooltip .input-tooltip__arrow {
     left: 15px !important;
   }
@@ -4844,7 +5000,7 @@ p {
     flex-direction: column;
   }
 
-  .payment-form__buttons-row button + button {
+  .payment-form__buttons-row button+button {
     margin-top: 15px;
   }
 }
