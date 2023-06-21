@@ -394,7 +394,31 @@ changeFavicon();
 function choseItem(event, item) {
   const { target } = event;
   const isFavouriteButton = target.classList.contains('item__favourite-button');
-  if (isFavouriteButton) item.classList.toggle('item--chosen');
+  if (!isFavouriteButton) return;
+  if (item.classList.contains('item--chosen')) {
+    item.classList.remove('item--chosen');
+    removeItemFromLocalStorage(item, 'favouriteItems')
+  } else {
+    item.classList.add('item--chosen');
+    saveItemToLocalStorage(item, 'favouriteItems');
+  }
+}
+
+showFavouriteItems()
+
+function showFavouriteItems() {
+  if (isSellPage) return;
+  const items = document.querySelectorAll('.item');
+  const itemsFromStorage = JSON.parse(localStorage.getItem('favouriteItems'));
+  if (!itemsFromStorage) return;
+
+  itemsFromStorage.forEach(storageItem => {
+    items.forEach(item => {
+      if (storageItem.id === item.id) {
+        item.classList.add('item--chosen');
+      }
+    });
+  });
 }
 
 function deleteButton(event, item) {
@@ -1083,7 +1107,7 @@ function addItemsToCart(event, item) {
     }
     totalPrice += price;
     totalAmount++;
-    saveItemToLocalStorage(item);
+    saveItemToLocalStorage(item, 'chosenItemsInfo');
   } else {
     totalPrice -= price;
     totalAmount--;
@@ -1091,7 +1115,7 @@ function addItemsToCart(event, item) {
       const slideToRemove = slider.querySelector(`[data-id="${id}"]`);
       slideToRemove.remove();
     }
-    removeItemFromLocalStorage(item);
+    removeItemFromLocalStorage(item, 'chosenItemsInfo');
   }
 
   if (totalPrice < 0 || totalPrice === 0) {
@@ -1130,8 +1154,8 @@ function addImageToSlider(imageSource, itemID, slider) {
   slider.prepend(sliderItem);
 }
 
-function saveItemToLocalStorage(item) {
-  const itemsInStorage = localStorage.getItem('chosenItemsInfo');
+function saveItemToLocalStorage(item, storageName) {
+  const itemsInStorage = localStorage.getItem(storageName);
   let array = [];
 
   if (itemsInStorage) {
@@ -1159,11 +1183,11 @@ function saveItemToLocalStorage(item) {
     });
   }
 
-  localStorage.setItem('chosenItemsInfo', JSON.stringify(array));
+  localStorage.setItem(storageName, JSON.stringify(array));
 }
 
-function removeItemFromLocalStorage(item) {
-  const itemsInStorage = localStorage.getItem('chosenItemsInfo');
+function removeItemFromLocalStorage(item, storageName) {
+  const itemsInStorage = localStorage.getItem(storageName);
   let array = JSON.parse(itemsInStorage);
   const id = item.id;
   let itemIndex;
@@ -1174,7 +1198,7 @@ function removeItemFromLocalStorage(item) {
   });
 
   array.splice(itemIndex, 1);
-  localStorage.setItem('chosenItemsInfo', JSON.stringify(array));
+  localStorage.setItem(storageName, JSON.stringify(array));
 }
 
 function showAddedItems() {
