@@ -1470,9 +1470,6 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
 }
 
 /* item */
@@ -1697,24 +1694,55 @@ p {
   top: 3px;
 }
 
+.item__my {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0 6px;
+  opacity: 0;
+  color: var(--color-chc);
+  background-color: var(--color-c);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
 .item:hover .item__overlay,
-.item:hover .item__favourite-button {
+.item:hover .item__favourite-button,
+.item:hover .item__my {
   opacity: 1;
+}
+
+.item__sell-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 27px;
+  height: 33px;
+  background-image: url("/images/icons/sell-icon.svg");
+  transform: translate(-50%, -50%);
 }
 
 .item:hover .item__content {
   background-color: #42424d;
 }
 
-.item:hover .item__icons {
+.item:not(.stash__item):hover .item__icons {
   bottom: -100%;
   opacity: 0;
+}
+
+.stash__item:hover .item__icons {
+  opacity: 0.2;
 }
 
 .item:hover .item__about {
   position: relative;
   bottom: 40px;
-  opacity: .2;
+  opacity: 0.2;
+}
+
+.stash__item:hover .item__about {
+  bottom: 0;
 }
 
 .item:hover .item__details {
@@ -3627,7 +3655,57 @@ p {
 .warning__button {
   flex-shrink: 0;
 }
+
+.items-sell {}
+
+.sell-page__section:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.sell-page__section-title {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 16px 20px;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid var(--color-hc);
+  border-radius: 10px;
+}
+
+.sell-page__section-body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.sell-page__section-placeholder {
+  display: none;
+  margin: auto;
+}
+
+.sell-page__section-placeholder--active {
+  display: block;
+}
+
+.sell-page__items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.items-sell__items {
+}
+
+
+
+
 /* sell page end */
+
 
 
 
@@ -4434,6 +4512,10 @@ p {
     display: none;
   }
 
+  .stash__items {
+    padding-bottom: 30px;
+  }
+
   .products__content-items {
     padding-bottom: 40px;
   }
@@ -4722,7 +4804,8 @@ p {
     padding: 10px 5px;
   }
 
-  .products__content-items {
+  .products__content-items,
+  .sell-page__items {
     grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
   }
 

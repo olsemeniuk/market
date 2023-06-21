@@ -46,6 +46,8 @@ const flipBlocks = document.querySelectorAll('.flip');
 const openAuthButtons = document.querySelectorAll('.open-auth-button');
 const authModal = document.querySelector('.auth');
 
+const isSellPage = document.body.classList.contains('sell-page');
+const isAccountPage = document.body.classList.contains('account-page');
 
 if (gameItems.length > 0) {
   gameItems.forEach(item => {
@@ -689,7 +691,16 @@ function addErrorAnimationToInput() {
 function showGameItemModal(event, item) {
   const { target } = event;
   const isDetailsButton = target.closest('.item__details');
-  if (!isDetailsButton) return;
+  const isOverlay = target.closest('.item__overlay');
+  const isSellButton = target.closest('.item__sell-button');
+  const isStashItem = item.classList.contains('stash__item');
+
+  if (isStashItem) {
+    if (!isOverlay && !isSellButton) return;
+  } else {
+    if (!isDetailsButton) return;
+  }
+
   const modal = item.querySelector('.modal-item');
   modal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
@@ -1083,11 +1094,16 @@ function addItemsToCart(event, item) {
     removeItemFromLocalStorage(item);
   }
 
-  if (totalPrice < 0) totalPrice = 0;
-  totalPrice = formatPrice(totalPrice);
-  totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
+  if (totalPrice < 0 || totalPrice === 0) {
+    totalPrice = 0;
+    itemsSum.textContent = '$ 0';
+  } else {
+    totalPrice = formatPrice(totalPrice);
+    totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
 
-  itemsSum.textContent = totalPrice;
+    itemsSum.textContent = totalPrice;
+  }
+
   amount.textContent = totalAmount;
   if (slider) {
     addHorizontalShadows(sliderWrapper, slider);
@@ -1163,7 +1179,7 @@ function removeItemFromLocalStorage(item) {
 
 function showAddedItems() {
   const itemsFromStorage = JSON.parse(localStorage.getItem('chosenItemsInfo'));
-  if (!itemsFromStorage) return;
+  if (!itemsFromStorage || isSellPage || isAccountPage) return;
   const allItems = document.querySelectorAll('.item');
 
   let marketItemsAmount = 0;
@@ -1219,9 +1235,13 @@ function showAddedItems() {
 
   function showData(amountHTML, amountNum, priceHTML, priceNum) {
     amountHTML.textContent = amountNum;
-    priceNum = formatPrice(priceNum);
-    priceNum = priceNum.slice(0, priceNum.length - 1).trim();
-    priceHTML.textContent = priceNum;
+    if (priceNum === 0) {
+      priceHTML.textContent = '$ 0';
+    } else {
+      priceNum = formatPrice(priceNum);
+      priceNum = priceNum.slice(0, priceNum.length - 1).trim();
+      priceHTML.textContent = priceNum;
+    }
   }
 }
 
@@ -1731,6 +1751,84 @@ function handleErrorPasswordBorder() {
     });
   }
 }
+
+// const stashList = document.querySelector('.stash__items');
+// stashList.addEventListener('click', sellItem);
+
+// function sellItem({ target }) {
+//   const item = target.closest('.item');
+//   if (!item) return;
+
+//   const sellButton = target.closest('.item__sell-button');
+//   const overlay = target.closest('.item__overlay');
+//   if (!sellButton && !overlay) return;
+
+//   const sellList = document.querySelector('.items-sell__items');
+//   item.remove();
+//   sellList.append(item);
+//   item.classList.add('item--to-sell');
+//   showHideSellItemsPlaceholder();
+//   updatePriceAndAmountSellItems();
+// }
+
+
+if (isSellPage) {
+  showHideSellItemsPlaceholder();
+  updatePriceAndAmountSellItems();
+}
+
+function showHideSellItemsPlaceholder() {
+  const sections = document.querySelectorAll('.sell-page__section');
+  sections.forEach(section => {
+    const placeholder = section.querySelector('.sell-page__section-placeholder');
+    const items = section.querySelectorAll('.item');
+    if (items.length === 0) {
+      placeholder.classList.add('sell-page__section-placeholder--active');
+    } else {
+      placeholder.classList.remove('sell-page__section-placeholder--active');
+    }
+  });
+}
+
+function updatePriceAndAmountSellItems() {
+  let itemsPrice = 0;
+  let itemsAmount = 0;
+
+  const sellCart = document.querySelector('.sell-page__cart');
+  const amountHTML = sellCart.querySelector('.items-amount');
+  const sumHTML = sellCart.querySelector('.items-price');
+
+  if (!isNaN(getItemPrice(sumHTML)) && getItemPrice(sumHTML) > 0) {
+    itemsPrice = getItemPrice(sumHTML);
+  }
+
+  const amountInHTML = Number(amountHTML.textContent.trim());
+  if (!isNaN(amountInHTML) && amountInHTML > 0) {
+    itemsAmount = amountInHTML;
+  }
+
+  const itemsToSell = document.querySelectorAll('.item--to-sell');
+  itemsAmount = itemsToSell.length;
+
+  let sellItemsTotalPrice = 0
+  itemsToSell.forEach(item => {
+    const itemPriceHTML = item.querySelector('.item__price')
+    const price = getItemPrice(itemPriceHTML);
+    sellItemsTotalPrice += price;
+  });
+
+  itemsPrice = sellItemsTotalPrice;
+  itemsPrice = formatPrice(itemsPrice);
+  itemsPrice = itemsPrice.slice(0, itemsPrice.length - 1).trim();
+  amountHTML.textContent = itemsAmount;
+
+  if (sellItemsTotalPrice === 0) {
+    sumHTML.textContent = '$ 0';
+  } else {
+    sumHTML.textContent = itemsPrice;
+  }
+}
+
 
 
 // chart
