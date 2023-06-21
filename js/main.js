@@ -136,14 +136,12 @@ if (paymentModals.length > 0) {
     depositOpenButtons.forEach(button => {
       button.addEventListener('click', openDepositModal);
     });
-    new Dropdown('#deposit_currency_dropdown').start();
   }
 
   if (withdrawOpenButtons.length > 0) {
     withdrawOpenButtons.forEach(button => {
       button.addEventListener('click', openWithdrawModal);
     });
-    new Dropdown('#withdraw_currency_dropdown').start();
   }
 
   paymentModals.forEach(modal => {
@@ -249,26 +247,11 @@ if (rangeSlider) {
 menuOpenBtn?.addEventListener('click', openMainMenu);
 menuCloseBtn?.addEventListener('click', closeMainMenu);
 
-if (languageDropdown) {
-  new Dropdown('#language_dropdown').start();
-}
-if (currencyDropdown) {
-  new Dropdown('#currency_dropdown').start();
-}
-if (menuLangDropdown) {
-  new Dropdown('#menu_language_dropdown').start();
-}
-if (menuCurrencyDropdown) {
-  new Dropdown('#menu_currency_dropdown').start();
-}
-if (sortDropdown) {
-  new Dropdown('#sort_dropdown').start();
-}
-if (storeSort) {
-  new Dropdown('#sort_dropdown_store').start();
-}
-if (inventorySort) {
-  new Dropdown('#sort_dropdown_inventory').start();
+const dropdowns = document.querySelectorAll('.dropdown');
+if (dropdowns.length > 0) {
+  dropdowns.forEach(dropdown => {
+    new Dropdown(dropdown).start();
+  });
 }
 
 if (search.length > 0) {
@@ -1662,10 +1645,12 @@ function bankCardInputValidation() {
   });
 }
 
-disableAuthButtons();
 
 const authForm = document.querySelector('.auth__form');
 authForm?.addEventListener('input', disableAuthButtons);
+if (authForm) {
+  disableAuthButtons();
+}
 
 function disableAuthButtons() {
   const inners = authModal.querySelectorAll('.flip__inner');
