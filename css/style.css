@@ -1973,6 +1973,21 @@ p {
   transform: translate(-50%, -50%);
 }
 
+.auth__button[type="submit"]:disabled {
+  color: var(--color-t);
+  background-color: transparent;
+  border-color: var(--color-t);
+  cursor: default;
+}
+
+.auth__button[type="submit"]:disabled .auth__button-text::before {
+  filter: var(--color-t-filter);
+}
+
+.auth__button[type="submit"]:disabled:hover {
+  background-color: transparent;
+}
+
 /* authorization modal end */
 
 

@@ -1662,6 +1662,32 @@ function bankCardInputValidation() {
   });
 }
 
+disableAuthButtons();
+
+const authForm = document.querySelector('.auth__form');
+authForm.addEventListener('input', disableAuthButtons);
+
+function disableAuthButtons() {
+  const inners = authModal.querySelectorAll('.flip__inner');
+  inners.forEach(inner => {
+    const authButton = inner.querySelector('.auth__button[type="submit"]');
+    const inputs = inner.querySelectorAll('.auth__input');
+
+    let inputsFilled = true;
+    inputs.forEach(input => {
+      if (input.value === '') {
+        inputsFilled = false;
+      }
+    });
+
+    if (!inputsFilled) {
+      authButton.disabled = true;
+    } else {
+      authButton.disabled = false;
+    }
+  });
+}
+
 
 // chart
 const chartData = [
