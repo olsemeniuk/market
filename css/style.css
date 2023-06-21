@@ -188,19 +188,19 @@ p {
 .icon--google::before {
   width: 18px;
   height: 19px;
-  background-image: url("/images/icons/google-icon.svg");
+  background-image: url("../images/icons/google-icon.svg");
 }
 
 .icon--registration::before {
   width: 14px;
   height: 14px;
-  background-image: url("/images/icons/registration-icon.svg");
+  background-image: url("../images/icons/registration-icon.svg");
 }
 
 .icon--login::before {
   width: 14px;
   height: 14px;
-  background-image: url("/images/icons/login-icon.svg");
+  background-image: url("../images/icons/login-icon.svg");
 }
 
 
@@ -1405,7 +1405,7 @@ p {
 
 .sell__cart {
   height: 24px;
-  background-image: url("/images/icons/sell-icon.svg");
+  background-image: url("../images/icons/sell-icon.svg");
 }
 
 .products__cart span {
@@ -1718,7 +1718,7 @@ p {
   left: 50%;
   width: 27px;
   height: 33px;
-  background-image: url("/images/icons/sell-icon.svg");
+  background-image: url("../images/icons/sell-icon.svg");
   transform: translate(-50%, -50%);
 }
 
