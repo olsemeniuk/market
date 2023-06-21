@@ -200,7 +200,7 @@
               </form>
             </div>
           </div>
-          <a class="header__sign-in btn" href="./account.html">sign in</a>
+          <button class="header__sign-in open-auth-button btn" type="button">sign in</button>
         </div>
       </div>
     </div>
@@ -5073,6 +5073,70 @@
             <button class="payment-form__back-button btn flip__button" type="button">back</button>
             <button class="payment-form__submit payment-form__button btn" type="submit">withdraw</button>
           </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal auth">
+    <form class="auth__form flip" action="#">
+      <div class="flip__front modal-shadow">
+        <div class="flip__inner">
+          <button class="modal__close" type="button">
+            <span class="visually-hidden">Close modal popup</span>
+          </button>
+          <h2 class="auth__title">auth</h2>
+          <fieldset class="auth__block auth__inputs-block">
+            <input class="auth__input input" type="text" placeholder="login/email">
+            <input class="auth__input input" type="password" placeholder="password">
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button btn" type="submit">
+              <span class="auth__button-text icon icon--login">login</span>
+            </button>
+            <button class="auth__button auth__button--big btn flip__button auth__button--transparent" type="button">
+              <span class="auth__button-text icon icon--registration">registration</span>
+            </button>
+            <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+              <button class="auth__button auth__button--big btn" type="button">
+                <span class="auth__button-text icon icon--steam">login with Steam</span>
+              </button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+          </fieldset>
+        </div>
+      </div>
+      <div class="flip__back modal-shadow">
+        <div class="flip__inner">
+          <button class="modal__close" type="button">
+            <span class="visually-hidden">Close modal popup</span>
+          </button>
+          <h2 class="auth__title">registration</h2>
+          <fieldset class="auth__block auth__inputs-block">
+            <input class="auth__input input" type="text" placeholder="name">
+            <input class="auth__input input" type="email" placeholder="mail">
+            <input class="auth__input input" id="auth_password" type="password" placeholder="password">
+            <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button btn" type="submit">
+              <span class="auth__button-text icon icon--registration">registration</span>
+            </button>
+            <button class="auth__button flip__button auth__button--big auth__button--transparent btn" type="button">
+              <span class="auth__button-text icon icon--login">login</span>
+            </button>
+            <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
+          </fieldset>
+          <fieldset class="auth__block auth__buttons-block">
+            <button class="auth__button auth__button--big btn" type="button">
+              <span class="auth__button-text icon icon--steam">login with Steam</span>
+            </button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+          </fieldset>
         </div>
       </div>
     </form>

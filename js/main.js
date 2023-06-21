@@ -1665,7 +1665,7 @@ function bankCardInputValidation() {
 disableAuthButtons();
 
 const authForm = document.querySelector('.auth__form');
-authForm.addEventListener('input', disableAuthButtons);
+authForm?.addEventListener('input', disableAuthButtons);
 
 function disableAuthButtons() {
   const inners = authModal.querySelectorAll('.flip__inner');
@@ -1686,6 +1686,65 @@ function disableAuthButtons() {
       authButton.disabled = false;
     }
   });
+}
+
+authForm?.addEventListener('change', passwordsCompare);
+
+function passwordsCompare() {
+  const pass = authModal.querySelector('#auth_password');
+  const passRepeat = authModal.querySelector('#auth_password_repeat');
+  const passwords = [pass, passRepeat];
+  const passwordsParent = pass.closest('.auth__inputs-block');
+  const tooltipHTML = passwordsParent.querySelector('.input-tooltip');
+
+  if (pass.value === '' || passRepeat.value === '') return;
+
+  passwords.forEach(input => {
+    if (passRepeat.value !== pass.value) {
+      input.classList.add('input--error');
+      const tooltip = createInputErrorTooltip();
+      if (!tooltipHTML) {
+        passwordsParent.append(tooltip);
+        const tooltipText = tooltip.querySelector('.input-tooltip__text');
+        tooltipText.textContent = 'Please, enter identical passwords';
+        setTimeout(() => {
+          tooltip.remove();
+        }, 2000);
+      }
+    } else {
+      input.classList.remove('input--error');
+    }
+  });
+
+  handleErrorPasswordBorder();
+}
+
+function handleErrorPasswordBorder() {
+  const pass = authModal.querySelector('#auth_password');
+  const passRepeat = authModal.querySelector('#auth_password_repeat');
+  const passwords = [pass, passRepeat];
+
+  passwords.forEach(input => {
+    input.addEventListener('input', () => {
+      if (pass.value !== passRepeat.value) {
+        addError();
+      } else {
+        removeError();
+      }
+    });
+  });
+
+  function addError() {
+    passwords.forEach(input => {
+      input.classList.add('input--error');
+    });
+  }
+
+  function removeError() {
+    passwords.forEach(input => {
+      input.classList.remove('input--error');
+    });
+  }
 }
 
 
