@@ -1,5 +1,5 @@
 # Market
-***
+
 ### Pages
 - [index](https://olsemeniuk.github.io/market/index.html);
 - [deal](https://olsemeniuk.github.io/market/deal.html);
