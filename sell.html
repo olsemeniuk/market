@@ -5142,16 +5142,16 @@
   </div>
 
   <div class="modal auth">
-    <form class="auth__form flip" action="#">
+    <div class="flip">
       <div class="flip__front modal-shadow">
-        <div class="flip__inner">
+        <form class="flip__inner auth__form" action="#">
           <button class="modal__close" type="button">
             <span class="visually-hidden">Close modal popup</span>
           </button>
           <h2 class="auth__title">auth</h2>
           <fieldset class="auth__block auth__inputs-block">
             <input class="auth__input input" type="text" placeholder="login/email">
-            <input class="auth__input input input--pass" type="password" placeholder="password">
+            <input class="auth__input input" type="password" placeholder="password">
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
             <button class="auth__button btn" type="submit">
@@ -5163,26 +5163,26 @@
             <button class="auth__button auth__button--small btn auth__button--transparent" type="button"></button>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
-            <button class="auth__button auth__button--big btn" type="button">
-              <span class="auth__button-text icon icon--steam">login with Steam</span>
-            </button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--big btn" type="button">
+                <span class="auth__button-text icon icon--steam">login with Steam</span>
+              </button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
           </fieldset>
-        </div>
+        </form>
       </div>
       <div class="flip__back modal-shadow">
-        <div class="flip__inner">
+        <form class="flip__inner auth__form" action="#">
           <button class="modal__close" type="button">
             <span class="visually-hidden">Close modal popup</span>
           </button>
           <h2 class="auth__title">registration</h2>
           <fieldset class="auth__block auth__inputs-block">
             <input class="auth__input input" type="text" placeholder="name">
-            <input class="auth__input input" type="text" placeholder="mail">
-            <input class="auth__input input input--pass" id="auth_password" type="password" placeholder="password">
-            <input class="auth__input input input--pass" id="auth_password_repeat" type="password" placeholder="repeat password">
+            <input class="auth__input input" type="email" placeholder="mail">
+            <input class="auth__input input" id="auth_password" type="password" placeholder="password">
+            <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
             <button class="auth__button btn" type="submit">
@@ -5201,9 +5201,9 @@
             <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
             <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
           </fieldset>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 
 

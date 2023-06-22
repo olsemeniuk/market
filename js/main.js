@@ -1690,18 +1690,19 @@ function bankCardInputValidation() {
   });
 }
 
-const authForm = document.querySelector('.auth__form');
-authForm?.addEventListener('input', disableAuthButtons);
-
-if (authForm) {
+const authForm = document.querySelectorAll('.auth__form');
+if (authForm.length > 0) {
+  authForm.forEach(form => {
+    form.addEventListener('input', disableAuthButtons);
+  });
   disableAuthButtons();
 }
 
 function disableAuthButtons() {
-  const inners = authModal.querySelectorAll('.flip__inner');
-  inners.forEach(inner => {
-    const authButton = inner.querySelector('.auth__button[type="submit"]');
-    const inputs = inner.querySelectorAll('.auth__input');
+  const forms = authModal.querySelectorAll('.auth__form');
+  forms.forEach(form => {
+    const authButton = form.querySelector('.auth__button[type="submit"]');
+    const inputs = form.querySelectorAll('.auth__input');
 
     let inputsFilled = true;
     let noErrorInputs = true;
@@ -1722,6 +1723,28 @@ function disableAuthButtons() {
     }
   });
 }
+
+// const authInputs = authForm.querySelectorAll('.auth__input');
+// authInputs.forEach(input => {
+//   input.addEventListener('blur', () => {
+//     errorEmptyInputOnBlur(input);
+//   });
+// });
+
+// const authFormInners = authForm.querySelectorAll('.flip__inner');
+// authFormInners.forEach(inner => {
+//   const inputs = inner.querySelectorAll('.auth__input');
+//   const submitButton = inner.querySelector('input[type="submit"]');
+
+// });
+
+// function errorEmptyInpu(input) {
+//   if (input.value === '') {
+//     input.classList.add('input--error');
+//   } else {
+//     input.classList.remove('input--error');
+//   }
+// }
 
 // authForm?.addEventListener('change', passwordsCompare);
 
