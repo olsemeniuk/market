@@ -783,7 +783,8 @@ function openWithdrawModal() {
   handleFilpHeight(withdrawModal)
 }
 
-function openAuthorization() {
+function openAuthorization(event) {
+  event.preventDefault();
   authModal.classList.add('modal--active');
   modalOverlay.classList.add('modal-overlay--active');
   handleFilpHeight(authModal);
@@ -1494,7 +1495,7 @@ function handlePaymentSubmitButton(modal) {
 
 function paymentMethodsMinMax(modal) {
   const frontAmountInput = modal.querySelector('.payment-form__front-amount-input');
-  const paymentRadios = document.querySelectorAll('.payment-form__payment-radio');
+  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
   const inputValue = Number(frontAmountInput.value);
 
   paymentRadios.forEach(radio => {
@@ -1689,9 +1690,9 @@ function bankCardInputValidation() {
   });
 }
 
-
 const authForm = document.querySelector('.auth__form');
 authForm?.addEventListener('input', disableAuthButtons);
+
 if (authForm) {
   disableAuthButtons();
 }
@@ -1703,13 +1704,18 @@ function disableAuthButtons() {
     const inputs = inner.querySelectorAll('.auth__input');
 
     let inputsFilled = true;
+    let noErrorInputs = true;
+
     inputs.forEach(input => {
       if (input.value === '') {
         inputsFilled = false;
       }
+      if (input.classList.contains('input--error')) {
+        noErrorInputs = false;
+      }
     });
 
-    if (!inputsFilled) {
+    if (!inputsFilled || !noErrorInputs) {
       authButton.disabled = true;
     } else {
       authButton.disabled = false;
@@ -1717,64 +1723,64 @@ function disableAuthButtons() {
   });
 }
 
-authForm?.addEventListener('change', passwordsCompare);
+// authForm?.addEventListener('change', passwordsCompare);
 
-function passwordsCompare() {
-  const pass = authModal.querySelector('#auth_password');
-  const passRepeat = authModal.querySelector('#auth_password_repeat');
-  const passwords = [pass, passRepeat];
-  const passwordsParent = pass.closest('.auth__inputs-block');
-  const tooltipHTML = passwordsParent.querySelector('.input-tooltip');
+// function passwordsCompare() {
+//   const pass = authModal.querySelector('#auth_password');
+//   const passRepeat = authModal.querySelector('#auth_password_repeat');
+//   const passwords = [pass, passRepeat];
+//   const passwordsParent = pass.closest('.auth__inputs-block');
+//   const tooltipHTML = passwordsParent.querySelector('.input-tooltip');
 
-  if (pass.value === '' || passRepeat.value === '') return;
+//   if (pass.value === '' || passRepeat.value === '') return;
 
-  passwords.forEach(input => {
-    if (passRepeat.value !== pass.value) {
-      input.classList.add('input--error');
-      const tooltip = createInputErrorTooltip();
-      if (!tooltipHTML) {
-        passwordsParent.append(tooltip);
-        const tooltipText = tooltip.querySelector('.input-tooltip__text');
-        tooltipText.textContent = 'Please, enter identical passwords';
-        setTimeout(() => {
-          tooltip.remove();
-        }, 2000);
-      }
-    } else {
-      input.classList.remove('input--error');
-    }
-  });
+//   passwords.forEach(input => {
+//     if (passRepeat.value !== pass.value) {
+//       input.classList.add('input--error');
+//       const tooltip = createInputErrorTooltip();
+//       if (!tooltipHTML) {
+//         passwordsParent.append(tooltip);
+//         const tooltipText = tooltip.querySelector('.input-tooltip__text');
+//         tooltipText.textContent = 'Please, enter identical passwords';
+//         setTimeout(() => {
+//           tooltip.remove();
+//         }, 2000);
+//       }
+//     } else {
+//       input.classList.remove('input--error');
+//     }
+//   });
 
-  handleErrorPasswordBorder();
-}
+//   handleErrorPasswordBorder();
+// }
 
-function handleErrorPasswordBorder() {
-  const pass = authModal.querySelector('#auth_password');
-  const passRepeat = authModal.querySelector('#auth_password_repeat');
-  const passwords = [pass, passRepeat];
+// function handleErrorPasswordBorder() {
+//   const pass = authModal.querySelector('#auth_password');
+//   const passRepeat = authModal.querySelector('#auth_password_repeat');
+//   const passwords = [pass, passRepeat];
 
-  passwords.forEach(input => {
-    input.addEventListener('input', () => {
-      if (pass.value !== passRepeat.value) {
-        addError();
-      } else {
-        removeError();
-      }
-    });
-  });
+//   passwords.forEach(input => {
+//     input.addEventListener('input', () => {
+//       if (pass.value !== passRepeat.value) {
+//         addError();
+//       } else {
+//         removeError();
+//       }
+//     });
+//   });
 
-  function addError() {
-    passwords.forEach(input => {
-      input.classList.add('input--error');
-    });
-  }
+//   function addError() {
+//     passwords.forEach(input => {
+//       input.classList.add('input--error');
+//     });
+//   }
 
-  function removeError() {
-    passwords.forEach(input => {
-      input.classList.remove('input--error');
-    });
-  }
-}
+//   function removeError() {
+//     passwords.forEach(input => {
+//       input.classList.remove('input--error');
+//     });
+//   }
+// }
 
 // const stashList = document.querySelector('.stash__items');
 // stashList.addEventListener('click', sellItem);
