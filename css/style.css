@@ -3195,7 +3195,8 @@ p {
   outline: none;
 }
 
-.user__email-button {
+.user__email-button,
+.user__email-submit {
   flex-shrink: 0;
   width: 14px;
   height: 14px;
@@ -3209,8 +3210,13 @@ p {
   outline: none;
 }
 
-.user__email-button:hover {
+.user__email-button:hover,
+.user__email-submit:hover {
   filter: var(--color-mc-filter);
+}
+
+.user__email-submit {
+  display: none;
 }
 
 .user__email-form--error {
@@ -3227,6 +3233,11 @@ p {
 }
 
 .user__email-form--active .user__email-button {
+  display: none;
+}
+
+.user__email-form--active .user__email-submit {
+  display: block;
   margin-left: 15px;
   background-image: url("../images/icons/check-icon.svg");
 }
