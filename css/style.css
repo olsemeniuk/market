@@ -1939,15 +1939,9 @@ p {
   flex: 1 1 auto;
 }
 
-.auth__inputs-block .input-tooltip {
-  left: 50%;
-  bottom: 65px;
-  transform: translateX(-50%);
-  box-shadow: 0 0 15px 2px var(--color-c);
-}
-
-.auth__inputs-block .input-tooltip .input-tooltip__arrow {
-  display: none;
+.auth__input-label .input-tooltip {
+  top: calc(100% + 10px);
+  left: 0;
 }
 
 .auth__buttons-block {
@@ -1965,9 +1959,14 @@ p {
   border-bottom: 1px solid var(--color-hc);
 }
 
-.auth__input {
+.auth__input-label {
+  position: relative;
   width: 100%;
   margin-bottom: 30px;
+}
+
+.auth__input {
+  width: 100%;
   padding: 0 20px;
 }
 
@@ -1983,6 +1982,28 @@ p {
   left: 0;
   transform: translateY(-50%);
   filter: var(--color-w-filter);
+}
+
+.auth__submit-wrapper {
+  position: relative;
+  z-index: 0;
+  flex-shrink: 0;
+}
+
+.auth__submit-wrapper--active {
+  z-index: 1;
+}
+
+.auth__submit-wrapper--active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
 }
 
 .auth__button {
@@ -4972,7 +4993,7 @@ p {
   }
 
   .input-tooltip {
-    max-width: 300px;
+    max-width: 280px;
   }
 
   .payment-form__label .input-tooltip {

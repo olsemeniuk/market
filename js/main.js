@@ -322,7 +322,7 @@ if (statisticTableWrapper) {
   window.addEventListener('resize', showEndTableShadow);
 }
 
-smoothScrolling();
+manageSmoothScrolling();
 
 let lastScroll = 0;
 if (infoContent) {
@@ -643,7 +643,7 @@ function showAccountItemsPlaceholder(list) {
 }
 
 function chengeEmail() {
-  const valueIsValid = emailInputValidation();
+  const valueIsValid = emailInputValidation(emailFormInput);
 
   if (!valueIsValid) {
     addErrorAnimationToInput();
@@ -691,14 +691,14 @@ function changeEmailInputWidth() {
   this.style.width = `${emailFormHiddenText.scrollWidth}px`
 }
 
-function emailInputValidation() {
-  const value = emailFormInput.value;
+function emailInputValidation(input) {
+  const value = input.value;
   var regexp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
   return regexp.test(String(value).toLowerCase());
 }
 
 function controlEmailSubmit(event) {
-  const valueIsValid = emailInputValidation();
+  const valueIsValid = emailInputValidation(emailFormInput);
   if (!valueIsValid) {
     event.preventDefault();
     addErrorAnimationToInput();
@@ -819,7 +819,7 @@ function destroyChart(item) {
   tooltipCircle?.remove();
 }
 
-function smoothScrolling() {
+function manageSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (event) {
       event.preventDefault();
@@ -1694,7 +1694,7 @@ const authForm = document.querySelectorAll('.auth__form');
 if (authForm.length > 0) {
   authForm.forEach(form => {
     form.addEventListener('input', disableAuthButtons);
-
+    form.addEventListener('change', disableAuthButtons);
 
     const authInputs = form.querySelectorAll('.auth__input');
     authInputs.forEach(input => {
@@ -1710,8 +1710,6 @@ if (authForm.length > 0) {
 function errorEmptyInput(input) {
   if (input.value === '') {
     input.classList.add('input--error');
-  } else {
-    input.classList.remove('input--error');
   }
 }
 
@@ -1720,6 +1718,7 @@ function disableAuthButtons() {
   forms.forEach(form => {
     const authButton = form.querySelector('.auth__button[type="submit"]');
     const inputs = form.querySelectorAll('.auth__input');
+    const submitWrapper = form.querySelector('.auth__submit-wrapper');
 
     let inputsFilled = true;
     let noErrorInputs = true;
@@ -1735,70 +1734,287 @@ function disableAuthButtons() {
 
     if (!inputsFilled || !noErrorInputs) {
       authButton.disabled = true;
+      submitWrapper.classList.add('auth__submit-wrapper--active');
     } else {
       authButton.disabled = false;
+      submitWrapper.classList.remove('auth__submit-wrapper--active');
     }
   });
 }
 
-// authForm?.addEventListener('change', passwordsCompare);
+manageAuthFormValidation();
 
-// function passwordsCompare() {
-//   const pass = authModal.querySelector('#auth_password');
-//   const passRepeat = authModal.querySelector('#auth_password_repeat');
-//   const passwords = [pass, passRepeat];
-//   const passwordsParent = pass.closest('.auth__inputs-block');
-//   const tooltipHTML = passwordsParent.querySelector('.input-tooltip');
+function manageAuthFormValidation() {
+  const authModal = document.querySelector('.auth');
+  if (!authModal) return;
+  manageAuthNameInputValidation();
+  manageAuthPassInputValidation();
+  manageRegNameInputValidation();
+  manageRegEmailInputValidation();
+  manageRegPassInputsValidation();
+  manageClickOnDisabledSubmitButton();
+}
 
-//   if (pass.value === '' || passRepeat.value === '') return;
+function manageClickOnDisabledSubmitButton() {
+  const form = document.querySelectorAll('.auth__form');
+  form.forEach(item => {
+    const submitWrapper = item.querySelector('.auth__submit-wrapper');
+    const inputs = item.querySelectorAll('.auth__input');
+    submitWrapper.addEventListener('click', () => {
+      inputs.forEach(input => {
+        if (input.value === '') {
+          input.classList.add('input--error');
+        }
+      });
+    });
+  });
+}
 
-//   passwords.forEach(input => {
-//     if (passRepeat.value !== pass.value) {
-//       input.classList.add('input--error');
-//       const tooltip = createInputErrorTooltip();
-//       if (!tooltipHTML) {
-//         passwordsParent.append(tooltip);
-//         const tooltipText = tooltip.querySelector('.input-tooltip__text');
-//         tooltipText.textContent = 'Please, enter identical passwords';
-//         setTimeout(() => {
-//           tooltip.remove();
-//         }, 2000);
-//       }
-//     } else {
-//       input.classList.remove('input--error');
-//     }
-//   });
+function manageAuthNameInputValidation() {
+  const nameInput = document.getElementById('auth_name');
+  nameInput.addEventListener('input', () => {
+    if (nameInput.value !== '') {
+      nameInput.classList.remove('input--error');
+    }
+  });
+}
 
-//   handleErrorPasswordBorder();
-// }
+function manageAuthPassInputValidation() {
+  const passInput = document.getElementById('auth_password');
+  passInput.addEventListener('input', () => {
+    if (passInput.value !== '') {
+      passInput.classList.remove('input--error');
+    }
+  });
+}
 
-// function handleErrorPasswordBorder() {
-//   const pass = authModal.querySelector('#auth_password');
-//   const passRepeat = authModal.querySelector('#auth_password_repeat');
-//   const passwords = [pass, passRepeat];
+function manageRegNameInputValidation() {
+  const nameInput = document.getElementById('reg_name');
+  const parentLabel = nameInput.closest('.auth__input-label');
 
-//   passwords.forEach(input => {
-//     input.addEventListener('input', () => {
-//       if (pass.value !== passRepeat.value) {
-//         addError();
-//       } else {
-//         removeError();
-//       }
-//     });
-//   });
+  const tooltipHTML = parentLabel.querySelector('.input-tooltip');
+  const tooltip = createInputErrorTooltip();
 
-//   function addError() {
-//     passwords.forEach(input => {
-//       input.classList.add('input--error');
-//     });
-//   }
+  nameInput.addEventListener('change', () => {
+    if (nameInput.value === '') {
+      nameInput.classList.add('input--error');
+      manageAddTooltip({
+        tooltip: tooltip,
+        tooltipHTML: tooltipHTML,
+        parentLabel: parentLabel,
+        text: 'name can\'t be empty'
+      });
+    } else if (nameInput.value.length < 2) {
+      nameInput.classList.add('input--error');
+      manageAddTooltip({
+        tooltip: tooltip,
+        tooltipHTML: tooltipHTML,
+        parentLabel: parentLabel,
+        text: 'name should be at least 2 characters long'
+      });
+    } else {
+      nameInput.classList.remove('input--error');
+      tooltip.remove();
+    }
+  });
 
-//   function removeError() {
-//     passwords.forEach(input => {
-//       input.classList.remove('input--error');
-//     });
-//   }
-// }
+  nameInput.addEventListener('input', () => {
+    if (nameInput.value.length >= 2) {
+      nameInput.classList.remove('input--error');
+      tooltip.remove();
+    }
+  });
+}
+
+function manageRegEmailInputValidation() {
+  const emailInput = document.getElementById('reg_email');
+  const parentLabel = emailInput.closest('.auth__input-label');
+
+  const tooltipHTML = parentLabel.querySelector('.input-tooltip');
+  const tooltip = createInputErrorTooltip();
+
+  emailInput.addEventListener('change', () => {
+    const emailIsValid = emailInputValidation(emailInput);
+
+    if (emailInput.value === '') {
+      emailInput.classList.add('input--error');
+      manageAddTooltip({
+        tooltip: tooltip,
+        tooltipHTML: tooltipHTML,
+        parentLabel: parentLabel,
+        text: 'email can\'t be empty'
+      });
+    } else if (!emailIsValid) {
+      emailInput.classList.add('input--error');
+      manageAddTooltip({
+        tooltip: tooltip,
+        tooltipHTML: tooltipHTML,
+        parentLabel: parentLabel,
+        text: 'write proper email'
+      });
+    } else {
+      emailInput.classList.remove('input--error');
+      tooltip.remove();
+    }
+  });
+
+  emailInput.addEventListener('input', () => {
+    const emailIsValid = emailInputValidation(emailInput);
+    if (emailIsValid) {
+      emailInput.classList.remove('input--error');
+      tooltip.remove();
+    }
+  });
+}
+
+function manageRegPassInputsValidation() {
+  const passInput = document.getElementById('reg_password');
+  const repeatPassInput = document.getElementById('reg_password_repeat');
+  const inputs = [passInput, repeatPassInput];
+
+  inputs.forEach(input => {
+    const tooltip = createInputErrorTooltip();
+    const parentLabel = input.closest('.auth__input-label');
+    const tooltipHTML = parentLabel.querySelector('.input-tooltip');
+
+    input.addEventListener('change', () => {
+      let onePassIsEmpty = false;
+
+      inputs.forEach(item => {
+        if (item.value === '') {
+          onePassIsEmpty = true;
+        }
+      });
+
+      if (!onePassIsEmpty) return;
+
+      if (input.value === '') {
+        input.classList.add('input--error');
+        manageAddTooltip({
+          tooltip: tooltip,
+          tooltipHTML: tooltipHTML,
+          parentLabel: parentLabel,
+          text: 'password can\'t be empty'
+        });
+      } else if (input.value.length < 9 || input.value.length > 16) {
+        input.classList.add('input--error');
+        manageAddTooltip({
+          tooltip: tooltip,
+          tooltipHTML: tooltipHTML,
+          parentLabel: parentLabel,
+          text: 'password should contain 9 - 16 characters'
+        });
+      } else {
+        input.classList.remove('input--error');
+        tooltip.remove();
+      }
+    });
+
+    input.addEventListener('input', () => {
+      let onePassIsEmpty = false;
+
+      inputs.forEach(item => {
+        if (item.value === '') {
+          onePassIsEmpty = true;
+        }
+      });
+
+      if (!onePassIsEmpty) return;
+
+      if (input.value.length > 9 && input.value.length < 16) {
+        input.classList.remove('input--error');
+        tooltip.remove();
+      }
+    });
+  });
+
+  passInput.addEventListener('change', () => {
+    checkPasswordsSimilarity(passInput, repeatPassInput);
+  });
+
+  repeatPassInput.addEventListener('change', () => {
+    checkPasswordsSimilarity(repeatPassInput, passInput);
+  });
+
+  passInput.addEventListener('input', checkPasswordsSimilarityOnInput);
+  repeatPassInput.addEventListener('input', checkPasswordsSimilarityOnInput);
+
+  function checkPasswordsSimilarity(passToCheck, anotherPass) {
+    let onePassIsEmpty = false;
+
+    inputs.forEach(item => {
+      if (item.value === '') {
+        onePassIsEmpty = true;
+      }
+    });
+
+    if (onePassIsEmpty) return;
+
+    const tooltip = createInputErrorTooltip();
+    const parentLabel = passToCheck.closest('.auth__input-label');
+    const tooltipHTML = parentLabel.querySelector('.input-tooltip');
+    const valuesAreSimilar = passToCheck.value === anotherPass.value;
+
+    if (passToCheck.value.length < 9 || passToCheck.value.length > 16) {
+      passToCheck.classList.add('input--error');
+      manageAddTooltip({
+        tooltip: tooltip,
+        tooltipHTML: tooltipHTML,
+        parentLabel: parentLabel,
+        text: 'password should contain 9 - 16 characters'
+      });
+    } else if (!valuesAreSimilar) {
+      passToCheck.classList.add('input--error');
+      manageAddTooltip({
+        tooltip: tooltip,
+        tooltipHTML: tooltipHTML,
+        parentLabel: parentLabel,
+        text: 'passwords should be similar'
+      });
+    } else {
+      passToCheck.classList.remove('input--error');
+      tooltip.remove();
+    }
+  }
+
+  function checkPasswordsSimilarityOnInput() {
+    let onePassIsEmpty = false;
+    let somePassIsShortOfLogn = false;
+
+    inputs.forEach(item => {
+      if (item.value === '') {
+        onePassIsEmpty = true;
+      }
+
+      if (item.value.length < 9 || item.value.length > 16) {
+        somePassIsShortOfLogn = true;
+      }
+    });
+
+    if (onePassIsEmpty || somePassIsShortOfLogn) return;
+
+    const valuesAreSimilar = passInput.value === repeatPassInput.value;
+
+    if (valuesAreSimilar) {
+      inputs.forEach(item => {
+        item.classList.remove('input--error');
+      });
+    } else {
+      this.classList.add('input--error');
+    }
+  }
+}
+
+function manageAddTooltip(options) {
+  if (!options.tooltipHTML) options.parentLabel.append(options.tooltip);
+  const tooltipText = options.tooltip.querySelector('.input-tooltip__text');
+  tooltipText.textContent = options.text;
+
+  setTimeout(() => {
+    options.tooltip.remove();
+  }, 2000);
+}
+
 
 // const stashList = document.querySelector('.stash__items');
 // stashList.addEventListener('click', sellItem);
@@ -2007,7 +2223,7 @@ function resizeCharts(container) {
   }
 }
 
-function createChart(id, dataset) {
+function createChart(parentContainerID, chartData) {
   const months = {
     0: 'jan',
     1: 'feb',
@@ -2023,7 +2239,7 @@ function createChart(id, dataset) {
     11: 'dec'
   }
 
-  const container = document.querySelector(id)
+  const container = document.querySelector(parentContainerID)
   const containerWidth = container.getBoundingClientRect().width;
   const containerHeight = container.getBoundingClientRect().height;
 
@@ -2037,22 +2253,22 @@ function createChart(id, dataset) {
   const y = d3.scaleLinear()
     .range([height - 20, 0]);
 
-  const svg = d3.select(id)
+  const svg = d3.select(parentContainerID)
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  const tooltip = d3.select(id)
+  const tooltip = d3.select(parentContainerID)
     .append('div')
     .attr('class', 'tooltip');
 
-  minX = d3.min(dataset, d => d.date);
-  maxX = d3.max(dataset, d => d.date);
+  minX = d3.min(chartData, d => d.date);
+  maxX = d3.max(chartData, d => d.date);
 
-  minY = d3.min(dataset, d => d.value);
-  maxY = d3.max(dataset, d => d.value);
+  minY = d3.min(chartData, d => d.value);
+  maxY = d3.max(chartData, d => d.value);
 
   function addDate(min, max) {
     let diff = 0;
@@ -2104,7 +2320,7 @@ function createChart(id, dataset) {
     .attr('cy', 10)
     .attr('fill', '#25252b');
 
-  d3.select(`${id} defs`)
+  d3.select(`${parentContainerID} defs`)
     .append('marker')
     .attr('id', 'dashedBorder')
     .attr('viewBox', [0, 0, 20, 20])
@@ -2123,7 +2339,7 @@ function createChart(id, dataset) {
     .attr('y1', 0)
     .attr('y2', 0);
 
-  d3.select(`${id} defs`)
+  d3.select(`${parentContainerID} defs`)
     .append('marker')
     .attr('id', 'arrowhead-right')
     .attr('viewBox', [0, 0, 25, 25])
@@ -2141,7 +2357,7 @@ function createChart(id, dataset) {
     .attr('y2', 0);
 
 
-  const xAxisArrow = d3.select(`${id} #arrowhead-right`)
+  const xAxisArrow = d3.select(`${parentContainerID} #arrowhead-right`)
     .append('path')
     .attr('d', 'M2.222,4.809 C3.859,4.074 6.995,3.011 6.1000,2.539 C6.857,2.198 6.395,2.107 6.005,1.926 C5.164,1.537 4.324,1.149 3.483,0.761 C3.117,0.592 2.676,0.413 2.222,0.239 C1.074,-0.224 0.035,0.062 0.072,0.454 C0.108,0.820 0.598,0.912 1.001,1.098 C1.687,1.415 2.354,1.740 3.058,2.049 C3.412,2.204 3.833,2.307 3.987,2.478 C3.802,2.715 3.157,2.892 2.793,3.061 C1.863,3.490 0.411,4.030 0.072,4.379 C-0.355,4.949 1.346,5.187 2.222,4.809 Z')
     .attr('fill', '#373740')
@@ -2149,7 +2365,7 @@ function createChart(id, dataset) {
     .style('transform', 'translate(15px, -2.5px)');
 
 
-  d3.select(`${id} defs`)
+  d3.select(`${parentContainerID} defs`)
     .append('marker')
     .attr('id', 'arrowhead-top')
     .attr('viewBox', [0, 0, 25, 25])
@@ -2166,7 +2382,7 @@ function createChart(id, dataset) {
     .attr('y1', 0)
     .attr('y2', 20);
 
-  const yAxisArrow = d3.select(`${id} #arrowhead-top`)
+  const yAxisArrow = d3.select(`${parentContainerID} #arrowhead-top`)
     .append('path')
     .attr('d', 'M4.809,4.778 C4.074,3.141 3.011,0.004 2.539,-0.000 C2.198,0.143 2.107,0.605 1.926,0.995 C1.538,1.836 1.149,2.676 0.761,3.517 C0.592,3.882 0.413,4.324 0.239,4.778 C-0.224,5.926 0.062,6.964 0.454,6.928 C0.820,6.892 0.912,6.402 1.098,5.999 C1.415,5.313 1.740,4.646 2.049,3.942 C2.204,3.588 2.307,3.167 2.478,3.013 C2.715,3.198 2.892,3.843 3.061,4.207 C3.490,5.137 4.030,6.588 4.379,6.928 C4.949,7.355 5.187,5.654 4.809,4.778 Z')
     .attr('fill', '#373740')
@@ -2195,7 +2411,7 @@ function createChart(id, dataset) {
 
   svg.append("g")
     .call(d3.axisLeft(y)
-      .ticks(dataset.forEach(d => d.value))
+      .ticks(chartData.forEach(d => d.value))
       .tickSizeOuter(0)
       .ticks(width < 600 ? 2 : 4)
       .tickFormat(d => {
@@ -2203,11 +2419,11 @@ function createChart(id, dataset) {
       }))
     .attr('class', 'price-axis');
 
-  const dateDomain = d3.select(`${id} .date-axis path.domain`)
+  const dateDomain = d3.select(`${parentContainerID} .date-axis path.domain`)
     .attr('marker-start', 'url(#dashedBorder)')
     .attr('marker-end', 'url(#arrowhead-right)');
 
-  const priceDomain = d3.select(`${id} .price-axis path.domain`)
+  const priceDomain = d3.select(`${parentContainerID} .price-axis path.domain`)
     .attr('marker-start', 'url(#dashedBorder)')
     .attr('marker-end', 'url(#arrowhead-top)');
 
@@ -2216,7 +2432,7 @@ function createChart(id, dataset) {
     .y(d => y(d.value));
 
   svg.append('path')
-    .datum(dataset)
+    .datum(chartData)
     .attr('fill', 'none')
     .attr('stroke', '#5b3889')
     .attr('stroke-width', 2)
@@ -2225,7 +2441,7 @@ function createChart(id, dataset) {
     .attr('d', line)
     .attr('class', 'line');
 
-  const circle = d3.select(id)
+  const circle = d3.select(parentContainerID)
     .append('span')
     .attr('class', 'tooltip-circle');
 
@@ -2237,9 +2453,9 @@ function createChart(id, dataset) {
     const [xCoord] = d3.pointer(event, this);
     const bisectDate = d3.bisector(d => d.date).left;
     const x0 = x.invert(xCoord);
-    const i = bisectDate(dataset, x0, 1);
-    const d0 = dataset[i - 1];
-    const d1 = dataset[i];
+    const i = bisectDate(chartData, x0, 1);
+    const d0 = chartData[i - 1];
+    const d1 = chartData[i];
     if (!d1) return;
     const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
     const xPos = x(d.date);

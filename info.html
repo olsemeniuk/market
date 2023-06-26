@@ -701,13 +701,19 @@
           </button>
           <h2 class="auth__title">auth</h2>
           <fieldset class="auth__block auth__inputs-block">
-            <input class="auth__input input" type="text" placeholder="login/email">
-            <input class="auth__input input" type="password" placeholder="password">
+            <label class="auth__input-label">
+              <input class="auth__input input" id="auth_name" type="text" placeholder="login/email">
+            </label>
+            <label class="auth__input-label">
+              <input class="auth__input input" id="auth_password" type="password" placeholder="password">
+            </label>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
-            <button class="auth__button btn" type="submit">
-              <span class="auth__button-text icon icon--login">login</span>
-            </button>
+            <div class="auth__submit-wrapper">
+              <button class="auth__button btn" type="submit">
+                <span class="auth__button-text icon icon--login">login</span>
+              </button>
+            </div>
             <button class="auth__button auth__button--big btn flip__button auth__button--transparent" type="button">
               <span class="auth__button-text icon icon--registration">registration</span>
             </button>
@@ -724,21 +730,31 @@
         </form>
       </div>
       <div class="flip__back modal-shadow">
-        <form class="flip__inner auth__form" action="#">
+        <form class="flip__inner auth__form registration-form" action="#">
           <button class="modal__close" type="button">
             <span class="visually-hidden">Close modal popup</span>
           </button>
           <h2 class="auth__title">registration</h2>
           <fieldset class="auth__block auth__inputs-block">
-            <input class="auth__input input" type="text" placeholder="name">
-            <input class="auth__input input" type="email" placeholder="mail">
-            <input class="auth__input input" id="auth_password" type="password" placeholder="password">
-            <input class="auth__input input" id="auth_password_repeat" type="password" placeholder="repeat password">
+            <label class="auth__input-label">
+              <input class="auth__input input" id="reg_name" type="text" placeholder="name">
+            </label>
+            <label class="auth__input-label">
+              <input class="auth__input input" id="reg_email" type="text" placeholder="mail">
+            </label>
+            <label class="auth__input-label">
+              <input class="auth__input input" id="reg_password" type="password" placeholder="password">
+            </label>
+            <label class="auth__input-label">
+              <input class="auth__input input" id="reg_password_repeat" type="password" placeholder="repeat password">
+            </label>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
-            <button class="auth__button btn" type="submit">
-              <span class="auth__button-text icon icon--registration">registration</span>
-            </button>
+            <div class="auth__submit-wrapper">
+              <button class="auth__button btn" type="submit">
+                <span class="auth__button-text icon icon--registration">registration</span>
+              </button>
+            </div>
             <button class="auth__button flip__button auth__button--big auth__button--transparent btn" type="button">
               <span class="auth__button-text icon icon--login">login</span>
             </button>
