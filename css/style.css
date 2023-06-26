@@ -3871,7 +3871,7 @@ p {
   left: 50%;
   width: 12px;
   height: 12px;
-  background-image: url("/images/icons/thin-cross-icon.svg");
+  background-image: url("../images/icons/thin-cross-icon.svg");
   transform: translate(-50%, -50%);
   filter: var(--color-lc-filter);
 }

@@ -2081,9 +2081,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Confirm trade',
     timeInSeconds: 360,
-    imagePath: '/images/items/knife.png',
-    imagePath2x: '/images/x2/knife-2x.png',
-    imagePath3x: '/images/x3/knife-3x.png',
+    imagePath: './images/items/knife.png',
+    imagePath2x: './images/x2/knife-2x.png',
+    imagePath3x: './images/x3/knife-3x.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2091,9 +2091,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Confirm trade',
     timeInSeconds: 60,
-    imagePath: '/images/items/gloves.png',
-    imagePath2x: '/images/items/gloves.png',
-    imagePath3x: '/images/items/gloves.png',
+    imagePath: './images/items/gloves.png',
+    imagePath2x: './images/items/gloves.png',
+    imagePath3x: './images/items/gloves.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2101,9 +2101,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Some title 2',
     timeInSeconds: 30,
-    imagePath: '/images/items/green-knife.png',
-    imagePath2x: '/images/items/green-knife.png',
-    imagePath3x: '/images/items/green-knife.png',
+    imagePath: './images/items/green-knife.png',
+    imagePath2x: './images/items/green-knife.png',
+    imagePath3x: './images/items/green-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2111,9 +2111,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Some title 3',
     timeInSeconds: 10,
-    imagePath: '/images/items/orange-sniper.png',
-    imagePath2x: '/images/items/orange-sniper.png',
-    imagePath3x: '/images/items/orange-sniper.png',
+    imagePath: './images/items/orange-sniper.png',
+    imagePath2x: './images/items/orange-sniper.png',
+    imagePath3x: './images/items/orange-sniper.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2121,9 +2121,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Some title 4',
     timeInSeconds: 500,
-    imagePath: '/images/items/red-sniper.png',
-    imagePath2x: '/images/items/red-sniper.png',
-    imagePath3x: '/images/items/red-sniper.png',
+    imagePath: './images/items/red-sniper.png',
+    imagePath2x: './images/items/red-sniper.png',
+    imagePath3x: './images/items/red-sniper.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2131,9 +2131,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Some title 5',
     timeInSeconds: 10,
-    imagePath: '/images/items/golden-knife.png',
-    imagePath2x: '/images/items/golden-knife.png',
-    imagePath3x: '/images/items/golden-knife.png',
+    imagePath: './images/items/golden-knife.png',
+    imagePath2x: './images/items/golden-knife.png',
+    imagePath3x: './images/items/golden-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2141,9 +2141,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Some title 6',
     timeInSeconds: 20,
-    imagePath: '/images/items/light-green-knife.png',
-    imagePath2x: '/images/items/light-green-knife.png',
-    imagePath3x: '/images/items/light-green-knife.png',
+    imagePath: './images/items/light-green-knife.png',
+    imagePath2x: './images/items/light-green-knife.png',
+    imagePath3x: './images/items/light-green-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2151,9 +2151,9 @@ function testNotificationsCall() {
   manageSellNotification({
     title: 'Some title 7',
     timeInSeconds: 360,
-    imagePath: '/images/items/knife.png',
-    imagePath2x: '/images/x2/knife-2x.png',
-    imagePath3x: '/images/x3/knife-3x.png',
+    imagePath: './images/items/knife.png',
+    imagePath2x: './images/x2/knife-2x.png',
+    imagePath3x: './images/x3/knife-3x.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
