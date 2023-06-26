@@ -2078,7 +2078,7 @@ function manageAddTooltip(options) {
 // notifications on sell page start
 testNotificationsCall()
 function testNotificationsCall() {
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Confirm trade',
     timeInSeconds: 360,
     imagePath: '/images/items/knife.png',
@@ -2088,7 +2088,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Confirm trade',
     timeInSeconds: 60,
     imagePath: '/images/items/gloves.png',
@@ -2098,7 +2098,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Some title 2',
     timeInSeconds: 30,
     imagePath: '/images/items/green-knife.png',
@@ -2108,7 +2108,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Some title 3',
     timeInSeconds: 10,
     imagePath: '/images/items/orange-sniper.png',
@@ -2118,7 +2118,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Some title 4',
     timeInSeconds: 500,
     imagePath: '/images/items/red-sniper.png',
@@ -2128,7 +2128,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Some title 5',
     timeInSeconds: 10,
     imagePath: '/images/items/golden-knife.png',
@@ -2138,7 +2138,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Some title 6',
     timeInSeconds: 20,
     imagePath: '/images/items/light-green-knife.png',
@@ -2148,7 +2148,7 @@ function testNotificationsCall() {
     id: 't76832yguyO61wryjeouy'
   });
 
-  manageSellNotification({
+  manageSellNotificationCreation({
     title: 'Some title 7',
     timeInSeconds: 360,
     imagePath: '/images/items/knife.png',
@@ -2159,7 +2159,7 @@ function testNotificationsCall() {
   });
 }
 
-function manageSellNotification(options) {
+function manageSellNotificationCreation(options) {
   let notificationsWrapper = document.querySelector('.notifications-wrapper');
   if (!notificationsWrapper) {
     notificationsWrapper = createWrapper();
@@ -2171,7 +2171,7 @@ function manageSellNotification(options) {
 
   const notificationBlock = createNotification();
   notificationsWrapper.append(notificationBlock);
-  
+
   manageNotificationWrapperGrabScroll(notificationsWrapper);
 
   const timer = notificationBlock.querySelector('.notification__timer');
@@ -2179,13 +2179,7 @@ function manageSellNotification(options) {
 
   const closeButton = notificationBlock.querySelector('.notification__close');
   closeButton.addEventListener('click', () => {
-    notificationBlock.remove();
-    const allNotifications = document.querySelectorAll('.notification');
-    if (allNotifications.length === 0) {
-      notificationsWrapper.remove();
-    }
-    clearInterval(intervalID);
-    setWrapperHeight();
+    removeNotification(notificationBlock, intervalID);
   });
 
   function createWrapper() {
@@ -2197,30 +2191,32 @@ function manageSellNotification(options) {
   function createNotification() {
     const notification = document.createElement('section');
     notification.className = 'notification';
-    notification.innerHTML = `<div class="notification__header">
-                                <h2 class="notification__title">${options.title}</h2>
-                                <div class="notification__timer">${countdown(options.timeInSeconds)}</div>
-                                <button class="notification__close" type="button">
-                                  <span class="visually-hidden">Close notification</span>
-                                </button>
-                              </div>
-                              <div class="notification__body">
-                                <div class="notification__image-wrapper">
-                                  <img 
-                                    class="notification__image" 
-                                    width="47" 
-                                    height="30" 
-                                    src="${options.imagePath}"  
-                                    srcset="${options.imagePath2x} 2x,
-                                            ${options.imagePath3x} 3x"
-                                    sizes="47px" 
-                                    alt="">
+    notification.innerHTML = `<div class="notification__inner">
+                                <div class="notification__header">
+                                  <h2 class="notification__title">${options.title}</h2>
+                                  <div class="notification__timer">${countdown(options.timeInSeconds)}</div>
+                                  <button class="notification__close" type="button">
+                                    <span class="visually-hidden">Close notification</span>
+                                  </button>
                                 </div>
-                                <div class="notification__info">
-                                  <p class="notification__text">${options.text}</p>
-                                  <div class="notification__id">
-                                    Trade ID:
-                                    <span>${options.id}</span>
+                                <div class="notification__body">
+                                  <div class="notification__image-wrapper">
+                                    <img 
+                                      class="notification__image" 
+                                      width="47" 
+                                      height="30" 
+                                      src="${options.imagePath}"  
+                                      srcset="${options.imagePath2x} 2x,
+                                              ${options.imagePath3x} 3x"
+                                      sizes="47px" 
+                                      alt="">
+                                  </div>
+                                  <div class="notification__info">
+                                    <p class="notification__text">${options.text}</p>
+                                    <div class="notification__id">
+                                      Trade ID:
+                                      <span>${options.id}</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>`;
@@ -2251,13 +2247,7 @@ function manageSellNotification(options) {
       const timeLeft = (options.timeInSeconds * 100) / initialTime;
       notificationBlock.style.setProperty('--timer-line', `${timeLeft}%`);
       if (options.timeInSeconds < 0) {
-        notificationBlock.remove();
-        const allNotifications = document.querySelectorAll('.notification');
-        if (allNotifications.length === 0) {
-          notificationsWrapper.remove();
-        }
-        clearInterval(intervalID);
-        setWrapperHeight();
+        removeNotification(notificationBlock, intervalID);
       }
     }, 1000);
 
@@ -2274,23 +2264,37 @@ function manageSellNotification(options) {
       notificationsWrapper.classList.remove('notifications-wrapper--full-height')
     }
   }
+
+  function removeNotification(notification, intervalID) {
+    notification.classList.add('notification--removed');
+    setTimeout(() => {
+      notification.remove();
+
+      const allNotifications = document.querySelectorAll('.notification');
+      if (allNotifications.length === 0) {
+        notificationsWrapper.remove();
+      }
+      clearInterval(intervalID);
+      setWrapperHeight();
+    }, 500);
+  }
 }
 
 function manageNotificationWrapperGrabScroll(wrapper) {
   wrapper.addEventListener('mousedown', event => {
     event.preventDefault();
     wrapper.style.userSelect = 'none';
-    
+
     wrapperPosition = {
       top: wrapper.scrollTop,
       y: event.clientY,
     }
-    
+
     function mouseMoveHandler(event) {
       const dy = event.clientY - wrapperPosition.y;
       wrapper.scrollTop = wrapperPosition.top - dy;
     };
-    
+
     function mouseUpHandler() {
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
