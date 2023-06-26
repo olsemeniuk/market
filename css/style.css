@@ -3772,12 +3772,13 @@ p {
   z-index: 30;
   display: flex;
   flex-direction: column;
-  padding: 0 25px 0 20px;
+  padding: 20px 25px;
   transform: translateY(-50%);
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
   cursor: default;
+  transition: all 0.3s ease;
 }
 
 .notifications-wrapper::-webkit-scrollbar {
@@ -3787,34 +3788,33 @@ p {
 
 .notifications-wrapper--full-height {
   height: 100%;
-  padding: 20px 25px 20px 20px;
   cursor: grab;
 }
 
 .notification {
   --timer-line: 100%;
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  animation: appearing 0.3s ease;
+  transition: grid-template-rows 0.5s, margin 0.5s, opacity 0.3s;
+}
 
+.notification__inner {
   position: relative;
   max-width: 300px;
   padding: 15px 25px 30px;
   background-color: var(--color-c);
   border-radius: 10px;
   box-shadow: 0 0 10px 0 var(--color-bg);
-}
-
-.notification:first-of-type {
-  margin-top: auto;
-}
-
-.notification:last-of-type {
-  margin-bottom: auto;
+  transition: padding 0.5s;
 }
 
 .notification:not(:first-of-type) {
   margin-top: 10px;
 }
 
-.notification::after {
+.notification__inner::after {
   content: "";
   position: absolute;
   right: 0;
@@ -3826,6 +3826,21 @@ p {
   border-radius: 10px;
   clip-path: polygon(0 0, var(--timer-line) 0, var(--timer-line) 100%, 0 100%);
   transition: clip-path 1s linear;
+}
+
+.notification.notification--removed {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin: 0;
+}
+
+.notification--removed .notification__inner {
+  overflow: hidden;
+  padding: 0;
+}
+
+.notification--removed .notification__inner::after {
+  opacity: 0;
 }
 
 .notification__header {
@@ -3848,11 +3863,11 @@ p {
   color: var(--color-warning);
 }
 
-.notification--half-time-left .notification__timer{
+.notification--half-time-left .notification__timer {
   color: var(--color-error);
 }
 
-.notification--half-time-left::after {
+.notification--half-time-left .notification__inner::after {
   border-color: var(--color-error);
 }
 
@@ -5374,10 +5389,11 @@ p {
 
   .notifications-wrapper {
     width: 100%;
-    padding: 0;
+    padding: 10px;
   }
 
-  .notification {
+  .notification, 
+  .notification__inner {
     width: 100%;
     max-width: 100%;
   }
