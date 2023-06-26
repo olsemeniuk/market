@@ -245,6 +245,7 @@ p {
 .input {
   height: 40px;
   padding: 0 10px;
+  text-overflow: ellipsis;
   color: var(--color-w);
   background-color: var(--color-hc);
   border: 2px solid transparent;
@@ -2639,6 +2640,20 @@ p {
   margin-top: 8px;
 }
 
+.item-order {
+  width: 173px;
+  margin-right: 25px;
+}
+
+.small-form__input.item-order__input {
+  text-align: center;
+}
+
+.item-order .small-form__button {
+  min-width: 73px;
+  max-width: 83px;
+}
+
 .modal-item__price {
   margin-right: 10px;
   font-size: 24px;
@@ -2657,31 +2672,6 @@ p {
 
 .modal-item__buy-button {
   padding: 11px 20px;
-}
-
-.item-order {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  width: 173px;
-  margin-right: 25px;
-  background-color: var(--color-hc);
-  border-radius: 10px;
-}
-
-.item-order__input {
-  align-self: stretch;
-  width: 100%;
-  height: auto;
-  margin-right: -10px;
-  text-align: center;
-  border-radius: 0;
-}
-
-.item-order__button {
-  max-width: 90px;
-  min-width: 73px;
-  padding: 11px 10px;
 }
 
 .modal-item__cancel-button {
@@ -3339,39 +3329,39 @@ p {
   margin-bottom: 10px;
 }
 
-.trade__form {
-  position: relative;
+.small-form {
   display: flex;
   align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.small-form__input {
+  align-self: stretch;
+  width: 100%;
+  height: auto;
+  margin-right: -10px;
+  padding-right: 20px;
+  border-radius: 0;
 }
 
 .trade__input {
   flex-grow: 1;
-  height: 40px;
-  padding: 5px 86px 5px 20px;
+  padding-left: 20px;
+}
+
+.small-form__button {
+  max-width: 90px;
+  min-width: 73px;
+  padding: 11px 10px;
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--color-t);
-  background-color: var(--color-hc);
-  border-radius: 10px;
-  outline: none;
-}
-
-.trade__input:hover,
-.trade__input:focus {
-  background-color: var(--color-chc);
-}
-
-.trade__button {
-  position: absolute;
-  top: 50%;
-  right: 36px;
-  max-width: 80px;
-  padding: 10px 16px 11px 16px;
-  transform: translateY(-50%);
 }
 
 .info-block {
   position: relative;
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
   margin-left: 17px;
@@ -3680,6 +3670,7 @@ p {
 .warning__text {
   flex: 1 1 auto;
   max-width: 100%;
+  min-width: 250px;
   padding: 10px 15px;
   overflow: hidden;
   white-space: nowrap;
@@ -3692,11 +3683,44 @@ p {
   color: var(--color-warning);
 }
 
-.warning__button {
+.warning__form {
   flex-shrink: 0;
+  width: 173px;
 }
 
-.items-sell {}
+.warning__form .small-form__input {
+  text-align: center;
+}
+
+.warning__info {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin-right: -5px;
+  margin-bottom: -5px;
+}
+
+.warning__info-item {
+  min-width: 100px;
+  margin-right: 5px;  
+  margin-bottom: 5px;
+  flex: 1;
+}
+
+.warning__info-item.warning__form {
+  min-width: 170px;
+  flex: 2;
+}
+
+.warning__button {
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .sell-page__section:not(:last-of-type) {
   margin-bottom: 20px;
@@ -3737,12 +3761,6 @@ p {
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 10px;
 }
-
-.items-sell__items {
-}
-
-
-
 
 /* sell page end */
 
@@ -3965,7 +3983,6 @@ p {
     left: auto;
     right: 0;
   }
-
 
   .account {
     grid-template-columns: repeat(2, calc(50% - 5px));
@@ -4830,6 +4847,18 @@ p {
     margin-top: 10px;
     margin-left: 0;
   }
+
+  .item-order {
+    flex: 1;
+  }
+
+  .warning {
+    flex-direction: column;
+  }
+
+  .warning__info {
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -5142,16 +5171,14 @@ p {
   }
 
   .trade__input {
-    width: 100%;
+    height: 40px;
     margin-bottom: 10px;
-    padding: 5px 10px;
+    border-radius: 10px;
   }
 
   .trade__button {
-    position: static;
     width: 100%;
     max-width: 100%;
-    transform: none;
   }
 
   .trade .info-block {
