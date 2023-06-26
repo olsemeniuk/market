@@ -1557,6 +1557,36 @@ function rotateFlipBlock() {
   });
 }
 
+manageChangesOnResize();
+
+function manageChangesOnResize() {
+  window.addEventListener('resize', () => {
+    manageFlipHeightOnResize();
+  });
+}
+
+function manageFlipHeightOnResize() {
+  const flip = document.querySelectorAll('.flip');
+  flip.forEach(block => {
+    const isRotated = block.classList.contains('flip--rotete');
+    const front = block.querySelector('.flip__front');
+    const back = block.querySelector('.flip__back');
+    const frontInner = front.querySelector('.flip__inner');
+    const backInner = back.querySelector('.flip__inner');
+
+
+    if (isRotated) {
+      const backInnerHeight = backInner.getBoundingClientRect().height;
+      back.style.height = `${backInnerHeight}px`;
+      block.style.height = `${backInnerHeight}px`;
+    } else {
+      const frontInnerHeight = frontInner.getBoundingClientRect().height;
+      front.style.height = `${frontInnerHeight}px`;
+      block.style.height = `${frontInnerHeight}px`;
+    }
+  });
+}
+
 function changeChosenPaymentMethod(modal) {
   const activePaymentMethod = modal.querySelector('.payment-form__payment-radio:checked');
   const changePaymentMethodLabel = activePaymentMethod?.closest('.payment-form__payment-label');
@@ -1690,32 +1720,48 @@ function bankCardInputValidation() {
   });
 }
 
-const authForm = document.querySelectorAll('.auth__form');
-if (authForm.length > 0) {
-  authForm.forEach(form => {
-    form.addEventListener('input', disableAuthButtons);
-    form.addEventListener('change', disableAuthButtons);
+manageAuthFormValidation();
 
+function manageAuthFormValidation() {
+  const authModal = document.querySelector('.auth');
+  if (!authModal) return;
+  manageAuthNameInputValidation();
+  manageAuthPassInputValidation();
+  manageRegNameInputValidation();
+  manageRegEmailInputValidation();
+  manageRegPassInputsValidation();
+  manageClickOnDisabledSubmitButton();
+  manageDisableAuthButtons();
+  manageErrorBorderToInputs();
+}
+
+function manageErrorBorderToInputs() {
+  const authForm = document.querySelectorAll('.auth__form');
+  authForm.forEach(form => {
     const authInputs = form.querySelectorAll('.auth__input');
     authInputs.forEach(input => {
       input.addEventListener('blur', () => {
-        errorEmptyInput(input);
+        if (input.value === '') {
+          input.classList.add('input--error');
+        }
       });
     });
-
   });
-  disableAuthButtons();
 }
 
-function errorEmptyInput(input) {
-  if (input.value === '') {
-    input.classList.add('input--error');
-  }
-}
-
-function disableAuthButtons() {
-  const forms = authModal.querySelectorAll('.auth__form');
+function manageDisableAuthButtons() {
+  const forms = document.querySelectorAll('.auth__form');
   forms.forEach(form => {
+    disableButton(form)
+    form.addEventListener('input', () => {
+      disableButton(form);
+    });
+    form.addEventListener('change', () => {
+      disableButton(form);
+    });
+  });
+
+  function disableButton(form) {
     const authButton = form.querySelector('.auth__button[type="submit"]');
     const inputs = form.querySelectorAll('.auth__input');
     const submitWrapper = form.querySelector('.auth__submit-wrapper');
@@ -1739,20 +1785,7 @@ function disableAuthButtons() {
       authButton.disabled = false;
       submitWrapper.classList.remove('auth__submit-wrapper--active');
     }
-  });
-}
-
-manageAuthFormValidation();
-
-function manageAuthFormValidation() {
-  const authModal = document.querySelector('.auth');
-  if (!authModal) return;
-  manageAuthNameInputValidation();
-  manageAuthPassInputValidation();
-  manageRegNameInputValidation();
-  manageRegEmailInputValidation();
-  manageRegPassInputsValidation();
-  manageClickOnDisabledSubmitButton();
+  }
 }
 
 function manageClickOnDisabledSubmitButton() {
