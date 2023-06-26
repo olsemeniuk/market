@@ -1720,6 +1720,8 @@ function bankCardInputValidation() {
   });
 }
 
+// ===================================
+// authorization form validation start
 manageAuthFormValidation();
 
 function manageAuthFormValidation() {
@@ -2047,6 +2049,9 @@ function manageAddTooltip(options) {
     options.tooltip.remove();
   }, 2000);
 }
+// authorization form validation end
+// ===================================
+
 
 
 // const stashList = document.querySelector('.stash__items');
@@ -2067,6 +2072,237 @@ function manageAddTooltip(options) {
 //   showHideSellItemsPlaceholder();
 //   updatePriceAndAmountSellItems();
 // }
+
+
+// ================================
+// notifications on sell page start
+testNotificationsCall()
+function testNotificationsCall() {
+  manageSellNotification({
+    title: 'Confirm trade',
+    timeInSeconds: 360,
+    imagePath: '/images/items/knife.png',
+    imagePath2x: '/images/x2/knife-2x.png',
+    imagePath3x: '/images/x3/knife-3x.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Confirm trade',
+    timeInSeconds: 60,
+    imagePath: '/images/items/gloves.png',
+    imagePath2x: '/images/items/gloves.png',
+    imagePath3x: '/images/items/gloves.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Some title 2',
+    timeInSeconds: 30,
+    imagePath: '/images/items/green-knife.png',
+    imagePath2x: '/images/items/green-knife.png',
+    imagePath3x: '/images/items/green-knife.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Some title 3',
+    timeInSeconds: 10,
+    imagePath: '/images/items/orange-sniper.png',
+    imagePath2x: '/images/items/orange-sniper.png',
+    imagePath3x: '/images/items/orange-sniper.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Some title 4',
+    timeInSeconds: 500,
+    imagePath: '/images/items/red-sniper.png',
+    imagePath2x: '/images/items/red-sniper.png',
+    imagePath3x: '/images/items/red-sniper.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Some title 5',
+    timeInSeconds: 10,
+    imagePath: '/images/items/golden-knife.png',
+    imagePath2x: '/images/items/golden-knife.png',
+    imagePath3x: '/images/items/golden-knife.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Some title 6',
+    timeInSeconds: 20,
+    imagePath: '/images/items/light-green-knife.png',
+    imagePath2x: '/images/items/light-green-knife.png',
+    imagePath3x: '/images/items/light-green-knife.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+
+  manageSellNotification({
+    title: 'Some title 7',
+    timeInSeconds: 360,
+    imagePath: '/images/items/knife.png',
+    imagePath2x: '/images/x2/knife-2x.png',
+    imagePath3x: '/images/x3/knife-3x.png',
+    text: 'Confirm trade in your Steam mobile app.',
+    id: 't76832yguyO61wryjeouy'
+  });
+}
+
+function manageSellNotification(options) {
+  let notificationsWrapper = document.querySelector('.notifications-wrapper');
+  if (!notificationsWrapper) {
+    notificationsWrapper = createWrapper();
+    document.body.append(notificationsWrapper);
+  }
+
+  setWrapperHeight();
+  const initialTime = options.timeInSeconds;
+
+  const notificationBlock = createNotification();
+  notificationsWrapper.append(notificationBlock);
+  
+  manageNotificationWrapperGrabScroll(notificationsWrapper);
+
+  const timer = notificationBlock.querySelector('.notification__timer');
+  const intervalID = updateCountdown(timer);
+
+  const closeButton = notificationBlock.querySelector('.notification__close');
+  closeButton.addEventListener('click', () => {
+    notificationBlock.remove();
+    const allNotifications = document.querySelectorAll('.notification');
+    if (allNotifications.length === 0) {
+      notificationsWrapper.remove();
+    }
+    clearInterval(intervalID);
+    setWrapperHeight();
+  });
+
+  function createWrapper() {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'notifications-wrapper';
+    return wrapper;
+  }
+
+  function createNotification() {
+    const notification = document.createElement('section');
+    notification.className = 'notification';
+    notification.innerHTML = `<div class="notification__header">
+                                <h2 class="notification__title">${options.title}</h2>
+                                <div class="notification__timer">${countdown(options.timeInSeconds)}</div>
+                                <button class="notification__close" type="button">
+                                  <span class="visually-hidden">Close notification</span>
+                                </button>
+                              </div>
+                              <div class="notification__body">
+                                <div class="notification__image-wrapper">
+                                  <img 
+                                    class="notification__image" 
+                                    width="47" 
+                                    height="30" 
+                                    src="${options.imagePath}"  
+                                    srcset="${options.imagePath2x} 2x,
+                                            ${options.imagePath3x} 3x"
+                                    sizes="47px" 
+                                    alt="">
+                                </div>
+                                <div class="notification__info">
+                                  <p class="notification__text">${options.text}</p>
+                                  <div class="notification__id">
+                                    Trade ID:
+                                    <span>${options.id}</span>
+                                  </div>
+                                </div>
+                              </div>`;
+    return notification;
+  }
+
+  function countdown(time) {
+    let minutes = Math.floor(time / 60);
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let seconds = time % 60;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutes}:${seconds}`;
+  }
+
+  function updateCountdown(timerHTML) {
+    timerHTML.innerHTML = countdown(options.timeInSeconds);
+    options.timeInSeconds--;
+    const intervalID = setInterval(() => {
+      timerHTML.innerHTML = countdown(options.timeInSeconds);
+      options.timeInSeconds--;
+
+      if (options.timeInSeconds < initialTime / 2) {
+        notificationBlock.classList.add('notification--half-time-left');
+      } else {
+        notificationBlock.classList.remove('notification--half-time-left');
+      }
+
+      const timeLeft = (options.timeInSeconds * 100) / initialTime;
+      notificationBlock.style.setProperty('--timer-line', `${timeLeft}%`);
+      if (options.timeInSeconds < 0) {
+        notificationBlock.remove();
+        const allNotifications = document.querySelectorAll('.notification');
+        if (allNotifications.length === 0) {
+          notificationsWrapper.remove();
+        }
+        clearInterval(intervalID);
+        setWrapperHeight();
+      }
+    }, 1000);
+
+    return intervalID;
+  }
+
+  function setWrapperHeight() {
+    const browserHeight = document.documentElement.clientHeight;
+    const wrapperHeight = notificationsWrapper.scrollHeight;
+
+    if (wrapperHeight > browserHeight) {
+      notificationsWrapper.classList.add('notifications-wrapper--full-height')
+    } else {
+      notificationsWrapper.classList.remove('notifications-wrapper--full-height')
+    }
+  }
+}
+
+function manageNotificationWrapperGrabScroll(wrapper) {
+  wrapper.addEventListener('mousedown', event => {
+    event.preventDefault();
+    wrapper.style.userSelect = 'none';
+    
+    wrapperPosition = {
+      top: wrapper.scrollTop,
+      y: event.clientY,
+    }
+    
+    function mouseMoveHandler(event) {
+      const dy = event.clientY - wrapperPosition.y;
+      wrapper.scrollTop = wrapperPosition.top - dy;
+    };
+    
+    function mouseUpHandler() {
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+    };
+
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+  });
+}
+// notifications on sell page end
+// ================================
+
 
 
 if (isSellPage) {
