@@ -149,7 +149,7 @@ if (paymentModals.length > 0) {
   paymentModals.forEach(modal => {
     handlePaymentProceedButton(modal);
     handlePaymentSubmitButton(modal);
-    errorPaymentInput(modal);
+    
 
     const form = modal.querySelector('.payment-form');
     const frontAmountInput = modal.querySelector('.payment-form__front-amount-input')
@@ -389,7 +389,7 @@ if (grabBlock.length > 0) {
   });
 }
 
-changeFavicon();
+
 
 function choseItem(event, item) {
   const { target } = event;
@@ -1347,29 +1347,7 @@ function showEndModalShadow(modal) {
   }
 }
 
-function changeFavicon() {
-  const icoIcon = document.getElementById('favicon_ico');
-  const svgIcon = document.getElementById('favicon_svg');
-  const appleIcon = document.getElementById('favicon_apple');
 
-  const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-  changePath();
-  isDarkTheme.addEventListener('change', changePath);
-  isDarkTheme.addListener(changePath); // for safari
-
-  function changePath() {
-    if (isDarkTheme.matches) {
-      icoIcon.href = './favicon-dark-theme.ico';
-      svgIcon.href = './images/favicons/dark-theme/favicon.svg';
-      appleIcon.href = './images/favicons/dark-theme/favicon180.png'
-    } else {
-      icoIcon.href = './favicon.ico';
-      svgIcon.href = './images/favicons/light-theme/favicon.svg';
-      appleIcon.href = './images/favicons/light-theme/favicon180.png';
-    }
-  }
-}
 
 function numberInputValidation() {
   numberInputs.forEach(input => {
@@ -1444,7 +1422,7 @@ function disabledProceedButtonClick(wrapper, modal) {
       } else if (amountIsEmpty) {
         const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
         paymentAmount.classList.add('input--error');
-        positionTooltip(tooltip, modal, paymentAmount);
+        manageErrorTooltipPosition(tooltip, modal, paymentAmount);
       }
     }
 
@@ -1455,7 +1433,7 @@ function disabledProceedButtonClick(wrapper, modal) {
         });
       }
       const tooltipHTML = modal.querySelector('.input-tooltip');
-      const tooltip = createInputErrorTooltip()
+      const tooltip = manageErrorTooltipCreation()
       if (!tooltipHTML) tooltipParent.append(tooltip);
       const tooltipText = tooltip.querySelector('.input-tooltip__text');
       tooltipText.textContent = text;
@@ -1558,15 +1536,6 @@ function rotateFlipBlock() {
   });
 }
 
-manageChangesOnResize();
-
-function manageChangesOnResize() {
-  window.addEventListener('resize', () => {
-    manageFlipHeightOnResize();
-    manageNotificationWrapperHeight();
-  });
-}
-
 function manageFlipHeightOnResize() {
   const flip = document.querySelectorAll('.flip');
   flip.forEach(block => {
@@ -1586,6 +1555,15 @@ function manageFlipHeightOnResize() {
       front.style.height = `${frontInnerHeight}px`;
       block.style.height = `${frontInnerHeight}px`;
     }
+  });
+}
+
+manageChangesOnResize();
+
+function manageChangesOnResize() {
+  window.addEventListener('resize', () => {
+    manageFlipHeightOnResize();
+    manageNotificationWrapperHeight();
   });
 }
 
@@ -1618,46 +1596,11 @@ function changeChosenPaymentMethod(modal) {
   inputAmountBack.setAttribute('placeholder', `up to ${max}`);
 }
 
-function errorPaymentInput(modal) {
-  const inputs = modal.querySelectorAll('.payment-form__input');
-  inputs.forEach(input => {
-    input.addEventListener('input', () => {
-      const min = input.dataset.min;
-      const max = input.dataset.max;
-      if (!min || !max) return;
-
-      const parentLabel = input.closest('.payment-form__label');
-      const parentModal = input.closest('.modal');
-
-      const inputValue = Number(input.value);
-      if (isNaN(inputValue)) return;
-
-      const tooltipHTML = parentLabel.querySelector('.input-tooltip');
-      const tooltip = createInputErrorTooltip();
 
 
-      if (input.value === '') {
-        input.classList.remove('input--error');
-        tooltipHTML?.remove();
-      } else if (inputValue < min || inputValue > max) {
-        input.classList.add('input--error');
-        if (!tooltipHTML) parentLabel.append(tooltip);
-        const tooltipText = tooltip.querySelector('.input-tooltip__text');
-        tooltipText.textContent = `please, choose amount between $${min} and $${max}`;
-        positionTooltip(tooltip, parentModal, input);
-        setTimeout(() => {
-          tooltip.remove();
-        }, 2000);
-
-      } else {
-        input.classList.remove('input--error');
-        tooltipHTML?.remove();
-      }
-    });
-  });
-}
-
-function positionTooltip(tooltip, parentModal, input) {
+// ====================
+// error tooltip start
+function manageErrorTooltipPosition(tooltip, parentModal, input) {
   const inputWidth = input.getBoundingClientRect().width;
   tooltip.style.left = `${input.offsetLeft + inputWidth / 2 - 18}px`;
   tooltip.style.right = 'auto';
@@ -1672,17 +1615,68 @@ function positionTooltip(tooltip, parentModal, input) {
   }
 }
 
-function createInputErrorTooltip() {
+function manageErrorTooltipCreation() {
   const tooltip = document.createElement('span');
   tooltip.className = 'input-tooltip';
   tooltip.innerHTML = `<span class="input-tooltip__arrow"></span><span class="input-tooltip__text"></span>`;
   return tooltip;
 }
+// error tooltip end
+// ====================
 
-bankCardInputValidation();
 
-function bankCardInputValidation() {
+
+// ====================
+// payment modal start
+manageCardInputValidation();
+managePaymentInputMinMax();
+
+function managePaymentInputMinMax() {
+  const inputs = document.querySelectorAll('.payment-form__input');
+  if (inputs.length === 0) return;
+  
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      const min = input.dataset.min;
+      const max = input.dataset.max;
+      if (!min || !max) return;
+
+      const parentLabel = input.closest('.payment-form__label');
+      const parentModal = input.closest('.modal');
+
+      const inputValue = Number(input.value);
+      if (isNaN(inputValue)) return;
+
+      const tooltipHTML = parentLabel.querySelector('.input-tooltip');
+      const tooltip = manageErrorTooltipCreation();
+
+      if (input.value === '') {
+        input.classList.remove('input--error');
+        tooltipHTML?.remove();
+
+      } else if (inputValue < min || inputValue > max) {
+        input.classList.add('input--error');
+        if (!tooltipHTML) parentLabel.append(tooltip);
+
+        const tooltipText = tooltip.querySelector('.input-tooltip__text');
+        tooltipText.textContent = `please, choose amount between $${min} and $${max}`;
+        manageErrorTooltipPosition(tooltip, parentModal, input);
+
+        setTimeout(() => {
+          tooltip.remove();
+        }, 2000);
+
+      } else {
+        input.classList.remove('input--error');
+        tooltipHTML?.remove();
+      }
+    });
+  });
+}
+
+function manageCardInputValidation() {
   const cardInputs = document.querySelectorAll('.payment-form__input.input--card');
+  if (cardInputs.length === 0) return;
 
   cardInputs.forEach(input => {
     input.addEventListener('input', () => {
@@ -1721,6 +1715,42 @@ function bankCardInputValidation() {
     });
   });
 }
+// payment modal end
+// ====================
+
+
+
+// =================
+// favicon change start
+manageFavicon();
+
+function manageFavicon() {
+  const icoIcon = document.getElementById('favicon_ico');
+  const svgIcon = document.getElementById('favicon_svg');
+  const appleIcon = document.getElementById('favicon_apple');
+
+  const isDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+  changePath();
+  isDarkTheme.addEventListener('change', changePath);
+  isDarkTheme.addListener(changePath); // for safari
+
+  function changePath() {
+    if (isDarkTheme.matches) {
+      icoIcon.href = '/favicon-dark-theme.ico';
+      svgIcon.href = '/images/favicons/dark-theme/favicon.svg';
+      appleIcon.href = '/images/favicons/dark-theme/favicon180.png'
+    } else {
+      icoIcon.href = '/favicon.ico';
+      svgIcon.href = '/images/favicons/light-theme/favicon.svg';
+      appleIcon.href = '/images/favicons/light-theme/favicon180.png';
+    }
+  }
+}
+// favicon change end
+// =================
+
+
 
 // ===================================
 // authorization form validation start
@@ -1830,7 +1860,7 @@ function manageRegNameInputValidation() {
   const parentLabel = nameInput.closest('.auth__input-label');
 
   const tooltipHTML = parentLabel.querySelector('.input-tooltip');
-  const tooltip = createInputErrorTooltip();
+  const tooltip = manageErrorTooltipCreation();
 
   nameInput.addEventListener('change', () => {
     if (nameInput.value === '') {
@@ -1868,7 +1898,7 @@ function manageRegEmailInputValidation() {
   const parentLabel = emailInput.closest('.auth__input-label');
 
   const tooltipHTML = parentLabel.querySelector('.input-tooltip');
-  const tooltip = createInputErrorTooltip();
+  const tooltip = manageErrorTooltipCreation();
 
   emailInput.addEventListener('change', () => {
     const emailIsValid = emailInputValidation(emailInput);
@@ -1910,7 +1940,7 @@ function manageRegPassInputsValidation() {
   const inputs = [passInput, repeatPassInput];
 
   inputs.forEach(input => {
-    const tooltip = createInputErrorTooltip();
+    const tooltip = manageErrorTooltipCreation();
     const parentLabel = input.closest('.auth__input-label');
     const tooltipHTML = parentLabel.querySelector('.input-tooltip');
 
@@ -1987,7 +2017,7 @@ function manageRegPassInputsValidation() {
 
     if (onePassIsEmpty) return;
 
-    const tooltip = createInputErrorTooltip();
+    const tooltip = manageErrorTooltipCreation();
     const parentLabel = passToCheck.closest('.auth__input-label');
     const tooltipHTML = parentLabel.querySelector('.input-tooltip');
     const valuesAreSimilar = passToCheck.value === anotherPass.value;
@@ -2134,7 +2164,7 @@ function manageSellNotificationCreation(options) {
   function createNotification() {
     const notification = document.createElement('section');
     notification.className = 'notification';
-    notification.innerHTML = `<div class="notification__inner">
+    notification.innerHTML = `<div class="notification__inner loader">
                                 <div class="notification__header">
                                   <h2 class="notification__title">${options.title}</h2>
                                   <div class="notification__timer">${countdown(options.timeInSeconds)}</div>
@@ -2295,11 +2325,11 @@ function manageSellForm() {
 
     const formParentRow = form.closest('.modal-item__info-row');
     const comission = formParentRow.querySelector('.comission').textContent.trim();
-    const comissionPercent = Number(comission.slice(0, comission.indexOf('%')));
+    const comissionPercent = Number(comission.slice(0, comission.indexOf('%'))) / 100;
 
     sellPriceInput.addEventListener('input', () => {
       const priceValue = Number(sellPriceInput.value.trim());
-      let getValue = priceValue - (priceValue / 100 * comissionPercent);
+      let getValue = priceValue * (1 - comissionPercent);
 
       const getValueIsFloat = String(getValue).includes('.');
       if (getValueIsFloat) {
@@ -2314,7 +2344,7 @@ function manageSellForm() {
 
     getInput.addEventListener('input', () => {
       const getValue = Number(getInput.value.trim());
-      let priceValue = getValue + (getValue / 100 * comissionPercent);
+      let priceValue = getValue / (1 - comissionPercent);
 
       const priceIsFloat = String(priceValue).includes('.');
       if (priceIsFloat) {
@@ -2495,7 +2525,7 @@ function manageItemConfirmOverlay(options) {
 
   function createConfirmOverlay() {
     const overlay = document.createElement('div');
-    overlay.className = 'confirm-sell';
+    overlay.className = 'confirm-sell loader';
     overlay.innerHTML = `<p class="confirm-sell__text">${options.text}</p>
                           <span class="confirm-sell__id">${options.tradeID}</span>
                           <span class="confirm-sell__timer">${options.timeInSeconds}</span>
