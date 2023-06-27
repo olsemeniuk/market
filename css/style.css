@@ -209,6 +209,18 @@ p {
   background-image: url("/images/icons/login-icon.svg");
 }
 
+.icon--steam::before {
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/icons/steam-icon.svg");
+}
+
+.icon--key::before {
+  width: 19px;
+  height: 19px;
+  background-image: url("/images/icons/key-icon.svg");
+}
+
 
 /* ===================
     MAIN STYLES
@@ -1707,6 +1719,29 @@ p {
   top: 3px;
 }
 
+.item:hover .item__content {
+  background-color: var(--color-chc);
+}
+
+.item:not(.stash__item):hover .item__icons {
+  bottom: -100%;
+  opacity: 0;
+}
+
+.stash__item:hover .item__icons {
+  opacity: 0.2;
+}
+
+.item:hover .item__about {
+  position: relative;
+  bottom: 40px;
+  opacity: 0.2;
+}
+
+.stash__item:hover .item__about {
+  bottom: 0;
+}
+
 .item__my {
   position: absolute;
   top: 16px;
@@ -1750,28 +1785,108 @@ p {
   display: none;
 }
 
-
-.item:hover .item__content {
-  background-color: #42424d;
+.item__on-sell-time {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  padding-left: 16px;
+  font-size: 14px;
+  color: var(--color-t);
+  transition: all 0.3s;
 }
 
-.item:not(.stash__item):hover .item__icons {
-  bottom: -100%;
-  opacity: 0;
+.item__on-sell-time::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  background-image: url("/images/icons/clock-icon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transform: translateY(-50%);
+  filter: var(--color-t-filter);
 }
 
-.stash__item:hover .item__icons {
+.item--confirm-sell .item__overlay {
+  display: none;
+}
+
+.item--confirm-sell .item__img,
+.item--confirm-sell .item__icons,
+.item--confirm-sell .item__on-sell-time,
+.item--confirm-sell .item__about {
   opacity: 0.2;
 }
 
-.item:hover .item__about {
-  position: relative;
-  bottom: 40px;
-  opacity: 0.2;
+.item--confirm-sell:hover .item__content {
+  background-color: var(--color-hc);
 }
 
-.stash__item:hover .item__about {
+.item--confirm-time-expred .item__content {
+  border-color: var(--color-error);
+}
+
+.confirm-sell {
+  position: absolute;
+  top: 0;
+  right: 0;
   bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--color-warning)
+}
+
+.confirm-sell--half-time {
+  color: var(--color-error);
+}
+
+.confirm-sell::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  border-bottom: 3px solid var(--color-warning);
+  border-radius: 10px;
+  clip-path: polygon(0 0, var(--timer-line) 0, var(--timer-line) 100%, 0 100%);
+  transition: clip-path 1s linear;
+}
+
+.confirm-sell--half-time::after {
+  border-color: var(--color-error);
+}
+
+.confirm-sell__text {
+  flex-shrink: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.confirm-sell__id {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.confirm-sell__timer {
+  font-weight: 700;
+  font-size: 24px;
 }
 
 .modal-item__price-row {
@@ -1850,7 +1965,8 @@ p {
   transform: scale(1);
 }
 
-.item:hover .item__img {
+.item:hover .item__img,
+.item:hover .item__on-sell-time {
   opacity: .2;
 }
 
@@ -1872,6 +1988,7 @@ p {
 }
 
 .footer__logo {
+  flex-shrink: 0;
   margin-right: 80px;
 }
 
@@ -2063,13 +2180,17 @@ p {
 .auth__button-text {
   position: relative;
   display: inline-block;
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 .auth__button-text::before {
   position: absolute;
   top: 50%;
   left: 0;
+  width: 20px;
+  height: 20px;
+  background-size: auto;
+  background-position: right center;
   transform: translateY(-50%);
   filter: var(--color-w-filter);
 }
@@ -2100,7 +2221,7 @@ p {
   flex-shrink: 0;
   min-height: 40px;
   margin: 0 18px 18px 0;
-  padding: 10px 18px;
+  padding: 10px 14px;
   border: 2px solid transparent;
 }
 
@@ -2114,7 +2235,8 @@ p {
   background-color: var(--color-hc);
 }
 
-.auth__button--transparent .auth__button-text::before {
+.auth__button--transparent .auth__button-text::before,
+.auth__button--transparent::before {
   filter: var(--color-lc-filter);
 }
 
@@ -2129,7 +2251,7 @@ p {
   flex: 1 1 auto;
 }
 
-.auth__button--small::before {
+.auth__button--small:not(.auth__button--transparent)::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -2152,21 +2274,7 @@ p {
 .auth__button[type="submit"]:disabled:hover {
   background-color: transparent;
 }
-
 /* authorization modal end */
-
-
-.game-item-overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-  opacity: .7;
-  background-color: var(--color-bg);
-  animation: appearing 0.3s;
-}
 
 .payment-modal {
   display: block;
@@ -2803,7 +2911,7 @@ p {
   max-width: 100%;
 }
 
-.item-orders + .item-orders {
+.item-orders+.item-orders {
   margin-top: 30px;
 }
 
@@ -3905,8 +4013,6 @@ p {
 }
 
 .notification {
-  --timer-line: 100%;
-
   display: grid;
   grid-template-rows: 1fr;
   animation: appearing 0.3s ease;

@@ -1563,6 +1563,7 @@ manageChangesOnResize();
 function manageChangesOnResize() {
   window.addEventListener('resize', () => {
     manageFlipHeightOnResize();
+    manageNotificationWrapperHeight();
   });
 }
 
@@ -2057,7 +2058,8 @@ function manageAddTooltip(options) {
 
 // ================================
 // notifications on sell page start
-// testNotificationsCall()
+testNotificationsCall();
+
 function testNotificationsCall() {
   manageSellNotificationCreation({
     title: 'Confirm trade',
@@ -2065,26 +2067,6 @@ function testNotificationsCall() {
     imagePath: '/images/items/knife.png',
     imagePath2x: '/images/x2/knife-2x.png',
     imagePath3x: '/images/x3/knife-3x.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Confirm trade',
-    timeInSeconds: 60,
-    imagePath: '/images/items/gloves.png',
-    imagePath2x: '/images/items/gloves.png',
-    imagePath3x: '/images/items/gloves.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 2',
-    timeInSeconds: 30,
-    imagePath: '/images/items/green-knife.png',
-    imagePath2x: '/images/items/green-knife.png',
-    imagePath3x: '/images/items/green-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2105,26 +2087,6 @@ function testNotificationsCall() {
     imagePath: '/images/items/red-sniper.png',
     imagePath2x: '/images/items/red-sniper.png',
     imagePath3x: '/images/items/red-sniper.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 5',
-    timeInSeconds: 10,
-    imagePath: '/images/items/golden-knife.png',
-    imagePath2x: '/images/items/golden-knife.png',
-    imagePath3x: '/images/items/golden-knife.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 6',
-    timeInSeconds: 20,
-    imagePath: '/images/items/light-green-knife.png',
-    imagePath2x: '/images/items/light-green-knife.png',
-    imagePath3x: '/images/items/light-green-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2213,26 +2175,30 @@ function manageSellNotificationCreation(options) {
   }
 
   function updateCountdown(timerHTML) {
-    timerHTML.innerHTML = countdown(options.timeInSeconds);
-    options.timeInSeconds--;
+    countdownActions(timerHTML);
     const intervalID = setInterval(() => {
-      timerHTML.innerHTML = countdown(options.timeInSeconds);
-      options.timeInSeconds--;
-
-      if (options.timeInSeconds < initialTime / 2) {
-        notificationBlock.classList.add('notification--half-time-left');
-      } else {
-        notificationBlock.classList.remove('notification--half-time-left');
-      }
-
-      const timeLeft = (options.timeInSeconds * 100) / initialTime;
-      notificationBlock.style.setProperty('--timer-line', `${timeLeft}%`);
+      countdownActions(timerHTML);
       if (options.timeInSeconds < 0) {
         removeNotification(notificationBlock, intervalID);
       }
     }, 1000);
 
     return intervalID;
+  }
+
+  function countdownActions(timerHTML) {
+    timerHTML.innerHTML = countdown(options.timeInSeconds);
+
+    const timeLeft = ((options.timeInSeconds - 1) * 100) / (initialTime - 1);
+    notificationBlock.style.setProperty('--timer-line', `${timeLeft}%`);
+
+    if (options.timeInSeconds <= initialTime / 2) {
+      notificationBlock.classList.add('notification--half-time-left');
+    } else {
+      notificationBlock.classList.remove('notification--half-time-left');
+    }
+
+    options.timeInSeconds--;
   }
 
   function setWrapperHeight() {
@@ -2285,6 +2251,21 @@ function manageNotificationWrapperGrabScroll(wrapper) {
     document.addEventListener('mouseup', mouseUpHandler);
   });
 }
+
+function manageNotificationWrapperHeight() {
+  const wrapper = document.querySelector('.notifications-wrapper');
+
+  if (!wrapper) return;
+
+  const browserHeight = document.documentElement.clientHeight;
+  const wrapperHeight = wrapper.scrollHeight;
+
+  if (wrapperHeight > browserHeight) {
+    wrapper.classList.add('notifications-wrapper--full-height')
+  } else {
+    wrapper.classList.remove('notifications-wrapper--full-height')
+  }
+}
 // notifications on sell page end
 // ================================
 
@@ -2292,9 +2273,15 @@ function manageNotificationWrapperGrabScroll(wrapper) {
 
 // ======================
 // sell items start
-manageSellForm();
-manageSellItemsPriceAndAmount();
-manageSellItemsPlaceholder();
+manageItemsSell();
+testOnSellTime();
+testConfirmOverlay();
+
+function manageItemsSell() {
+  manageSellForm();
+  manageSellItemsPriceAndAmount();
+  manageSellItemsPlaceholder();
+}
 
 function manageSellForm() {
   const sellForm = document.querySelectorAll('.sell-form');
@@ -2312,13 +2299,13 @@ function manageSellForm() {
 
     sellPriceInput.addEventListener('input', () => {
       const priceValue = Number(sellPriceInput.value.trim());
-      let getValue = priceValue - (priceValue / 100 * comissionPercent); 
+      let getValue = priceValue - (priceValue / 100 * comissionPercent);
 
       const getValueIsFloat = String(getValue).includes('.');
       if (getValueIsFloat) {
         getValue = getValue.toFixed(2);
       }
-      
+
       getInput.value = getValue;
       if (sellPriceInput.value === '') {
         getInput.value = '';
@@ -2409,8 +2396,158 @@ function manageSellItemsPriceAndAmount() {
     sumHTML.textContent = itemsPrice;
   }
 }
+
+function testOnSellTime() {
+  manageOnSellTime('item_49', new Date(2023, 5, 25));
+  manageOnSellTime('item_50', new Date(2023, 5, 27));
+}
+
+function manageOnSellTime(itemID, timeSinceOnSell = new Date()) {
+  const onSellTime = timeSinceOnSell.getTime();
+
+  const item = document.getElementById(itemID);
+  if (!item) return;
+
+  const itemContent = item.querySelector('.item__content');
+  let itemTimeHTML = item.querySelector('.item__on-sell-time');
+
+  if (!itemTimeHTML) {
+    itemTimeHTML = addOnSellTimeHTML();
+    itemContent.prepend(itemTimeHTML);
+  }
+
+  countTime();
+
+  function countTime() {
+    showTime()
+    setInterval(showTime, 60000);
+
+    function showTime() {
+      const currentTime = Date.now();
+      const diff = currentTime - onSellTime;
+
+      const oneDay = 24 * 60 * 60 * 1000;
+      const oneHour = 60 * 60 * 1000;
+      const oneMin = 60 * 1000;
+
+      const days = Math.floor(diff / oneDay);
+      const hours = addZero(Math.floor((diff % oneDay) / oneHour));
+      const minutes = addZero(Math.floor((diff % oneHour) / oneMin));
+
+      let time = '';
+
+      if (days === 0) {
+        time = `${hours}:${minutes}`;
+      } else {
+        time = `${days}d ${hours}:${minutes}`;
+      }
+
+      itemTimeHTML.textContent = time;
+    }
+  }
+
+  function addOnSellTimeHTML() {
+    const timeHTML = document.createElement('span');
+    timeHTML.className = 'item__on-sell-time';
+    return timeHTML;
+  }
+
+  function addZero(num) {
+    if (num < 10) {
+      return `0${num}`;
+    }
+    return num;
+  }
+}
+
+function testConfirmOverlay() {
+  manageItemConfirmOverlay({
+    itemID: 'item_49',
+    timeInSeconds: 10,
+    text: 'confirm trade in Steam mobile app',
+    tradeID: 'uayosdh32426dhdkj'
+  });
+
+  manageItemConfirmOverlay({
+    itemID: 'item_50',
+    timeInSeconds: 320,
+    text: 'confirm trade in Steam mobile app',
+    tradeID: 'uayosdh32426dhdkj'
+  });
+}
+
+function manageItemConfirmOverlay(options) {
+  const item = document.querySelector(`#${options.itemID}`);
+  if (!item) return;
+  item.classList.add('item--confirm-sell');
+
+  const itemInner = item.querySelector('.item__inner');
+  const initialTime = options.timeInSeconds;
+  let overlayHTML = item.querySelector('.confirm-sell');
+
+  if (!overlayHTML) {
+    overlayHTML = createConfirmOverlay();
+    itemInner.prepend(overlayHTML);
+  }
+
+  const timerHTML = overlayHTML.querySelector('.confirm-sell__timer');
+  updateCountdown(timerHTML);
+
+  function createConfirmOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'confirm-sell';
+    overlay.innerHTML = `<p class="confirm-sell__text">${options.text}</p>
+                          <span class="confirm-sell__id">${options.tradeID}</span>
+                          <span class="confirm-sell__timer">${options.timeInSeconds}</span>
+                        </p>`;
+    return overlay;
+  }
+
+  function countdown(time) {
+    let minutes = Math.floor(time / 60);
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let seconds = time % 60;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutes}:${seconds}`;
+  }
+
+  function updateCountdown(timerHTML) {
+    countdownActions(timerHTML)
+
+    const intervalID = setInterval(() => {
+      countdownActions(timerHTML)
+      if (options.timeInSeconds < 0) {
+        removeOverlay(overlayHTML, intervalID);
+        item.classList.add('item--confirm-time-expred')
+        return false;
+      }
+    }, 1000);
+  }
+
+  function countdownActions(timerHTML) {
+    timerHTML.innerHTML = countdown(options.timeInSeconds);
+
+    const timeLeft = ((options.timeInSeconds - 1) * 100) / (initialTime - 1);
+    overlayHTML.style.setProperty('--timer-line', `${timeLeft}%`);
+
+    if (options.timeInSeconds <= initialTime / 2) {
+      overlayHTML.classList.add('confirm-sell--half-time');
+    } else {
+      overlayHTML.classList.remove('confirm-sell--half-time');
+    }
+
+    options.timeInSeconds--;
+  }
+
+  function removeOverlay(overlayHTML, intervalID) {
+    item.classList.remove('item--confirm-sell');
+    overlayHTML.remove();
+    clearInterval(intervalID);
+  }
+}
 // sell items end
 // =====================
+
 
 // =====================
 // chart start
