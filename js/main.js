@@ -2542,13 +2542,22 @@ function manageItemConfirmOverlay(options) {
   }
 
   function updateCountdown(timerHTML) {
-    countdownActions(timerHTML)
+    countdownActions(timerHTML);
 
     const intervalID = setInterval(() => {
-      countdownActions(timerHTML)
+      countdownActions(timerHTML);
       if (options.timeInSeconds < 0) {
         removeOverlay(overlayHTML, intervalID);
-        item.classList.add('item--confirm-time-expred')
+
+        // for presentation
+        const random = Math.floor(Math.random() * 2);
+        if (random === 0) {
+          item.classList.add('item--confirm-time-expred');
+        } else {
+          item.classList.add('item--confirm-success');
+        }
+        // ================
+        
         return false;
       }
     }, 1000);
