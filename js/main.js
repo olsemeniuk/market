@@ -807,7 +807,8 @@ function handleFilpHeight(parentBlock) {
 function renderChart(item) {
   const chartContainer = item.querySelector('.chart-container');
   const chartContainerID = chartContainer.id;
-  createChart(`#${chartContainerID}`, chartData);
+  manageChartCreation(`#${chartContainerID}`, testChartData);
+  manageChartResize(chartContainer, testChartData);
 }
 
 function destroyChart(item) {
@@ -1123,7 +1124,7 @@ function addItemsToCart(event, item) {
     totalPrice = 0;
     itemsSum.textContent = '$ 0';
   } else {
-    totalPrice = formatPrice(totalPrice);
+    totalPrice = managePriceFormat(totalPrice);
     totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
 
     itemsSum.textContent = totalPrice;
@@ -1142,7 +1143,7 @@ function getItemPrice(priceHTML) {
   return priceHTML;
 }
 
-function formatPrice(price) {
+function managePriceFormat(price) {
   return `$ ${Number(price).toLocaleString('ru-RU', { style: 'currency', currency: 'USD' }).replace(/\,/g, '.')}`;
 }
 
@@ -1263,7 +1264,7 @@ function showAddedItems() {
     if (priceNum === 0) {
       priceHTML.textContent = '$ 0';
     } else {
-      priceNum = formatPrice(priceNum);
+      priceNum = managePriceFormat(priceNum);
       priceNum = priceNum.slice(0, priceNum.length - 1).trim();
       priceHTML.textContent = priceNum;
     }
@@ -1562,6 +1563,7 @@ manageChangesOnResize();
 function manageChangesOnResize() {
   window.addEventListener('resize', () => {
     manageFlipHeightOnResize();
+    manageNotificationWrapperHeight();
   });
 }
 
@@ -2054,29 +2056,10 @@ function manageAddTooltip(options) {
 
 
 
-// const stashList = document.querySelector('.stash__items');
-// stashList.addEventListener('click', sellItem);
-
-// function sellItem({ target }) {
-//   const item = target.closest('.item');
-//   if (!item) return;
-
-//   const sellButton = target.closest('.item__sell-button');
-//   const overlay = target.closest('.item__overlay');
-//   if (!sellButton && !overlay) return;
-
-//   const sellList = document.querySelector('.items-sell__items');
-//   item.remove();
-//   sellList.append(item);
-//   item.classList.add('item--to-sell');
-//   showHideSellItemsPlaceholder();
-//   updatePriceAndAmountSellItems();
-// }
-
-
 // ================================
 // notifications on sell page start
-testNotificationsCall()
+testNotificationsCall();
+
 function testNotificationsCall() {
   manageSellNotificationCreation({
     title: 'Confirm trade',
@@ -2084,26 +2067,6 @@ function testNotificationsCall() {
     imagePath: './images/items/knife.png',
     imagePath2x: './images/x2/knife-2x.png',
     imagePath3x: './images/x3/knife-3x.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Confirm trade',
-    timeInSeconds: 60,
-    imagePath: './images/items/gloves.png',
-    imagePath2x: './images/items/gloves.png',
-    imagePath3x: './images/items/gloves.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 2',
-    timeInSeconds: 30,
-    imagePath: './images/items/green-knife.png',
-    imagePath2x: './images/items/green-knife.png',
-    imagePath3x: './images/items/green-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2124,26 +2087,6 @@ function testNotificationsCall() {
     imagePath: './images/items/red-sniper.png',
     imagePath2x: './images/items/red-sniper.png',
     imagePath3x: './images/items/red-sniper.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 5',
-    timeInSeconds: 10,
-    imagePath: './images/items/golden-knife.png',
-    imagePath2x: './images/items/golden-knife.png',
-    imagePath3x: './images/items/golden-knife.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 6',
-    timeInSeconds: 20,
-    imagePath: './images/items/light-green-knife.png',
-    imagePath2x: './images/items/light-green-knife.png',
-    imagePath3x: './images/items/light-green-knife.png',
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
@@ -2232,26 +2175,30 @@ function manageSellNotificationCreation(options) {
   }
 
   function updateCountdown(timerHTML) {
-    timerHTML.innerHTML = countdown(options.timeInSeconds);
-    options.timeInSeconds--;
+    countdownActions(timerHTML);
     const intervalID = setInterval(() => {
-      timerHTML.innerHTML = countdown(options.timeInSeconds);
-      options.timeInSeconds--;
-
-      if (options.timeInSeconds < initialTime / 2) {
-        notificationBlock.classList.add('notification--half-time-left');
-      } else {
-        notificationBlock.classList.remove('notification--half-time-left');
-      }
-
-      const timeLeft = (options.timeInSeconds * 100) / initialTime;
-      notificationBlock.style.setProperty('--timer-line', `${timeLeft}%`);
+      countdownActions(timerHTML);
       if (options.timeInSeconds < 0) {
         removeNotification(notificationBlock, intervalID);
       }
     }, 1000);
 
     return intervalID;
+  }
+
+  function countdownActions(timerHTML) {
+    timerHTML.innerHTML = countdown(options.timeInSeconds);
+
+    const timeLeft = ((options.timeInSeconds - 1) * 100) / (initialTime - 1);
+    notificationBlock.style.setProperty('--timer-line', `${timeLeft}%`);
+
+    if (options.timeInSeconds <= initialTime / 2) {
+      notificationBlock.classList.add('notification--half-time-left');
+    } else {
+      notificationBlock.classList.remove('notification--half-time-left');
+    }
+
+    options.timeInSeconds--;
   }
 
   function setWrapperHeight() {
@@ -2304,18 +2251,100 @@ function manageNotificationWrapperGrabScroll(wrapper) {
     document.addEventListener('mouseup', mouseUpHandler);
   });
 }
+
+function manageNotificationWrapperHeight() {
+  const wrapper = document.querySelector('.notifications-wrapper');
+
+  if (!wrapper) return;
+
+  const browserHeight = document.documentElement.clientHeight;
+  const wrapperHeight = wrapper.scrollHeight;
+
+  if (wrapperHeight > browserHeight) {
+    wrapper.classList.add('notifications-wrapper--full-height')
+  } else {
+    wrapper.classList.remove('notifications-wrapper--full-height')
+  }
+}
 // notifications on sell page end
 // ================================
 
 
 
-if (isSellPage) {
-  showHideSellItemsPlaceholder();
-  updatePriceAndAmountSellItems();
+// ======================
+// sell items start
+manageItemsSell();
+testOnSellTime();
+testConfirmOverlay();
+
+function manageItemsSell() {
+  manageSellForm();
+  manageSellItemsPriceAndAmount();
+  manageSellItemsPlaceholder();
 }
 
-function showHideSellItemsPlaceholder() {
+function manageSellForm() {
+  const sellForm = document.querySelectorAll('.sell-form');
+  if (sellForm.length === 0) return;
+  sellForm.forEach(form => {
+    const sellPriceInput = form.querySelector('.sell-form__price-input');
+    const getInput = form.querySelector('.sell-form__get-input');
+    const button = form.querySelector('.sell-form__button');
+
+    disableButton();
+
+    const formParentRow = form.closest('.modal-item__info-row');
+    const comission = formParentRow.querySelector('.comission').textContent.trim();
+    const comissionPercent = Number(comission.slice(0, comission.indexOf('%')));
+
+    sellPriceInput.addEventListener('input', () => {
+      const priceValue = Number(sellPriceInput.value.trim());
+      let getValue = priceValue - (priceValue / 100 * comissionPercent);
+
+      const getValueIsFloat = String(getValue).includes('.');
+      if (getValueIsFloat) {
+        getValue = getValue.toFixed(2);
+      }
+
+      getInput.value = getValue;
+      if (sellPriceInput.value === '') {
+        getInput.value = '';
+      }
+    });
+
+    getInput.addEventListener('input', () => {
+      const getValue = Number(getInput.value.trim());
+      let priceValue = getValue + (getValue / 100 * comissionPercent);
+
+      const priceIsFloat = String(priceValue).includes('.');
+      if (priceIsFloat) {
+        priceValue = priceValue.toFixed(2);
+      }
+
+      sellPriceInput.value = priceValue;
+      if (getInput.value === '') {
+        sellPriceInput.value = '';
+      }
+    });
+
+    form.addEventListener('input', disableButton);
+
+    function disableButton() {
+      const priceIsEmpty = sellPriceInput.value === '';
+      const getIsEmpty = getInput.value === '';
+
+      if (priceIsEmpty || getIsEmpty) {
+        button.disabled = true;
+      } else {
+        button.disabled = false;
+      }
+    }
+  });
+}
+
+function manageSellItemsPlaceholder() {
   const sections = document.querySelectorAll('.sell-page__section');
+  if (sections.length === 0) return;
   sections.forEach(section => {
     const placeholder = section.querySelector('.sell-page__section-placeholder');
     const items = section.querySelectorAll('.item');
@@ -2327,11 +2356,13 @@ function showHideSellItemsPlaceholder() {
   });
 }
 
-function updatePriceAndAmountSellItems() {
+function manageSellItemsPriceAndAmount() {
   let itemsPrice = 0;
   let itemsAmount = 0;
 
   const sellCart = document.querySelector('.sell-page__cart');
+  if (!sellCart) return;
+
   const amountHTML = sellCart.querySelector('.items-amount');
   const sumHTML = sellCart.querySelector('.items-price');
 
@@ -2355,7 +2386,7 @@ function updatePriceAndAmountSellItems() {
   });
 
   itemsPrice = sellItemsTotalPrice;
-  itemsPrice = formatPrice(itemsPrice);
+  itemsPrice = managePriceFormat(itemsPrice);
   itemsPrice = itemsPrice.slice(0, itemsPrice.length - 1).trim();
   amountHTML.textContent = itemsAmount;
 
@@ -2366,10 +2397,161 @@ function updatePriceAndAmountSellItems() {
   }
 }
 
+function testOnSellTime() {
+  manageOnSellTime('item_49', new Date(2023, 5, 25));
+  manageOnSellTime('item_50', new Date(2023, 5, 27));
+}
+
+function manageOnSellTime(itemID, timeSinceOnSell = new Date()) {
+  const onSellTime = timeSinceOnSell.getTime();
+
+  const item = document.getElementById(itemID);
+  if (!item) return;
+
+  const itemContent = item.querySelector('.item__content');
+  let itemTimeHTML = item.querySelector('.item__on-sell-time');
+
+  if (!itemTimeHTML) {
+    itemTimeHTML = addOnSellTimeHTML();
+    itemContent.prepend(itemTimeHTML);
+  }
+
+  countTime();
+
+  function countTime() {
+    showTime()
+    setInterval(showTime, 60000);
+
+    function showTime() {
+      const currentTime = Date.now();
+      const diff = currentTime - onSellTime;
+
+      const oneDay = 24 * 60 * 60 * 1000;
+      const oneHour = 60 * 60 * 1000;
+      const oneMin = 60 * 1000;
+
+      const days = Math.floor(diff / oneDay);
+      const hours = addZero(Math.floor((diff % oneDay) / oneHour));
+      const minutes = addZero(Math.floor((diff % oneHour) / oneMin));
+
+      let time = '';
+
+      if (days === 0) {
+        time = `${hours}:${minutes}`;
+      } else {
+        time = `${days}d ${hours}:${minutes}`;
+      }
+
+      itemTimeHTML.textContent = time;
+    }
+  }
+
+  function addOnSellTimeHTML() {
+    const timeHTML = document.createElement('span');
+    timeHTML.className = 'item__on-sell-time';
+    return timeHTML;
+  }
+
+  function addZero(num) {
+    if (num < 10) {
+      return `0${num}`;
+    }
+    return num;
+  }
+}
+
+function testConfirmOverlay() {
+  manageItemConfirmOverlay({
+    itemID: 'item_49',
+    timeInSeconds: 10,
+    text: 'confirm trade in Steam mobile app',
+    tradeID: 'uayosdh32426dhdkj'
+  });
+
+  manageItemConfirmOverlay({
+    itemID: 'item_50',
+    timeInSeconds: 320,
+    text: 'confirm trade in Steam mobile app',
+    tradeID: 'uayosdh32426dhdkj'
+  });
+}
+
+function manageItemConfirmOverlay(options) {
+  const item = document.querySelector(`#${options.itemID}`);
+  if (!item) return;
+  item.classList.add('item--confirm-sell');
+
+  const itemInner = item.querySelector('.item__inner');
+  const initialTime = options.timeInSeconds;
+  let overlayHTML = item.querySelector('.confirm-sell');
+
+  if (!overlayHTML) {
+    overlayHTML = createConfirmOverlay();
+    itemInner.prepend(overlayHTML);
+  }
+
+  const timerHTML = overlayHTML.querySelector('.confirm-sell__timer');
+  updateCountdown(timerHTML);
+
+  function createConfirmOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'confirm-sell';
+    overlay.innerHTML = `<p class="confirm-sell__text">${options.text}</p>
+                          <span class="confirm-sell__id">${options.tradeID}</span>
+                          <span class="confirm-sell__timer">${options.timeInSeconds}</span>
+                        </p>`;
+    return overlay;
+  }
+
+  function countdown(time) {
+    let minutes = Math.floor(time / 60);
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let seconds = time % 60;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutes}:${seconds}`;
+  }
+
+  function updateCountdown(timerHTML) {
+    countdownActions(timerHTML)
+
+    const intervalID = setInterval(() => {
+      countdownActions(timerHTML)
+      if (options.timeInSeconds < 0) {
+        removeOverlay(overlayHTML, intervalID);
+        item.classList.add('item--confirm-time-expred')
+        return false;
+      }
+    }, 1000);
+  }
+
+  function countdownActions(timerHTML) {
+    timerHTML.innerHTML = countdown(options.timeInSeconds);
+
+    const timeLeft = ((options.timeInSeconds - 1) * 100) / (initialTime - 1);
+    overlayHTML.style.setProperty('--timer-line', `${timeLeft}%`);
+
+    if (options.timeInSeconds <= initialTime / 2) {
+      overlayHTML.classList.add('confirm-sell--half-time');
+    } else {
+      overlayHTML.classList.remove('confirm-sell--half-time');
+    }
+
+    options.timeInSeconds--;
+  }
+
+  function removeOverlay(overlayHTML, intervalID) {
+    item.classList.remove('item--confirm-sell');
+    overlayHTML.remove();
+    clearInterval(intervalID);
+  }
+}
+// sell items end
+// =====================
 
 
-// chart
-const chartData = [
+// =====================
+// chart start
+const testChartData = [
   { date: new Date('2021-12-01T14:22'), value: 10400.12 },
   { date: new Date('2021-12-15T14:22'), value: 10475.12 },
   { date: new Date('2022-01-01T14:22'), value: 10500.12 },
@@ -2473,30 +2655,22 @@ const chartData = [
   { date: new Date('2025-12-15T14:22'), value: 10765.12 },
 ]
 
-const chartContainer = document.querySelectorAll('.chart-container');
+function manageChartResize(container, chartData) {
+  window.addEventListener('resize', () => {
+    const chart = container.querySelector('svg')
+    const tooltip = container.querySelector('.tooltip')
+    const tooltipCircle = container.querySelector('.tooltip-circle')
 
-if (chartContainer.length > 0) {
-  chartContainer.forEach(item => {
-    window.addEventListener('resize', () => {
-      resizeCharts(item)
-    });
+    if (chart) {
+      chart.remove();
+      tooltip.remove();
+      tooltipCircle.remove();
+      manageChartCreation(`#${container.id}`, chartData);
+    }
   });
 }
 
-function resizeCharts(container) {
-  const chart = container.querySelector('svg')
-  const tooltip = container.querySelector('.tooltip')
-  const tooltipCircle = container.querySelector('.tooltip-circle')
-
-  if (chart) {
-    chart.remove();
-    tooltip.remove();
-    tooltipCircle.remove();
-    createChart(`#${container.id} `, chartData);
-  }
-}
-
-function createChart(parentContainerID, chartData) {
+function manageChartCreation(parentContainerID, chartData) {
   const months = {
     0: 'jan',
     1: 'feb',
@@ -2764,3 +2938,5 @@ function createChart(parentContainerID, chartData) {
     }
   }
 }
+// chart end
+// =====================
