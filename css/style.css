@@ -212,13 +212,13 @@ p {
 .icon--steam::before {
   width: 20px;
   height: 20px;
-  background-image: url("/images/icons/steam-icon.svg");
+  background-image: url("../images/icons/steam-icon.svg");
 }
 
 .icon--key::before {
   width: 19px;
   height: 19px;
-  background-image: url("/images/icons/key-icon.svg");
+  background-image: url("../images/icons/key-icon.svg");
 }
 
 
@@ -1774,7 +1774,7 @@ p {
 
 .item--to-sell .item__sell-button {
   height: 27px;
-  background-image: url("/images/icons/gear-icon.svg");
+  background-image: url("../images/icons/gear-icon.svg");
 }
 
 .item--to-sell .modal-item__cancel-button.cancel-sell {
@@ -1802,7 +1802,7 @@ p {
   left: 0;
   width: 11px;
   height: 11px;
-  background-image: url("/images/icons/clock-icon.svg");
+  background-image: url("../images/icons/clock-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1947,7 +1947,7 @@ p {
   left: 0;
   width: 12px;
   height: 11px;
-  background-image: url("/images/icons/comission-icon.svg");
+  background-image: url("../images/icons/comission-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
