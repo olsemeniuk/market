@@ -2120,16 +2120,6 @@ function testNotificationsCall() {
     text: 'Confirm trade in your Steam mobile app.',
     id: 't76832yguyO61wryjeouy'
   });
-
-  manageSellNotificationCreation({
-    title: 'Some title 7',
-    timeInSeconds: 360,
-    imagePath: '/images/items/knife.png',
-    imagePath2x: '/images/x2/knife-2x.png',
-    imagePath3x: '/images/x3/knife-3x.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
 }
 
 function manageSellNotificationCreation(options) {

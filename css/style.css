@@ -3576,11 +3576,11 @@ p {
   background-size: contain;
   background-position: center;
   transform: translate(-50%, -50%);
-  filter: var(--color-mc-filter);
+  filter: var(--color-lc-filter);
 }
 
 .info-block:hover::before {
-  filter: var(--color-lc-filter);
+  filter: var(--color-mc-filter);
 }
 
 .info-block__modal--with-shadow {
