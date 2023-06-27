@@ -2143,7 +2143,7 @@ function manageSellNotificationCreation(options) {
   const initialTime = options.timeInSeconds;
 
   const notificationBlock = createNotification();
-  notificationsWrapper.append(notificationBlock);
+  notificationsWrapper.prepend(notificationBlock);
 
   manageNotificationWrapperGrabScroll(notificationsWrapper);
 

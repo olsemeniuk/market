@@ -3974,13 +3974,12 @@ p {
 /* notifications start */
 .notifications-wrapper {
   position: fixed;
-  top: 50%;
   right: 0;
+  bottom: 0;
   z-index: 99;
   display: flex;
   flex-direction: column;
   padding: 20px 25px;
-  transform: translateY(-50%);
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
