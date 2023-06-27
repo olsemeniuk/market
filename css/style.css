@@ -1737,6 +1737,20 @@ p {
   transform: translate(-50%, -50%);
 }
 
+.item--to-sell .item__sell-button {
+  height: 27px;
+  background-image: url("/images/icons/gear-icon.svg");
+}
+
+.item--to-sell .modal-item__cancel-button.cancel-sell {
+  display: block;
+}
+
+.item--to-sell .item__my {
+  display: none;
+}
+
+
 .item:hover .item__content {
   background-color: #42424d;
 }
@@ -1758,6 +1772,77 @@ p {
 
 .stash__item:hover .item__about {
   bottom: 0;
+}
+
+.modal-item__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modal-item__price-row .modal-item__price {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-t);
+}
+
+.modal-item__price-row .modal-item__price b {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-w);
+}
+
+.sell-form {
+  max-width: 273px;
+}
+
+.sell-form input {
+  text-align: center;
+}
+
+.sell-form__button:disabled {
+  cursor: default;
+}
+
+.sell-form__button:disabled:hover {
+  background-color: var(--color-mc);
+}
+
+.small-form__right-input {
+  margin-right: 0;
+  margin-left: -10px;
+  padding-right: 10px;
+  padding-left: 20px;
+}
+
+.comission {
+  position: relative;
+  margin-right: auto;
+  margin-left: 25px;
+  padding-left: 16px;
+  font-size: 16px;
+  color: var(--color-t);
+}
+
+.comission::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 12px;
+  height: 11px;
+  background-image: url("/images/icons/comission-icon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transform: translateY(-50%);
+}
+
+.modal-item__cancel-button.cancel-sell {
+  display: none;
+  margin-right: 0;
+  margin-left: 10px;
 }
 
 .item:hover .item__details {
@@ -2485,7 +2570,7 @@ p {
 .modal__header {
   position: relative;
   min-height: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .modal-item__header {
@@ -2563,7 +2648,6 @@ p {
 .modal-item__slider-block {
   flex-basis: 400px;
   min-width: 0;
-  padding-bottom: 10px;
   text-align: center;
 }
 
@@ -2631,7 +2715,7 @@ p {
   font-size: 18px;
   font-weight: 700;
   color: var(--color-w);
-  margin-bottom: 35px;
+  margin-bottom: 23px;
 }
 
 .modal-item__info-row {
@@ -2707,7 +2791,7 @@ p {
   filter: var(--color-mc-filter);
 }
 
-.modal-item .info-block {
+.modal-item__info-row .info-block {
   margin-left: auto;
 }
 
@@ -2717,6 +2801,10 @@ p {
 
 .modal-item__chart-wrapper {
   max-width: 100%;
+}
+
+.item-orders + .item-orders {
+  margin-top: 30px;
 }
 
 .item-orders__header {
@@ -3355,6 +3443,8 @@ p {
 }
 
 .small-form__button {
+  position: relative;
+  z-index: 2;
   max-width: 90px;
   min-width: 73px;
   padding: 11px 10px;
@@ -3369,6 +3459,9 @@ p {
   width: 20px;
   height: 20px;
   margin-left: 17px;
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-t);
   cursor: pointer;
 }
 
@@ -3761,6 +3854,26 @@ p {
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 10px;
 }
+
+.modal-item__title-block {
+  position: relative;
+  margin-bottom: 23px;
+  text-align: center;
+}
+
+.modal-item__title-block .modal-item__title {
+  margin-bottom: 0;
+}
+
+.modal-item__title-block .item__my {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  opacity: 1;
+  color: var(--color-c);
+  background-color: var(--color-hc);
+}
+
 /* sell page end */
 
 
@@ -3768,7 +3881,7 @@ p {
 .notifications-wrapper {
   position: fixed;
   top: 50%;
-  right: 0;  
+  right: 0;
   z-index: 30;
   display: flex;
   flex-direction: column;
@@ -3793,7 +3906,7 @@ p {
 
 .notification {
   --timer-line: 100%;
-  
+
   display: grid;
   grid-template-rows: 1fr;
   animation: appearing 0.3s ease;
@@ -3908,8 +4021,7 @@ p {
   max-width: 50px;
 }
 
-.notification__info {
-}
+.notification__info {}
 
 .notification__text {
   margin-bottom: 15px;
@@ -4437,7 +4549,6 @@ p {
   .modal-item__info {
     position: static;
     width: 100%;
-    margin-bottom: 20px;
   }
 
   .modal-item__header {
@@ -5142,7 +5253,7 @@ p {
     text-align: left;
   }
 
-  .modal-item .info-block {
+  .modal-item__info-row .info-block {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -5223,6 +5334,20 @@ p {
     margin-left: auto;
   }
 
+  .stash__item .modal-item__info-row {
+    flex-wrap: wrap;
+  }
+
+  .sell-form {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .comission {
+    margin-left: 0;
+  }
+
   .footer__inner {
     padding: 40px 15px 80px;
   }
@@ -5254,12 +5379,6 @@ p {
 
   .modal-item__slider-block {
     max-width: 100%;
-  }
-
-  .modal-item__img {
-    max-width: 100%;
-    object-fit: cover;
-    object-position: center;
   }
 
   .info__aside {
@@ -5392,7 +5511,7 @@ p {
     padding: 10px;
   }
 
-  .notification, 
+  .notification,
   .notification__inner {
     width: 100%;
     max-width: 100%;

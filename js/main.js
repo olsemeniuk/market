@@ -807,7 +807,8 @@ function handleFilpHeight(parentBlock) {
 function renderChart(item) {
   const chartContainer = item.querySelector('.chart-container');
   const chartContainerID = chartContainer.id;
-  createChart(`#${chartContainerID}`, chartData);
+  manageChartCreation(`#${chartContainerID}`, testChartData);
+  manageChartResize(chartContainer, testChartData);
 }
 
 function destroyChart(item) {
@@ -1123,7 +1124,7 @@ function addItemsToCart(event, item) {
     totalPrice = 0;
     itemsSum.textContent = '$ 0';
   } else {
-    totalPrice = formatPrice(totalPrice);
+    totalPrice = managePriceFormat(totalPrice);
     totalPrice = totalPrice.slice(0, totalPrice.length - 1).trim();
 
     itemsSum.textContent = totalPrice;
@@ -1142,7 +1143,7 @@ function getItemPrice(priceHTML) {
   return priceHTML;
 }
 
-function formatPrice(price) {
+function managePriceFormat(price) {
   return `$ ${Number(price).toLocaleString('ru-RU', { style: 'currency', currency: 'USD' }).replace(/\,/g, '.')}`;
 }
 
@@ -1263,7 +1264,7 @@ function showAddedItems() {
     if (priceNum === 0) {
       priceHTML.textContent = '$ 0';
     } else {
-      priceNum = formatPrice(priceNum);
+      priceNum = managePriceFormat(priceNum);
       priceNum = priceNum.slice(0, priceNum.length - 1).trim();
       priceHTML.textContent = priceNum;
     }
@@ -2054,29 +2055,9 @@ function manageAddTooltip(options) {
 
 
 
-// const stashList = document.querySelector('.stash__items');
-// stashList.addEventListener('click', sellItem);
-
-// function sellItem({ target }) {
-//   const item = target.closest('.item');
-//   if (!item) return;
-
-//   const sellButton = target.closest('.item__sell-button');
-//   const overlay = target.closest('.item__overlay');
-//   if (!sellButton && !overlay) return;
-
-//   const sellList = document.querySelector('.items-sell__items');
-//   item.remove();
-//   sellList.append(item);
-//   item.classList.add('item--to-sell');
-//   showHideSellItemsPlaceholder();
-//   updatePriceAndAmountSellItems();
-// }
-
-
 // ================================
 // notifications on sell page start
-testNotificationsCall()
+// testNotificationsCall()
 function testNotificationsCall() {
   manageSellNotificationCreation({
     title: 'Confirm trade',
@@ -2309,13 +2290,74 @@ function manageNotificationWrapperGrabScroll(wrapper) {
 
 
 
-if (isSellPage) {
-  showHideSellItemsPlaceholder();
-  updatePriceAndAmountSellItems();
+// ======================
+// sell items start
+manageSellForm();
+manageSellItemsPriceAndAmount();
+manageSellItemsPlaceholder();
+
+function manageSellForm() {
+  const sellForm = document.querySelectorAll('.sell-form');
+  if (sellForm.length === 0) return;
+  sellForm.forEach(form => {
+    const sellPriceInput = form.querySelector('.sell-form__price-input');
+    const getInput = form.querySelector('.sell-form__get-input');
+    const button = form.querySelector('.sell-form__button');
+
+    disableButton();
+
+    const formParentRow = form.closest('.modal-item__info-row');
+    const comission = formParentRow.querySelector('.comission').textContent.trim();
+    const comissionPercent = Number(comission.slice(0, comission.indexOf('%')));
+
+    sellPriceInput.addEventListener('input', () => {
+      const priceValue = Number(sellPriceInput.value.trim());
+      let getValue = priceValue - (priceValue / 100 * comissionPercent); 
+
+      const getValueIsFloat = String(getValue).includes('.');
+      if (getValueIsFloat) {
+        getValue = getValue.toFixed(2);
+      }
+      
+      getInput.value = getValue;
+      if (sellPriceInput.value === '') {
+        getInput.value = '';
+      }
+    });
+
+    getInput.addEventListener('input', () => {
+      const getValue = Number(getInput.value.trim());
+      let priceValue = getValue + (getValue / 100 * comissionPercent);
+
+      const priceIsFloat = String(priceValue).includes('.');
+      if (priceIsFloat) {
+        priceValue = priceValue.toFixed(2);
+      }
+
+      sellPriceInput.value = priceValue;
+      if (getInput.value === '') {
+        sellPriceInput.value = '';
+      }
+    });
+
+    form.addEventListener('input', disableButton);
+
+    function disableButton() {
+      const priceIsEmpty = sellPriceInput.value === '';
+      const getIsEmpty = getInput.value === '';
+
+      if (priceIsEmpty || getIsEmpty) {
+        button.disabled = true;
+      } else {
+        button.disabled = false;
+      }
+    }
+  });
 }
 
-function showHideSellItemsPlaceholder() {
+function manageSellItemsPlaceholder() {
   const sections = document.querySelectorAll('.sell-page__section');
+  if (sections.length === 0) return;
   sections.forEach(section => {
     const placeholder = section.querySelector('.sell-page__section-placeholder');
     const items = section.querySelectorAll('.item');
@@ -2327,11 +2369,13 @@ function showHideSellItemsPlaceholder() {
   });
 }
 
-function updatePriceAndAmountSellItems() {
+function manageSellItemsPriceAndAmount() {
   let itemsPrice = 0;
   let itemsAmount = 0;
 
   const sellCart = document.querySelector('.sell-page__cart');
+  if (!sellCart) return;
+
   const amountHTML = sellCart.querySelector('.items-amount');
   const sumHTML = sellCart.querySelector('.items-price');
 
@@ -2355,7 +2399,7 @@ function updatePriceAndAmountSellItems() {
   });
 
   itemsPrice = sellItemsTotalPrice;
-  itemsPrice = formatPrice(itemsPrice);
+  itemsPrice = managePriceFormat(itemsPrice);
   itemsPrice = itemsPrice.slice(0, itemsPrice.length - 1).trim();
   amountHTML.textContent = itemsAmount;
 
@@ -2365,11 +2409,12 @@ function updatePriceAndAmountSellItems() {
     sumHTML.textContent = itemsPrice;
   }
 }
+// sell items end
+// =====================
 
-
-
-// chart
-const chartData = [
+// =====================
+// chart start
+const testChartData = [
   { date: new Date('2021-12-01T14:22'), value: 10400.12 },
   { date: new Date('2021-12-15T14:22'), value: 10475.12 },
   { date: new Date('2022-01-01T14:22'), value: 10500.12 },
@@ -2473,30 +2518,22 @@ const chartData = [
   { date: new Date('2025-12-15T14:22'), value: 10765.12 },
 ]
 
-const chartContainer = document.querySelectorAll('.chart-container');
+function manageChartResize(container, chartData) {
+  window.addEventListener('resize', () => {
+    const chart = container.querySelector('svg')
+    const tooltip = container.querySelector('.tooltip')
+    const tooltipCircle = container.querySelector('.tooltip-circle')
 
-if (chartContainer.length > 0) {
-  chartContainer.forEach(item => {
-    window.addEventListener('resize', () => {
-      resizeCharts(item)
-    });
+    if (chart) {
+      chart.remove();
+      tooltip.remove();
+      tooltipCircle.remove();
+      manageChartCreation(`#${container.id}`, chartData);
+    }
   });
 }
 
-function resizeCharts(container) {
-  const chart = container.querySelector('svg')
-  const tooltip = container.querySelector('.tooltip')
-  const tooltipCircle = container.querySelector('.tooltip-circle')
-
-  if (chart) {
-    chart.remove();
-    tooltip.remove();
-    tooltipCircle.remove();
-    createChart(`#${container.id} `, chartData);
-  }
-}
-
-function createChart(parentContainerID, chartData) {
+function manageChartCreation(parentContainerID, chartData) {
   const months = {
     0: 'jan',
     1: 'feb',
@@ -2764,3 +2801,5 @@ function createChart(parentContainerID, chartData) {
     }
   }
 }
+// chart end
+// =====================
