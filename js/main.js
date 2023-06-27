@@ -2134,7 +2134,7 @@ function manageSellNotificationCreation(options) {
   function createNotification() {
     const notification = document.createElement('section');
     notification.className = 'notification';
-    notification.innerHTML = `<div class="notification__inner">
+    notification.innerHTML = `<div class="notification__inner loader">
                                 <div class="notification__header">
                                   <h2 class="notification__title">${options.title}</h2>
                                   <div class="notification__timer">${countdown(options.timeInSeconds)}</div>
@@ -2495,7 +2495,7 @@ function manageItemConfirmOverlay(options) {
 
   function createConfirmOverlay() {
     const overlay = document.createElement('div');
-    overlay.className = 'confirm-sell';
+    overlay.className = 'confirm-sell loader';
     overlay.innerHTML = `<p class="confirm-sell__text">${options.text}</p>
                           <span class="confirm-sell__id">${options.tradeID}</span>
                           <span class="confirm-sell__timer">${options.timeInSeconds}</span>

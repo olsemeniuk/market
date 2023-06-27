@@ -1849,20 +1849,6 @@ p {
   color: var(--color-error);
 }
 
-.confirm-sell::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  border-bottom: 3px solid var(--color-warning);
-  border-radius: 10px;
-  clip-path: polygon(0 0, var(--timer-line) 0, var(--timer-line) 100%, 0 100%);
-  transition: clip-path 1s linear;
-}
-
 .confirm-sell--half-time::after {
   border-color: var(--color-error);
 }
@@ -4033,7 +4019,7 @@ p {
   margin-top: 10px;
 }
 
-.notification__inner::after {
+.loader::after {
   content: "";
   position: absolute;
   right: 0;
