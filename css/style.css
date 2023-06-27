@@ -45,6 +45,7 @@
   --color-lc: #72608a;
   --color-error: #be2c19;
   --color-warning: #ffb400;
+  --color-success: #19be43;
 
   /* filters */
   --color-mc-filter: url("#color_5B3889");
@@ -1829,6 +1830,10 @@ p {
   border-color: var(--color-error);
 }
 
+.item--confirm-success .item__content {
+  border-color: var(--color-success);
+}
+
 .confirm-sell {
   position: absolute;
   top: 0;
@@ -1849,7 +1854,7 @@ p {
   color: var(--color-error);
 }
 
-.confirm-sell--half-time::after {
+.confirm-sell--half-time.loader::after {
   border-color: var(--color-error);
 }
 
@@ -3653,7 +3658,7 @@ p {
 }
 
 .success {
-  color: #19be43;
+  color: var(--color-success);
 }
 
 .fail {
@@ -3974,13 +3979,12 @@ p {
 /* notifications start */
 .notifications-wrapper {
   position: fixed;
-  top: 50%;
   right: 0;
+  bottom: 0;
   z-index: 99;
   display: flex;
   flex-direction: column;
   padding: 20px 25px;
-  transform: translateY(-50%);
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -4041,7 +4045,7 @@ p {
 
 .notification--removed .notification__inner {
   overflow: hidden;
-  padding: 0;
+  padding: 0 25px;
 }
 
 .notification--removed .notification__inner::after {
