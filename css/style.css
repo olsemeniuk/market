@@ -1904,7 +1904,12 @@ p {
 }
 
 .sell-form input {
+  margin: 0;
   text-align: center;
+}
+
+.sell-form__button {
+  margin: 0 -10px;
 }
 
 .sell-form__button:disabled {
@@ -1916,8 +1921,6 @@ p {
 }
 
 .small-form__right-input {
-  margin-right: 0;
-  margin-left: -10px;
   padding-right: 10px;
   padding-left: 20px;
 }
@@ -3576,11 +3579,11 @@ p {
   background-size: contain;
   background-position: center;
   transform: translate(-50%, -50%);
-  filter: var(--color-mc-filter);
+  filter: var(--color-lc-filter);
 }
 
 .info-block:hover::before {
-  filter: var(--color-lc-filter);
+  filter: var(--color-mc-filter);
 }
 
 .info-block__modal--with-shadow {
