@@ -1904,7 +1904,12 @@ p {
 }
 
 .sell-form input {
+  margin: 0;
   text-align: center;
+}
+
+.sell-form__button {
+  margin: 0 -10px;
 }
 
 .sell-form__button:disabled {
@@ -1916,8 +1921,6 @@ p {
 }
 
 .small-form__right-input {
-  margin-right: 0;
-  margin-left: -10px;
   padding-right: 10px;
   padding-left: 20px;
 }
