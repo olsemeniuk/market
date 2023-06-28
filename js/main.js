@@ -148,15 +148,13 @@ if (paymentModals.length > 0) {
 
   paymentModals.forEach(modal => {
     handlePaymentProceedButton(modal);
-    handlePaymentSubmitButton(modal);
-    
+
 
     const form = modal.querySelector('.payment-form');
     const frontAmountInput = modal.querySelector('.payment-form__front-amount-input')
 
     frontAmountInput.addEventListener('input', () => {
       frontAmountInput.classList.remove('input--error');
-      paymentMethodsMinMax(modal);
       const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
       if (inputAmountBack) {
         inputAmountBack.value = frontAmountInput.value;
@@ -169,25 +167,12 @@ if (paymentModals.length > 0) {
       }
     });
 
-    form.addEventListener('change', () => {
-      changeChosenPaymentMethod(modal);
-    })
-
     form.addEventListener('input', () => {
       handlePaymentProceedButton(modal);
-      handlePaymentSubmitButton(modal);
-    });
-
-    const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
-    proceedButtonWrapper.addEventListener('click', () => {
-      disabledProceedButtonClick(proceedButtonWrapper, modal);
     });
   });
 }
 
-if (flipBlocks.length > 0) {
-  rotateFlipBlock();
-}
 
 filter?.addEventListener('click', event => {
   toggleFilterSection(event);
@@ -1347,8 +1332,6 @@ function showEndModalShadow(modal) {
   }
 }
 
-
-
 function numberInputValidation() {
   numberInputs.forEach(input => {
     input.addEventListener('input', () => {
@@ -1387,124 +1370,20 @@ function handlePaymentProceedButton(modal) {
   }
 }
 
-function disabledProceedButtonClick(wrapper, modal) {
-  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
-  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
-  const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
-  const paymentAmountLabel = paymentAmount.closest('.payment-form__label');
-  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
-  const isWithdrawModal = modal.classList.contains('withdraw-modal');
-  const button = wrapper.querySelector('.payment-form__proceed');
 
-  let radiosAreNotChecked = true;
-  let amountIsEmpty = false;
 
-  if (isWithdrawModal) {
-    amountIsEmpty = paymentAmount.value === '';
-  }
 
-  paymentRadios.forEach(radio => {
-    if (radio.disabled === false) {
-      if (radio.checked) radiosAreNotChecked = false;
-    }
-  });
 
-  if (button.disabled === true) {
-    if (modal.classList.contains('deposit-modal')) {
-      notFilledForm('please, choose payment method', paymentMethodsBlock)
-    } else if (modal.classList.contains('withdraw-modal')) {
 
-      if (radiosAreNotChecked && amountIsEmpty) {
-        notFilledForm('please, choose payment method and amount', paymentMethodsBlock);
-        paymentAmount.classList.add('input--error');
-      } else if (radiosAreNotChecked) {
-        notFilledForm('please, choose payment method', paymentMethodsBlock);
-      } else if (amountIsEmpty) {
-        const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
-        paymentAmount.classList.add('input--error');
-        manageErrorTooltipPosition(tooltip, modal, paymentAmount);
-      }
-    }
 
-    function notFilledForm(text, tooltipParent, noMethod = true) {
-      if (noMethod) {
-        paymentMethods.forEach(method => {
-          method.classList.add('input--error');
-        });
-      }
-      const tooltipHTML = modal.querySelector('.input-tooltip');
-      const tooltip = manageErrorTooltipCreation()
-      if (!tooltipHTML) tooltipParent.append(tooltip);
-      const tooltipText = tooltip.querySelector('.input-tooltip__text');
-      tooltipText.textContent = text;
-      setTimeout(() => {
-        tooltip.remove();
-      }, 2000)
+// =================
+// flip blocks start
+manageFlipBlockRotation();
 
-      return tooltip;
-    }
-  }
-}
+function manageFlipBlockRotation() {
+  const flipBlocks = document.querySelectorAll('.flip');
+  if (flipBlocks.length === 0) return;
 
-function handlePaymentSubmitButton(modal) {
-  const submitButton = modal.querySelector('.payment-form__submit');
-  const cardInput = modal.querySelector('.payment-form__input.input--card');
-  const inputs = modal.querySelectorAll('.flip__back .payment-form__input');
-
-  const noCard = cardInput.value.length < 19;
-  let emptyInputs = false;
-  let errorInputs = false;
-
-  inputs.forEach(input => {
-    if (input.value === '') {
-      emptyInputs = true;
-    }
-
-    if (input.classList.contains('input--error')) {
-      errorInputs = true;
-    }
-  });
-
-  if (noCard || emptyInputs || errorInputs) {
-    submitButton.disabled = true;
-  } else {
-    submitButton.disabled = false;
-  }
-}
-
-function paymentMethodsMinMax(modal) {
-  const frontAmountInput = modal.querySelector('.payment-form__front-amount-input');
-  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
-  const inputValue = Number(frontAmountInput.value);
-
-  paymentRadios.forEach(radio => {
-    const paymentMin = Number(radio.dataset.min);
-    const paymentMax = Number(radio.dataset.max);
-    const comission = radio.dataset.comission;
-    const parentLabel = radio.closest('.payment-form__payment-label');
-    const text = parentLabel.querySelector('.payment-form__payment-text');
-
-    if (frontAmountInput.value === '') {
-      radio.disabled = false;
-      text.innerHTML = `comission: <b>${comission}%</b>`;
-      text.classList.remove('payment-form__payment-text--warning');
-    } else if (inputValue < paymentMin) {
-      radio.disabled = true;
-      text.innerHTML = `from: <b>${paymentMin}$</b>`;
-      text.classList.add('payment-form__payment-text--warning');
-    } else if (inputValue > paymentMax) {
-      radio.disabled = true;
-      text.innerHTML = `up to: <b>${paymentMax}$</b>`;
-      text.classList.add('payment-form__payment-text--warning');
-    } else {
-      radio.disabled = false;
-      text.innerHTML = `comission: <b>${comission}%</b>`;
-      text.classList.remove('payment-form__payment-text--warning');
-    }
-  });
-}
-
-function rotateFlipBlock() {
   flipBlocks.forEach(flip => {
     const parentModal = flip.closest('.modal');
     const front = flip.querySelector('.flip__front');
@@ -1545,7 +1424,6 @@ function manageFlipHeightOnResize() {
     const frontInner = front.querySelector('.flip__inner');
     const backInner = back.querySelector('.flip__inner');
 
-
     if (isRotated) {
       const backInnerHeight = backInner.getBoundingClientRect().height;
       back.style.height = `${backInnerHeight}px`;
@@ -1557,7 +1435,13 @@ function manageFlipHeightOnResize() {
     }
   });
 }
+// flip blocks end
+// =================
 
+
+
+// ==============================
+// layout changes on resize start
 manageChangesOnResize();
 
 function manageChangesOnResize() {
@@ -1566,35 +1450,8 @@ function manageChangesOnResize() {
     manageNotificationWrapperHeight();
   });
 }
-
-function changeChosenPaymentMethod(modal) {
-  const activePaymentMethod = modal.querySelector('.payment-form__payment-radio:checked');
-  const changePaymentMethodLabel = activePaymentMethod?.closest('.payment-form__payment-label');
-
-  if (!changePaymentMethodLabel) return;
-  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
-  const errorTooltip = modal.querySelector('.input-tooltip');
-  paymentMethods.forEach(method => {
-    method.classList.remove('input--error');
-    errorTooltip?.remove();
-  });
-
-  const min = activePaymentMethod.dataset.min
-  const max = activePaymentMethod.dataset.max
-
-  const imageSource = changePaymentMethodLabel.querySelector('.payment-form__payment-img').src;
-  const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
-  let paymentMethodName = changePaymentMethodLabel.querySelector('.payment-form__payment-radio').dataset.paymentMethod;
-  paymentMethodName = paymentMethodName[0].toUpperCase() + paymentMethodName.slice(1).toLowerCase();
-
-  const chosenMethodElement = modal.querySelector('.chosen-method');
-  chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
-
-  const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
-  inputAmountBack.dataset.min = min;
-  inputAmountBack.dataset.max = max;
-  inputAmountBack.setAttribute('placeholder', `up to ${max}`);
-}
+// layout changes on resize end
+// ==============================
 
 
 
@@ -1628,13 +1485,129 @@ function manageErrorTooltipCreation() {
 
 // ====================
 // payment modal start
-manageCardInputValidation();
-managePaymentInputMinMax();
+managePaymentModals();
+
+function managePaymentModals() {
+  manageCardInputValidation();
+  managePaymentInputMinMax();
+
+  const paymentModals = document.querySelectorAll('.payment-modal');
+  if (paymentModals.length === 0) return;
+
+  paymentModals.forEach(modal => {
+    managePaymentMethodChoice(modal);
+    managePaymentMethodsMinMax(modal);
+    managePaymentSubmitButton(modal);
+    manageDisabledProceedButton(modal);
+  });
+}
+
+function managePaymentSubmitButton(modal) {
+  const form = modal.querySelector('.payment-form');
+  const submitButton = modal.querySelector('.payment-form__submit');
+  const cardInput = modal.querySelector('.payment-form__input.input--card');
+  const inputs = modal.querySelectorAll('.flip__back .payment-form__input');
+
+  manageButton();
+  form.addEventListener('input', manageButton);
+
+  function manageButton() {
+    const noCard = cardInput.value.length < 19;
+    let emptyInputs = false;
+    let errorInputs = false;
+
+    inputs.forEach(input => {
+      if (input.value === '') {
+        emptyInputs = true;
+      }
+
+      if (input.classList.contains('input--error')) {
+        errorInputs = true;
+      }
+    });
+
+    if (noCard || emptyInputs || errorInputs) {
+      submitButton.disabled = true;
+    } else {
+      submitButton.disabled = false;
+    }
+  }
+}
+
+function managePaymentMethodChoice(modal) {
+  const form = modal.querySelector('.payment-form');
+  form.addEventListener('change', paymentMethodChoise);
+
+  function paymentMethodChoise() {
+    const activePaymentMethod = modal.querySelector('.payment-form__payment-radio:checked');
+    const changePaymentMethodLabel = activePaymentMethod?.closest('.payment-form__payment-label');
+
+    if (!changePaymentMethodLabel) return;
+    const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+    const errorTooltip = modal.querySelector('.input-tooltip');
+    paymentMethods.forEach(method => {
+      method.classList.remove('input--error');
+      errorTooltip?.remove();
+    });
+
+    const min = activePaymentMethod.dataset.min
+    const max = activePaymentMethod.dataset.max
+
+    const imageSource = changePaymentMethodLabel.querySelector('.payment-form__payment-img').src;
+    const imageHTML = `<img class="chosen-method__icon" width="25" height="25" sizes="25" src="${imageSource}" alt="">`;
+    let paymentMethodName = changePaymentMethodLabel.querySelector('.payment-form__payment-radio').dataset.paymentMethod;
+    paymentMethodName = paymentMethodName[0].toUpperCase() + paymentMethodName.slice(1).toLowerCase();
+
+    const chosenMethodElement = modal.querySelector('.chosen-method');
+    chosenMethodElement.innerHTML = `payment by ${paymentMethodName} ${imageHTML}`;
+
+    const inputAmountBack = modal.querySelector('.payment-form__back-amount-input');
+    inputAmountBack.dataset.min = min;
+    inputAmountBack.dataset.max = max;
+    inputAmountBack.setAttribute('placeholder', `up to ${max}`);
+  }
+}
+
+function managePaymentMethodsMinMax(modal) {
+  const frontAmountInput = modal.querySelector('.payment-form__front-amount-input');
+  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
+
+  frontAmountInput.addEventListener('input', paymentMethodsMinMax);
+
+  function paymentMethodsMinMax() {
+    const inputValue = Number(frontAmountInput.value);
+    paymentRadios.forEach(radio => {
+      const paymentMin = Number(radio.dataset.min);
+      const paymentMax = Number(radio.dataset.max);
+      const comission = radio.dataset.comission;
+      const parentLabel = radio.closest('.payment-form__payment-label');
+      const text = parentLabel.querySelector('.payment-form__payment-text');
+
+      if (frontAmountInput.value === '') {
+        radio.disabled = false;
+        text.innerHTML = `comission: <b>${comission}%</b>`;
+        text.classList.remove('payment-form__payment-text--warning');
+      } else if (inputValue < paymentMin) {
+        radio.disabled = true;
+        text.innerHTML = `from: <b>${paymentMin}$</b>`;
+        text.classList.add('payment-form__payment-text--warning');
+      } else if (inputValue > paymentMax) {
+        radio.disabled = true;
+        text.innerHTML = `up to: <b>${paymentMax}$</b>`;
+        text.classList.add('payment-form__payment-text--warning');
+      } else {
+        radio.disabled = false;
+        text.innerHTML = `comission: <b>${comission}%</b>`;
+        text.classList.remove('payment-form__payment-text--warning');
+      }
+    });
+  }
+}
 
 function managePaymentInputMinMax() {
   const inputs = document.querySelectorAll('.payment-form__input');
   if (inputs.length === 0) return;
-  
+
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       const min = input.dataset.min;
@@ -1672,6 +1645,70 @@ function managePaymentInputMinMax() {
       }
     });
   });
+}
+
+function manageDisabledProceedButton(modal) {
+  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
+  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
+  const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
+  const paymentAmountLabel = paymentAmount.closest('.payment-form__label');
+  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+  const isWithdrawModal = modal.classList.contains('withdraw-modal');
+  const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
+  const button = proceedButtonWrapper.querySelector('.payment-form__proceed');
+
+  proceedButtonWrapper.addEventListener('click', clickOnDisabledButton);
+
+  function clickOnDisabledButton() {
+    let radiosAreNotChecked = true;
+    let amountIsEmpty = false;
+
+    if (isWithdrawModal) {
+      amountIsEmpty = paymentAmount.value === '';
+    }
+
+    paymentRadios.forEach(radio => {
+      if (radio.disabled === false) {
+        if (radio.checked) radiosAreNotChecked = false;
+      }
+    });
+
+    if (button.disabled === true) {
+      if (modal.classList.contains('deposit-modal')) {
+        notFilledForm('please, choose payment method', paymentMethodsBlock)
+      } else if (modal.classList.contains('withdraw-modal')) {
+
+        if (radiosAreNotChecked && amountIsEmpty) {
+          notFilledForm('please, choose payment method and amount', paymentMethodsBlock);
+          paymentAmount.classList.add('input--error');
+        } else if (radiosAreNotChecked) {
+          notFilledForm('please, choose payment method', paymentMethodsBlock);
+        } else if (amountIsEmpty) {
+          const tooltip = notFilledForm('please, choose amount', paymentAmountLabel, false);
+          paymentAmount.classList.add('input--error');
+          manageErrorTooltipPosition(tooltip, modal, paymentAmount);
+        }
+      }
+
+      function notFilledForm(text, tooltipParent, noMethod = true) {
+        if (noMethod) {
+          paymentMethods.forEach(method => {
+            method.classList.add('input--error');
+          });
+        }
+        const tooltipHTML = modal.querySelector('.input-tooltip');
+        const tooltip = manageErrorTooltipCreation()
+        if (!tooltipHTML) tooltipParent.append(tooltip);
+        const tooltipText = tooltip.querySelector('.input-tooltip__text');
+        tooltipText.textContent = text;
+        setTimeout(() => {
+          tooltip.remove();
+        }, 2000)
+
+        return tooltip;
+      }
+    }
+  }
 }
 
 function manageCardInputValidation() {
@@ -2088,7 +2125,7 @@ function manageAddTooltip(options) {
 
 // ================================
 // notifications on sell page start
-testNotificationsCall();
+// testNotificationsCall();
 
 function testNotificationsCall() {
   manageSellNotificationCreation({
@@ -2295,12 +2332,13 @@ function manageNotificationWrapperHeight() {
 // sell items start
 manageItemsSell();
 testOnSellTime();
-testConfirmOverlay();
+// testConfirmOverlay();
 
 function manageItemsSell() {
   manageSellForm();
   manageSellItemsPriceAndAmount();
   manageSellItemsPlaceholder();
+  manageItemMoveOnSell();
 }
 
 function manageSellForm() {
@@ -2547,7 +2585,7 @@ function manageItemConfirmOverlay(options) {
           item.classList.add('item--confirm-success');
         }
         // ================
-        
+
         return false;
       }
     }, 1000);
@@ -2574,8 +2612,134 @@ function manageItemConfirmOverlay(options) {
     clearInterval(intervalID);
   }
 }
+
+function manageItemMoveOnSell() {
+  const items = document.querySelectorAll('.stash__item');
+  const sellSection = document.querySelector('.items-sell');
+  const sellList = document.querySelector('.items-sell__items');
+  const stash = document.querySelector('.stash');
+  const stashList = document.querySelector('.stash__items')
+  if (items.length === 0) return;
+
+  items.forEach(item => {
+    const sellButton = item.querySelector('.sell-form__button');
+    const cancelButton = item.querySelector('.cancel-sell');
+
+    sellButton.addEventListener('click', () => {
+      const placeholder = sellSection.querySelector('.sell-page__section-placeholder');
+      placeholder.classList.remove('sell-page__section-placeholder--active');
+      item.classList.add('item--to-sell');
+      moveItem(item, sellList);
+    });
+
+    cancelButton.addEventListener('click', () => {
+      const placeholder = stash.querySelector('.sell-page__section-placeholder');
+      placeholder.classList.remove('sell-page__section-placeholder--active');
+      item.classList.remove('item--to-sell');
+      moveItem(item, stashList);
+
+      const itemForm = item.querySelector('.sell-form');
+      const sellInputs = itemForm.querySelectorAll('.small-form__input');
+      sellInputs.forEach(input => input.value = '');
+    });
+  });
+
+  function moveItem(item, list) {
+    manageSellItemsPriceAndAmount();
+    const itemWidth = item.getBoundingClientRect().width;
+    const itemHeight = item.getBoundingClientRect().height;
+    let plusOneRow = false;
+
+    const modals = document.querySelectorAll('.modal');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    modals.forEach(modal => modal.classList.remove('modal--active'));
+    modalOverlay.classList.remove('modal-overlay--active');
+
+    const itemsInList = list.querySelectorAll('.item');
+
+    let x = 0;
+    let y = 0;
+
+    const listHeight = list.getBoundingClientRect().height;
+    const listRightSide = getCoords(list).right;
+    const listLeftSide = getCoords(list).left;
+
+    if (itemsInList.length === 0) {
+      x = listLeftSide;
+      y = getCoords(list).top;
+    } else {
+      const lastItemOnSell = itemsInList[itemsInList.length - 1];
+      const lastItemWidth = lastItemOnSell.getBoundingClientRect().width;
+      x = getCoords(lastItemOnSell).left + lastItemWidth + 10;
+      y = getCoords(lastItemOnSell).top;
+    }
+
+    const currentX = getCoords(item).left;
+    const currentY = getCoords(item).top;
+
+    if (x > listRightSide - itemWidth) {
+      x = listLeftSide;
+      y = y + itemHeight + 10;
+      list.style.height = `${listHeight}px`;
+      plusOneRow = true;
+    }
+
+    item.style.left = `${currentX}px`;
+    item.style.top = `${currentY}px`;
+    item.style.position = 'absolute';
+    item.style.width = `${itemWidth}px`;
+
+    const placeholder = createItemPlaceholder(item);
+    item.insertAdjacentElement('beforebegin', placeholder);
+
+    setTimeout(() => {
+      item.style.left = `${x}px`;
+      item.style.top = `${y}px`;
+      item.classList.add('item--moving');
+      if (plusOneRow) {
+        list.style.height = `${listHeight + itemHeight + 10}px`;
+      }
+    }, 200);
+
+    setTimeout(() => {
+      placeholder.style.width = '0';
+      // placeholder.style.height = '0';
+      placeholder.style.margin = '0';
+    }, 400);
+
+    setTimeout(() => {
+      item.remove();
+      list.append(item);
+      item.removeAttribute('style');
+      list.removeAttribute('style');
+      item.classList.remove('item--moving');
+      placeholder.remove();
+      manageSellItemsPlaceholder();
+    }, 900);
+  }
+
+  function getCoords(elem) {
+    let box = elem.getBoundingClientRect();
+
+    return {
+      top: box.top + window.pageYOffset,
+      right: box.right + window.pageXOffset,
+      bottom: box.bottom + window.pageYOffset,
+      left: box.left + window.pageXOffset
+    };
+  }
+
+  function createItemPlaceholder(item) {
+    const block = document.createElement('li');
+    block.className = 'item-placeholder';
+    block.style.width = `${item.getBoundingClientRect().width}px`;
+    block.style.height = `${item.getBoundingClientRect().height}px`;
+    return block;
+  }
+}
 // sell items end
 // =====================
+
 
 
 // =====================
