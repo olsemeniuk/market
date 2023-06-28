@@ -332,6 +332,7 @@ p {
   z-index: 1;
   height: 100%;
   opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .horizontal-shadow--left::before,
@@ -1530,6 +1531,7 @@ p {
 }
 
 .item__img-wrapper {
+  flex-shrink: 0;
   height: 65%;
   margin-bottom: 10px;
   padding: 0 15px;
@@ -1678,6 +1680,18 @@ p {
 
 .item--chosen .item__favourite-button {
   opacity: 1;
+}
+
+.item--moving {
+  z-index: 99;
+  animation: itemMove 0.6s ease-in;
+  transition: all 0.6s;
+}
+
+.item-placeholder {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
 }
 
 .item__overlay {
@@ -1900,10 +1914,11 @@ p {
 }
 
 .sell-form {
-  max-width: 273px;
+  max-width: 293px;
 }
 
 .sell-form input {
+  width: 110px;
   margin: 0;
   text-align: center;
 }
@@ -2245,13 +2260,16 @@ p {
   flex: 1 1 auto;
 }
 
-.auth__button--small:not(.auth__button--transparent)::before {
+.auth__button--small::before {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  filter: var(--color-w-filter);
   transform: translate(-50%, -50%);
+}
+
+.auth__button--small:not(.auth__button--transparent)::before {
+  filter: var(--color-w-filter);
 }
 
 .auth__button[type="submit"]:disabled {
@@ -2268,6 +2286,7 @@ p {
 .auth__button[type="submit"]:disabled:hover {
   background-color: transparent;
 }
+
 /* authorization modal end */
 
 .payment-modal {
@@ -3549,7 +3568,7 @@ p {
   z-index: 2;
   max-width: 90px;
   min-width: 73px;
-  padding: 11px 10px;
+  padding: 11px 7px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3918,7 +3937,7 @@ p {
 }
 
 .sell-page__section:not(:last-of-type) {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .sell-page__section-title {
@@ -3936,14 +3955,15 @@ p {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  margin-right: -10px;
   min-height: 200px;
 }
 
 .sell-page__section-placeholder {
   display: none;
   margin: auto;
+  padding-right: 10px;
+  animation: appearing 0.3s ease;
 }
 
 .sell-page__section-placeholder--active {
@@ -3952,9 +3972,16 @@ p {
 
 .sell-page__items {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  transition: all 0.5s;
+}
+
+.sell-page__items .item {
+  width: calc((100% / 6) - 10px);
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .modal-item__title-block {
@@ -4170,6 +4197,20 @@ p {
   }
 }
 
+@keyframes itemMove {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
 
 /* ===============
     ADAPTIVE
@@ -4225,7 +4266,6 @@ p {
     display: block;
   }
 
-
   .deal__search .search__show-btn {
     display: block;
     cursor: pointer;
@@ -4259,6 +4299,10 @@ p {
 
   .information__list-item {
     width: calc(50% - 10px);
+  }
+
+  .sell-page__items .item {
+    width: calc(20% - 10px);
   }
 }
 
@@ -4395,7 +4439,8 @@ p {
     margin-right: 15px;
   }
 
-  .item-orders__list-item {
+  .item-orders__list-item,
+  .sell-page__items .item {
     width: calc(25% - 10px);
   }
 }
@@ -4514,6 +4559,10 @@ p {
 
   .deal__search .search__form-btn {
     left: 10px;
+  }
+
+  .sell-page__items .item {
+    width: calc((100% / 3) - 10px);
   }
 }
 
@@ -4674,7 +4723,8 @@ p {
     width: 900px;
   }
 
-  .account__items-list .item {
+  .account__items-list .item,
+  .sell-page__items .item {
     width: calc((100% / 4) - 10px);
   }
 }
@@ -5202,7 +5252,8 @@ p {
     margin-left: 10px;
   }
 
-  .information__list-item {
+  .information__list-item,
+  .sell-page__items .item {
     width: calc((100% / 3) - 10px);
   }
 
@@ -5254,8 +5305,7 @@ p {
     padding: 10px 5px;
   }
 
-  .products__content-items,
-  .sell-page__items {
+  .products__content-items {
     grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
   }
 
@@ -5269,6 +5319,15 @@ p {
 
   .auth .flip__inner {
     padding: 40px 20px 20px;
+  }
+
+  .item--moving {
+    transition: transform 0.4s ease-in-out, margin 0.4s 0.1s ease-in-out;
+    animation: none;
+  }
+
+  .item-placeholder {
+    transition: none;
   }
 
   .flip,
@@ -5443,6 +5502,14 @@ p {
     margin-bottom: 20px;
   }
 
+  .sell-form input {
+    width: 100%;
+  }
+
+  .sell-form__button {
+    max-width: 100px;
+  }
+
   .comission {
     margin-left: 0;
   }
@@ -5490,8 +5557,10 @@ p {
   }
 
   .account__items-list .item,
-  .information__list-item {
-    width: calc((100% / 2) - 10px);
+  .information__list-item,
+  .sell-page__items .item,
+  .item-orders__list-item {
+    width: calc(50% - 10px);
   }
 
   .information__info {
@@ -5505,10 +5574,6 @@ p {
 
   .account__page-block {
     padding: 20px 15px;
-  }
-
-  .item-orders__list-item {
-    width: calc(50% - 10px);
   }
 
   .modal__close {
@@ -5581,6 +5646,11 @@ p {
 
   .modal-item--active {
     padding: 15px 10px;
+  }
+
+  .float-scale__inner,
+  .float-scale .noUi-horizontal {
+    width: 270px;
   }
 
   .item-orders__list-item {
