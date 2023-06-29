@@ -724,20 +724,25 @@ function closeModal(event) {
   const isInInfoModal = target.closest('.info-block__modal')
 
   if ((closeButton || target === modalOverlay) && !isInInfoModal) {
-    const allModal = document.querySelectorAll('.modal');
-    allModal.forEach(modal => {
-      modal.classList.remove('modal--active');
-      const flip = modal.querySelector('.flip');
-      if (flip) {
-        flip.classList.remove('flip--rotate');
-      }
-    });
-    modalOverlay.classList.remove('modal-overlay--active');
-    gameItems.forEach(item => {
-      destroyChart(item);
-    });
-
+    manageModalClose();
   }
+}
+
+
+function manageModalClose() {
+  const allModal = document.querySelectorAll('.modal');
+  const modalOverlay = document.querySelector('.modal-overlay');
+  allModal.forEach(modal => {
+    modal.classList.remove('modal--active');
+    const flip = modal.querySelector('.flip');
+    if (flip) {
+      flip.classList.remove('flip--rotate');
+    }
+  });
+  modalOverlay.classList.remove('modal-overlay--active');
+  gameItems.forEach(item => {
+    destroyChart(item);
+  });
 }
 
 const infoModalCloseButtons = document.querySelectorAll('.info-block__modal .modal__close');
@@ -793,10 +798,17 @@ function renderChart(item) {
   const chartContainer = item.querySelector('.chart-container');
   const chartContainerID = chartContainer.id;
   manageChartCreation(`#${chartContainerID}`, testChartData);
-  manageChartResize(chartContainer, testChartData);
+  window.addEventListener('resize', () => {
+    manageChartResize(chartContainer, testChartData);
+  });
 }
 
 function destroyChart(item) {
+  const chartContainer = item.querySelector('.chart-container');
+  window.removeEventListener('resize', () => {
+    manageChartResize(chartContainer, testChartData);
+  });
+
   const chart = item.querySelector('.chart-container svg');
   const tooltip = item.querySelector('.chart-container .tooltip');
   const tooltipCircle = item.querySelector('.chart-container .tooltip-circle')
@@ -2331,7 +2343,6 @@ function manageNotificationWrapperHeight() {
 // ======================
 // sell items start
 manageItemsSell();
-testOnSellTime();
 // testConfirmOverlay();
 
 function manageItemsSell() {
@@ -2404,12 +2415,24 @@ function manageSellItemsPlaceholder() {
   const sections = document.querySelectorAll('.sell-page__section');
   if (sections.length === 0) return;
   sections.forEach(section => {
+    const sectionBody = section.querySelector('.sell-page__section-body');
+    const sectionList = section.querySelector('.sell-page__items');
+    const sectionListHeight = sectionList.getBoundingClientRect().height;
+
     const placeholder = section.querySelector('.sell-page__section-placeholder');
     const items = section.querySelectorAll('.item');
-    if (items.length === 0) {
+    const itemsArray = Array.from(items);
+    const notMovingItems = itemsArray.filter(item => !item.classList.contains('item--moving'));
+
+    if (notMovingItems.length === 0) {
       placeholder.classList.add('sell-page__section-placeholder--active');
+      sectionBody.style.minHeight = '200px';
     } else {
       placeholder.classList.remove('sell-page__section-placeholder--active');
+      sectionBody.style.minHeight = `${sectionListHeight}px`;
+      setTimeout(() => {
+        sectionBody.style.minHeight = 'unset';
+      }, 300);
     }
   });
 }
@@ -2453,11 +2476,6 @@ function manageSellItemsPriceAndAmount() {
   } else {
     sumHTML.textContent = itemsPrice;
   }
-}
-
-function testOnSellTime() {
-  manageOnSellTime('item_49', new Date(2023, 5, 25));
-  manageOnSellTime('item_50', new Date(2023, 5, 27));
 }
 
 function manageOnSellTime(itemID, timeSinceOnSell = new Date()) {
@@ -2629,68 +2647,77 @@ function manageItemMoveOnSell() {
       const placeholder = sellSection.querySelector('.sell-page__section-placeholder');
       placeholder.classList.remove('sell-page__section-placeholder--active');
       item.classList.add('item--to-sell');
+
       moveItem(item, sellList);
+      manageSectionHeight(stashList);
+      manageListHeight(sellList);
+      manageOnSellTime(item.id);
     });
 
     cancelButton.addEventListener('click', () => {
       const placeholder = stash.querySelector('.sell-page__section-placeholder');
       placeholder.classList.remove('sell-page__section-placeholder--active');
       item.classList.remove('item--to-sell');
+
       moveItem(item, stashList);
+      manageSectionHeight(sellList);
+      manageListHeight(stashList);
+
+      const onSellTimeHTML = item.querySelector('.item__on-sell-time');
+      onSellTimeHTML.remove();
 
       const itemForm = item.querySelector('.sell-form');
+      const sellButton = itemForm.querySelector('.sell-form__button');
       const sellInputs = itemForm.querySelectorAll('.small-form__input');
       sellInputs.forEach(input => input.value = '');
+      sellButton.disabled = true;
     });
   });
 
   function moveItem(item, list) {
     manageSellItemsPriceAndAmount();
+    manageModalClose();
+
     const itemWidth = item.getBoundingClientRect().width;
     const itemHeight = item.getBoundingClientRect().height;
     let plusOneRow = false;
-
-    const modals = document.querySelectorAll('.modal');
-    const modalOverlay = document.querySelector('.modal-overlay');
-    modals.forEach(modal => modal.classList.remove('modal--active'));
-    modalOverlay.classList.remove('modal-overlay--active');
-
-    const itemsInList = list.querySelectorAll('.item');
 
     let x = 0;
     let y = 0;
 
     const listHeight = list.getBoundingClientRect().height;
-    const listRightSide = getCoords(list).right;
-    const listLeftSide = getCoords(list).left;
+    const itemsInList = list.querySelectorAll('.item');
+    const listRightSide = manageGetElementCoords(list).right;
+    const listLeftSide = manageGetElementCoords(list).left;
 
     if (itemsInList.length === 0) {
       x = listLeftSide;
-      y = getCoords(list).top;
+      y = manageGetElementCoords(list).top;
     } else {
       const lastItemOnSell = itemsInList[itemsInList.length - 1];
       const lastItemWidth = lastItemOnSell.getBoundingClientRect().width;
-      x = getCoords(lastItemOnSell).left + lastItemWidth + 10;
-      y = getCoords(lastItemOnSell).top;
+      x = manageGetElementCoords(lastItemOnSell).left + lastItemWidth + 10;
+      y = manageGetElementCoords(lastItemOnSell).top;
     }
-
-    const currentX = getCoords(item).left;
-    const currentY = getCoords(item).top;
 
     if (x > listRightSide - itemWidth) {
       x = listLeftSide;
       y = y + itemHeight + 10;
-      list.style.height = `${listHeight}px`;
       plusOneRow = true;
     }
+
+    list.style.height = `${listHeight}px`;
+    const currentX = manageGetElementCoords(item).left;
+    const currentY = manageGetElementCoords(item).top;
 
     item.style.left = `${currentX}px`;
     item.style.top = `${currentY}px`;
     item.style.position = 'absolute';
     item.style.width = `${itemWidth}px`;
 
-    const placeholder = createItemPlaceholder(item);
+    const placeholder = manageCreateItemPlaceholder(item);
     item.insertAdjacentElement('beforebegin', placeholder);
+    const listHeightBefore = sellList.getBoundingClientRect().height;
 
     setTimeout(() => {
       item.style.left = `${x}px`;
@@ -2699,13 +2726,19 @@ function manageItemMoveOnSell() {
       if (plusOneRow) {
         list.style.height = `${listHeight + itemHeight + 10}px`;
       }
+
+      placeholder.style.width = '0';
+      placeholder.style.height = '0';
+      placeholder.style.margin = '0';
     }, 200);
 
     setTimeout(() => {
-      placeholder.style.width = '0';
-      // placeholder.style.height = '0';
-      placeholder.style.margin = '0';
-    }, 400);
+      const listHeightAfter = sellList.getBoundingClientRect().height;
+      if (listHeightAfter < listHeightBefore) {
+        y = y - itemHeight - 10;
+        item.style.top = `${y}px`;
+      }
+    }, 500);
 
     setTimeout(() => {
       item.remove();
@@ -2717,26 +2750,90 @@ function manageItemMoveOnSell() {
       manageSellItemsPlaceholder();
     }, 900);
   }
+}
 
-  function getCoords(elem) {
-    let box = elem.getBoundingClientRect();
-
-    return {
-      top: box.top + window.pageYOffset,
-      right: box.right + window.pageXOffset,
-      bottom: box.bottom + window.pageYOffset,
-      left: box.left + window.pageXOffset
-    };
-  }
-
-  function createItemPlaceholder(item) {
-    const block = document.createElement('li');
-    block.className = 'item-placeholder';
-    block.style.width = `${item.getBoundingClientRect().width}px`;
-    block.style.height = `${item.getBoundingClientRect().height}px`;
-    return block;
+function manageGetElementCoords(elem) {
+  let box = elem.getBoundingClientRect();
+  return {
+    top: box.top + window.pageYOffset,
+    right: box.right + window.pageXOffset,
+    bottom: box.bottom + window.pageYOffset,
+    left: box.left + window.pageXOffset
   }
 }
+
+function manageCreateItemPlaceholder(item) {
+  const block = document.createElement('li');
+  block.className = 'item-placeholder';
+  block.style.width = `${item.getBoundingClientRect().width}px`;
+  block.style.height = `${item.getBoundingClientRect().height}px`;
+  return block;
+}
+
+function manageListHeight(list) {
+  const listHeight = list.getBoundingClientRect().height;
+  let itemsInOtherList = '';
+
+  const stashList = document.querySelector('.stash__items');
+  const sellList = document.querySelector('.items-sell__items');
+
+  const isStashList = list.classList.contains('stash__items');
+  const isSellList = list.classList.contains('items-sell__items');
+
+  if (isStashList) {
+    itemsInOtherList = sellList.querySelectorAll('.item');
+  } else if (isSellList) {
+    itemsInOtherList = stashList.querySelectorAll('.item');
+  }
+
+  let itemHeight = 0;
+  itemsInOtherList.forEach(item => itemHeight = item.getBoundingClientRect().height + 10);
+
+  if (listHeight < 100) {
+    list.style.height = `${itemHeight}px`;
+    setTimeout(() => {
+      list.style.height = `auto`;
+    }, 900);
+  }
+}
+
+function manageSectionHeight(list) {
+  const sectionBody = list.closest('.sell-page__section-body');
+  const items = list.querySelectorAll('.item');
+  const listHeight = list.getBoundingClientRect().height;
+
+  if (items.length === 1) {
+    sectionBody.style.minHeight = `${listHeight}px`;
+    list.style.height = `${listHeight}px`;
+    setTimeout(() => {
+      list.style.height = `auto`;
+    }, 900);
+  }
+}
+
+// function manageItemFormOnSell(item) {
+//   const button = item.querySelector('.sell-form__button');
+//   const priceInput = item.querySelector('.sell-form__price-input');
+//   const getInput = item.querySelector('.sell-form__get-input');
+
+//   const inputs = [priceInput, getInput];
+
+//   const priceValue = priceInput.value.trim();
+//   const getValue = getInput.value.trim();
+
+//   button.disabled = true;
+//   button.textContent = 'save';
+
+//   inputs.forEach(input => {
+//     input.addEventListener('input', () => {
+//       if (priceInput.value === priceValue || getInput.value === getValue) {
+//         button.disabled = true;
+//       } else {
+//         button.disabled = false;
+//       }
+//     });
+//   });
+// }
 // sell items end
 // =====================
 
@@ -2849,18 +2946,16 @@ const testChartData = [
 ]
 
 function manageChartResize(container, chartData) {
-  window.addEventListener('resize', () => {
-    const chart = container.querySelector('svg')
-    const tooltip = container.querySelector('.tooltip')
-    const tooltipCircle = container.querySelector('.tooltip-circle')
+  const chart = container.querySelector('svg')
+  const tooltip = container.querySelector('.tooltip')
+  const tooltipCircle = container.querySelector('.tooltip-circle')
 
-    if (chart) {
-      chart.remove();
-      tooltip.remove();
-      tooltipCircle.remove();
-      manageChartCreation(`#${container.id}`, chartData);
-    }
-  });
+  if (chart) {
+    chart.remove();
+    tooltip.remove();
+    tooltipCircle.remove();
+    manageChartCreation(`#${container.id}`, chartData);
+  }
 }
 
 function manageChartCreation(parentContainerID, chartData) {
