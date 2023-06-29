@@ -2343,7 +2343,6 @@ function manageNotificationWrapperHeight() {
 // ======================
 // sell items start
 manageItemsSell();
-// testConfirmOverlay();
 
 function manageItemsSell() {
   manageSellForm();
@@ -2520,11 +2519,12 @@ function manageOnSellTime(itemID, timeSinceOnSell = new Date()) {
     itemContent.prepend(itemTimeHTML);
   }
 
+  let intervalID;
   countTime();
 
   function countTime() {
     showTime()
-    setInterval(showTime, 60000);
+    intervalID = setInterval(showTime, 1000);
 
     function showTime() {
       const currentTime = Date.now();
@@ -2562,22 +2562,8 @@ function manageOnSellTime(itemID, timeSinceOnSell = new Date()) {
     }
     return num;
   }
-}
 
-function testConfirmOverlay() {
-  manageItemConfirmOverlay({
-    itemID: 'item_49',
-    timeInSeconds: 10,
-    text: 'confirm trade in Steam mobile app',
-    tradeID: 'uayosdh32426dhdkj'
-  });
-
-  manageItemConfirmOverlay({
-    itemID: 'item_50',
-    timeInSeconds: 320,
-    text: 'confirm trade in Steam mobile app',
-    tradeID: 'uayosdh32426dhdkj'
-  });
+  return intervalID;
 }
 
 function manageItemConfirmOverlay(options) {
@@ -2666,6 +2652,7 @@ function manageItemMoveOnSell() {
   const stash = document.querySelector('.stash');
   const stashList = document.querySelector('.stash__items')
   if (items.length === 0) return;
+  let intervalID;
 
   items.forEach(item => {
     const sellButton = item.querySelector('.sell-form__button');
@@ -2681,7 +2668,7 @@ function manageItemMoveOnSell() {
       moveItem(item, sellList);
       manageSectionHeight(stashList);
       manageListHeight(sellList);
-      manageOnSellTime(item.id);
+      intervalID = manageOnSellTime(item.id);
       manageSellForm();
     });
 
@@ -2694,6 +2681,7 @@ function manageItemMoveOnSell() {
       manageSectionHeight(sellList);
       manageListHeight(stashList);
       manageSellForm();
+      clearInterval(intervalID);
 
       const onSellTimeHTML = item.querySelector('.item__on-sell-time');
       onSellTimeHTML.remove();
@@ -2747,7 +2735,7 @@ function manageItemMoveOnSell() {
     item.style.position = 'absolute';
     item.style.width = `${itemWidth}px`;
 
-    const placeholder = manageCreateItemPlaceholder(item);
+    const placeholder = manageItemPlaceholder(item);
     item.insertAdjacentElement('beforebegin', placeholder);
     const listHeightBefore = sellList.getBoundingClientRect().height;
 
@@ -2794,7 +2782,7 @@ function manageGetElementCoords(elem) {
   }
 }
 
-function manageCreateItemPlaceholder(item) {
+function manageItemPlaceholder(item) {
   const block = document.createElement('li');
   block.className = 'item-placeholder';
   block.style.width = `${item.getBoundingClientRect().width}px`;
