@@ -2355,16 +2355,18 @@ function manageItemsSell() {
 function manageSellForm() {
   const sellForm = document.querySelectorAll('.sell-form');
   if (sellForm.length === 0) return;
+
   sellForm.forEach(form => {
+    const parentItem = form.closest('.item');
     const sellPriceInput = form.querySelector('.sell-form__price-input');
     const getInput = form.querySelector('.sell-form__get-input');
+    const inputs = [sellPriceInput, getInput];
     const button = form.querySelector('.sell-form__button');
-
-    disableButton();
 
     const formParentRow = form.closest('.modal-item__info-row');
     const comission = formParentRow.querySelector('.comission').textContent.trim();
     const comissionPercent = Number(comission.slice(0, comission.indexOf('%'))) / 100;
+
 
     sellPriceInput.addEventListener('input', () => {
       const priceValue = Number(sellPriceInput.value.trim());
@@ -2396,12 +2398,38 @@ function manageSellForm() {
       }
     });
 
-    form.addEventListener('input', disableButton);
+    if (parentItem.classList.contains('item--to-sell')) {
+      button.disabled = true;
+      button.textContent = 'save';
+      let emptyInputs = false;
+
+      const priceValue = sellPriceInput.value.trim();
+      const getValue = getInput.value.trim();
+
+      form.addEventListener('input', () => {
+        inputs.forEach(input => {
+          emptyInputs = input.value === '';
+        });
+
+        if (sellPriceInput.value === priceValue || 
+            getInput.value === getValue || 
+            emptyInputs) {
+          button.disabled = true;
+        } else {
+          button.disabled = false;
+        }
+      });
+
+      form.removeEventListener('input', disableButton);
+    } else {
+      disableButton();
+      button.textContent = 'sell';
+      form.addEventListener('input', disableButton);
+    }
 
     function disableButton() {
       const priceIsEmpty = sellPriceInput.value === '';
       const getIsEmpty = getInput.value === '';
-
       if (priceIsEmpty || getIsEmpty) {
         button.disabled = true;
       } else {
@@ -2644,6 +2672,8 @@ function manageItemMoveOnSell() {
     const cancelButton = item.querySelector('.cancel-sell');
 
     sellButton.addEventListener('click', () => {
+      if (item.classList.contains('item--to-sell')) return;
+
       const placeholder = sellSection.querySelector('.sell-page__section-placeholder');
       placeholder.classList.remove('sell-page__section-placeholder--active');
       item.classList.add('item--to-sell');
@@ -2652,6 +2682,7 @@ function manageItemMoveOnSell() {
       manageSectionHeight(stashList);
       manageListHeight(sellList);
       manageOnSellTime(item.id);
+      manageSellForm();
     });
 
     cancelButton.addEventListener('click', () => {
@@ -2662,6 +2693,7 @@ function manageItemMoveOnSell() {
       moveItem(item, stashList);
       manageSectionHeight(sellList);
       manageListHeight(stashList);
+      manageSellForm();
 
       const onSellTimeHTML = item.querySelector('.item__on-sell-time');
       onSellTimeHTML.remove();
@@ -2810,30 +2842,6 @@ function manageSectionHeight(list) {
     }, 900);
   }
 }
-
-// function manageItemFormOnSell(item) {
-//   const button = item.querySelector('.sell-form__button');
-//   const priceInput = item.querySelector('.sell-form__price-input');
-//   const getInput = item.querySelector('.sell-form__get-input');
-
-//   const inputs = [priceInput, getInput];
-
-//   const priceValue = priceInput.value.trim();
-//   const getValue = getInput.value.trim();
-
-//   button.disabled = true;
-//   button.textContent = 'save';
-
-//   inputs.forEach(input => {
-//     input.addEventListener('input', () => {
-//       if (priceInput.value === priceValue || getInput.value === getValue) {
-//         button.disabled = true;
-//       } else {
-//         button.disabled = false;
-//       }
-//     });
-//   });
-// }
 // sell items end
 // =====================
 

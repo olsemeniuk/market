@@ -248,13 +248,14 @@ p {
 }
 
 .btn {
+  padding: 9px 10px 8px;
   font-weight: 500;
   font-size: 16px;
-  color: #f3f3f4;
-  border-radius: 10px;
-  background-color: var(--color-mc);
-  padding: 10px;
   text-align: center;
+  color: #f3f3f4;
+  background-color: var(--color-mc);
+  border: 2px solid transparent;
+  border-radius: 10px;
 }
 
 .btn:hover {
@@ -1931,12 +1932,11 @@ p {
   margin: 0 -10px;
 }
 
-.sell-form__button:disabled {
-  cursor: default;
-}
-
-.sell-form__button:disabled:hover {
-  background-color: var(--color-mc);
+.btn.sell-form__button:disabled {
+  opacity: 1;
+  color: rgba(242, 242, 243, 0.5);
+  background-color: var(--color-c);
+  border-color: rgba(242, 242, 243, 0.5);
 }
 
 .small-form__right-input {
@@ -2276,21 +2276,9 @@ p {
   filter: var(--color-w-filter);
 }
 
-.auth__button[type="submit"]:disabled {
-  color: var(--color-t);
-  background-color: transparent;
-  border-color: var(--color-t);
-  cursor: default;
-}
-
 .auth__button[type="submit"]:disabled .auth__button-text::before {
-  filter: var(--color-t-filter);
+  filter: var(--color-w-filter);
 }
-
-.auth__button[type="submit"]:disabled:hover {
-  background-color: transparent;
-}
-
 /* authorization modal end */
 
 .payment-modal {
@@ -2663,13 +2651,13 @@ p {
   border: 1px solid transparent;
 }
 
-.payment-form__button:disabled {
+.btn:disabled {
   background-color: transparent;
   border-color: var(--color-w);
   cursor: default;
 }
 
-.payment-form__submit:disabled {
+.btn:disabled {
   opacity: 0.5;
 }
 
@@ -2884,7 +2872,7 @@ p {
 }
 
 .modal-item__buy-button {
-  padding: 11px 20px;
+  padding: 9px 20px;
 }
 
 .modal-item__cancel-button {
@@ -3107,7 +3095,7 @@ p {
 .deal__btn {
   flex-basis: 250px;
   flex-shrink: 0;
-  padding: 15px 10px;
+  padding: 14px 10px;
   margin: 0 15px;
 }
 
@@ -3572,7 +3560,7 @@ p {
   z-index: 2;
   max-width: 90px;
   min-width: 73px;
-  padding: 11px 7px;
+  padding: 9px 7px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3917,7 +3905,7 @@ p {
 .warning__info {
   flex-shrink: 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
   max-width: 100%;
   margin-right: -5px;
@@ -4787,7 +4775,7 @@ p {
 
   .products__buy-btn {
     min-width: 100px;
-    padding: 15px 10px;
+    padding: 14px 10px;
     border-radius: 10px 0 0 10px;
   }
 
