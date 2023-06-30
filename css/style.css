@@ -1694,6 +1694,7 @@ p {
 }
 
 .item-placeholder {
+  width: calc((100% / 6) - 10px);
   margin-right: 10px;
   margin-bottom: 10px;
   transition: all 0.5s 0.2s ease;
@@ -4298,7 +4299,8 @@ p {
     width: calc(50% - 10px);
   }
 
-  .sell-page__items .item {
+  .sell-page__items .item,
+  .item-placeholder {
     width: calc(20% - 10px);
   }
 }
@@ -4437,7 +4439,8 @@ p {
   }
 
   .item-orders__list-item,
-  .sell-page__items .item {
+  .sell-page__items .item,
+  .item-placeholder {
     width: calc(25% - 10px);
   }
 }
@@ -4558,7 +4561,8 @@ p {
     left: 10px;
   }
 
-  .sell-page__items .item {
+  .sell-page__items .item,
+  .item-placeholder {
     width: calc((100% / 3) - 10px);
   }
 }
@@ -4721,7 +4725,8 @@ p {
   }
 
   .account__items-list .item,
-  .sell-page__items .item {
+  .sell-page__items .item,
+  .item-placeholder {
     width: calc((100% / 4) - 10px);
   }
 }
@@ -5250,7 +5255,8 @@ p {
   }
 
   .information__list-item,
-  .sell-page__items .item {
+  .sell-page__items .item,
+  .item-placeholder {
     width: calc((100% / 3) - 10px);
   }
 
@@ -5325,6 +5331,7 @@ p {
 
   .item-placeholder {
     transition: none;
+    
   }
 
   .flip,
@@ -5556,7 +5563,8 @@ p {
   .account__items-list .item,
   .information__list-item,
   .sell-page__items .item,
-  .item-orders__list-item {
+  .item-orders__list-item,
+  .item-placeholder {
     width: calc(50% - 10px);
   }
 
