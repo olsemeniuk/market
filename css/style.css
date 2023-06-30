@@ -1690,7 +1690,7 @@ p {
 .item--moving {
   z-index: 99;
   animation: itemMove 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out, opacity 0.2s ease;
 }
 
 .item-placeholder {
@@ -1746,6 +1746,10 @@ p {
 .item:not(.stash__item):hover .item__icons {
   bottom: -100%;
   opacity: 0;
+}
+
+.stash__item {
+  will-change: left, top;
 }
 
 .stash__item:hover .item__icons {
@@ -4192,15 +4196,15 @@ p {
 
 @keyframes itemMove {
   0% {
-    transform: scale(1);
+    transform: translate3d(0.1px, 0.1px, 0.1px) scale(1);
   }
 
   50% {
-    transform: scale(1.05) rotate(2deg);
+    transform: translate3d(0.1px, 0.1px, 0.1px) scale(1.05) rotate(2deg);
   }
   
   100% {
-    transform: scale(1) rotate(0);
+    transform: translate3d(0.1px, 0.1px, 0.1px) scale(1) rotate(0);
   }
 }
 

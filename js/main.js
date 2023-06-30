@@ -2137,41 +2137,7 @@ function manageAddTooltip(options) {
 
 // ================================
 // notifications on sell page start
-// testNotificationsCall();
-
-function testNotificationsCall() {
-  manageSellNotificationCreation({
-    title: 'Confirm trade',
-    timeInSeconds: 360,
-    imagePath: '/images/items/knife.png',
-    imagePath2x: '/images/x2/knife-2x.png',
-    imagePath3x: '/images/x3/knife-3x.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 3',
-    timeInSeconds: 10,
-    imagePath: '/images/items/orange-sniper.png',
-    imagePath2x: '/images/items/orange-sniper.png',
-    imagePath3x: '/images/items/orange-sniper.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-
-  manageSellNotificationCreation({
-    title: 'Some title 4',
-    timeInSeconds: 500,
-    imagePath: '/images/items/red-sniper.png',
-    imagePath2x: '/images/items/red-sniper.png',
-    imagePath3x: '/images/items/red-sniper.png',
-    text: 'Confirm trade in your Steam mobile app.',
-    id: 't76832yguyO61wryjeouy'
-  });
-}
-
-function manageSellNotificationCreation(options) {
+function manageSellNotifications(options) {
   let notificationsWrapper = document.querySelector('.notifications-wrapper');
   if (!notificationsWrapper) {
     notificationsWrapper = createWrapper();
@@ -2410,9 +2376,9 @@ function manageSellForm() {
           emptyInputs = input.value === '';
         });
 
-        if (sellPriceInput.value === priceValue || 
-            getInput.value === getValue || 
-            emptyInputs) {
+        if (sellPriceInput.value === priceValue ||
+          getInput.value === getValue ||
+          emptyInputs) {
           button.disabled = true;
         } else {
           button.disabled = false;
@@ -2654,7 +2620,7 @@ function manageItemMoveOnSell() {
   if (items.length === 0) return;
   let intervalID;
 
-  items.forEach(item => {
+  items.forEach((item, index) => {
     const sellButton = item.querySelector('.sell-form__button');
     const cancelButton = item.querySelector('.cancel-sell');
 
@@ -2665,11 +2631,16 @@ function manageItemMoveOnSell() {
       placeholder.classList.remove('sell-page__section-placeholder--active');
       item.classList.add('item--to-sell');
 
-      moveItem(item, sellList);
+      const plusOneListRow = moveItem(item, sellList);
       manageSectionHeight(stashList);
       manageListHeight(sellList);
       intervalID = manageOnSellTime(item.id);
       manageSellForm();
+
+      // =============================
+      const itemsMatrix = manageGetItemsMatrix(item, stashList);
+      manageItemsChangeRow(itemsMatrix, item, stashList, plusOneListRow);
+      // =============================
     });
 
     cancelButton.addEventListener('click', () => {
@@ -2677,11 +2648,16 @@ function manageItemMoveOnSell() {
       placeholder.classList.remove('sell-page__section-placeholder--active');
       item.classList.remove('item--to-sell');
 
-      moveItem(item, stashList);
+      const plusOneListRow = moveItem(item, stashList);
       manageSectionHeight(sellList);
       manageListHeight(stashList);
       manageSellForm();
       clearInterval(intervalID);
+
+      // =============================
+      const itemsMatrix = manageGetItemsMatrix(item, sellList);
+      manageItemsChangeRow(itemsMatrix, item, sellList, plusOneListRow);
+      // =============================
 
       const onSellTimeHTML = item.querySelector('.item__on-sell-time');
       onSellTimeHTML.remove();
@@ -2737,7 +2713,22 @@ function manageItemMoveOnSell() {
 
     const placeholder = manageItemPlaceholder(item);
     item.insertAdjacentElement('beforebegin', placeholder);
-    const listHeightBefore = sellList.getBoundingClientRect().height;
+
+    const isStashList = list.classList.contains('stash__items');
+    const sellListMatrix = manageGetItemsMatrix(item, sellList);
+
+    if (isStashList && sellListMatrix.length > 1) {
+      let oneItemLeftInLastRow = false;
+      sellListMatrix.forEach((array, index) => {
+        if (index === sellListMatrix.length - 1) {
+          oneItemLeftInLastRow = array.length === 1;
+        }
+      });
+
+      if (oneItemLeftInLastRow) {
+        y = y - itemHeight - 10;
+      }
+    }
 
     setTimeout(() => {
       item.style.left = `${x}px`;
@@ -2753,14 +2744,6 @@ function manageItemMoveOnSell() {
     }, 200);
 
     setTimeout(() => {
-      const listHeightAfter = sellList.getBoundingClientRect().height;
-      if (listHeightAfter < listHeightBefore) {
-        y = y - itemHeight - 10;
-        item.style.top = `${y}px`;
-      }
-    }, 500);
-
-    setTimeout(() => {
       item.remove();
       list.append(item);
       item.removeAttribute('style');
@@ -2769,8 +2752,130 @@ function manageItemMoveOnSell() {
       placeholder.remove();
       manageSellItemsPlaceholder();
     }, 900);
+
+    return plusOneRow;
   }
 }
+
+// ================================
+function manageGetItemsMatrix(item, list) {
+  const itemWidth = Math.round(item.getBoundingClientRect().width + 10);
+  const listWidth = Math.round(list.getBoundingClientRect().width);
+  const itemsInRow = Math.round(listWidth / itemWidth);
+
+  const itemsInList = list.querySelectorAll('.item');
+  const itemsIndexes = [];
+  const matrix = [];
+
+  itemsInList.forEach((listItem, index) => {
+    itemsIndexes.push(index);
+  });
+
+  for (let i = 0; i < Math.ceil(itemsIndexes.length / itemsInRow); i++) {
+    matrix[i] = itemsIndexes.slice((i * itemsInRow), (i * itemsInRow) + itemsInRow);
+  }
+
+  return matrix;
+}
+
+function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
+  const isStashList = list.classList.contains('stash__items');
+  const listItems = list.querySelectorAll('.item');
+  const sellList = document.querySelector('.items-sell__items');
+  const sellListItems = sellList.querySelectorAll('.item');
+
+  let rowNum = '';
+  let itemIndex = '';
+
+  listItems.forEach((listItem, listItemIndex) => {
+    if (item === listItem) {
+      itemIndex = listItemIndex;
+    }
+  });
+
+  matrix.forEach((array, arrayIndex) => {
+    if (array.includes(itemIndex)) {
+      rowNum = arrayIndex;
+    }
+  });
+
+  const itemsWillMoveVertically = [];
+  const itemsWillMoveHorizontally = [];
+
+  matrix.forEach((array, arrayIndex) => {
+    if ((arrayIndex >= rowNum) && (arrayIndex !== matrix.length - 1)) {
+      itemsWillMoveHorizontally.push(array[array.length - 1]);
+    }
+
+    if (arrayIndex > rowNum) {
+      itemsWillMoveVertically.push(array[0]);
+    }
+  });
+
+  itemsWillMoveVertically.forEach((itemIndex, indexOfIndex) => {
+    const verticalMovingItem = listItems[itemIndex];
+    const horizontalMovingItem = listItems[itemsWillMoveHorizontally[indexOfIndex]];
+
+    const verticalMovingItemWidth = verticalMovingItem.getBoundingClientRect().width;
+
+    const currentX = manageGetElementCoords(verticalMovingItem).left;
+    const currentY = manageGetElementCoords(verticalMovingItem).top;
+
+    verticalMovingItem.style.left = `${currentX}px`;
+    verticalMovingItem.style.top = `${currentY}px`;
+    verticalMovingItem.style.position = 'absolute';
+    verticalMovingItem.style.width = `${verticalMovingItemWidth}px`;
+
+    const verticalPlaceholder = manageItemPlaceholder(verticalMovingItem);
+    verticalMovingItem.insertAdjacentElement('beforebegin', verticalPlaceholder);
+
+    let x = manageGetElementCoords(horizontalMovingItem).left;
+    let y = manageGetElementCoords(horizontalMovingItem).top;
+
+    if (plusOneListRow && isStashList) {
+      y = y + verticalMovingItemWidth + 10;
+    }
+
+    const horizontalPlaceholder = manageItemPlaceholder(horizontalMovingItem);
+    horizontalMovingItem.insertAdjacentElement('afterend', horizontalPlaceholder);
+    horizontalPlaceholder.style.width = '0';
+    horizontalPlaceholder.style.height = '0';
+    horizontalPlaceholder.style.margin = '0';
+
+    setTimeout(() => {
+      verticalMovingItem.style.left = `${x}px`;
+      verticalMovingItem.style.top = `${y}px`;
+      verticalMovingItem.style.opacity = '0';
+      verticalMovingItem.classList.add('item--moving');
+
+      verticalPlaceholder.style.width = '0';
+      verticalPlaceholder.style.height = '0';
+      verticalPlaceholder.style.margin = '0';
+
+      horizontalPlaceholder.style.width = `${verticalMovingItemWidth + 10}px`;
+    }, 200);
+
+    setTimeout(() => {
+      if ((sellListItems.length === 0) && isStashList) {
+        y = manageGetElementCoords(horizontalMovingItem).top;
+
+        verticalMovingItem.style.top = `${y}px`;
+      }
+    }, 450);
+
+    setTimeout(() => {
+      verticalMovingItem.style.opacity = '1';
+    }, 600);
+
+    setTimeout(() => {
+      verticalMovingItem.removeAttribute('style');
+      verticalMovingItem.classList.remove('item--moving');
+      verticalPlaceholder.remove();
+      horizontalPlaceholder.remove()
+    }, 900);
+  });
+}
+// ================================
 
 function manageGetElementCoords(elem) {
   let box = elem.getBoundingClientRect();
