@@ -2852,7 +2852,7 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
       verticalPlaceholder.style.height = '0';
       verticalPlaceholder.style.margin = '0';
 
-      horizontalPlaceholder.style.width = `${verticalMovingItemWidth + 10}px`;
+      horizontalPlaceholder.style = '';
     }, 200);
 
     setTimeout(() => {
@@ -2890,7 +2890,6 @@ function manageGetElementCoords(elem) {
 function manageItemPlaceholder(item) {
   const block = document.createElement('li');
   block.className = 'item-placeholder';
-  block.style.width = `${item.getBoundingClientRect().width}px`;
   block.style.height = `${item.getBoundingClientRect().height}px`;
   return block;
 }
