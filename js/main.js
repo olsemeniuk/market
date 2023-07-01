@@ -2454,9 +2454,11 @@ function manageSellItemsPriceAndAmount() {
 
   let sellItemsTotalPrice = 0
   itemsToSell.forEach(item => {
-    const itemPriceHTML = item.querySelector('.item__price')
-    const price = getItemPrice(itemPriceHTML);
-    sellItemsTotalPrice += price;
+    let itemPriceValue = Number(item.querySelector('.sell-form__price-input').value.trim());
+    if (itemPriceValue === 0 || isNaN(itemPriceValue)) {
+      itemPriceValue = 0;
+    }
+    sellItemsTotalPrice += itemPriceValue;
   });
 
   itemsPrice = sellItemsTotalPrice;
@@ -2838,6 +2840,7 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
 
     const horizontalPlaceholder = manageItemPlaceholder(horizontalMovingItem);
     horizontalMovingItem.insertAdjacentElement('afterend', horizontalPlaceholder);
+
     horizontalPlaceholder.style.width = '0';
     horizontalPlaceholder.style.height = '0';
     horizontalPlaceholder.style.margin = '0';
@@ -2871,7 +2874,7 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
       verticalMovingItem.removeAttribute('style');
       verticalMovingItem.classList.remove('item--moving');
       verticalPlaceholder.remove();
-      horizontalPlaceholder.remove()
+      horizontalPlaceholder.remove();
     }, 900);
   });
 }
