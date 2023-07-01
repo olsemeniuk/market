@@ -2454,9 +2454,11 @@ function manageSellItemsPriceAndAmount() {
 
   let sellItemsTotalPrice = 0
   itemsToSell.forEach(item => {
-    const itemPriceHTML = item.querySelector('.item__price')
-    const price = getItemPrice(itemPriceHTML);
-    sellItemsTotalPrice += price;
+    let itemPriceValue = Number(item.querySelector('.sell-form__price-input').value.trim());
+    if (itemPriceValue === 0 || isNaN(itemPriceValue)) {
+      itemPriceValue = 0;
+    }
+    sellItemsTotalPrice += itemPriceValue;
   });
 
   itemsPrice = sellItemsTotalPrice;
@@ -2616,11 +2618,12 @@ function manageItemMoveOnSell() {
   const sellSection = document.querySelector('.items-sell');
   const sellList = document.querySelector('.items-sell__items');
   const stash = document.querySelector('.stash');
-  const stashList = document.querySelector('.stash__items')
+  const stashList = document.querySelector('.stash__items');
+
   if (items.length === 0) return;
   let intervalID;
 
-  items.forEach((item, index) => {
+  items.forEach(item => {
     const sellButton = item.querySelector('.sell-form__button');
     const cancelButton = item.querySelector('.cancel-sell');
 
@@ -2629,6 +2632,7 @@ function manageItemMoveOnSell() {
 
       const placeholder = sellSection.querySelector('.sell-page__section-placeholder');
       placeholder.classList.remove('sell-page__section-placeholder--active');
+
       item.classList.add('item--to-sell');
 
       const plusOneListRow = moveItem(item, sellList);
@@ -2637,10 +2641,10 @@ function manageItemMoveOnSell() {
       intervalID = manageOnSellTime(item.id);
       manageSellForm();
 
-      // =============================
-      const itemsMatrix = manageGetItemsMatrix(item, stashList);
-      manageItemsChangeRow(itemsMatrix, item, stashList, plusOneListRow);
-      // =============================
+      if (manageGetScreenWidth() >= 992) {
+        const itemsMatrix = manageGetItemsMatrix(item, stashList);
+        manageItemsChangeRow(itemsMatrix, item, stashList, plusOneListRow);
+      }
     });
 
     cancelButton.addEventListener('click', () => {
@@ -2654,10 +2658,10 @@ function manageItemMoveOnSell() {
       manageSellForm();
       clearInterval(intervalID);
 
-      // =============================
-      const itemsMatrix = manageGetItemsMatrix(item, sellList);
-      manageItemsChangeRow(itemsMatrix, item, sellList, plusOneListRow);
-      // =============================
+      if (manageGetScreenWidth() >= 992) {
+        const itemsMatrix = manageGetItemsMatrix(item, sellList);
+        manageItemsChangeRow(itemsMatrix, item, sellList, plusOneListRow);
+      }
 
       const onSellTimeHTML = item.querySelector('.item__on-sell-time');
       onSellTimeHTML.remove();
@@ -2674,90 +2678,96 @@ function manageItemMoveOnSell() {
     manageSellItemsPriceAndAmount();
     manageModalClose();
 
-    const itemWidth = item.getBoundingClientRect().width;
-    const itemHeight = item.getBoundingClientRect().height;
-    let plusOneRow = false;
 
-    let x = 0;
-    let y = 0;
-
-    const listHeight = list.getBoundingClientRect().height;
-    const itemsInList = list.querySelectorAll('.item');
-    const listRightSide = manageGetElementCoords(list).right;
-    const listLeftSide = manageGetElementCoords(list).left;
-
-    if (itemsInList.length === 0) {
-      x = listLeftSide;
-      y = manageGetElementCoords(list).top;
-    } else {
-      const lastItemOnSell = itemsInList[itemsInList.length - 1];
-      const lastItemWidth = lastItemOnSell.getBoundingClientRect().width;
-      x = manageGetElementCoords(lastItemOnSell).left + lastItemWidth + 10;
-      y = manageGetElementCoords(lastItemOnSell).top;
-    }
-
-    if (x > listRightSide - itemWidth) {
-      x = listLeftSide;
-      y = y + itemHeight + 10;
-      plusOneRow = true;
-    }
-
-    list.style.height = `${listHeight}px`;
-    const currentX = manageGetElementCoords(item).left;
-    const currentY = manageGetElementCoords(item).top;
-
-    item.style.left = `${currentX}px`;
-    item.style.top = `${currentY}px`;
-    item.style.position = 'absolute';
-    item.style.width = `${itemWidth}px`;
-
-    const placeholder = manageItemPlaceholder(item);
-    item.insertAdjacentElement('beforebegin', placeholder);
-
-    const isStashList = list.classList.contains('stash__items');
-    const sellListMatrix = manageGetItemsMatrix(item, sellList);
-
-    if (isStashList && sellListMatrix.length > 1) {
-      let oneItemLeftInLastRow = false;
-      sellListMatrix.forEach((array, index) => {
-        if (index === sellListMatrix.length - 1) {
-          oneItemLeftInLastRow = array.length === 1;
-        }
-      });
-
-      if (oneItemLeftInLastRow) {
-        y = y - itemHeight - 10;
-      }
-    }
-
-    setTimeout(() => {
-      item.style.left = `${x}px`;
-      item.style.top = `${y}px`;
-      item.classList.add('item--moving');
-      if (plusOneRow) {
-        list.style.height = `${listHeight + itemHeight + 10}px`;
-      }
-
-      placeholder.style.width = '0';
-      placeholder.style.height = '0';
-      placeholder.style.margin = '0';
-    }, 200);
-
-    setTimeout(() => {
+    const isMobile = manageGetScreenWidth() <= 600;
+    if (isMobile) {
       item.remove();
       list.append(item);
-      item.removeAttribute('style');
-      list.removeAttribute('style');
-      item.classList.remove('item--moving');
-      placeholder.remove();
-      manageSellItemsPlaceholder();
-    }, 900);
 
-    return plusOneRow;
+    } else {
+      const itemWidth = item.getBoundingClientRect().width;
+      const itemHeight = item.getBoundingClientRect().height;
+      let plusOneRow = false;
+
+      let x = 0;
+      let y = 0;
+
+      const listHeight = list.getBoundingClientRect().height;
+      const itemsInList = list.querySelectorAll('.item');
+      const listRightSide = manageGetElementCoords(list).right;
+      const listLeftSide = manageGetElementCoords(list).left;
+
+      if (itemsInList.length === 0) {
+        x = listLeftSide;
+        y = manageGetElementCoords(list).top;
+      } else {
+        const lastItemOnSell = itemsInList[itemsInList.length - 1];
+        const lastItemWidth = lastItemOnSell.getBoundingClientRect().width;
+        x = manageGetElementCoords(lastItemOnSell).left + lastItemWidth + 10;
+        y = manageGetElementCoords(lastItemOnSell).top;
+      }
+
+      if (x > listRightSide - itemWidth) {
+        x = listLeftSide;
+        y = y + itemHeight + 10;
+        plusOneRow = true;
+      }
+
+      list.style.height = `${listHeight}px`;
+      const currentX = manageGetElementCoords(item).left;
+      const currentY = manageGetElementCoords(item).top;
+
+      item.style.left = `${currentX}px`;
+      item.style.top = `${currentY}px`;
+      item.style.position = 'absolute';
+      item.style.width = `${itemWidth}px`;
+
+      const placeholder = manageItemPlaceholder(item);
+      item.insertAdjacentElement('beforebegin', placeholder);
+
+      const isStashList = list.classList.contains('stash__items');
+      const sellListMatrix = manageGetItemsMatrix(item, sellList);
+
+      if (isStashList && sellListMatrix.length > 1) {
+        let oneItemLeftInLastRow = false;
+        sellListMatrix.forEach((array, index) => {
+          if (index === sellListMatrix.length - 1) {
+            oneItemLeftInLastRow = array.length === 1;
+          }
+        });
+
+        if (oneItemLeftInLastRow) {
+          y = y - itemHeight - 10;
+        }
+      }
+
+      setTimeout(() => {
+        item.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0.1px)`;
+        item.classList.add('item--moving');
+        if (plusOneRow) {
+          list.style.height = `${listHeight + itemHeight + 10}px`;
+        }
+
+        placeholder.style.width = '0';
+        placeholder.style.height = '0';
+        placeholder.style.margin = '0';
+      }, 200);
+
+      setTimeout(() => {
+        item.remove();
+        list.append(item);
+        item.removeAttribute('style');
+        list.removeAttribute('style');
+        item.classList.remove('item--moving');
+        placeholder.remove();
+        manageSellItemsPlaceholder();
+      }, 900);
+
+      return plusOneRow;
+    }
   }
 }
 
-// ================================
 function manageGetItemsMatrix(item, list) {
   const itemWidth = Math.round(item.getBoundingClientRect().width + 10);
   const listWidth = Math.round(list.getBoundingClientRect().width);
@@ -2838,13 +2848,13 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
 
     const horizontalPlaceholder = manageItemPlaceholder(horizontalMovingItem);
     horizontalMovingItem.insertAdjacentElement('afterend', horizontalPlaceholder);
+
     horizontalPlaceholder.style.width = '0';
     horizontalPlaceholder.style.height = '0';
     horizontalPlaceholder.style.margin = '0';
 
     setTimeout(() => {
-      verticalMovingItem.style.left = `${x}px`;
-      verticalMovingItem.style.top = `${y}px`;
+      verticalMovingItem.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0.1px)`;
       verticalMovingItem.style.opacity = '0';
       verticalMovingItem.classList.add('item--moving');
 
@@ -2852,14 +2862,13 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
       verticalPlaceholder.style.height = '0';
       verticalPlaceholder.style.margin = '0';
 
-      horizontalPlaceholder.style = '';
+      horizontalPlaceholder.removeAttribute('style');
     }, 200);
 
     setTimeout(() => {
       if ((sellListItems.length === 0) && isStashList) {
         y = manageGetElementCoords(horizontalMovingItem).top;
-
-        verticalMovingItem.style.top = `${y}px`;
+        verticalMovingItem.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0.1px)`;
       }
     }, 450);
 
@@ -2871,11 +2880,15 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
       verticalMovingItem.removeAttribute('style');
       verticalMovingItem.classList.remove('item--moving');
       verticalPlaceholder.remove();
-      horizontalPlaceholder.remove()
+      horizontalPlaceholder.remove();
     }, 900);
   });
 }
-// ================================
+
+function manageGetScreenWidth() {
+  const width = document.documentElement.clientWidth;
+  return width;
+}
 
 function manageGetElementCoords(elem) {
   let box = elem.getBoundingClientRect();
@@ -2916,7 +2929,7 @@ function manageListHeight(list) {
   if (listHeight < 100) {
     list.style.height = `${itemHeight}px`;
     setTimeout(() => {
-      list.style.height = `auto`;
+      list.style.height = 'auto';
     }, 900);
   }
 }
