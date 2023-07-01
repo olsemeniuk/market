@@ -2618,7 +2618,8 @@ function manageItemMoveOnSell() {
   const sellSection = document.querySelector('.items-sell');
   const sellList = document.querySelector('.items-sell__items');
   const stash = document.querySelector('.stash');
-  const stashList = document.querySelector('.stash__items')
+  const stashList = document.querySelector('.stash__items');
+
   if (items.length === 0) return;
   let intervalID;
 
@@ -2640,8 +2641,11 @@ function manageItemMoveOnSell() {
       manageSellForm();
 
       // =============================
-      const itemsMatrix = manageGetItemsMatrix(item, stashList);
-      manageItemsChangeRow(itemsMatrix, item, stashList, plusOneListRow);
+      const isMobile = manageGetScreenWidth() <= 600;
+      if (!isMobile) {
+        const itemsMatrix = manageGetItemsMatrix(item, stashList);
+        manageItemsChangeRow(itemsMatrix, item, stashList, plusOneListRow);
+      }
       // =============================
     });
 
@@ -2657,8 +2661,11 @@ function manageItemMoveOnSell() {
       clearInterval(intervalID);
 
       // =============================
-      const itemsMatrix = manageGetItemsMatrix(item, sellList);
-      manageItemsChangeRow(itemsMatrix, item, sellList, plusOneListRow);
+      const isMobile = manageGetScreenWidth() <= 600;
+      if (!isMobile) {
+        const itemsMatrix = manageGetItemsMatrix(item, sellList);
+        manageItemsChangeRow(itemsMatrix, item, sellList, plusOneListRow);
+      }
       // =============================
 
       const onSellTimeHTML = item.querySelector('.item__on-sell-time');
@@ -2676,86 +2683,93 @@ function manageItemMoveOnSell() {
     manageSellItemsPriceAndAmount();
     manageModalClose();
 
-    const itemWidth = item.getBoundingClientRect().width;
-    const itemHeight = item.getBoundingClientRect().height;
-    let plusOneRow = false;
-
-    let x = 0;
-    let y = 0;
-
-    const listHeight = list.getBoundingClientRect().height;
-    const itemsInList = list.querySelectorAll('.item');
-    const listRightSide = manageGetElementCoords(list).right;
-    const listLeftSide = manageGetElementCoords(list).left;
-
-    if (itemsInList.length === 0) {
-      x = listLeftSide;
-      y = manageGetElementCoords(list).top;
-    } else {
-      const lastItemOnSell = itemsInList[itemsInList.length - 1];
-      const lastItemWidth = lastItemOnSell.getBoundingClientRect().width;
-      x = manageGetElementCoords(lastItemOnSell).left + lastItemWidth + 10;
-      y = manageGetElementCoords(lastItemOnSell).top;
-    }
-
-    if (x > listRightSide - itemWidth) {
-      x = listLeftSide;
-      y = y + itemHeight + 10;
-      plusOneRow = true;
-    }
-
-    list.style.height = `${listHeight}px`;
-    const currentX = manageGetElementCoords(item).left;
-    const currentY = manageGetElementCoords(item).top;
-
-    item.style.left = `${currentX}px`;
-    item.style.top = `${currentY}px`;
-    item.style.position = 'absolute';
-    item.style.width = `${itemWidth}px`;
-
-    const placeholder = manageItemPlaceholder(item);
-    item.insertAdjacentElement('beforebegin', placeholder);
-
-    const isStashList = list.classList.contains('stash__items');
-    const sellListMatrix = manageGetItemsMatrix(item, sellList);
-
-    if (isStashList && sellListMatrix.length > 1) {
-      let oneItemLeftInLastRow = false;
-      sellListMatrix.forEach((array, index) => {
-        if (index === sellListMatrix.length - 1) {
-          oneItemLeftInLastRow = array.length === 1;
-        }
-      });
-
-      if (oneItemLeftInLastRow) {
-        y = y - itemHeight - 10;
-      }
-    }
-
-    setTimeout(() => {
-      item.style.left = `${x}px`;
-      item.style.top = `${y}px`;
-      item.classList.add('item--moving');
-      if (plusOneRow) {
-        list.style.height = `${listHeight + itemHeight + 10}px`;
-      }
-
-      placeholder.style.width = '0';
-      placeholder.style.height = '0';
-      placeholder.style.margin = '0';
-    }, 200);
-
-    setTimeout(() => {
+    const isMobile = manageGetScreenWidth() <= 600;
+    if (isMobile) {
       item.remove();
       list.append(item);
-      item.removeAttribute('style');
-      list.removeAttribute('style');
-      item.classList.remove('item--moving');
-      placeholder.remove();
-      manageSellItemsPlaceholder();
-    }, 900);
 
-    return plusOneRow;
+    } else {
+      const itemWidth = item.getBoundingClientRect().width;
+      const itemHeight = item.getBoundingClientRect().height;
+      let plusOneRow = false;
+
+      let x = 0;
+      let y = 0;
+
+      const listHeight = list.getBoundingClientRect().height;
+      const itemsInList = list.querySelectorAll('.item');
+      const listRightSide = manageGetElementCoords(list).right;
+      const listLeftSide = manageGetElementCoords(list).left;
+
+      if (itemsInList.length === 0) {
+        x = listLeftSide;
+        y = manageGetElementCoords(list).top;
+      } else {
+        const lastItemOnSell = itemsInList[itemsInList.length - 1];
+        const lastItemWidth = lastItemOnSell.getBoundingClientRect().width;
+        x = manageGetElementCoords(lastItemOnSell).left + lastItemWidth + 10;
+        y = manageGetElementCoords(lastItemOnSell).top;
+      }
+
+      if (x > listRightSide - itemWidth) {
+        x = listLeftSide;
+        y = y + itemHeight + 10;
+        plusOneRow = true;
+      }
+
+      list.style.height = `${listHeight}px`;
+      const currentX = manageGetElementCoords(item).left;
+      const currentY = manageGetElementCoords(item).top;
+
+      item.style.left = `${currentX}px`;
+      item.style.top = `${currentY}px`;
+      item.style.position = 'absolute';
+      item.style.width = `${itemWidth}px`;
+
+      const placeholder = manageItemPlaceholder(item);
+      item.insertAdjacentElement('beforebegin', placeholder);
+
+      const isStashList = list.classList.contains('stash__items');
+      const sellListMatrix = manageGetItemsMatrix(item, sellList);
+
+      if (isStashList && sellListMatrix.length > 1) {
+        let oneItemLeftInLastRow = false;
+        sellListMatrix.forEach((array, index) => {
+          if (index === sellListMatrix.length - 1) {
+            oneItemLeftInLastRow = array.length === 1;
+          }
+        });
+
+        if (oneItemLeftInLastRow) {
+          y = y - itemHeight - 10;
+        }
+      }
+
+      setTimeout(() => {
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+        item.classList.add('item--moving');
+        if (plusOneRow) {
+          list.style.height = `${listHeight + itemHeight + 10}px`;
+        }
+
+        placeholder.style.width = '0';
+        placeholder.style.height = '0';
+        placeholder.style.margin = '0';
+      }, 200);
+
+      setTimeout(() => {
+        item.remove();
+        list.append(item);
+        item.removeAttribute('style');
+        list.removeAttribute('style');
+        item.classList.remove('item--moving');
+        placeholder.remove();
+        manageSellItemsPlaceholder();
+      }, 900);
+
+      return plusOneRow;
+    }
   }
 }
 
@@ -2879,6 +2893,11 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
   });
 }
 // ================================
+
+function manageGetScreenWidth() {
+  const width = document.documentElement.clientWidth;
+  return width;
+}
 
 function manageGetElementCoords(elem) {
   let box = elem.getBoundingClientRect();
