@@ -1509,6 +1509,9 @@ p {
 /* item */
 .item {
   transform-origin: left;
+}
+
+.account__items-list .item {
   transition: transform 0.4s ease-in-out, margin 0.4s 0.1s ease-in-out;
 }
 
@@ -1689,7 +1692,6 @@ p {
 
 .item--moving {
   z-index: 99;
-  animation: itemMove 0.5s ease-in-out;
   transition: all 0.5s ease-in-out, opacity 0.2s ease;
 }
 
@@ -3954,7 +3956,7 @@ p {
   flex-wrap: wrap;
   margin-right: -10px;
   min-height: 200px;
-  transition: all 0.3s;
+  transition: all 0.3s linear;
 }
 
 .sell-page__section-placeholder {
@@ -3973,7 +3975,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  transition: all 0.5s;
+  transition: all 0.3s linear;
 }
 
 .sell-page__items .item {
@@ -4192,20 +4194,6 @@ p {
   100% {
     transform: rotateZ(-2deg);
     border-color: var(--color-error);
-  }
-}
-
-@keyframes itemMove {
-  0% {
-    transform: translate3d(0.1px, 0.1px, 0.1px) scale(1);
-  }
-
-  50% {
-    transform: translate3d(0.1px, 0.1px, 0.1px) scale(1.05) rotate(2deg);
-  }
-  
-  100% {
-    transform: translate3d(0.1px, 0.1px, 0.1px) scale(1) rotate(0);
   }
 }
 

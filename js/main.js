@@ -2623,7 +2623,7 @@ function manageItemMoveOnSell() {
   if (items.length === 0) return;
   let intervalID;
 
-  items.forEach((item, index) => {
+  items.forEach(item => {
     const sellButton = item.querySelector('.sell-form__button');
     const cancelButton = item.querySelector('.cancel-sell');
 
@@ -2632,6 +2632,7 @@ function manageItemMoveOnSell() {
 
       const placeholder = sellSection.querySelector('.sell-page__section-placeholder');
       placeholder.classList.remove('sell-page__section-placeholder--active');
+
       item.classList.add('item--to-sell');
 
       const plusOneListRow = moveItem(item, sellList);
@@ -2640,13 +2641,10 @@ function manageItemMoveOnSell() {
       intervalID = manageOnSellTime(item.id);
       manageSellForm();
 
-      // =============================
-      const isMobile = manageGetScreenWidth() <= 600;
-      if (!isMobile) {
+      if (manageGetScreenWidth() >= 992) {
         const itemsMatrix = manageGetItemsMatrix(item, stashList);
         manageItemsChangeRow(itemsMatrix, item, stashList, plusOneListRow);
       }
-      // =============================
     });
 
     cancelButton.addEventListener('click', () => {
@@ -2660,13 +2658,10 @@ function manageItemMoveOnSell() {
       manageSellForm();
       clearInterval(intervalID);
 
-      // =============================
-      const isMobile = manageGetScreenWidth() <= 600;
-      if (!isMobile) {
+      if (manageGetScreenWidth() >= 992) {
         const itemsMatrix = manageGetItemsMatrix(item, sellList);
         manageItemsChangeRow(itemsMatrix, item, sellList, plusOneListRow);
       }
-      // =============================
 
       const onSellTimeHTML = item.querySelector('.item__on-sell-time');
       onSellTimeHTML.remove();
@@ -2682,6 +2677,7 @@ function manageItemMoveOnSell() {
   function moveItem(item, list) {
     manageSellItemsPriceAndAmount();
     manageModalClose();
+
 
     const isMobile = manageGetScreenWidth() <= 600;
     if (isMobile) {
@@ -2746,8 +2742,7 @@ function manageItemMoveOnSell() {
       }
 
       setTimeout(() => {
-        item.style.left = `${x}px`;
-        item.style.top = `${y}px`;
+        item.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0.1px)`;
         item.classList.add('item--moving');
         if (plusOneRow) {
           list.style.height = `${listHeight + itemHeight + 10}px`;
@@ -2773,7 +2768,6 @@ function manageItemMoveOnSell() {
   }
 }
 
-// ================================
 function manageGetItemsMatrix(item, list) {
   const itemWidth = Math.round(item.getBoundingClientRect().width + 10);
   const listWidth = Math.round(list.getBoundingClientRect().width);
@@ -2860,8 +2854,7 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
     horizontalPlaceholder.style.margin = '0';
 
     setTimeout(() => {
-      verticalMovingItem.style.left = `${x}px`;
-      verticalMovingItem.style.top = `${y}px`;
+      verticalMovingItem.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0.1px)`;
       verticalMovingItem.style.opacity = '0';
       verticalMovingItem.classList.add('item--moving');
 
@@ -2869,14 +2862,13 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
       verticalPlaceholder.style.height = '0';
       verticalPlaceholder.style.margin = '0';
 
-      horizontalPlaceholder.style = '';
+      horizontalPlaceholder.removeAttribute('style');
     }, 200);
 
     setTimeout(() => {
       if ((sellListItems.length === 0) && isStashList) {
         y = manageGetElementCoords(horizontalMovingItem).top;
-
-        verticalMovingItem.style.top = `${y}px`;
+        verticalMovingItem.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0.1px)`;
       }
     }, 450);
 
@@ -2892,7 +2884,6 @@ function manageItemsChangeRow(matrix, item, list, plusOneListRow) {
     }, 900);
   });
 }
-// ================================
 
 function manageGetScreenWidth() {
   const width = document.documentElement.clientWidth;
@@ -2938,7 +2929,7 @@ function manageListHeight(list) {
   if (listHeight < 100) {
     list.style.height = `${itemHeight}px`;
     setTimeout(() => {
-      list.style.height = `auto`;
+      list.style.height = 'auto';
     }, 900);
   }
 }
