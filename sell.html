@@ -590,11 +590,12 @@
                 </div>
               </div>
               <div class="products__content-header-right">
-                <div class="products__content-buy sell-page__cart">
-                  <a class="products__cart sell__cart" href="#">
+
+                <div class="products__content-buy cart-block sell-page__cart">
+                  <a class="cart-block__link" href="#">
                     <span class="items-amount">0</span>
                   </a>
-                  <b class="products__summ items-price">$ 0</b>
+                  <b class="cart-block__sum items-price">$ 0</b>
                 </div>
                 <button class="products__filter-btn filter-btn" type="button">
                   <span class="visually-hidden">Open filter</span>
@@ -618,16 +619,13 @@
             <section class="items-sell sell-page__section">
               <h2 class="sell-page__section-title">items on sell</h2>
               <div class="sell-page__section-body">
+                <ul class="sell-page__items items-sell__items"></ul>
                 <p class="sell-page__section-placeholder">you don’t sell any items yet :’(</p>
-                <ul class="sell-page__items items-sell__items">
-                  
-                </ul>
               </div>
             </section>
             <section class="stash sell-page__section">
               <h2 class="sell-page__section-title">items in your stash</h2>
               <div class="sell-page__section-body">
-                <p class="sell-page__section-placeholder">you don’t have items in your stash :’(</p>
                 <ul class="sell-page__items stash__items">
                   <li class="item stash__item" id="item_49">
                     <div class="item__inner">
@@ -682,7 +680,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -1007,7 +1005,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -1343,7 +1341,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -1679,7 +1677,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -1997,7 +1995,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -2315,7 +2313,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -2633,7 +2631,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -2951,7 +2949,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -3269,7 +3267,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -3587,7 +3585,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -3905,7 +3903,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -4223,7 +4221,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -4541,7 +4539,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -4859,7 +4857,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -5177,7 +5175,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -5495,7 +5493,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -5814,7 +5812,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -6132,7 +6130,7 @@
                         </div>
                         <div class="item__overlay">
                           <button class="item__sell-button" type="button">
-                            <span class="visually-hidden">Sell item</span>
+                            <span class="visually-hidden">Open modal</span>
                           </button>
                         </div>
                         <span class="item__my">my</span>
@@ -6419,6 +6417,7 @@
                     </article>
                   </li>
                 </ul>
+                <p class="sell-page__section-placeholder">you don’t have items in your stash :’(</p>
               </div>
             </section>
           </div>

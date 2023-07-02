@@ -588,51 +588,49 @@
                     <span class="visually-hidden">Open Dota items</span>
                   </a>
                 </div>
-
-
               </div>
               <div class="products__content-header-right">
-                <div class="products__content-buy">
-                  <a class="products__cart" href="#">
+                <div class="products__content-buy cart-block">
+                  <a class="cart-block__link open-cart-modal" href="#">
                     <span class="items-amount">0</span>
                   </a>
-                  <b class="products__summ items-price">$ 0</b>
-                  <a class="products__buy-btn btn" href="#">buy</a>
+                  <b class="cart-block__sum items-price">$ 0</b>
+                  <a class="cart-block__button open-cart-modal btn" href="#">buy</a>
                 </div>
+
                 <button class="products__filter-btn filter-btn" type="button">
                   <span class="visually-hidden">Open filter</span>
                 </button>
               </div>
             </div>
             <ul class="products__content-items">
-              <li class="item" id="item_19" data-origin="market">
+              <li class="item" id="item_1" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
-                      <img class="item__img" width="137" height="89" src="images/items/knife.png" srcset="images/x2/knife-2x.png 2x,
-                                images/x3/knife-3x.png 3x" sizes="(max-width: 471px) calc((100vw - 110px) / 2),
+                      <img 
+                        class="item__img" 
+                        width="137" 
+                        height="89" 
+                        src="images/items/knife.png" 
+                        srcset="images/x2/knife-2x.png 2x,
+                                images/x3/knife-3x.png 3x" 
+                        sizes="(max-width: 471px) calc((100vw - 110px) / 2),
                                (max-width: 739px) calc((100vw - 170px) / 3),
                                (max-width: 900px) calc((100vw - 220px) / 4),
                                (max-width: 1189px) calc((100vw - 490px) / 4),
                                (max-width: 1369px) calc((100vw - 540px) / 5),
                                (max-width: 1429px) calc((100vw - 580px) / 6),
-                               137px" alt="">
+                               137px" 
+                        alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
-                    </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
-                                images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
-                                images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
                       <button class="item__add-button" type="button">
@@ -669,44 +667,93 @@
                   </div>
                   <section class="modal-item__inner">
                     <div class="modal-item__slider-block">
-                      <img class="modal-item__img" width="287" height="173" src="images/items/item-big.png" srcset="images/x2/item-big-2x.png 2x,
-                                  images/x3/item-big-3x.png 3x" sizes="287px" alt="">
+                      <img 
+                        class="modal-item__img" 
+                        width="287" 
+                        height="173" 
+                        src="images/items/item-big.png" 
+                        srcset="images/x2/item-big-2x.png 2x,
+                                images/x3/item-big-3x.png 3x" 
+                        sizes="287px" 
+                        alt="">
                       <div class="grab-wrapper horizontal-shadow">
                         <div class="modal-item__slider grab-block">
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                            images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                         </div>
                       </div>
@@ -717,21 +764,20 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
-                              New</span>
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -830,34 +876,53 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_20" data-origin="market">
+              <li class="item" id="item_2" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
-                      <img class="item__img" width="137" height="89" src="images/items/knife.png" srcset="images/x2/knife-2x.png 2x,
-                                images/x3/knife-3x.png 3x" sizes="(max-width: 471px) calc((100vw - 110px) / 2),
+                      <img 
+                        class="item__img" 
+                        width="137" 
+                        height="89" 
+                        src="images/items/knife.png" 
+                        srcset="images/x2/knife-2x.png 2x,
+                                images/x3/knife-3x.png 3x" 
+                        sizes="(max-width: 471px) calc((100vw - 110px) / 2),
                                (max-width: 739px) calc((100vw - 170px) / 3),
                                (max-width: 900px) calc((100vw - 220px) / 4),
                                (max-width: 1189px) calc((100vw - 490px) / 4),
                                (max-width: 1369px) calc((100vw - 540px) / 5),
                                (max-width: 1429px) calc((100vw - 580px) / 6),
-                               137px" alt="">
+                               137px" 
+                        alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
-                                images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
-                                images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
+                    <div class="item-icons">
+                      <img 
+                        class="item-icons__icon" 
+                        width="20" 
+                        height="20" 
+                        src="images/items/items-icon-1.png" 
+                        srcset="images/x2/items-icon-1-2x.png 2x,
+                                images/x3/items-icon-1-3x.png 3x" 
+                        sizes="20px" 
+                        alt="">
+                      <img 
+                        class="item-icons__icon" 
+                        width="20" 
+                        height="20" 
+                        src="images/items/items-icon-2.png" 
+                        srcset="images/x2/items-icon-2-2x.png 2x,
+                                images/x3/items-icon-2-3x.png 3x" 
+                        sizes="20px" 
+                        alt="">
                     </div>
                     <div class="item__overlay">
                       <button class="item__add-button" type="button">
@@ -894,44 +959,93 @@
                   </div>
                   <section class="modal-item__inner">
                     <div class="modal-item__slider-block">
-                      <img class="modal-item__img" width="287" height="173" src="images/items/item-big.png" srcset="images/x2/item-big-2x.png 2x,
-                                images/x3/item-big-3x.png 3x" sizes="287px" alt="">
+                      <img 
+                        class="modal-item__img" 
+                        width="287" 
+                        height="173" 
+                        src="images/items/item-big.png" 
+                        srcset="images/x2/item-big-2x.png 2x,
+                                images/x3/item-big-3x.png 3x" 
+                        sizes="287px" 
+                        alt="">
                       <div class="grab-wrapper horizontal-shadow">
                         <div class="modal-item__slider grab-block">
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                           <div class="modal-item__slide">
-                            <img class="modal-item__slide-img" width="77" height="51" src="images/items/item-slide.jpg"
+                            <img 
+                              class="modal-item__slide-img" 
+                              width="77" 
+                              height="51" 
+                              src="images/items/item-slide.jpg"
                               srcset="images/x2/item-slide-2x.jpg 2x,
-                                          images/x3/item-slide-3x.jpg 3x" sizes="77" alt="">
+                                      images/x3/item-slide-3x.jpg 3x" 
+                              sizes="77" 
+                              alt="">
                           </div>
                         </div>
                       </div>
@@ -942,21 +1056,20 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
-                              New</span>
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -1055,7 +1168,9 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_21" data-origin="market">
+
+              
+              <li class="item" id="item_3" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1069,19 +1184,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -1167,21 +1280,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -1280,7 +1393,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_22" data-origin="market">
+              <li class="item" id="item_4" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1294,19 +1407,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -1392,21 +1503,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -1505,7 +1616,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_23" data-origin="market">
+              <li class="item" id="item_5" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1519,19 +1630,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -1617,21 +1726,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -1730,7 +1839,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_24" data-origin="market">
+              <li class="item" id="item_6" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1744,19 +1853,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -1842,21 +1949,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -1955,7 +2062,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_25" data-origin="market">
+              <li class="item" id="item_7" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -1969,19 +2076,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -2067,21 +2172,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -2180,7 +2285,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_26" data-origin="market">
+              <li class="item" id="item_8" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2194,19 +2299,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -2292,21 +2395,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -2405,7 +2508,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_27" data-origin="market">
+              <li class="item" id="item_9" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2419,19 +2522,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -2517,21 +2618,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -2630,7 +2731,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_28" data-origin="market">
+              <li class="item" id="item_10" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2644,19 +2745,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -2742,21 +2841,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -2855,7 +2954,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_29" data-origin="market">
+              <li class="item" id="item_11" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -2869,19 +2968,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -2967,21 +3064,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -3080,7 +3177,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_30" data-origin="market">
+              <li class="item" id="item_12" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3094,19 +3191,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -3192,21 +3287,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -3305,7 +3400,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_31" data-origin="market">
+              <li class="item" id="item_13" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3319,19 +3414,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -3417,21 +3510,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -3530,7 +3623,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_32" data-origin="market">
+              <li class="item" id="item_14" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3544,19 +3637,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -3642,21 +3733,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -3755,7 +3846,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_33" data-origin="market">
+              <li class="item" id="item_15" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3769,19 +3860,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -3867,21 +3956,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -3980,7 +4069,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_34" data-origin="market">
+              <li class="item" id="item_16" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -3994,19 +4083,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -4092,21 +4179,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -4205,7 +4292,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_35" data-origin="market">
+              <li class="item" id="item_17" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -4219,19 +4306,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -4317,21 +4402,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -4430,7 +4515,7 @@
                   </section>
                 </article>
               </li>
-              <li class="item" id="item_36" data-origin="market">
+              <li class="item" id="item_18" data-origin="market">
                 <div class="item__inner">
                   <div class="item__content">
                     <div class="item__img-wrapper">
@@ -4444,19 +4529,17 @@
                                137px" alt="">
                     </div>
                     <div class="item__about">
-                      <div class="item__about-row">
-                        <span class="item__first-index">ST</span>
-                        <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-                          animi ad reiciendis hic nisi a sed quod!</span>
-                        <span class="item__second-index">SI</span>
+                      <div class="about-item">
+                        <span class="about-item__info">ST</span>
+                        <span class="about-item__info">Some info</span>
+                        <span class="about-item__info">SI</span>
                       </div>
                       <b class="item__price">$ 7 851.31</b>
                     </div>
-                    <div class="item__icons">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
+                    <div class="item-icons">
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-1.png" srcset="images/x2/items-icon-1-2x.png 2x,
                                 images/x3/items-icon-1-3x.png 3x" sizes="20px" alt="">
-                      <img class="item__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
+                      <img class="item-icons__icon" width="20" height="20" src="images/items/items-icon-2.png" srcset="images/x2/items-icon-2-2x.png 2x,
                                 images/x3/items-icon-2-3x.png 3x" sizes="20px" alt="">
                     </div>
                     <div class="item__overlay">
@@ -4542,21 +4625,21 @@
                         <caption class="visually-hidden">Information about item</caption>
                         <tr class="item-info__row">
                           <th class="item-info__head">type</th>
-                          <td class="item-info__data">Stiletto Knife / <span class="item-info__quality">Factory
+                          <td class="item-info__data type-value">Stiletto Knife / <span class="quality-info">Factory
                               New</span>
                           </td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">rarity</th>
-                          <td class="item-info__data">Covert</td>
+                          <td class="item-info__data rarity-value">Covert</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">pattern</th>
-                          <td class="item-info__data">301</td>
+                          <td class="item-info__data pattern-value">301</td>
                         </tr>
                         <tr class="item-info__row">
                           <th class="item-info__head">float</th>
-                          <td class="item-info__data" id="float-value">0.05937123</td>
+                          <td class="item-info__data float-value">0.05937123</td>
                         </tr>
                       </table>
                       <div class="float-scale">
@@ -5077,27 +5160,42 @@
     </div>
   </div>
 
-  <div class="modal modal--active cart modal-shadow">
-    <div class="modal__header">
-      <h2 class="cart__title">Cart</h2>
-      <button class="modal__close" type="button">
-        <span class="visually-hidden">Close modal popup</span>
-      </button>
-    </div>
-    <ul class="cart__list">
-      <li class="cart__item">
-        <div class="cart__item-img-wrapper">
-          <img class="cart__item-img" width="" height="" src="" srcset="" sizes="" alt="">
+  <div class="modal cart-modal modal-shadow">
+    <div class="cart-modal__inner">
+      <div class="modal__header">
+        <h2 class="cart-modal__title">Cart</h2>
+        <button class="modal__close" type="button">
+          <span class="visually-hidden">Close modal popup</span>
+        </button>
+      </div>
+      <p class="cart-modal__placeholder">you don’t have any items in your cart yet :’(</p>
+      <form class="cart-modal__form" id="cart_modal_form" action="#">
+        <ul class="cart-modal__list"></ul>
+      </form>
+      <div class="warning">
+        <p class="warning__text">
+          <b class="warning__title">warning:</b> some warning. Do smth, etc Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quaerat unde qui soluta! Fugiat molestiae error consequuntur quia labore ex. Quaerat
+          eligendi porro vitae! Praesentium cupiditate quam maxime, porro error enim.
+        </p>
+        <div class="warning__info">
+          <form class="small-form warning__form warning__info-item" action="#">
+            <input class="small-form__input input" type="text" placeholder="sell price">
+            <button class="small-form__button btn" type="submit">sell</button>
+          </form>
+          <button class="warning__button btn warning__info-item" type="button">some button</button>
         </div>
-        <!-- <div class="item__about-row">
-          <span class="item__first-index">ST</span>
-          <span class="item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Facilis modi ipsam error blanditiis natus saepe quia, ipsa nobis earum sapiente velit magnam,
-            animi ad reiciendis hic nisi a sed quod!</span>
-          <span class="item__second-index">SI</span>
-        </div> -->
-      </li>
-    </ul>
+      </div>
+      <div class="cart-block-wrapper">
+        <div class="cart-block">
+          <span class="cart-block__link">
+            <span class="items-amount">0</span>
+          </span>
+          <b class="cart-block__sum items-price">$ 0</b>
+          <button class="cart-block__button btn" type="submit" form="cart_modal_form">buy</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- svg color filters -->
