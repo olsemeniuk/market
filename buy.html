@@ -96,7 +96,7 @@
               </div>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a class="menu__link" href="/buy.html">buy</a>
+                  <a class="menu__link menu__link--active" href="#">buy</a>
                 </li>
                 <li class="menu__item">
                   <a class="menu__link" href="/sell.html">sell</a>
@@ -105,7 +105,7 @@
                   <a class="menu__link" href="/deal.html">trade</a>
                 </li>
                 <li class="menu__item">
-                  <a class="menu__link menu__link--active" href="#">info</a>
+                  <a class="menu__link" href="/info.html">info</a>
                 </li>
               </ul>
               <div class="menu__footer">
@@ -173,7 +173,7 @@
                 <input class="dropdown__input" id="language_input" type="text" name="laguageInput" aria-hidden="true">
               </form>
             </div>
-            <div class="dropdown dropdown-currency" id="currency_dropdown">
+            <div class="dropdown dropdown--dark dropdown-currency" id="currency_dropdown">
               <button class="dropdown__button" type="button">
                 <span class="dropdown__text-wrapper">
                   <span class="dropdown__text"></span>
@@ -206,167 +206,313 @@
     </div>
   </header>
   <main class="main">
-    <section class="info">
-      <div class="container">
-        <div class="info__inner">
-          <div class="info__aside">
-            <ul class="info__menu page-block">
-              <li class="info__menu-item">
-                <a class="info__menu-link" href="#first_section">some informational page #1</a>
-              </li>
-              <li class="info__menu-item">
-                <a class="info__menu-link" href="#second_section">some informational page #2</a>
-              </li>
-              <li class="info__menu-item">
-                <a class="info__menu-link" href="#third_section">another informational page #3</a>
-              </li>
-              <li class="info__menu-item">
-                <a class="info__menu-link" href="#fourth_section">one more page #4</a>
-              </li>
-              <li class="info__menu-item">
-                <a class="info__menu-link" href="#fifth_section">one more page #5</a>
-              </li>
-            </ul>
-            <div class="info__pages">
-              <a class="info__pages-link page-block info__pages-link--current" href="#">some page #1</a>
-              <a class="info__pages-link page-block" href="#">some page #2</a>
-              <a class="info__pages-link page-block" href="#">some page #3</a>
-            </div>
-          </div>
-          <article class="info__content">
-            <section class="info__content-section" id="first_section">
-              <h2 class="info__content-title info__content-title--main">some informational page #1</h2>
-              <p class="info__content-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-              </p>
-            </section>
-            <section class="info__content-section" id="second_section">
-              <h3 class="info__content-title">some informational page #2</h3>
-              <p class="info__content-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-              </p>
-              <figure class="info__poster-wrapper">
-                <img class="info__poster" width="1130" height="285" src="images/info/info-poster.jpg" srcset="images/x2/info-poster-2x.jpg 2x,
-                          images/x3/info-poster-3x.jpg 3x" sizes="(max-width: 500px) calc(100vw - 20px),
-                         (max-width: 700px) calc(100vw - 30px),
-                         (max-width: 1430px) calc(100vw - 300px),
-                         1130px" alt="">
-                <figcaption class="info__poster-caption">Lorem Ipsum</figcaption>
-              </figure>
-            </section>
-            <section class="info__content-section" id="third_section">
-              <h3 class="info__content-title">another informational page #3</h3>
-              <p class="info__content-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil nesciunt hic tenetur recusandae sit
-                deleniti aliquid, itaque rem ab iure eius cumque facilis architecto voluptatum, modi, repudiandae harum
-                quis minima?
-                Consequatur voluptatum natus, adipisci earum, maxime provident sint veniam ex atque accusantium dicta
-                nostrum, fugit eaque sit iure laborum nobis consectetur eum saepe rem assumenda. Culpa similique et
-                illum repudiandae.
-                Mollitia quidem sed ullam accusamus ad facilis veniam quibusdam nesciunt consectetur error explicabo
-                dicta aspernatur, impedit, iusto minima, sapiente magni fugit adipisci. Ipsum adipisci nam soluta quo ex
-                in eveniet.
-                Dolore, molestias. Ullam a neque in. Consequatur in quis iste sequi voluptatum, unde atque? Explicabo
-                nisi numquam, eius corrupti distinctio facilis enim repudiandae asperiores atque suscipit magnam,
-                officiis veniam temporibus?
-                Eligendi dolor sit voluptates tempora officiis porro, asperiores temporibus tenetur obcaecati, quisquam,
-                expedita error dolore. Ipsam provident vitae tempora accusamus natus sequi, est possimus necessitatibus
-                vero aliquid ullam aliquam ratione.
-              </p>
-              <p class="info__content-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-              </p>
-            </section>
-            <section class="info__content-section" id="fourth_section">
-              <h3 class="info__content-title">one more page #4</h3>
-              <p class="info__content-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil nesciunt hic tenetur recusandae sit
-                deleniti aliquid, itaque rem ab iure eius cumque facilis architecto voluptatum, modi, repudiandae harum
-                quis minima?
-                Consequatur voluptatum natus, adipisci earum, maxime provident sint veniam ex atque accusantium dicta
-                nostrum, fugit eaque sit iure laborum nobis consectetur eum saepe rem assumenda. Culpa similique et
-                illum repudiandae.
-                Mollitia quidem sed ullam accusamus ad facilis veniam quibusdam nesciunt consectetur error explicabo
-                dicta aspernatur, impedit, iusto minima, sapiente magni fugit adipisci. Ipsum adipisci nam soluta quo ex
-                in eveniet.
-                Dolore, molestias. Ullam a neque in. Consequatur in quis iste sequi voluptatum, unde atque? Explicabo
-                nisi numquam, eius corrupti distinctio facilis enim repudiandae asperiores atque suscipit magnam,
-                officiis veniam temporibus?
-                Eligendi dolor sit voluptates tempora officiis porro, asperiores temporibus tenetur obcaecati, quisquam,
-                expedita error dolore. Ipsam provident vitae tempora accusamus natus sequi, est possimus necessitatibus
-                vero aliquid ullam aliquam ratione.
-              </p>
-            </section>
-            <section class="info__content-section" id="fifth_section">
-              <h3 class="info__content-title">one more page #5</h3>
-              <p class="info__content-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
-                lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices
-                gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil nesciunt hic tenetur recusandae sit
-                deleniti aliquid, itaque rem ab iure eius cumque facilis architecto voluptatum, modi, repudiandae harum
-                quis minima?
-                Consequatur voluptatum natus, adipisci earum, maxime provident sint veniam ex atque accusantium dicta
-                nostrum, fugit eaque sit iure laborum nobis consectetur eum saepe rem assumenda. Culpa similique et
-                illum repudiandae.
-                Mollitia quidem sed ullam accusamus ad facilis veniam quibusdam nesciunt consectetur error explicabo
-                dicta aspernatur, impedit, iusto minima, sapiente magni fugit adipisci. Ipsum adipisci nam soluta quo ex
-                in eveniet.
-                Dolore, molestias. Ullam a neque in. Consequatur in quis iste sequi voluptatum, unde atque? Explicabo
-                nisi numquam, eius corrupti distinctio facilis enim repudiandae asperiores atque suscipit magnam,
-                officiis veniam temporibus?
-                Eligendi dolor sit voluptates tempora officiis porro, asperiores temporibus tenetur obcaecati, quisquam,
-                expedita error dolore. Ipsam provident vitae tempora accusamus natus sequi, est possimus necessitatibus
-                vero aliquid ullam aliquam ratione.
-              </p>
-              <div class="info__img-wrapper">
-                <img class="info__img" width="1030" height="451" src="images/info/info-img.jpg" srcset="images/x2/info-img-2x.jpg 2x,
-                          images/x3/info-img-3x.jpg 3x" sizes="(max-width: 500px) calc(100vw - 90px),
-                         (max-width: 700px) calc(100vw - 100px),
-                         (max-width: 1430px) calc(100vw - 370px),
-                         1030px" alt="">
-              </div>
-            </section>
-          </article>
-        </div>
+    <div class="container">
+      <div class="message page-block">
+        <p class="message__text">Please, approve automated created trades. Be <strong class="message__text-attention">careful</strong> and approve only right trades, that propose items <strong class="message__text-attention">to you!</strong> After that you’ll have to wait approve’s by sellers.</p>
       </div>
-    </section>
+      <ul class="buy-list">
+        <li class="buy-item cart-item" id="test-approve-1">
+          <div class="item-icons">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-1.png"
+              srcset="images/x2/items-icon-1-2x.png 2x,
+                      images/x3/items-icon-1-3x.png 3x"  
+              sizes="20px" 
+              alt="">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-2.png" 
+              srcset="images/x2/items-icon-2-2x.png 2x,
+                      images/x3/items-icon-2-3x.png 3x" 
+              sizes="20px" 
+              alt="">
+          </div>
+          <div class="cart-item__img-wrapper">
+            <img 
+              class="cart-item__img" 
+              width="132" 
+              height="80" 
+              src="/images/items/golden-gun.png"
+              srcset="" 
+              sizes="90" 
+              alt="">
+          </div>
+          <div class="about-item">
+            <span class="about-item__info">ST Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque doloribus, obcaecati quaerat velit ex recusandae molestias ducimus quidem nostrum rerum natus aut eum quas magnam facere, est quasi odio.</span>
+            <span class="about-item__info">Some info Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque doloribus, obcaecati quaerat velit ex recusandae molestias ducimus quidem nostrum rerum natus aut eum quas magnam facere, est quasi odio.</span>
+            <span class="about-item__info">SI Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque doloribus, obcaecati quaerat velit ex recusandae molestias ducimus quidem nostrum rerum natus aut eum quas magnam facere, est quasi odio.</span>
+          </div>
+          <dl class="cart-item__info">
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">type:</dt>
+                <dd class="cart-item__info-detail">Stiletto Knife / <span class="quality-info">Factory New</span></dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">rarity:</dt>
+                <dd class="cart-item__info-detail">Covert</dd>
+              </div>
+            </div>
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">pattern:</dt>
+                <dd class="cart-item__info-detail">301</dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">float:</dt>
+                <dd class="cart-item__info-detail">0.05937123</dd>
+              </div>
+            </div>
+          </dl>
+          <b class="cart-item__price">$ 7 851.31</b>
+        </li>
+        <li class="buy-item cart-item" id="test-approve-2">
+          <div class="item-icons">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-1.png"
+              srcset="images/x2/items-icon-1-2x.png 2x,
+                      images/x3/items-icon-1-3x.png 3x"  
+              sizes="20px" 
+              alt="">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-2.png" 
+              srcset="images/x2/items-icon-2-2x.png 2x,
+                      images/x3/items-icon-2-3x.png 3x" 
+              sizes="20px" 
+              alt="">
+          </div>
+          <div class="cart-item__img-wrapper">
+            <img 
+              class="cart-item__img" 
+              width="132" 
+              height="80" 
+              src="/images/items/golden-gun.png"
+              srcset="" 
+              sizes="90" 
+              alt="">
+          </div>
+          <div class="about-item">
+            <span class="about-item__info">ST</span>
+            <span class="about-item__info">Some info</span>
+            <span class="about-item__info">SI</span>
+          </div>
+          <dl class="cart-item__info">
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">type:</dt>
+                <dd class="cart-item__info-detail">Stiletto Knife / <span class="quality-info">Factory New</span></dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">rarity:</dt>
+                <dd class="cart-item__info-detail">Covert</dd>
+              </div>
+            </div>
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">pattern:</dt>
+                <dd class="cart-item__info-detail">301</dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">float:</dt>
+                <dd class="cart-item__info-detail">0.05937123</dd>
+              </div>
+            </div>
+          </dl>
+          <b class="cart-item__price">$ 7 851.31</b>
+        </li>
+        <li class="buy-item cart-item" id="test-approve-3">
+          <div class="item-icons">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-1.png"
+              srcset="images/x2/items-icon-1-2x.png 2x,
+                      images/x3/items-icon-1-3x.png 3x"  
+              sizes="20px" 
+              alt="">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-2.png" 
+              srcset="images/x2/items-icon-2-2x.png 2x,
+                      images/x3/items-icon-2-3x.png 3x" 
+              sizes="20px" 
+              alt="">
+          </div>
+          <div class="cart-item__img-wrapper">
+            <img 
+              class="cart-item__img" 
+              width="132" 
+              height="80" 
+              src="/images/items/golden-gun.png"
+              srcset="" 
+              sizes="90" 
+              alt="">
+          </div>
+          <div class="about-item">
+            <span class="about-item__info">ST</span>
+            <span class="about-item__info">Some info</span>
+            <span class="about-item__info">SI</span>
+          </div>
+          <dl class="cart-item__info">
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">type:</dt>
+                <dd class="cart-item__info-detail">Stiletto Knife / <span class="quality-info">Factory New</span></dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">rarity:</dt>
+                <dd class="cart-item__info-detail">Covert</dd>
+              </div>
+            </div>
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">pattern:</dt>
+                <dd class="cart-item__info-detail">301</dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">float:</dt>
+                <dd class="cart-item__info-detail">0.05937123</dd>
+              </div>
+            </div>
+          </dl>
+          <b class="cart-item__price">$ 7 851.31</b>
+        </li>
+        <li class="buy-item cart-item" id="test-approve-4">
+          <div class="item-icons">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-1.png"
+              srcset="images/x2/items-icon-1-2x.png 2x,
+                      images/x3/items-icon-1-3x.png 3x"  
+              sizes="20px" 
+              alt="">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-2.png" 
+              srcset="images/x2/items-icon-2-2x.png 2x,
+                      images/x3/items-icon-2-3x.png 3x" 
+              sizes="20px" 
+              alt="">
+          </div>
+          <div class="cart-item__img-wrapper">
+            <img 
+              class="cart-item__img" 
+              width="132" 
+              height="80" 
+              src="/images/items/golden-gun.png"
+              srcset="" 
+              sizes="90" 
+              alt="">
+          </div>
+          <div class="about-item">
+            <span class="about-item__info">ST</span>
+            <span class="about-item__info">Some info</span>
+            <span class="about-item__info">SI</span>
+          </div>
+          <dl class="cart-item__info">
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">type:</dt>
+                <dd class="cart-item__info-detail">Stiletto Knife / <span class="quality-info">Factory New</span></dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">rarity:</dt>
+                <dd class="cart-item__info-detail">Covert</dd>
+              </div>
+            </div>
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">pattern:</dt>
+                <dd class="cart-item__info-detail">301</dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">float:</dt>
+                <dd class="cart-item__info-detail">0.05937123</dd>
+              </div>
+            </div>
+          </dl>
+          <b class="cart-item__price">$ 7 851.31</b>
+        </li>
+        <li class="buy-item cart-item" id="test-approve-5">
+          <div class="item-icons">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-1.png"
+              srcset="images/x2/items-icon-1-2x.png 2x,
+                      images/x3/items-icon-1-3x.png 3x"  
+              sizes="20px" 
+              alt="">
+            <img 
+              class="item-icons__icon" 
+              width="20" 
+              height="20" 
+              src="images/items/items-icon-2.png" 
+              srcset="images/x2/items-icon-2-2x.png 2x,
+                      images/x3/items-icon-2-3x.png 3x" 
+              sizes="20px" 
+              alt="">
+          </div>
+          <div class="cart-item__img-wrapper">
+            <img 
+              class="cart-item__img" 
+              width="132" 
+              height="80" 
+              src="/images/items/golden-gun.png"
+              srcset="" 
+              sizes="90" 
+              alt="">
+          </div>
+          <div class="about-item">
+            <span class="about-item__info">ST</span>
+            <span class="about-item__info">Some info</span>
+            <span class="about-item__info">SI</span>
+          </div>
+          <dl class="cart-item__info">
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">type:</dt>
+                <dd class="cart-item__info-detail">Stiletto Knife / <span class="quality-info">Factory New</span></dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">rarity:</dt>
+                <dd class="cart-item__info-detail">Covert</dd>
+              </div>
+            </div>
+            <div class="cart-item__info-row">
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">pattern:</dt>
+                <dd class="cart-item__info-detail">301</dd>
+              </div>
+              <div class="cart-item__info-item">
+                <dt class="cart-item__info-term">float:</dt>
+                <dd class="cart-item__info-detail">0.05937123</dd>
+              </div>
+            </div>
+          </dl>
+          <b class="cart-item__price">$ 7 851.31</b>
+        </li>
+      </ul>
+    </div>
   </main>
   <footer class="footer">
     <div class="container">
@@ -413,7 +559,8 @@
           <fieldset class="payment-form__section payment-form__section--items-center">
             <label class="payment-form__label payment-form__label-amount" for="deposit_amount_front">
               amount:
-              <input class="payment-form__input payment-form__front-amount-input input input--number" id="deposit_amount_front" type="text" name="depositInput" inputmode="numeric" placeholder="0">
+              <input class="payment-form__input payment-form__front-amount-input input input--number"
+                id="deposit_amount_front" type="text" name="depositInput" inputmode="numeric" placeholder="0">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -498,12 +645,14 @@
           <fieldset class="payment-form__section payment-form__section-step-two payment-form__section--items-left">
             <label class="payment-form__label payment-form__label-amount" for="deposit_amount_back">
               amount:
-              <input class="payment-form__input payment-form__back-amount-input input input--number" id="deposit_amount_back" type="text" inputmode="numeric">
+              <input class="payment-form__input payment-form__back-amount-input input input--number"
+                id="deposit_amount_back" type="text" inputmode="numeric">
               <span class="payment-form__input-dollar">$</span>
             </label>
             <label class="payment-form__label payment-form__label-amount">
               amount:
-              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000"
+                inputmode="numeric" placeholder="up to 50000">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -546,6 +695,7 @@
       </div>
     </form>
   </div>
+
   <div class="modal payment-modal withdraw-modal">
     <form class="payment-form flip" action="#">
       <div class="flip__front modal-shadow">
@@ -559,7 +709,8 @@
           <fieldset class="payment-form__section payment-form__section--items-center">
             <label class="payment-form__label payment-form__label-amount" for="withdraw_amount_front">
               amount:
-              <input class="payment-form__input payment-form__front-amount-input input input--number" id="withdraw_amount_front" type="text" name="withdrawInput" inputmode="numeric" placeholder="0">
+              <input class="payment-form__input payment-form__front-amount-input input input--number"
+                id="withdraw_amount_front" type="text" name="withdrawInput" inputmode="numeric" placeholder="0">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -644,12 +795,14 @@
           <fieldset class="payment-form__section payment-form__section-step-two payment-form__section--items-left">
             <label class="payment-form__label payment-form__label-amount" for="withdraw_amount_back">
               amount:
-              <input class="payment-form__input payment-form__back-amount-input input input--number" id="withdraw_amount_back" type="text" inputmode="numeric">
+              <input class="payment-form__input payment-form__back-amount-input input input--number"
+                id="withdraw_amount_back" type="text" inputmode="numeric">
               <span class="payment-form__input-dollar">$</span>
             </label>
             <label class="payment-form__label payment-form__label-amount">
               amount:
-              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000" inputmode="numeric" placeholder="up to 50000">
+              <input class="payment-form__input input input--number" type="text" data-min="10" data-max="50000"
+                inputmode="numeric" placeholder="up to 50000">
               <span class="payment-form__input-dollar">$</span>
             </label>
           </fieldset>
@@ -692,6 +845,7 @@
       </div>
     </form>
   </div>
+
   <div class="modal auth">
     <div class="flip">
       <div class="flip__front modal-shadow">
@@ -717,15 +871,16 @@
             <button class="auth__button auth__button--big btn flip__button auth__button--transparent" type="button">
               <span class="auth__button-text icon icon--registration">registration</span>
             </button>
-            <button class="auth__button auth__button--small btn auth__button--transparent icon icon--key" type="button"></button>
+            <button class="auth__button auth__button--small btn auth__button--transparent icon icon--key"
+              type="button"></button>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
-              <button class="auth__button auth__button--big btn" type="button">
-                <span class="auth__button-text icon icon--steam">login with Steam</span>
-              </button>
-              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-              <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--big btn" type="button">
+              <span class="auth__button-text icon icon--steam">login with Steam</span>
+            </button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
           </fieldset>
         </form>
       </div>
@@ -758,7 +913,8 @@
             <button class="auth__button flip__button auth__button--big auth__button--transparent btn" type="button">
               <span class="auth__button-text icon icon--login">login</span>
             </button>
-            <button class="auth__button auth__button--small btn auth__button--transparent icon icon--key" type="button"></button>
+            <button class="auth__button auth__button--small btn auth__button--transparent icon icon--key"
+              type="button"></button>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
             <button class="auth__button auth__button--big btn" type="button">
@@ -773,13 +929,54 @@
     </div>
   </div>
 
+  <div class="modal cart-modal modal-shadow">
+    <div class="cart-modal__inner">
+      <div class="modal__header">
+        <h2 class="cart-modal__title">Cart</h2>
+        <button class="modal__close" type="button">
+          <span class="visually-hidden">Close modal popup</span>
+        </button>
+      </div>
+      <p class="cart-modal__placeholder">you don’t have any items in your cart yet :’(</p>
+      <form class="cart-modal__form" id="cart_modal_form" action="#">
+        <ul class="cart-modal__list"></ul>
+      </form>
+      <div class="warning">
+        <p class="warning__text">
+          <b class="warning__title">warning:</b> some warning. Do smth, etc Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Quaerat unde qui soluta! Fugiat molestiae error consequuntur quia labore ex. Quaerat
+          eligendi porro vitae! Praesentium cupiditate quam maxime, porro error enim.
+        </p>
+        <div class="warning__info">
+          <form class="small-form warning__form warning__info-item" action="#">
+            <input class="small-form__input input" type="text" placeholder="sell price">
+            <button class="small-form__button btn" type="submit">sell</button>
+          </form>
+          <button class="warning__button btn warning__info-item" type="button">some button</button>
+        </div>
+      </div>
+      <div class="cart-block-wrapper">
+        <div class="cart-block">
+          <span class="cart-block__link">
+            <span class="items-amount">0</span>
+          </span>
+          <b class="cart-block__sum items-price">$ 0</b>
+          <button class="cart-block__button btn" type="submit" form="cart_modal_form">buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- svg color filters -->
   <div class="visually-hidden" aria-hidden="true">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
 
       <!-- #5B3889 -->
       <filter id="color_5B3889">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.36
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.36
                   0 0 0 0 0.22
                   0 0 0 0 0.54
                   0 0 0 1 0">
@@ -789,7 +986,10 @@
 
       <!-- #72608a -->
       <filter id="color_72608a">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.45
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.45
                   0 0 0 0 0.38
                   0 0 0 0 0.54
                   0 0 0 1 0">
@@ -799,7 +999,10 @@
 
       <!-- #f2f2f3 -->
       <filter id="color_f2f2f3">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.95
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.95
                   0 0 0 0 0.95
                   0 0 0 0 0.95
                   0 0 0 1 0">
@@ -808,15 +1011,41 @@
 
       <!-- #acacbf -->
       <filter id="color_acacbf">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.67
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.67
                   0 0 0 0 0.67
                   0 0 0 0 0.75
                   0 0 0 1 0">
         </fecolormatrix>
       </filter>
+
+      <!-- #fc0a10 -->
+      <filter id="color_fc0a10">
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.99
+                  0 0 0 0 0.04
+                  0 0 0 0 0.06
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+      
+      <!-- #1fc903 -->
+      <filter id="color_1fc903">
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.12
+                  0 0 0 0 0.79
+                  0 0 0 0 0.01
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
     </svg>
   </div>
-
 
   <script src="libs/js/nouislider.min.js"></script>
   <script src="libs/js/simplebar.min.js"></script>

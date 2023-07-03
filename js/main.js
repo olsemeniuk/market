@@ -3276,6 +3276,122 @@ function manageAddToCartAnimation(item) {
 // =======================
 
 
+// ====================
+// approve trade start
+testApproveTrade();
+
+function testApproveTrade() {
+  manageApproveTrade({
+    itemID: 'test-approve-1',
+    title: 'Waiting trade approve by seller',
+    text: 'huiasdg7890t1geh23ids923gj',
+    approveType: 'neutral',
+    timeInSeconds: 346
+  });
+
+  manageApproveTrade({
+    itemID: 'test-approve-2',
+    title: 'Waiting trade approve by you',
+    text: 'huiasdg7890t1geh23ids923gj',
+    approveType: 'warning',
+    timeInSeconds: 346
+  });
+
+  manageApproveTrade({
+    itemID: 'test-approve-3',
+    title: 'You haven’t approved the trade',
+    text: 'There could be restrictions for your account',
+    approveType: 'error'
+  });
+
+  manageApproveTrade({
+    itemID: 'test-approve-4',
+    title: 'Seller haven’t approved the trade',
+    text: 'Item price will be returned to you',
+    approveType: 'neutral'
+  });
+
+  manageApproveTrade({
+    itemID: 'test-approve-5',
+    title: 'DONE!',
+    text: 'The item is yours now',
+    approveType: 'success'
+  });
+}
+
+function manageApproveTrade(options) {
+  const item = document.querySelector(`#${options.itemID}`);
+  const initialTime = options.timeInSeconds;
+
+  let approve = item.querySelector('.trade-approve');
+  if (!approve) {
+    approve = createApproveBlock();
+    item.append(approve);
+  }
+
+  if (options.timeInSeconds) {
+    approve.classList.add('loader');
+    const timerHTML = approve.querySelector('.trade-approve__time');
+    updateCountdown(timerHTML);
+  }
+
+  function createApproveBlock() {
+    const approve = document.createElement('div');
+    approve.className = 'trade-approve';
+    approve.innerHTML = `<b class="trade-approve__title">${options.title}</b>
+                         <span class="trade-approve__text">${options.text}</span>
+                         <div class="trade-approve__time"></div>`;
+
+    switch (options.approveType) {
+      case 'neutral':
+        approve.classList.add('trade-approve--neutral');
+        break;
+      case 'warning':
+        approve.classList.add('trade-approve--warning');
+        break;
+      case 'error':
+        approve.classList.add('trade-approve--error');
+        break;
+      case 'success':
+        approve.classList.add('trade-approve--success');
+        break;
+    }
+
+    return approve;
+  }
+
+  function countdown(time) {
+    let minutes = Math.floor(time / 60);
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+    let seconds = time % 60;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutes}:${seconds}`;
+  }
+
+  function updateCountdown(timerHTML) {
+    countdownActions(timerHTML);
+    const intervalID = setInterval(() => {
+      countdownActions(timerHTML);
+      if (options.timeInSeconds < 0) {
+        clearInterval(intervalID);
+        approve.classList.remove('loader');
+      }
+    }, 1000);
+
+    return intervalID;
+  }
+
+  function countdownActions(timerHTML) {
+    timerHTML.innerHTML = countdown(options.timeInSeconds);
+    const timeLeft = ((options.timeInSeconds - 1) * 100) / (initialTime - 1);
+    item.style.setProperty('--timer-line', `${timeLeft}%`);
+    options.timeInSeconds--;
+  }
+}
+// approve trade end
+// ====================
+
+
 // =====================
 // chart start
 const testChartData = [
