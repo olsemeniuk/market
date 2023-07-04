@@ -3,8 +3,8 @@
    ===================*/
 @font-face {
   font-family: 'BrisaSans';
-  src: url('/fonts/BrisaSans-Regular.woff2') format('woff2'),
-    url('/fonts/BrisaSans-Regular.woff') format('woff');
+  src: url('../fonts/BrisaSans-Regular.woff2') format('woff2'),
+    url('../fonts/BrisaSans-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,8 +12,8 @@
 
 @font-face {
   font-family: 'BrisaSans';
-  src: url('/fonts/BrisaSans-Medium.woff2') format('woff2'),
-    url('/fonts/BrisaSans-Medium.woff') format('woff');
+  src: url('../fonts/BrisaSans-Medium.woff2') format('woff2'),
+    url('../fonts/BrisaSans-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -21,8 +21,8 @@
 
 @font-face {
   font-family: 'BrisaSans';
-  src: url('/fonts/BrisaSans-Bold.woff2') format('woff2'),
-    url('/fonts/BrisaSans-Bold.woff') format('woff');
+  src: url('../fonts/BrisaSans-Bold.woff2') format('woff2'),
+    url('../fonts/BrisaSans-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
