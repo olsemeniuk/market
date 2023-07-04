@@ -6,3 +6,4 @@
 - [sell](https://olsemeniuk.github.io/market/sell.html);
 - [info](https://olsemeniuk.github.io/market/info.html);
 - [account](https://olsemeniuk.github.io/market/account.html);
+- [buy](https://olsemeniuk.github.io/market/buy.html);

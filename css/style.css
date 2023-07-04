@@ -4160,8 +4160,6 @@ p {
   max-width: 50px;
 }
 
-.notification__info {}
-
 .notification__text {
   margin-bottom: 15px;
 }
@@ -4215,8 +4213,6 @@ p {
 .cart-modal__list {
   margin-bottom: 10px;
 }
-
-.cart-modal__item {}
 
 .cart-modal__item+.cart-modal__item {
   margin-top: 10px;
@@ -4378,8 +4374,6 @@ p {
   margin-bottom: 20px;
   padding: 17px 20px;
 }
-
-.massage__text {}
 
 .message__text-attention {
   text-transform: uppercase;
