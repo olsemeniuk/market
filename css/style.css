@@ -3,8 +3,8 @@
    ===================*/
 @font-face {
   font-family: 'BrisaSans';
-  src: url('../fonts/BrisaSans-Regular.woff2') format('woff2'),
-    url('../fonts/BrisaSans-Regular.woff') format('woff');
+  src: url('/fonts/BrisaSans-Regular.woff2') format('woff2'),
+    url('/fonts/BrisaSans-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -12,8 +12,8 @@
 
 @font-face {
   font-family: 'BrisaSans';
-  src: url('../fonts/BrisaSans-Medium.woff2') format('woff2'),
-    url('../fonts/BrisaSans-Medium.woff') format('woff');
+  src: url('/fonts/BrisaSans-Medium.woff2') format('woff2'),
+    url('/fonts/BrisaSans-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -21,8 +21,8 @@
 
 @font-face {
   font-family: 'BrisaSans';
-  src: url('../fonts/BrisaSans-Bold.woff2') format('woff2'),
-    url('../fonts/BrisaSans-Bold.woff') format('woff');
+  src: url('/fonts/BrisaSans-Bold.woff2') format('woff2'),
+    url('/fonts/BrisaSans-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -31,7 +31,7 @@
 
 /* ==============================
       CUSTOM PROPERTIES
-     ==============================*/
+   ==============================*/
 
 :root {
   /* colors */
@@ -60,7 +60,7 @@
 
 /* ==============================
         GLOBAL STYLES
-       ==============================*/
+   ==============================*/
 
 html {
   box-sizing: border-box;
@@ -156,43 +156,43 @@ p {
 .icon--cart::before {
   width: 12px;
   height: 12px;
-  background-image: url("../images/icons/cart.svg");
+  background-image: url("/images/icons/cart.svg");
 }
 
 .icon--money::before {
   width: 13px;
   height: 13px;
-  background-image: url("../images/icons/money-icon.svg");
+  background-image: url("/images/icons/money-icon.svg");
 }
 
 .icon--deal::before {
   width: 15px;
   height: 12px;
-  background-image: url("../images/icons/deal-icon.svg");
+  background-image: url("/images/icons/deal-icon.svg");
 }
 
 .icon--star::before {
   width: 17px;
   height: 16px;
-  background-image: url("../images/icons/star-icon.svg");
+  background-image: url("/images/icons/star-icon.svg");
 }
 
 .icon--copy::before {
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/copy-icon.svg");
+  background-image: url("/images/icons/copy-icon.svg");
 }
 
 .icon--share::before {
   width: 17px;
   height: 17px;
-  background-image: url("../images/icons/share-icon.svg");
+  background-image: url("/images/icons/share-icon.svg");
 }
 
 .icon--link::before {
   width: 16px;
   height: 15px;
-  background-image: url("../images/icons/link-icon.svg");
+  background-image: url("/images/icons/link-icon.svg");
 }
 
 .icon--google::before {
@@ -228,7 +228,7 @@ p {
 
 /* ===================
       MAIN STYLES
-     ===================*/
+   ===================*/
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -388,7 +388,7 @@ p {
 .menu__open-btn {
   width: 31px;
   height: 26px;
-  background-image: url("../images/icons/menu-icon.svg");
+  background-image: url("/images/icons/menu-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -401,7 +401,7 @@ p {
   right: 30px;
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/close-btn.svg");
+  background-image: url("/images/icons/close-btn.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -496,7 +496,7 @@ p {
 .category__item-cs {
   width: 15px;
   height: 21px;
-  background-image: url("../images/icons/cs.svg");
+  background-image: url("/images/icons/cs.svg");
 }
 
 .category__item-cs::after {
@@ -511,7 +511,7 @@ p {
 .category__item-dota {
   width: 16px;
   height: 16px;
-  background-image: url("../images/icons/dota.svg");
+  background-image: url("/images/icons/dota.svg");
 }
 
 .category__item-dota:hover::after {
@@ -584,7 +584,7 @@ p {
   left: 8px;
   width: 10px;
   height: 6px;
-  background-image: url("../images/icons/arrow-bottom.svg");
+  background-image: url("/images/icons/arrow-bottom.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -832,7 +832,7 @@ p {
 .dropdown-sort .dropdown__text-wrapper::before {
   width: 20px;
   height: 17px;
-  background-image: url("../images/icons/sort.svg");
+  background-image: url("/images/icons/sort.svg");
 }
 
 .dropdown-sort .dropdown__list-button::before {
@@ -1032,7 +1032,7 @@ p {
   left: 50%;
   width: 12px;
   height: 12px;
-  background-image: url("../images/icons/thin-cross-icon.svg");
+  background-image: url("/images/icons/thin-cross-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1265,7 +1265,7 @@ p {
 .settings-btn {
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/settings.svg");
+  background-image: url("/images/icons/settings.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1348,7 +1348,7 @@ p {
   display: none;
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/search.svg");
+  background-image: url("/images/icons/search.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1379,7 +1379,7 @@ p {
   top: 10px;
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/search.svg");
+  background-image: url("/images/icons/search.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1403,7 +1403,7 @@ p {
   left: 50%;
   width: 12px;
   height: 12px;
-  background-image: url("../images/icons/thin-cross-icon.svg");
+  background-image: url("/images/icons/thin-cross-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1433,7 +1433,7 @@ p {
   position: relative;
   width: 19px;
   height: 20px;
-  background-image: url("../images/icons/cart.svg");
+  background-image: url("/images/icons/cart.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1470,7 +1470,7 @@ p {
 .filter__close-btn {
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/close-btn.svg");
+  background-image: url("/images/icons/close-btn.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1484,7 +1484,7 @@ p {
 .filter-btn {
   width: 26px;
   height: 20px;
-  background-image: url("../images/icons/filter-icon.svg");
+  background-image: url("/images/icons/filter-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1645,7 +1645,7 @@ p {
   width: 17px;
   height: 17px;
   opacity: 0;
-  background-image: url("../images/icons/star-icon.svg");
+  background-image: url("/images/icons/star-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -2760,7 +2760,7 @@ p {
   left: 50%;
   width: 12px;
   height: 12px;
-  background-image: url("../images/icons/thin-cross-icon.svg");
+  background-image: url("/images/icons/thin-cross-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-repeat: no-repeat;
@@ -2910,7 +2910,7 @@ p {
   left: 0;
   width: 12px;
   height: 12px;
-  background-image: url("../images/icons/thin-cross-icon.svg");
+  background-image: url("/images/icons/thin-cross-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -3100,6 +3100,7 @@ p {
   max-width: 55px;
   min-width: 55px;
   text-align: center;
+  animation: appearing 0.3s ease;
 }
 
 .deal__slider-img {
@@ -3436,7 +3437,7 @@ p {
   width: 14px;
   height: 14px;
   margin-left: 5px;
-  background-image: url("../images/icons/pencil-icon.svg");
+  background-image: url("/images/icons/pencil-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -3474,7 +3475,7 @@ p {
 .user__email-form--active .user__email-submit {
   display: block;
   margin-left: 15px;
-  background-image: url("../images/icons/check-icon.svg");
+  background-image: url("/images/icons/check-icon.svg");
 }
 
 .user__email-form--active .user__email-label {
@@ -3606,7 +3607,7 @@ p {
   left: 50%;
   width: 20px;
   height: 20px;
-  background-image: url("../images/icons/info-icon.svg");
+  background-image: url("/images/icons/info-icon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

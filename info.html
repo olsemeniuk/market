@@ -14,10 +14,10 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- css styles and libs -->
-  <link rel="stylesheet" href="libs/css/normalize.css">
-  <link rel="stylesheet" href="libs/css/nouislider.min.css">
-  <link rel="stylesheet" href="libs/css/simplebar.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/libs/css/normalize.css">
+  <link rel="stylesheet" href="/libs/css/nouislider.min.css">
+  <link rel="stylesheet" href="/libs/css/simplebar.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
               </button>
               <div class="menu__logo">
                 <a class="menu__logo-link" href="/index.html">
-                  <img width="153" height="49" src="images/logo.png" alt="Market4pro logo.">
+                  <img width="153" height="49" src="/images/logo.png" alt="Market4pro logo.">
                 </a>
               </div>
               <div class="menu__dropdowns">
@@ -140,8 +140,8 @@
         <div class="header__logo logo">
           <a class="logo__link" href="/index.html">
             <picture class="logo__img">
-              <source srcset="images/logo-small.png" media="(max-width: 900px)">
-              <img src="images/logo.png" alt="">
+              <source srcset="/images/logo-small.png" media="(max-width: 900px)">
+              <img src="/images/logo.png" alt="">
             </picture>
           </a>
         </div>
@@ -258,11 +258,18 @@
                 gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
               </p>
               <figure class="info__poster-wrapper">
-                <img class="info__poster" width="1130" height="285" src="images/info/info-poster.jpg" srcset="images/x2/info-poster-2x.jpg 2x,
-                          images/x3/info-poster-3x.jpg 3x" sizes="(max-width: 500px) calc(100vw - 20px),
+                <img 
+                  class="info__poster" 
+                  width="1130" 
+                  height="285" 
+                  src="/images/info/info-poster.jpg" 
+                  srcset="/images/x2/info-poster-2x.jpg 2x,
+                          /images/x3/info-poster-3x.jpg 3x" 
+                  sizes="(max-width: 500px) calc(100vw - 20px),
                          (max-width: 700px) calc(100vw - 30px),
                          (max-width: 1430px) calc(100vw - 300px),
-                         1130px" alt="">
+                         1130px" 
+                  alt="">
                 <figcaption class="info__poster-caption">Lorem Ipsum</figcaption>
               </figure>
             </section>
@@ -356,11 +363,18 @@
                 vero aliquid ullam aliquam ratione.
               </p>
               <div class="info__img-wrapper">
-                <img class="info__img" width="1030" height="451" src="images/info/info-img.jpg" srcset="images/x2/info-img-2x.jpg 2x,
-                          images/x3/info-img-3x.jpg 3x" sizes="(max-width: 500px) calc(100vw - 90px),
+                <img 
+                  class="info__img" 
+                  width="1030" 
+                  height="451" 
+                  src="/images/info/info-img.jpg" 
+                  srcset="/images/x2/info-img-2x.jpg 2x,
+                          /images/x3/info-img-3x.jpg 3x" 
+                  sizes="(max-width: 500px) calc(100vw - 90px),
                          (max-width: 700px) calc(100vw - 100px),
                          (max-width: 1430px) calc(100vw - 370px),
-                         1030px" alt="">
+                         1030px" 
+                  alt="">
               </div>
             </section>
           </article>
@@ -373,7 +387,7 @@
       <div class="footer__inner page-block">
         <div class="footer__logo">
           <a class="footer__logo-link" href="/index.html">
-            <img class="footer__logo-img" width="66" height="49" src="images/footer-logo.png" alt="">
+            <img class="footer__logo-img" width="66" height="49" src="/images/footer-logo.png" alt="">
           </a>
         </div>
         <div class="footer__content">
@@ -425,8 +439,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="visa" data-min="20" data-max="500" data-comission="3" data-payment-method="visa">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="40" height="42" src="images/payment-methods/visa.png"
-                      srcset="" sizes="40" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="40" 
+                      height="42" 
+                      src="/images/payment-methods/visa.png"
+                      sizes="40" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>3%</b></span>
                   </span>
                 </label>
@@ -436,8 +455,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/bitcoin.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -447,8 +471,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="webmoney" data-min="1" data-max="100" data-comission="0" data-payment-method="webmoney">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/webmoney.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/webmoney.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>0%</b></span>
                   </span>
                 </label>
@@ -458,8 +487,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/bitcoin.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -469,8 +503,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/bitcoin.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -571,8 +610,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="visa" data-min="20" data-max="500" data-comission="3" data-payment-method="visa">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="40" height="42" src="images/payment-methods/visa.png"
-                      srcset="" sizes="40" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="40" 
+                      height="42" 
+                      src="/images/payment-methods/visa.png"
+                      sizes="40" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>3%</b></span>
                   </span>
                 </label>
@@ -582,8 +626,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/bitcoin.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -593,8 +642,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="webmoney" data-min="1" data-max="100" data-comission="0" data-payment-method="webmoney">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/webmoney.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/webmoney.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>0%</b></span>
                   </span>
                 </label>
@@ -604,8 +658,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/bitcoin.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -615,8 +674,13 @@
                   <input class="payment-form__payment-radio visually-hidden" type="radio" name="paymentMethod"
                     value="bitcoin" data-min="100" data-max="10000" data-comission="4" data-payment-method="bitcoin">
                   <span class="payment-form__payment-button">
-                    <img class="payment-form__payment-img" width="42" height="42"
-                      src="images/payment-methods/bitcoin.png" srcset="" sizes="42" alt="">
+                    <img 
+                      class="payment-form__payment-img" 
+                      width="42" 
+                      height="42"
+                      src="/images/payment-methods/bitcoin.png" 
+                      sizes="42" 
+                      alt="">
                     <span class="payment-form__payment-text">commission: <b>4%</b></span>
                   </span>
                 </label>
@@ -779,27 +843,34 @@
 
       <!-- #5B3889 -->
       <filter id="color_5B3889">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.36
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.36
                   0 0 0 0 0.22
                   0 0 0 0 0.54
                   0 0 0 1 0">
         </fecolormatrix>
       </filter>
 
-
       <!-- #72608a -->
       <filter id="color_72608a">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.45
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.45
                   0 0 0 0 0.38
                   0 0 0 0 0.54
                   0 0 0 1 0">
         </fecolormatrix>
       </filter>
 
-
       <!-- #f2f2f3 -->
       <filter id="color_f2f2f3">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.95
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.95
                   0 0 0 0 0.95
                   0 0 0 0 0.95
                   0 0 0 1 0">
@@ -808,9 +879,36 @@
 
       <!-- #acacbf -->
       <filter id="color_acacbf">
-        <fecolormatrix color-interpolation-filters="sRGB" type="matrix" values="0 0 0 0 0.67
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.67
                   0 0 0 0 0.67
                   0 0 0 0 0.75
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+
+      <!-- #fc0a10 -->
+      <filter id="color_fc0a10">
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.99
+                  0 0 0 0 0.04
+                  0 0 0 0 0.06
+                  0 0 0 1 0">
+        </fecolormatrix>
+      </filter>
+      
+      <!-- #1fc903 -->
+      <filter id="color_1fc903">
+        <fecolormatrix 
+          color-interpolation-filters="sRGB" 
+          type="matrix" 
+          values="0 0 0 0 0.12
+                  0 0 0 0 0.79
+                  0 0 0 0 0.01
                   0 0 0 1 0">
         </fecolormatrix>
       </filter>
@@ -818,11 +916,11 @@
   </div>
 
 
-  <script src="libs/js/nouislider.min.js"></script>
-  <script src="libs/js/simplebar.min.js"></script>
-  <script src="libs/js/d3js.org_d3.v7.min.js"></script>
-  <script src="js/dropdown.js"></script>
-  <script src="js/main.js"></script>
+  <script src="/libs/js/nouislider.min.js"></script>
+  <script src="/libs/js/simplebar.min.js"></script>
+  <script src="/libs/js/d3js.org_d3.v7.min.js"></script>
+  <script src="/js/dropdown.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 
 </html>
