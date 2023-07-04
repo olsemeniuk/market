@@ -512,16 +512,23 @@ function manageChangeUserEmail() {
   const emailForm = document.querySelector('.user__email-form');
   if (!emailForm) return;
 
+  const emailFormInput = emailForm.querySelector('.user__email-input');
+  emailFormInput.addEventListener('input', () => {
+    const valueIsValid = manageEmailInputValidation(emailFormInput);
+    if (valueIsValid) {
+      emailForm.classList.remove('input--error')
+    }
+  })
+
   const emailFormButton = emailForm.querySelector('.user__email-button');
   emailFormButton.addEventListener('click', changeEmail);
 
   function changeEmail() {
     const emailFormLabel = emailForm.querySelector('.user__email-label');
-    const emailFormInput = emailForm.querySelector('.user__email-input');
     const valueIsValid = manageEmailInputValidation(emailFormInput);
 
     if (!valueIsValid) {
-      manageEmailInputAnimation();
+      manageEmailInputError();
       return;
 
     } else {
@@ -599,18 +606,14 @@ function manageEmailSubmit() {
     const valueIsValid = manageEmailInputValidation(emailFormInput);
     if (!valueIsValid) {
       event.preventDefault();
-      manageEmailInputAnimation();
+      manageEmailInputError();
     }
   }
 }
 
-function manageEmailInputAnimation() {
+function manageEmailInputError() {
   const emailForm = document.querySelector('.user__email-form');
-
-  emailForm.classList.add('user__email-form--error');
-  setTimeout(() => {
-    emailForm.classList.remove('user__email-form--error');
-  }, 600);
+  emailForm.classList.add('input--error');
 }
 // user email change end
 // =======================

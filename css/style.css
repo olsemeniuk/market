@@ -3455,10 +3455,6 @@ p {
   display: none;
 }
 
-.user__email-form--error {
-  animation: errorInput 0.2s 3 ease-in-out;
-}
-
 .user__email-form--active {
   border-color: var(--color-c);
 }
@@ -4545,26 +4541,6 @@ p {
     opacity: 1;
   }
 }
-
-
-@keyframes errorInput {
-  0% {
-    transform: rotateZ(-2deg);
-    border-color: var(--color-error);
-  }
-
-  50% {
-    transform: rotateZ(2deg);
-    border-color: var(--color-w);
-  }
-
-  100% {
-    transform: rotateZ(-2deg);
-    border-color: var(--color-error);
-  }
-}
-
-
 /* ===============
       ADAPTIVE
      ===============*/
