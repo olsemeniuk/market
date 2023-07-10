@@ -200,7 +200,9 @@
               </form>
             </div>
           </div>
-          <a class="header__sign-in open-auth-button btn" href="#">sign in</a>
+          <a class="header__sign-in open-auth-button btn" href="#">
+            <span>sign in</span>
+          </a>
         </div>
       </div>
     </div>
@@ -915,16 +917,24 @@
             <button class="auth__button auth__button--big btn flip__button auth__button--transparent" type="button">
               <span class="auth__button-text icon icon--registration">registration</span>
             </button>
-            <button class="auth__button auth__button--small btn auth__button--transparent icon icon--key"
-              type="button"></button>
+            <button class="auth__button auth__button--small btn auth__button--transparent"
+              type="button">
+              <span class="icon icon--key"></span>
+            </button>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
             <button class="auth__button auth__button--big btn" type="button">
               <span class="auth__button-text icon icon--steam">login with Steam</span>
             </button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small btn" type="button">
+              <span class="icon icon--google"></span>
+            </button>
+            <button class="auth__button auth__button--small btn" type="button">
+              <span class="icon icon--google"></span>
+            </button>
+            <button class="auth__button auth__button--small btn" type="button">
+              <span class="icon icon--google"></span>
+            </button>
           </fieldset>
         </form>
       </div>
@@ -957,56 +967,26 @@
             <button class="auth__button flip__button auth__button--big auth__button--transparent btn" type="button">
               <span class="auth__button-text icon icon--login">login</span>
             </button>
-            <button class="auth__button auth__button--small btn auth__button--transparent icon icon--key"
-              type="button"></button>
+            <button class="auth__button auth__button--small btn auth__button--transparent"
+              type="button">
+              <span class="icon icon--key"></span>
+            </button>
           </fieldset>
           <fieldset class="auth__block auth__buttons-block">
             <button class="auth__button auth__button--big btn" type="button">
               <span class="auth__button-text icon icon--steam">login with Steam</span>
             </button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
-            <button class="auth__button auth__button--small icon icon--google btn" type="button"></button>
+            <button class="auth__button auth__button--small btn" type="button">
+              <span class="icon icon--google"></span>
+            </button>
+            <button class="auth__button auth__button--small btn" type="button">
+              <span class="icon icon--google"></span>
+            </button>
+            <button class="auth__button auth__button--small btn" type="button">
+              <span class="icon icon--google"></span>
+            </button>
           </fieldset>
         </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal cart-modal modal-shadow">
-    <div class="cart-modal__inner">
-      <div class="modal__header">
-        <h2 class="cart-modal__title">Cart</h2>
-        <button class="modal__close" type="button">
-          <span class="visually-hidden">Close modal popup</span>
-        </button>
-      </div>
-      <p class="cart-modal__placeholder">you don’t have any items in your cart yet :’(</p>
-      <form class="cart-modal__form" id="cart_modal_form" action="#">
-        <ul class="cart-modal__list"></ul>
-      </form>
-      <div class="warning">
-        <p class="warning__text">
-          <b class="warning__title">warning:</b> some warning. Do smth, etc Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Quaerat unde qui soluta! Fugiat molestiae error consequuntur quia labore ex. Quaerat
-          eligendi porro vitae! Praesentium cupiditate quam maxime, porro error enim.
-        </p>
-        <div class="warning__info">
-          <form class="small-form warning__form warning__info-item" action="#">
-            <input class="small-form__input input" type="text" placeholder="sell price">
-            <button class="small-form__button btn" type="submit">sell</button>
-          </form>
-          <button class="warning__button btn warning__info-item" type="button">some button</button>
-        </div>
-      </div>
-      <div class="cart-block-wrapper">
-        <div class="cart-block">
-          <span class="cart-block__link">
-            <span class="items-amount">0</span>
-          </span>
-          <b class="cart-block__sum items-price">$ 0</b>
-          <button class="cart-block__button btn" type="submit" form="cart_modal_form">buy</button>
-        </div>
       </div>
     </div>
   </div>

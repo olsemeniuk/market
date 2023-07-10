@@ -2523,6 +2523,7 @@ function manageSellForm() {
     const getInput = form.querySelector('.sell-form__get-input');
     const inputs = [sellPriceInput, getInput];
     const button = form.querySelector('.sell-form__button');
+    const buttonText = button.querySelector('span');
 
     const formParentRow = form.closest('.modal-item__info-row');
     const comission = formParentRow.querySelector('.comission').textContent.trim();
@@ -2561,7 +2562,7 @@ function manageSellForm() {
 
     if (parentItem.classList.contains('item--to-sell')) {
       button.disabled = true;
-      button.textContent = 'save';
+      buttonText.textContent = 'save';
       let emptyInputs = false;
 
       const priceValue = sellPriceInput.value.trim();
@@ -2584,7 +2585,7 @@ function manageSellForm() {
       form.removeEventListener('input', disableButton);
     } else {
       disableButton();
-      button.textContent = 'sell';
+      buttonText.textContent = 'sell';
       form.addEventListener('input', disableButton);
     }
 
