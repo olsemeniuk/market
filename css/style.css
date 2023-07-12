@@ -30,8 +30,8 @@
 
 
 /* ==============================
-      CUSTOM PROPERTIES
-   ==============================*/
+        CUSTOM PROPERTIES
+     ==============================*/
 
 :root {
   /* colors */
@@ -59,8 +59,8 @@
 
 
 /* ==============================
-        GLOBAL STYLES
-   ==============================*/
+          GLOBAL STYLES
+     ==============================*/
 
 html {
   box-sizing: border-box;
@@ -227,8 +227,8 @@ p {
 
 
 /* ===================
-      MAIN STYLES
-   ===================*/
+        MAIN STYLES
+     ===================*/
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -946,10 +946,11 @@ p {
 .filter__section-title {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   min-height: 20px;
   margin-bottom: 12px;
+  padding-right: 20px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -1009,24 +1010,26 @@ p {
 }
 
 .filter__count {
-  margin-left: 0;
+  min-width: 35px;
+  margin-left: 5px;
   opacity: 0;
   color: var(--color-lc);
 }
 
 .filter__count--active {
-  margin-left: 5px;
   opacity: 1;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 .filter__cancel-all {
-  display: none;
   position: relative;
-  margin-left: 0;
+  z-index: -1;
+  opacity: 0;
+  flex-shrink: 0;
+  margin-left: 5px;
   width: 20px;
   height: 20px;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 .filter__cancel-all::before {
@@ -1046,9 +1049,8 @@ p {
 }
 
 .filter__cancel-all--active {
-  display: block;
-  margin-left: 5px;
-  animation: appearing 0.3s;
+  z-index: 1;
+  opacity: 1;
 }
 
 .filter__cancel-all:hover::before {
@@ -3290,6 +3292,7 @@ p {
   color: var(--color-w);
   border-radius: 10px;
   padding: 30px;
+  flex-grow: 1;
 }
 
 .info__content-title {
@@ -4502,6 +4505,7 @@ p {
 .trade-approve--warning .trade-approve__time {
   color: #eab705;
 }
+
 /* buy page end */
 
 /* btn loading start */
@@ -4527,16 +4531,18 @@ p {
   transform-origin: center;
   animation: rotation 1s linear infinite, appearing 1s ease;
 }
+
 /* btn loading end */
 
 
 /* ===============
-      ANIMATIONS 
-     ===============*/
+        ANIMATIONS 
+       ===============*/
 @keyframes appearing {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -4544,16 +4550,17 @@ p {
 
 @keyframes rotation {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
+
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-} 
+}
 
 /* ===============
-      ADAPTIVE
-     ===============*/
+        ADAPTIVE
+       ===============*/
 @media (max-width: 1400px) {
   .information__list-item {
     width: calc((100% / 3) - 10px);
