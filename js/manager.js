@@ -1532,12 +1532,14 @@ function manageFlipBlockRotation() {
     const parentModal = flip.closest('.modal');
     const front = flip.querySelector('.flip__front');
     const back = flip.querySelector('.flip__back');
-    const frontInner = front.querySelector('.flip__inner');
-    const backInner = back.querySelector('.flip__inner');
 
-    const buttons = flip.querySelectorAll('.flip__button');
+    let buttons = flip.querySelectorAll('.flip__button');
+    if (flip.nextElementSibling?.classList.contains('payment_flip__back__js')) buttons = [...buttons, ...flip.nextElementSibling.querySelectorAll('.flip__button')];
     buttons.forEach(button => {
       button.addEventListener('click', () => {
+        const frontInner = front.querySelector('.flip__inner');
+        const backInner = back.querySelector('.flip__inner');
+        
         flip.classList.toggle('flip--rotate');
         parentModal.style.perspective = '1000px';
         setTimeout(() => {
@@ -1669,14 +1671,17 @@ function managePaymentModals() {
 
 function managePaymentSubmitButton(modal) {
   const form = modal.querySelector('.payment-form');
-  const submitButton = modal.querySelector('.payment-form__submit');
-  const cardInput = modal.querySelector('.payment-form__input.input--card');
-  const inputs = modal.querySelectorAll('.flip__back .payment-form__input');
 
   manageButton();
   form.addEventListener('input', manageButton);
 
   function manageButton() {
+    const submitButton = modal.querySelector('.payment-form__submit');
+    const cardInput = modal.querySelector('.payment-form__input.input--card');
+    const inputs = modal.querySelectorAll('.flip__back .payment-form__input');
+
+    if (!submitButton || !cardInput || !inputs.length) return;
+
     const noCard = cardInput.value.length < 19;
     let emptyInputs = false;
     let errorInputs = false;
@@ -1706,8 +1711,16 @@ function managePaymentMethodChoice(modal) {
   function paymentMethodChoise() {
     const activePaymentMethod = modal.querySelector('.payment-form__payment-radio:checked');
     const changePaymentMethodLabel = activePaymentMethod?.closest('.payment-form__payment-label');
+    //modal.querySelectorAll('.flip__back .flip__inner').forEach(e => e.style.display = e.dataset.paymentMethodDetails == activePaymentMethod.dataset.paymentMethod ? '' : 'none');
 
     if (!changePaymentMethodLabel) return;
+
+    const flip__back = modal.querySelector('.flip__back .simplebar-content');
+    const flip__inners_wrapper = modal.querySelector('.payment_flip__back__js');
+    const current = modal.querySelector('.flip__back .flip__inner');
+    if (current) flip__inners_wrapper.appendChild(current); //appendChild not append to save listeners
+    flip__back.appendChild(flip__inners_wrapper.querySelector(`[data-payment-method-details="${activePaymentMethod.dataset.paymentMethod}"]`));
+
     const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
     const errorTooltip = modal.querySelector('.input-tooltip');
     paymentMethods.forEach(method => {
@@ -1715,8 +1728,8 @@ function managePaymentMethodChoice(modal) {
       errorTooltip?.remove();
     });
 
-    const min = activePaymentMethod.dataset.min
-    const max = activePaymentMethod.dataset.max
+    const min = activePaymentMethod.dataset.min;
+    const max = activePaymentMethod.dataset.max;
 
     const imageSource = changePaymentMethodLabel.querySelector('.payment-form__payment-img').src;
     const imageHTML = `<img 
@@ -1821,18 +1834,19 @@ function managePaymentInputMinMax() {
 }
 
 function manageDisabledProceedButton(modal) {
-  const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
-  const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
-  const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
-  const paymentAmountLabel = paymentAmount.closest('.payment-form__label');
-  const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
-  const isWithdrawModal = modal.classList.contains('withdraw-modal');
   const proceedButtonWrapper = modal.querySelector('.payment-form__proceed-wrapper');
   const button = proceedButtonWrapper.querySelector('.payment-form__proceed');
 
   proceedButtonWrapper.addEventListener('click', clickOnDisabledButton);
 
   function clickOnDisabledButton() {
+    const paymentRadios = modal.querySelectorAll('.payment-form__payment-radio');
+    const paymentMethodsBlock = modal.querySelector('.payment-form__section-methods');
+    const paymentAmount = modal.querySelector('.payment-form__front-amount-input');
+    const paymentAmountLabel = paymentAmount.closest('.payment-form__label');
+    const paymentMethods = modal.querySelectorAll('.payment-form__payment-button');
+    const isWithdrawModal = modal.classList.contains('withdraw-modal');
+
     let radiosAreNotChecked = true;
     let amountIsEmpty = false;
 
@@ -3508,14 +3522,14 @@ function testApproveTrade() {
 
   manageApproveTrade({
     itemID: 'test-approve-3',
-    title: 'You haven’t approved the trade',
+    title: 'You havenâ€™t approved the trade',
     text: 'There could be restrictions for your account',
     approveType: 'error'
   });
 
   manageApproveTrade({
     itemID: 'test-approve-4',
-    title: 'Seller haven’t approved the trade',
+    title: 'Seller havenâ€™t approved the trade',
     text: 'Item price will be returned to you',
     approveType: 'neutral'
   });
